@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Авг 08 2018 г., 15:25
+-- Время создания: Авг 09 2018 г., 16:39
 -- Версия сервера: 5.5.60-0+deb8u1
 -- Версия PHP: 5.6.33-0+deb8u1
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- База данных: `reminder`
+-- База данных: `counters`
 --
 
 -- --------------------------------------------------------
@@ -180,26 +180,6 @@ INSERT INTO `tblUserRole` (`idUserRole`, `idUser`, `idRole`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `tblViewTask`
---
-
-CREATE TABLE IF NOT EXISTS `tblViewTask` (
-`idViewTask` int(11) NOT NULL,
-  `viewTask` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-
---
--- Дамп данных таблицы `tblViewTask`
---
-
-INSERT INTO `tblViewTask` (`idViewTask`, `viewTask`) VALUES
-(1, 'инструкция'),
-(2, 'устройство'),
-(3, 'папку какая-то');
-
--- --------------------------------------------------------
-
---
 -- Структура таблицы `user`
 --
 
@@ -271,12 +251,6 @@ ALTER TABLE `tblUserRole`
  ADD PRIMARY KEY (`idUserRole`);
 
 --
--- Индексы таблицы `tblViewTask`
---
-ALTER TABLE `tblViewTask`
- ADD PRIMARY KEY (`idViewTask`);
-
---
 -- Индексы таблицы `user`
 --
 ALTER TABLE `user`
@@ -311,11 +285,6 @@ MODIFY `idRole` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 ALTER TABLE `tblUserRole`
 MODIFY `idUserRole` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=38;
---
--- AUTO_INCREMENT для таблицы `tblViewTask`
---
-ALTER TABLE `tblViewTask`
-MODIFY `idViewTask` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT для таблицы `user`
 --
