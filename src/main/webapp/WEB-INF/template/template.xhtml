@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+
+<h:head>
+    <title>
+        <ui:insert name="page_title" />
+    </title>
+</h:head>
+
+<h:body>
+    <ui:include src="header.xhtml" />
+    <ui:insert name="page_body" />
+    <ui:include src="footer.xhtml" />
+    <script type="text/javascript">
+        //<![CDATA[
+        PrimeFaces.locales ['ru'] = {
+            closeText: 'Закрыть',
+            prevText: 'Назад',
+            nextText: 'Вперёд',
+            monthNames: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+            monthNamesShort: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
+            dayNames: ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Субота'],
+            dayNamesShort: ['Воск', 'Пон', 'Вт', 'Ср', 'Четв', 'Пят', 'Суб'],
+            dayNamesMin: ['В', 'П', 'Вт', 'С ', 'Ч', 'П ', 'Сб'],
+            weekHeader: 'Неделя',
+            firstDay: 1,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: '',
+            timeOnlyTitle: 'Только время',
+            timeText: 'Время',
+            hourText: 'Час',
+            minuteText: 'Минута',
+            secondText: 'Секунда',
+            currentText: 'Сегодня',
+            ampm: false,
+            month: 'Месяц',
+            week: 'неделя',
+            day: 'День',
+            allDayText: 'Весь день'
+        };
+        //]]>
+    </script>
+</h:body>
+</html>

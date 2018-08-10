@@ -12,7 +12,6 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id", nullable = false)
     private int id;
-
     @Column(name = "username", nullable = false)
     private String username;
     @Column (name= "auth_key", length = 32, nullable = false)
@@ -33,7 +32,6 @@ public class UserEntity {
     @ManyToOne
     @JoinColumn(name = "department")
     private TblDepartmentEntity departmentEntity;
-
 
     public int getId() {
         return id;

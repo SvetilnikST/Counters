@@ -1,0 +1,44 @@
+package pst.asu.beans.roleRights;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="tblRoleRights")
+public class RoleRightsEntity {
+
+    @Id
+    @Column(name="idRoleRights", nullable = false)
+    private int idRoleRights;
+
+    @Column(name="idRole", nullable = false)
+    private int idRole;
+    @Column(name = "idRightsItem", nullable = false)
+    private int idRightsItem;
+
+    public int getIdRoleRights() {
+        return idRoleRights;
+    }
+
+    public void setIdRoleRights(int idRoleRights) {
+        this.idRoleRights = idRoleRights;
+    }
+
+    public int getIdRole() {
+        return idRole;
+    }
+
+    public void setIdRole(int idRole) {
+        this.idRole = idRole;
+    }
+
+    public int getIdRightsItem() {
+        return idRightsItem;
+    }
+
+    public void setIdRightsItem(int idRightsItem) {
+        this.idRightsItem = idRightsItem;
+    }
+}

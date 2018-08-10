@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+                template="template.xhtml">
+    <f:metadata>
+        <f:viewParam name="id" value="#{dtDownload.id}"/>
+        <f:viewParam name="filename" value="#{dtDownload.filename}"/>
+        <f:event type="preRenderView" listener="#{dtDownload.init}"/>
+    </f:metadata>
+    <ui:define name="page_title">
+        Вход в систему
+    </ui:define>
+    <ui:define name="page_body">
+        Что-то пошло не так...
+    </ui:define>
+</ui:composition>
