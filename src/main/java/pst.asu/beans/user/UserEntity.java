@@ -1,37 +1,46 @@
 package pst.asu.beans.user;
 
 import pst.asu.beans.department.TblDepartmentEntity;
+import pst.asu.beans.roles.RolesEntity;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name ="user")
+@Table(name = "user")
 public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id", nullable = false)
+    @Column(name = "id", nullable = false)
     private int id;
     @Column(name = "username", nullable = false)
     private String username;
-    @Column (name= "auth_key", length = 32, nullable = false)
+    @Column(name = "auth_key", length = 32, nullable = false)
     private String auth_key;
-    @Column(name ="password_hash", nullable = false)
+    @Column(name = "password_hash", nullable = false)
     private String password_hash;
-    @Column(name="password_reset_token", nullable = false)
-    private  String password_reset_token;
-    @Column(name="email", nullable = false)
+    @Column(name = "password_reset_token", nullable = false)
+    private String password_reset_token;
+    @Column(name = "email", nullable = false)
     private String email;
-    @Column(name="status", nullable = false)
+    @Column(name = "status", nullable = false)
     private short status;
     @Column(name = "created_at", nullable = false)
     private int created_at;
-    @Column(name="updated_at", nullable = false)
+    @Column(name = "updated_at", nullable = false)
     private int updated_at;
 
     @ManyToOne
     @JoinColumn(name = "department")
     private TblDepartmentEntity departmentEntity;
+
+    @ManyToMany
+    @JoinTable(name = "tblUserRole",
+            joinColumns = @JoinColumn(name = "idUser"),
+            inverseJoinColumns = @JoinColumn(name = "idRole"))
+    private Set<RolesEntity> userRoleEntitySet = new HashSet<>();
 
     public int getId() {
         return id;
@@ -111,5 +120,13 @@ public class UserEntity {
 
     public void setDepartmentEntity(TblDepartmentEntity departmentEntity) {
         this.departmentEntity = departmentEntity;
+    }
+
+    public Set<RolesEntity> getUserRoleEntitySet() {
+        return userRoleEntitySet;
+    }
+
+    public void setUserRoleEntitySet(Set<RolesEntity> userRoleEntitySet) {
+        this.userRoleEntitySet = userRoleEntitySet;
     }
 }
