@@ -1,0 +1,218 @@
+package pst.asu.beans.user;
+
+import antlr.StringUtils;
+import pst.asu.beans.department.TblDepartmentEntity;
+
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.core.Cookie;
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
+
+@Named
+@SessionScoped
+public class UserBean implements Serializable {
+
+    private final String COOKIE_NAME = "countersUserName";
+    private final int COOKIE_TIME_TO_REMEMBER = 60 * 60 * 24 * 30 * 12; //
+    private UserEntity userEntity;
+    private String login;
+    private String password;
+    private TblDepartmentEntity departmentEntity;
+    private boolean autentificated;
+    private Map<String, String> rights = new HashMap<String, String>();
+
+    @EJB
+    private AutentificationBean autentificationBean;
+
+    @EJB
+    private UserDAO userDAO;
+
+    public void doLogin() {
+        autentificated = (autentificationBean.doLogin(login, password) == AutentificationBean.LoginResult.SUCCSES);
+        if (autentificated) {
+            this.departmentEntity = autentificationBean.getDepartmentEntity(login);
+            this.userEntity = userDAO.readLogin(login);
+            this.rights = autentificationBean.getRight(login);
+            setCookie(COOKIE_NAME, login, COOKIE_TIME_TO_REMEMBER);
+        }
+        try {
+            String rootUrl = FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath();
+            FacesContext.getCurrentInstance().getExternalContext().redirect(rootUrl);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String generateHashPass(String pass) {
+        return autentificationBean.hashPassword(pass);
+    }
+
+    public void doLogout() {
+        autentificated = false;
+        rights.clear();
+        setCookie(COOKIE_NAME, login, 0);
+        try {
+            String rootUrl = FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath();
+            FacesContext.getCurrentInstance().getExternalContext().redirect(rootUrl);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean doRightVerify(String rightItem) {
+        String value = rights.get(rightItem); // пытаемся обратиться по ключу
+        if (value != null && value.equals(rightItem)) { // проверяем  - не получили ли мы null
+            // получили что-то другое - значит значение есть! =)
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @PostConstruct
+    private  void init(){
+        if(autentificated == false){
+            Cookie cookie =getCookie(COOKIE_NAME);
+            if(cookie!=null){
+                String tmpName = cookie.getValue();
+                if(!StringUtils.isEmpty(tmpName)){
+                    this.login=tmpName;
+                    this.departmentEntity = autentificationBean.getDepartmentEntity(login);
+                    this.rights = autentificationBean.getRight(login);
+                    this.userEntity = userDAO.readLogin(login);
+                    autentificated=true;
+                }
+            }
+        }
+    }
+
+    private javax.servlet.http.Cookie getCookie(String name) {
+
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+
+        HttpServletRequest request = (HttpServletRequest) facesContext.getExternalContext().getRequest();
+        javax.servlet.http.Cookie cookie = null;
+
+        javax.servlet.http.Cookie[] userCookies = request.getCookies();
+        if (userCookies != null && userCookies.length > 0) {
+            for (int i = 0; i < userCookies.length; i++) {
+                if (userCookies[i].getName().equals(name)) {
+                    cookie = userCookies[i];
+                    return cookie;
+                }
+            }
+        }
+        return null;
+    }
+
+    private void setCookie(String name, String value, int expiry) {
+
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+
+        HttpServletRequest request = (HttpServletRequest) facesContext.getExternalContext().getRequest();
+        javax.servlet.http.Cookie cookie = null;
+
+        javax.servlet.http.Cookie[] userCookies = request.getCookies();
+        if (userCookies != null && userCookies.length > 0) {
+            for (int i = 0; i < userCookies.length; i++) {
+                if (userCookies[i].getName().equals(name)) {
+                    cookie = userCookies[i];
+                    break;
+                }
+            }
+        }
+
+        if (cookie != null) {
+            cookie.setValue(value);
+        } else {
+            cookie = new javax.servlet.http.Cookie(name, value);
+            cookie.setPath(request.getContextPath());
+        }
+
+        cookie.setMaxAge(expiry);
+
+        HttpServletResponse response = (HttpServletResponse) facesContext.getExternalContext().getResponse();
+        response.addCookie(cookie);
+    }
+
+
+    public String getCOOKIE_NAME() {
+        return COOKIE_NAME;
+    }
+
+    public int getCOOKIE_TIME_TO_REMEMBER() {
+        return COOKIE_TIME_TO_REMEMBER;
+    }
+
+    public UserEntity getUserEntity() {
+        return userEntity;
+    }
+
+    public void setUserEntity(UserEntity userEntity) {
+        this.userEntity = userEntity;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public TblDepartmentEntity getDepartmentEntity() {
+        return departmentEntity;
+    }
+
+    public void setDepartmentEntity(TblDepartmentEntity departmentEntity) {
+        this.departmentEntity = departmentEntity;
+    }
+
+    public boolean isAuthenticated() {
+        return authenticated;
+    }
+
+    public void setAuthenticated(boolean authenticated) {
+        this.authenticated = authenticated;
+    }
+
+    public Map<String, String> getRights() {
+        return rights;
+    }
+
+    public void setRights(Map<String, String> rights) {
+        this.rights = rights;
+    }
+
+    public AutentificationBean getAutentificationBean() {
+        return autentificationBean;
+    }
+
+    public void setAutentificationBean(AutentificationBean autentificationBean) {
+        this.autentificationBean = autentificationBean;
+    }
+
+    public UserDAO getUserDAO() {
+        return userDAO;
+    }
+
+    public void setUserDAO(UserDAO userDAO) {
+        this.userDAO = userDAO;
+    }
+}
