@@ -1,15 +1,15 @@
 package pst.asu.beans.user;
 
-import antlr.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import pst.asu.beans.department.TblDepartmentEntity;
 import pst.asu.beans.rightsItems.RightsItemEntity;
 import pst.asu.beans.roles.RolesEntity;
+import pst.asu.library.BCrypt;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -42,7 +42,7 @@ public class AutentificationBean {
         if (userEntity == null) {
             return LoginResult.INCORRECT_LOGIN;
         }
-        if (!library.BCrypt.checkpw(password, userEntity.getPassword_hash())) {
+        if(!BCrypt.checkpw(password,userEntity.getPassword_hash())){
             return LoginResult.INCORRECT_PASSWORD;
         }
         return LoginResult.SUCCSES;
@@ -50,7 +50,7 @@ public class AutentificationBean {
 
     public TblDepartmentEntity getDepartmentEntity(String login) {
         if (StringUtils.isEmpty(login)) {
-            null;
+           return null;
         }
         TypedQuery<UserEntity> query = entityManager.createQuery(
                 "select entity from UserEntity entity where entity.username like :login",
@@ -65,7 +65,7 @@ public class AutentificationBean {
     }
 
     public Map<String, String> getRight(String login) {
-        Map<String, String> rights = new HashMap< ~ > ();
+        Map< String, String > rights = new HashMap< String, String >();
         if (StringUtils.isEmpty(login)) {
             return null;
         }
@@ -89,8 +89,8 @@ public class AutentificationBean {
     }
 
     public String hashPassword(String password_plaintext){
-        String salt = library.BCrypt.gensalt(13);
-        String hashed_password = library.BCrypt.hashpw(password_plaintext,salt);
+        String salt = BCrypt.gensalt(13);
+        String hashed_password = BCrypt.hashpw(password_plaintext,salt);
         return hashed_password;
     }
 }

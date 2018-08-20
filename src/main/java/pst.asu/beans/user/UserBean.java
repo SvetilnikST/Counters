@@ -1,6 +1,6 @@
 package pst.asu.beans.user;
 
-import antlr.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import pst.asu.beans.department.TblDepartmentEntity;
 
 import javax.annotation.PostConstruct;
@@ -10,7 +10,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.ws.rs.core.Cookie;
+import javax.servlet.http.Cookie;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashMap;
@@ -80,7 +80,7 @@ public class UserBean implements Serializable {
     @PostConstruct
     private  void init(){
         if(autentificated == false){
-            Cookie cookie =getCookie(COOKIE_NAME);
+            Cookie cookie = getCookie(COOKIE_NAME);
             if(cookie!=null){
                 String tmpName = cookie.getValue();
                 if(!StringUtils.isEmpty(tmpName)){
@@ -136,28 +136,9 @@ public class UserBean implements Serializable {
             cookie = new javax.servlet.http.Cookie(name, value);
             cookie.setPath(request.getContextPath());
         }
-
         cookie.setMaxAge(expiry);
-
         HttpServletResponse response = (HttpServletResponse) facesContext.getExternalContext().getResponse();
         response.addCookie(cookie);
-    }
-
-
-    public String getCOOKIE_NAME() {
-        return COOKIE_NAME;
-    }
-
-    public int getCOOKIE_TIME_TO_REMEMBER() {
-        return COOKIE_TIME_TO_REMEMBER;
-    }
-
-    public UserEntity getUserEntity() {
-        return userEntity;
-    }
-
-    public void setUserEntity(UserEntity userEntity) {
-        this.userEntity = userEntity;
     }
 
     public String getLogin() {
@@ -176,6 +157,14 @@ public class UserBean implements Serializable {
         this.password = password;
     }
 
+    public boolean isAutentificated() {
+        return autentificated;
+    }
+
+    public void setAutentificated(boolean autentificated) {
+        this.autentificated = autentificated;
+    }
+
     public TblDepartmentEntity getDepartmentEntity() {
         return departmentEntity;
     }
@@ -184,35 +173,11 @@ public class UserBean implements Serializable {
         this.departmentEntity = departmentEntity;
     }
 
-    public boolean isAuthenticated() {
-        return authenticated;
+    public UserEntity getUserEntity() {
+        return userEntity;
     }
 
-    public void setAuthenticated(boolean authenticated) {
-        this.authenticated = authenticated;
-    }
-
-    public Map<String, String> getRights() {
-        return rights;
-    }
-
-    public void setRights(Map<String, String> rights) {
-        this.rights = rights;
-    }
-
-    public AutentificationBean getAutentificationBean() {
-        return autentificationBean;
-    }
-
-    public void setAutentificationBean(AutentificationBean autentificationBean) {
-        this.autentificationBean = autentificationBean;
-    }
-
-    public UserDAO getUserDAO() {
-        return userDAO;
-    }
-
-    public void setUserDAO(UserDAO userDAO) {
-        this.userDAO = userDAO;
+    public void setUserEntity(UserEntity userEntity) {
+        this.userEntity = userEntity;
     }
 }

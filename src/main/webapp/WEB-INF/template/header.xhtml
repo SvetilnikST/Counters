@@ -8,8 +8,22 @@
             <f:facet name="left">
                 <p:button type="button" value="Контроль счетчиков" href="/index.xhtlm"/>
             </f:facet>
+            <f:facet name="right">
+                <c:if test="#{not userBean.authenticated}">
+                    <p:button type="button" value="Счетчики"/>
+                    <p:button type="button" value="Войти" href="/login.xhtml"/>
+                </c:if>
+            <c:if test="#{userBean.authenticated}">
+                <p:button type="button" value="Cчетчики"/>
+                <p:button type="button" value="Новый счетчик"/>
+                <p:menuButton value="Администрирование" rendered="#{userBean.doRightVerify('admin')}">
+                    <p:menuitem value="Пользователи" icon="ui-icon-disk"
+                                url="/administration.xhtml"/>
+                </p:menuButton>
+                <p:commandButton value="Выход(#{userBean.login})" icon="ui-icon-document"
+                                 action="#{userBean.doLogout}"/>
+            </c:if>
+            </f:facet>
         </p:toolbar>
     </h:form>
-
-
 </ui:composition>

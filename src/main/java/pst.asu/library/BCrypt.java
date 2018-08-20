@@ -1,4 +1,4 @@
-package library;
+package pst.asu.library;
 
 import java.io.UnsupportedEncodingException;
 import java.security.SecureRandom;
