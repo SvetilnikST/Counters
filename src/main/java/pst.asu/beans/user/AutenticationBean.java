@@ -13,10 +13,8 @@ import javax.persistence.TypedQuery;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.primefaces.component.graphicimage.GraphicImage.PropertyKeys.library;
-
 @Stateless
-public class AutentificationBean {
+public class AutenticationBean {
     public enum LoginResult {
         INCORRECT_LOGIN,
         INCORRECT_PASSWORD,
@@ -35,7 +33,8 @@ public class AutentificationBean {
             return LoginResult.INCORRECT_LOGIN;
         }
         TypedQuery<UserEntity> query = entityManager.createQuery(
-                "select entity from UserEntity entity where entity.username like :login",
+                "select entity from UserEntity entity " +
+                        "where entity.username like :login" ,
                 UserEntity.class);
         query.setParameter("login", login);
         UserEntity userEntity = query.getSingleResult();
@@ -81,7 +80,7 @@ public class AutentificationBean {
         }
 
         for (RolesEntity role : userEntity.getUserRoleEntitySet()) {
-            for (RightsItemEntity right : role.getRightsItemEntitySet()) {
+            for (RightsItemEntity right: role.getRightsItemEntitySet()) {
                 rights.put(right.getRightItem(), right.getRightItem());
             }
         }

@@ -5,12 +5,12 @@ import pst.asu.beans.department.TblDepartmentEntity;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Cookie;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashMap;
@@ -30,17 +30,17 @@ public class UserBean implements Serializable {
     private Map<String, String> rights = new HashMap<String, String>();
 
     @EJB
-    private AutentificationBean autentificationBean;
+    private AutenticationBean autenticationBean;
 
     @EJB
     private UserDAO userDAO;
 
     public void doLogin() {
-        autentificated = (autentificationBean.doLogin(login, password) == AutentificationBean.LoginResult.SUCCSES);
+        autentificated = (autenticationBean.doLogin(login, password) == AutenticationBean.LoginResult.SUCCSES);
         if (autentificated) {
-            this.departmentEntity = autentificationBean.getDepartmentEntity(login);
+            this.departmentEntity = autenticationBean.getDepartmentEntity(login);
             this.userEntity = userDAO.readLogin(login);
-            this.rights = autentificationBean.getRight(login);
+            this.rights = autenticationBean.getRight(login);
             setCookie(COOKIE_NAME, login, COOKIE_TIME_TO_REMEMBER);
         }
         try {
@@ -52,7 +52,7 @@ public class UserBean implements Serializable {
     }
 
     public String generateHashPass(String pass) {
-        return autentificationBean.hashPassword(pass);
+        return autenticationBean.hashPassword(pass);
     }
 
     public void doLogout() {
@@ -85,8 +85,8 @@ public class UserBean implements Serializable {
                 String tmpName = cookie.getValue();
                 if(!StringUtils.isEmpty(tmpName)){
                     this.login=tmpName;
-                    this.departmentEntity = autentificationBean.getDepartmentEntity(login);
-                    this.rights = autentificationBean.getRight(login);
+                    this.departmentEntity = autenticationBean.getDepartmentEntity(login);
+                    this.rights = autenticationBean.getRight(login);
                     this.userEntity = userDAO.readLogin(login);
                     autentificated=true;
                 }

@@ -10,9 +10,9 @@
         <h:form>
             <p:panelGrid columns="2" class="ui-noborder">
                 <p:outputLabel for="loginInput">Логин</p:outputLabel>
-                <p:inputText id="loginInput" value="#{userBean.login}"></p:inputText>
+                <p:inputText id="loginInput" value="#{userBean.login}"/>
                 <p:outputLabel for="passwordInput">Пароль</p:outputLabel>
-                <p:password id="passwordInput" value="#{userBean.password}"></p:password>
+                <p:password id="passwordInput" value="#{userBean.password}"/>
                 <p:commandButton value="Войти" action="#{userBean.doLogin()}"/>
             </p:panelGrid>
         </h:form>

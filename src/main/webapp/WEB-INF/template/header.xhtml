@@ -9,11 +9,11 @@
                 <p:button type="button" value="Контроль счетчиков" href="/index.xhtlm"/>
             </f:facet>
             <f:facet name="right">
-                <c:if test="#{not userBean.authenticated}">
+                <c:if test="#{not userBean.autentificated}">
                     <p:button type="button" value="Счетчики"/>
                     <p:button type="button" value="Войти" href="/login.xhtml"/>
                 </c:if>
-            <c:if test="#{userBean.authenticated}">
+            <c:if test="#{userBean.autentificated}">
                 <p:button type="button" value="Cчетчики"/>
                 <p:button type="button" value="Новый счетчик"/>
                 <p:menuButton value="Администрирование" rendered="#{userBean.doRightVerify('admin')}">
