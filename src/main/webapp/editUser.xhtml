@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html" xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="WEB-INF/template/template.xhtml">
+    <ui:define name="page_title">
+        Пользователь
+    </ui:define>
+    <ui:define name="page_body">
+        <h:form>
+            <p:panel>
+                <h2>
+                    <p:outputLabel rendered="#{userAdministration.id==0 or userAdministration.id==null}">
+                        Новый пользователь
+                    </p:outputLabel>
+                    <p:outputLabel rendered="#{userAdministration.id!=0 and userAdministration.id!=null}"
+                                   value="Изменение данных о пользователе #{userAdministration.username} "/>
+                </h2>
+                <p:panelGrid styleClass="ui-panelgrid-blank">
+                    <p:row>
+                        <p:column colspan="1">
+                            <h:outputText value="Имя"/>
+                        </p:column>
+                        <p:column colspan="1">
+                            <h:outputText value="Email"/>
+                        </p:column>
+                        <p:column colspan="1">
+                            <h:outputText value="Статус"/>
+                        </p:column>
+                        <p:column colspan="3">
+                            <h:outputText value="Подразделение"/>
+                        </p:column>
+                        <p:column colspan="3">
+                            <h:outputText value="Пароль"/>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column colspan="1">
+                            <p:inputText id="userName" value="#{userAdministration.username}"
+                                         title="userName"/>
+                        </p:column>
+                        <p:column colspan="1">
+                            <p:inputText id="email" value="#{userAdministration.email}"
+                                         title="Email"/>
+                        </p:column>
+                        <p:column colspan="1">
+                            <p:inputText id="status" value="#{userAdministration.status}"
+                                         title="Статус"/>
+                        </p:column>
+                        <p:column colspan="3">
+
+                            <p:selectOneMenu id="idDepartment" value="#{userAdministration.departmentEntity}"
+                                             converter="omnifaces.SelectItemsConverter"
+                                             var="dep"
+                            >
+                                <f:selectItems value="#{userAdministration.departmentList}" var="department"
+                                               itemLabel="#{department.department}" itemValue="#{department}" />
+                                <p:column>
+                                    <h:outputText value="#{dep.department}" />
+                                </p:column>
+                            </p:selectOneMenu>
+                        </p:column>
+                        <p:column colspan="3">
+                            <p:password id="passwrd" value="#{userAdministration.password}"
+                                         title="Пароль"/>
+                            <p:selectBooleanCheckbox value="#{userAdministration.updatePassword}" />
+                        </p:column>
+                    </p:row>
+                </p:panelGrid>
+                <p:panelGrid styleClass="ui-noborder">
+                    <p:row>
+                        <p:column colspan="1">
+                            <p:selectCheckboxMenu id="multiple" value="#{userAdministration.rolesToSet}"
+                                                  label="Все роли"
+                                                  multiple="true"
+                                                  filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
+                                <f:selectItems value="#{userAdministration.myTest}"/>
+                            </p:selectCheckboxMenu>
+                        </p:column>
+                    </p:row>
+                </p:panelGrid>
+                <p:commandButton value="Сохранить" action="#{userAdministration.save()}"
+                                 rendered="#{userBean.doRightVerify('createUser')}"/>
+            </p:panel>
+        </h:form>
+    </ui:define>
+</ui:composition>
+
