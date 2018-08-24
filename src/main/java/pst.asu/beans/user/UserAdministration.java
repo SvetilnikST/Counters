@@ -366,4 +366,5 @@ public class UserAdministration implements Serializable {
     public void setUserEntitiesList(List<UserEntity> userEntitiesList) {
         this.userEntitiesList = userEntitiesList;
     }
+
 }

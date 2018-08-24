@@ -31,6 +31,8 @@ public class RolesEntity {
             inverseJoinColumns = @JoinColumn(name = "idUser"))
     private Set<UserEntity> userEntitySet = new HashSet<>();
 
+
+
     public int getIdRole() {
         return idRole;
     }
@@ -62,4 +64,5 @@ public class RolesEntity {
     public void setUserEntitySet(Set<UserEntity> userEntitySet) {
         this.userEntitySet = userEntitySet;
     }
+
 }

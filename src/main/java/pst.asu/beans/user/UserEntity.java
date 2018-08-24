@@ -36,7 +36,7 @@ public class UserEntity {
     @JoinColumn(name = "department")
     private TblDepartmentEntity departmentEntity;
 
-    @ManyToMany
+    @ManyToMany (fetch = FetchType.EAGER)
     @JoinTable(name = "tblUserRole",
             joinColumns = @JoinColumn(name = "idUser"),
             inverseJoinColumns = @JoinColumn(name = "idRole"))
