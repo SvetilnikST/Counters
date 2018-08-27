@@ -1,20 +1,42 @@
 package pst.asu.beans.qBox;
 
+import com.google.gson.Gson;
+
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.List;
 
 @LocalBean
 @Stateless
 public class BoxCommonDAO {
+
+    private final String FILENAME = "D:/1_SVETILNIK_NEED/Java/Counters/sku.json";
+
     @PersistenceContext(unitName = "counters-app")
     private EntityManager entityManager;
 
     public TblBoxCommonEntity read(long id){
         return entityManager.find(TblBoxCommonEntity.class,id);
+    }
+
+
+    //парсинг JSON
+    public void readJSON(){
+        Gson gson = new Gson();
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(FILENAME));
+            TblBoxCommonEntity qbox_data_common = gson.fromJson(reader, TblBoxCommonEntity.class);
+            //написать запись в базу полученные данные
+
+        } catch (FileNotFoundException ex) {
+            int a=0;
+        }
     }
 
     public List<TblBoxCommonEntity> readBoxCommonList(){
