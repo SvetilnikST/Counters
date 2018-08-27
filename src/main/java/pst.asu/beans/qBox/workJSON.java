@@ -14,7 +14,8 @@ public class workJSON {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(FILENAME));
             TblBoxCommonEntity qbox_data_common = gson.fromJson(reader, TblBoxCommonEntity.class);
-            //записываем в базу полученные данные
+            //написать запись в базу полученные данные
+
 
 
         } catch (FileNotFoundException ex) {
