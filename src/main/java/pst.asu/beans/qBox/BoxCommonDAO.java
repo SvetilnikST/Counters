@@ -16,7 +16,7 @@ import java.util.List;
 @Stateless
 public class BoxCommonDAO {
 
-    private final String FILENAME = "D:/1_SVETILNIK_NEED/Java/Counters/sku.json";
+
 
     @PersistenceContext(unitName = "counters-app")
     private EntityManager entityManager;
@@ -26,26 +26,14 @@ public class BoxCommonDAO {
     }
 
 
-    //парсинг JSON
-    public void readJSON(){
-        Gson gson = new Gson();
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(FILENAME));
-            TblBoxCommonEntity qbox_data_common = gson.fromJson(reader, TblBoxCommonEntity.class);
-            //написать запись в базу полученные данные
 
-        } catch (FileNotFoundException ex) {
-            int a=0;
-        }
-    }
-
-    public List<TblBoxCommonEntity> readBoxCommonList(){
-        TypedQuery<TblBoxCommonEntity> query = entityManager.createQuery(
-                "from TblBoxCommonEntity entity",
-                TblBoxCommonEntity.class);
-        List<TblBoxCommonEntity> tblBoxCommonEntities = query.getResultList();
-        return tblBoxCommonEntities;
-    }
+//    public List<TblBoxCommonEntity> readBoxCommonList(){
+//        TypedQuery<TblBoxCommonEntity> query = entityManager.createQuery(
+//                "from TblBoxCommonEntity entity",
+//                TblBoxCommonEntity.class);
+//        List<TblBoxCommonEntity> tblBoxCommonEntities = query.getResultList();
+//        return tblBoxCommonEntities;
+//    }
 
     public boolean create(TblBoxCommonEntity tblBoxCommonEntity){
         TblBoxCommonEntity existingUser = entityManager.find(TblBoxCommonEntity.class, tblBoxCommonEntity.getId());

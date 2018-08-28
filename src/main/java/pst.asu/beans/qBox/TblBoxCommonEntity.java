@@ -8,40 +8,40 @@ public class TblBoxCommonEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    public Long id;
+    private int id;
 
     @Column(name = "serial", nullable = false)
-    public String serial;
+    private String serial;
 
     @Column(name ="unit_q", nullable = false)
-    public Long unitQ;
+    private int unitQ;
 
     @Column(name ="time_request", nullable = false)
-    public Long timeRequest;
+    private int timeRequest;
     @Column(name ="time_device", nullable = false)
-    public Long timeDevice;
+    private int timeDevice;
 
     @Column(name ="time_on", nullable = false)
-    public Long timeOn;
+    private int timeOn;
 
     @Column(name ="time_run_common", nullable = false)
-    public Long timeRunCommon;
+    private int timeRunCommon;
 
     @Column(name ="inStore1", nullable = false)
-    public Long instore1;
+    private int instore1;
 
     @Column(name ="inStore2", nullable = false)
-    public Long instore2;
+    public int instore2;
 
     @Column(name ="inStore3", nullable = false)
-    public Long instore3;
+    public int instore3;
 
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -53,67 +53,67 @@ public class TblBoxCommonEntity {
         this.serial = serial;
     }
 
-    public Long getUnitQ() {
+    public int getUnitQ() {
         return unitQ;
     }
 
-    public void setUnitQ(Long unitQ) {
+    public void setUnitQ(int unitQ) {
         this.unitQ = unitQ;
     }
 
-    public Long getTimeRequest() {
+    public int getTimeRequest() {
         return timeRequest;
     }
 
-    public void setTimeRequest(Long timeRequest) {
+    public void setTimeRequest(int timeRequest) {
         this.timeRequest = timeRequest;
     }
 
-    public Long getTimeDevice() {
+    public int getTimeDevice() {
         return timeDevice;
     }
 
-    public void setTimeDevice(Long timeDevice) {
+    public void setTimeDevice(int timeDevice) {
         this.timeDevice = timeDevice;
     }
 
-    public Long getTimeOn() {
+    public int getTimeOn() {
         return timeOn;
     }
 
-    public void setTimeOn(Long timeOn) {
+    public void setTimeOn(int timeOn) {
         this.timeOn = timeOn;
     }
 
-    public Long getTimeRunCommon() {
+    public int getTimeRunCommon() {
         return timeRunCommon;
     }
 
-    public void setTimeRunCommon(Long timeRunCommon) {
+    public void setTimeRunCommon(int timeRunCommon) {
         this.timeRunCommon = timeRunCommon;
     }
 
-    public Long getInstore1() {
+    public int getInstore1() {
         return instore1;
     }
 
-    public void setInstore1(Long instore1) {
+    public void setInstore1(int instore1) {
         this.instore1 = instore1;
     }
 
-    public Long getInstore2() {
+    public int getInstore2() {
         return instore2;
     }
 
-    public void setInstore2(Long instore2) {
+    public void setInstore2(int instore2) {
         this.instore2 = instore2;
     }
 
-    public Long getInstore3() {
+    public int getInstore3() {
         return instore3;
     }
 
-    public void setInstore3(Long instore3) {
+    public void setInstore3(int instore3) {
         this.instore3 = instore3;
     }
 }

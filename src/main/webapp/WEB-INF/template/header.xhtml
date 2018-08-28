@@ -14,7 +14,7 @@
                     <p:button type="button" value="Войти" href="/login.xhtml"/>
                 </c:if>
             <c:if test="#{userBean.autentificated}">
-                <p:button type="button" value="Cчетчики"/>
+                <p:commandButton type="button" value="JSON" action="#{boxCommonAdministration.readJSON}" />
                 <p:button type="button" value="Новый счетчик"/>
                 <p:menuButton value="Администрирование" rendered="#{userBean.doRightVerify('admin')}">
                     <p:menuitem value="Пользователи" icon="ui-icon-disk"
