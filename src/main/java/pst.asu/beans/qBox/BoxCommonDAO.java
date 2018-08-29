@@ -1,31 +1,22 @@
 package pst.asu.beans.qBox;
 
-import com.google.gson.Gson;
-
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.List;
 
 @LocalBean
 @Stateless
 public class BoxCommonDAO {
 
-
-
     @PersistenceContext(unitName = "counters-app")
     private EntityManager entityManager;
 
-    public TblBoxCommonEntity read(long id){
-        return entityManager.find(TblBoxCommonEntity.class,id);
-    }
-
-
+//    public TblBoxCommonEntity read(int id){
+//        return entityManager.find(TblBoxCommonEntity.class,id);
+//    }
 
 //    public List<TblBoxCommonEntity> readBoxCommonList(){
 //        TypedQuery<TblBoxCommonEntity> query = entityManager.createQuery(
@@ -35,17 +26,25 @@ public class BoxCommonDAO {
 //        return tblBoxCommonEntities;
 //    }
 
-    public boolean create(TblBoxCommonEntity tblBoxCommonEntity){
-        TblBoxCommonEntity existingUser = entityManager.find(TblBoxCommonEntity.class, tblBoxCommonEntity.getId());
-        entityManager.persist(tblBoxCommonEntity);
-        return true;
-    }
+//    public boolean create(TblBoxCommonEntity boxCommonEntity){
+//        TblBoxCommonEntity existingUser = entityManager.find(TblBoxCommonEntity.class, boxCommonEntity.getIdd());
+//        entityManager.persist(boxCommonEntity);
+//        return true;
+//    }
 
-    public int getTotalCount() {
-        Long rez = entityManager.createQuery(
-                "select count (entity.id) from TblBoxCommonEntity entity",
-                Long.class)
-                .getSingleResult();
-        return rez.intValue();
-    }
+//    public List<TblBoxCommonEntity> readBoxCommonList(){
+//        TypedQuery<TblBoxCommonEntity> query = entityManager.createQuery(
+//                "from TblBoxCommonEntity entity",
+//                TblBoxCommonEntity.class);
+//        List<TblBoxCommonEntity> tblBoxCommonEntities = query.getResultList();
+//        return tblBoxCommonEntities;
+//    }
+
+//    public int getTotalCount() {
+//        Long rez = entityManager.createQuery(
+//                "select count (entity.idd) from TblBoxCommonEntity entity",
+//                Long.class)
+//                .getSingleResult();
+//        return rez.intValue();
+//    }
 }

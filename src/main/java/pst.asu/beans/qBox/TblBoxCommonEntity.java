@@ -6,11 +6,11 @@ import javax.persistence.*;
 @Table(name = "qBox_data_common")
 public class TblBoxCommonEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "idd", nullable = false)
+    private int idd;
 
-    @Column(name = "serial", nullable = false)
+    @Column(name = "serial", length = 225, nullable = false)
     private String serial;
 
     @Column(name ="unit_q", nullable = false)
@@ -18,6 +18,7 @@ public class TblBoxCommonEntity {
 
     @Column(name ="time_request", nullable = false)
     private int timeRequest;
+
     @Column(name ="time_device", nullable = false)
     private int timeDevice;
 
@@ -37,12 +38,12 @@ public class TblBoxCommonEntity {
     public int instore3;
 
 
-    public Integer getId() {
-        return id;
+    public int getIdd() {
+        return idd;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdd(int id) {
+        this.idd = id;
     }
 
     public String getSerial() {
