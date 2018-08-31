@@ -52,6 +52,9 @@ public class BoxCommonAdministration implements Serializable {
             //написать запись в базу полученные данные
             System.out.println(qbox_data_common.getSerial());
 
+
+//            tblBoxCommonEntity.setSerial(qbox_data_common.getSerial());
+
         } catch (FileNotFoundException ex) {
             int a=0;
         }
@@ -91,22 +94,22 @@ public class BoxCommonAdministration implements Serializable {
 //        this.setInstore3(tblBoxCommonEntity.getInstore3());
 //    }
 
-//    public String save(){
+    public String save(){
 //        tblBoxCommonEntity = boxCommonDAO.read(this.idd);
 //        if (tblBoxCommonEntity== null){
 //            tblBoxCommonEntity = new TblBoxCommonEntity();
 //        }
-//        tblBoxCommonEntity.setSerial(this.serial);
-//        tblBoxCommonEntity.setUnitQ(this.unitQ);
-//        tblBoxCommonEntity.setTimeRequest(this.timeRequest);
-//        tblBoxCommonEntity.setTimeDevice(this.timeDevice);
-//        tblBoxCommonEntity.setTimeOn(this.timeOn);
-//        tblBoxCommonEntity.setTimeRunCommon(this.timeRunCommon);
-//        tblBoxCommonEntity.setInstore1(this.instore1);
-//        tblBoxCommonEntity.setInstore2(this.instore2);
-//        tblBoxCommonEntity.setInstore3(this.instore3);
-//        return String.valueOf(tblBoxCommonEntity.getIdd());
-//    }
+        tblBoxCommonEntity.setSerial(this.serial);
+        tblBoxCommonEntity.setUnitQ(this.unitQ);
+        tblBoxCommonEntity.setTimeRequest(this.timeRequest);
+        tblBoxCommonEntity.setTimeDevice(this.timeDevice);
+        tblBoxCommonEntity.setTimeOn(this.timeOn);
+        tblBoxCommonEntity.setTimeRunCommon(this.timeRunCommon);
+        tblBoxCommonEntity.setInstore1(this.instore1);
+        tblBoxCommonEntity.setInstore2(this.instore2);
+        tblBoxCommonEntity.setInstore3(this.instore3);
+        return String.valueOf(tblBoxCommonEntity.getIdd());
+    }
 
 
     public TblBoxCommonEntity getTblBoxCommonEntity() {
