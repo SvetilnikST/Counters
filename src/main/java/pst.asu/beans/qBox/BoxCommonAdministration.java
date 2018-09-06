@@ -11,10 +11,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.Serializable;
+import java.io.*;
 import java.util.List;
 import java.util.Map;
 
@@ -27,7 +24,7 @@ public class BoxCommonAdministration implements Serializable {
     private final String FILENAME = "D:/1_SVETILNIK_NEED/Java/Counters/sku.json";
 
     @EJB
-    private  BoxCommonDAO boxCommonDAO;
+    private BoxCommonDAO boxCommonDAO;
 
     @Default
     private int idd;
@@ -44,80 +41,64 @@ public class BoxCommonAdministration implements Serializable {
     private List<TblBoxCommonEntity> tblBoxCommonEntitysList;
 
     //парсинг JSON
-    public void readJSON(){
+    public void readJSON() {
+        String gsonString = getJsonString();
         Gson gson = new Gson();
+//        String gsonString="{\n" +
+//                "  \"serial\":\"00002128\",\n" +
+//                "  \"unitQ\":1,\n" +
+//                "  \"timeRequest\":1527706940,\n" +
+//                "  \"timeDevice\":1525115100,\n" +
+//                "  \"timeOn\":24209554,\n" +
+//                "  \"timeRunCommon\":23694812\n" +
+//                "}\n";
         try {
             BufferedReader reader = new BufferedReader(new FileReader(FILENAME));
-            TblBoxCommonEntity qbox_data_common = gson.fromJson(reader, TblBoxCommonEntity.class);
+            TblBoxCommonEntity qbox_data_common = gson.fromJson(gsonString, TblBoxCommonEntity.class);
+            boxCommonDAO.create(qbox_data_common);
             //написать запись в базу полученные данные
             System.out.println(qbox_data_common.getSerial());
-
-
-//            tblBoxCommonEntity.setSerial(qbox_data_common.getSerial());
-
         } catch (FileNotFoundException ex) {
-            int a=0;
+            int a = 0;
         }
     }
 
-//    @PostConstruct
-//    void start(){
-//        FacesContext facesContext = FacesContext.getCurrentInstance();
-//        ExternalContext externalContext = facesContext.getExternalContext();
-//        Map<String, String> parameterMap = (Map<String, String>) externalContext.getRequestParameterMap();
-//        String param = parameterMap.get("id");
-//        if(param!=null){
-//           this.tblBoxCommonEntity = boxCommonDAO.read(idd);
-//            if (tblBoxCommonEntity == null) {
-//                String message = "Bad request. Unknown task.";
-//                FacesContext.getCurrentInstance().addMessage(null,
-//                        new FacesMessage(FacesMessage.SEVERITY_ERROR, message, null));
-//            }
-//            load(tblBoxCommonEntity);
-//        } else {
-//            System.out.println("заполнение параметров нулевыми значениями");
-//        }
-//        tblBoxCommonEntitysList = boxCommonDAO.readBoxCommonList();
-//    }
+    private String getJsonString() {
+        ProcessBuilder procBuilder;
+        String pathCmd = "D:\\1_SVETILNIK_NEED\\Java\\Counters\\1.cmd";
+        String pathJson = "D:\\1_SVETILNIK_NEED\\Java\\Counters\\scu.json";
+        procBuilder = new ProcessBuilder(pathCmd, pathJson);
+        // запуск программы
+        Process process = null;
+        try {
+            process = procBuilder.start();
+            // читаем стандартный поток вывода
+            // и выводим на экран
+            InputStream stdout = process.getInputStream();
+            InputStreamReader isrStdout = new InputStreamReader(stdout);
+            BufferedReader brStdout = new BufferedReader(isrStdout);
+            String line = null;
+            StringBuilder stringBuilder = new StringBuilder();
 
+            while ((line = brStdout.readLine()) != null) {
+                stringBuilder.append(line);
+            }
 
-//    public void load(TblBoxCommonEntity tblBoxCommonEntity){
-//        this.setIdd(tblBoxCommonEntity.getIdd());
-//        this.setSerial(tblBoxCommonEntity.getSerial());
-//        this.setUnitQ(tblBoxCommonEntity.getUnitQ());
-//        this.setTimeRequest(tblBoxCommonEntity.getTimeRequest());
-//        this.setTimeDevice(tblBoxCommonEntity.getTimeDevice());
-//        this.setTimeOn(tblBoxCommonEntity.getTimeOn());
-//        this.setTimeRunCommon(tblBoxCommonEntity.getTimeRunCommon());
-//        this.setInstore1(tblBoxCommonEntity.getInstore1());
-//        this.setInstore2(tblBoxCommonEntity.getInstore2());
-//        this.setInstore3(tblBoxCommonEntity.getInstore3());
-//    }
+            // ждем пока завершится вызванная программа
+            // и сохраняем код, с которым она завершилась в
+            // в переменную exitVal
+            int exitVal = process.waitFor();
 
-    public String save(){
-//        tblBoxCommonEntity = boxCommonDAO.read(this.idd);
-//        if (tblBoxCommonEntity== null){
-//            tblBoxCommonEntity = new TblBoxCommonEntity();
-//        }
-        tblBoxCommonEntity.setSerial(this.serial);
-        tblBoxCommonEntity.setUnitQ(this.unitQ);
-        tblBoxCommonEntity.setTimeRequest(this.timeRequest);
-        tblBoxCommonEntity.setTimeDevice(this.timeDevice);
-        tblBoxCommonEntity.setTimeOn(this.timeOn);
-        tblBoxCommonEntity.setTimeRunCommon(this.timeRunCommon);
-        tblBoxCommonEntity.setInstore1(this.instore1);
-        tblBoxCommonEntity.setInstore2(this.instore2);
-        tblBoxCommonEntity.setInstore3(this.instore3);
-        return String.valueOf(tblBoxCommonEntity.getIdd());
+            return stringBuilder.toString();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
     }
-
 
     public TblBoxCommonEntity getTblBoxCommonEntity() {
         return tblBoxCommonEntity;
-    }
-
-    public void setTblBoxCommonEntity(TblBoxCommonEntity tblBoxCommonEntity) {
-        this.tblBoxCommonEntity = tblBoxCommonEntity;
     }
 
     public List<BoxCommonAdministration> getBoxCommonAdministrations() {

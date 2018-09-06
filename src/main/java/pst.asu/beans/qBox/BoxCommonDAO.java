@@ -14,37 +14,9 @@ public class BoxCommonDAO {
     @PersistenceContext(unitName = "counters-app")
     private EntityManager entityManager;
 
-//    public TblBoxCommonEntity read(int id){
-//        return entityManager.find(TblBoxCommonEntity.class,id);
-//    }
+    public boolean create(TblBoxCommonEntity boxCommonEntity){
+        entityManager.persist(boxCommonEntity);
+        return true;
+    }
 
-//    public List<TblBoxCommonEntity> readBoxCommonList(){
-//        TypedQuery<TblBoxCommonEntity> query = entityManager.createQuery(
-//                "from TblBoxCommonEntity entity",
-//                TblBoxCommonEntity.class);
-//        List<TblBoxCommonEntity> tblBoxCommonEntities = query.getResultList();
-//        return tblBoxCommonEntities;
-//    }
-
-//    public boolean create(TblBoxCommonEntity boxCommonEntity){
-//        TblBoxCommonEntity existingUser = entityManager.find(TblBoxCommonEntity.class, boxCommonEntity.getIdd());
-//        entityManager.persist(boxCommonEntity);
-//        return true;
-//    }
-
-//    public List<TblBoxCommonEntity> readBoxCommonList(){
-//        TypedQuery<TblBoxCommonEntity> query = entityManager.createQuery(
-//                "from TblBoxCommonEntity entity",
-//                TblBoxCommonEntity.class);
-//        List<TblBoxCommonEntity> tblBoxCommonEntities = query.getResultList();
-//        return tblBoxCommonEntities;
-//    }
-
-//    public int getTotalCount() {
-//        Long rez = entityManager.createQuery(
-//                "select count (entity.idd) from TblBoxCommonEntity entity",
-//                Long.class)
-//                .getSingleResult();
-//        return rez.intValue();
-//    }
 }
