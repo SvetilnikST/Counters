@@ -1,13 +1,15 @@
 package pst.asu.beans.qBox;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "qBox_data_common")
 public class TblBoxCommonEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "idd", nullable = false)
+    @Column(name = "id", nullable = false)
     private int idd;
 
     @Column(name = "serial", length = 225, nullable = false)
@@ -36,6 +38,10 @@ public class TblBoxCommonEntity {
 
     @Column(name ="inStore3", nullable = false)
     public int instore3;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tblBoxCommonEntity")
+    private Set<TblBoxSystemEntity> tblBoxSystemEntitySet = new HashSet<>();
+
 
 
     public int getIdd() {
