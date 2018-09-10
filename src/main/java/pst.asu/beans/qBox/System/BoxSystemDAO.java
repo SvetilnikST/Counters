@@ -1,4 +1,4 @@
-package pst.asu.beans.qBoxSystem;
+package pst.asu.beans.qBox.System;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;

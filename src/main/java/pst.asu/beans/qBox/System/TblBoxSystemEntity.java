@@ -1,11 +1,11 @@
-package pst.asu.beans.qBoxSystem;
+package pst.asu.beans.qBox.System;
 
-import pst.asu.beans.qBoxCommon.TblBoxCommonEntity;
+import pst.asu.beans.qBox.Common.TblBoxCommonEntity;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "qBox_data_system1")
+@Table(name = "qBox_data_system")
 public class TblBoxSystemEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -71,7 +71,6 @@ public class TblBoxSystemEntity {
 
     @Column(name = "P3", nullable = false)
     private float P3;
-
 
     @ManyToOne
     @JoinColumn(name = "qBox_data_common_id")

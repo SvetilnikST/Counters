@@ -1,8 +1,7 @@
-package pst.asu.beans.qBoxCommon;
+package pst.asu.beans.qBox.Common;
 
 import com.google.gson.Gson;
-import pst.asu.beans.qBoxSystem.BoxSystemDAO;
-import pst.asu.beans.qBoxSystem.TblBoxSystemEntity;
+import pst.asu.beans.qBox.System.TblBoxSystemEntity;
 
 import javax.ejb.EJB;
 import javax.enterprise.inject.Default;
@@ -41,14 +40,7 @@ public class BoxCommonAdministration implements Serializable {
     public void readJSON() {
         String gsonString = getJsonString();
         Gson gson = new Gson();
-//        String gsonString="{\n" +
-//                "  \"serial\":\"00002128\",\n" +
-//                "  \"unitQ\":1,\n" +
-//                "  \"timeRequest\":1527706940,\n" +
-//                "  \"timeDevice\":1525115100,\n" +
-//                "  \"timeOn\":24209554,\n" +
-//                "  \"timeRunCommon\":23694812\n" +
-//                "}\n";
+
         try {
             BufferedReader reader = new BufferedReader(new FileReader(FILENAME));
             TblBoxCommonEntity tblBoxCommon = gson.fromJson(gsonString, TblBoxCommonEntity.class);

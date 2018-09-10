@@ -1,14 +1,13 @@
-package pst.asu.beans.qBoxCommon;
+package pst.asu.beans.qBox.Common;
 
-import pst.asu.beans.qBoxSystem.TblBoxSystemEntity;
+import pst.asu.beans.qBox.System.TblBoxSystemEntity;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @Entity
-@Table(name = "qBox_data_common1")
+@Table(name = "qBox_data_common")
 public class TblBoxCommonEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,14 +32,14 @@ public class TblBoxCommonEntity {
     @Column(name ="time_run_common", nullable = false)
     private int timeRunCommon;
 
-    @Column(name ="inStore1", nullable = false)
-    private int instore1;
+    @Column(name ="inStore1", columnDefinition = "BIT default 0", length = 1)
+    private Boolean instore1=false;
 
-    @Column(name ="inStore2", nullable = false)
-    public int instore2;
+    @Column(name ="inStore2", columnDefinition = "BIT default 0", length = 1)
+    public Boolean instore2=false;
 
-    @Column(name ="inStore3", nullable = false)
-    public int instore3;
+    @Column(name ="inStore3", columnDefinition = "BIT default 0", length = 1)
+    public Boolean instore3=false;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tblBoxCommonEntity")
     private List<TblBoxSystemEntity> system = new ArrayList<>();
@@ -109,27 +108,27 @@ public class TblBoxCommonEntity {
         this.timeRunCommon = timeRunCommon;
     }
 
-    public int getInstore1() {
+    public Boolean getInstore1() {
         return instore1;
     }
 
-    public void setInstore1(int instore1) {
+    public void setInstore1(Boolean instore1) {
         this.instore1 = instore1;
     }
 
-    public int getInstore2() {
+    public Boolean getInstore2() {
         return instore2;
     }
 
-    public void setInstore2(int instore2) {
+    public void setInstore2(Boolean instore2) {
         this.instore2 = instore2;
     }
 
-    public int getInstore3() {
+    public Boolean getInstore3() {
         return instore3;
     }
 
-    public void setInstore3(int instore3) {
+    public void setInstore3(Boolean instore3) {
         this.instore3 = instore3;
     }
 

@@ -1,6 +1,4 @@
-package pst.asu.beans.qBoxCommon;
-
-import pst.asu.beans.qBoxSystem.TblBoxSystemEntity;
+package pst.asu.beans.qBox.Common;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
