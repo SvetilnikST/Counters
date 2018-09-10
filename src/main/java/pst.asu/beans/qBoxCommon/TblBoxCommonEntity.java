@@ -1,16 +1,19 @@
-package pst.asu.beans.qBox;
+package pst.asu.beans.qBoxCommon;
+
+import pst.asu.beans.qBoxSystem.TblBoxSystemEntity;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Entity
-@Table(name = "qBox_data_common")
+@Table(name = "qBox_data_common1")
 public class TblBoxCommonEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private int idd;
+    private int id;
 
     @Column(name = "serial", length = 225, nullable = false)
     private String serial;
@@ -40,16 +43,22 @@ public class TblBoxCommonEntity {
     public int instore3;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tblBoxCommonEntity")
-    private Set<TblBoxSystemEntity> tblBoxSystemEntitySet = new HashSet<>();
+    private List<TblBoxSystemEntity> system = new ArrayList<>();
 
-
-
-    public int getIdd() {
-        return idd;
+    public List<TblBoxSystemEntity> getSystem() {
+        return system;
     }
 
-    public void setIdd(int id) {
-        this.idd = id;
+    public void setSystem(List<TblBoxSystemEntity> system) {
+        this.system = system;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getSerial() {
@@ -122,5 +131,11 @@ public class TblBoxCommonEntity {
 
     public void setInstore3(int instore3) {
         this.instore3 = instore3;
+    }
+
+    public void refilAfterJson(){
+        for (TblBoxSystemEntity boxSystem : this.getSystem()){
+            boxSystem.setTblBoxCommonEntity(this);
+        }
     }
 }

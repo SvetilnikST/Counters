@@ -1,24 +1,21 @@
-package pst.asu.beans.qBox;
+package pst.asu.beans.qBoxCommon;
 
 import com.google.gson.Gson;
+import pst.asu.beans.qBoxSystem.BoxSystemDAO;
+import pst.asu.beans.qBoxSystem.TblBoxSystemEntity;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.inject.Default;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
-import javax.inject.Inject;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @ManagedBean(name = "boxCommonAdministration")
 
 public class BoxCommonAdministration implements Serializable {
     private TblBoxCommonEntity tblBoxCommonEntity;
+
     private List<BoxCommonAdministration> boxCommonAdministrations;
 
     private final String FILENAME = "D:/1_SVETILNIK_NEED/Java/Counters/sku.json";
@@ -27,7 +24,7 @@ public class BoxCommonAdministration implements Serializable {
     private BoxCommonDAO boxCommonDAO;
 
     @Default
-    private int idd;
+    private int idCommon;
     private String serial;
     private int unitQ;
     private int timeRequest;
@@ -38,7 +35,7 @@ public class BoxCommonAdministration implements Serializable {
     private int instore2;
     private int instore3;
 
-    private List<TblBoxCommonEntity> tblBoxCommonEntitysList;
+    public List<TblBoxSystemEntity> system = new ArrayList<>();
 
     //парсинг JSON
     public void readJSON() {
@@ -54,10 +51,10 @@ public class BoxCommonAdministration implements Serializable {
 //                "}\n";
         try {
             BufferedReader reader = new BufferedReader(new FileReader(FILENAME));
-            TblBoxCommonEntity qbox_data_common = gson.fromJson(gsonString, TblBoxCommonEntity.class);
-            boxCommonDAO.create(qbox_data_common);
-            //написать запись в базу полученные данные
-            System.out.println(qbox_data_common.getSerial());
+            TblBoxCommonEntity tblBoxCommon = gson.fromJson(gsonString, TblBoxCommonEntity.class);
+            tblBoxCommon.refilAfterJson();
+            boxCommonDAO.create(tblBoxCommon);
+
         } catch (FileNotFoundException ex) {
             int a = 0;
         }
@@ -66,7 +63,7 @@ public class BoxCommonAdministration implements Serializable {
     private String getJsonString() {
         ProcessBuilder procBuilder;
         String pathCmd = "D:\\1_SVETILNIK_NEED\\Java\\Counters\\1.cmd";
-        String pathJson = "D:\\1_SVETILNIK_NEED\\Java\\Counters\\scu.json";
+        String pathJson = "D:\\1_SVETILNIK_NEED\\Java\\Counters\\sku.json";
         procBuilder = new ProcessBuilder(pathCmd, pathJson);
         // запуск программы
         Process process = null;
@@ -83,7 +80,6 @@ public class BoxCommonAdministration implements Serializable {
             while ((line = brStdout.readLine()) != null) {
                 stringBuilder.append(line);
             }
-
             // ждем пока завершится вызванная программа
             // и сохраняем код, с которым она завершилась в
             // в переменную exitVal
@@ -119,14 +115,6 @@ public class BoxCommonAdministration implements Serializable {
 
     public void setBoxCommonDAO(BoxCommonDAO boxCommonDAO) {
         this.boxCommonDAO = boxCommonDAO;
-    }
-
-    public int getIdd() {
-        return idd;
-    }
-
-    public void setIdd(int idd) {
-        this.idd = idd;
     }
 
     public String getSerial() {
@@ -201,11 +189,23 @@ public class BoxCommonAdministration implements Serializable {
         this.instore3 = instore3;
     }
 
-    public List<TblBoxCommonEntity> getTblBoxCommonEntitysList() {
-        return tblBoxCommonEntitysList;
+    public void setTblBoxCommonEntity(TblBoxCommonEntity tblBoxCommonEntity) {
+        this.tblBoxCommonEntity = tblBoxCommonEntity;
     }
 
-    public void setTblBoxCommonEntitysList(List<TblBoxCommonEntity> tblBoxCommonEntitysList) {
-        this.tblBoxCommonEntitysList = tblBoxCommonEntitysList;
+    public int getIdCommon() {
+        return idCommon;
+    }
+
+    public void setIdCommon(int idCommon) {
+        this.idCommon = idCommon;
+    }
+
+    public List<TblBoxSystemEntity> getSystem() {
+        return system;
+    }
+
+    public void setSystem(List<TblBoxSystemEntity> system) {
+        this.system = system;
     }
 }

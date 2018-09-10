@@ -1,11 +1,11 @@
-package pst.asu.beans.qBox;
+package pst.asu.beans.qBoxCommon;
+
+import pst.asu.beans.qBoxSystem.TblBoxSystemEntity;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
-import java.util.List;
 
 @LocalBean
 @Stateless
