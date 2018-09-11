@@ -1,5 +1,7 @@
 package pst.asu.beans.roles;
 
+import pst.asu.beans.AbstractDao;
+
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -9,9 +11,15 @@ import java.util.List;
 
 @LocalBean
 @Stateless
-public class RolesDAO {
+public class RolesDAO
+//        extends AbstractDao<RolesEntity>
+{
     @PersistenceContext(unitName = "counters-app")
     private EntityManager entityManager;
+
+//    public RolesDAO(){
+//        super(RolesEntity.class);
+//    }
 
     private RolesEntity read(int id){
         return entityManager.find(RolesEntity.class, id);
@@ -46,10 +54,10 @@ public class RolesDAO {
         return false;
     }
 
-    public boolean update(RolesEntity rolesEntity){
-        entityManager.merge(rolesEntity);
-        return true;
-    }
+//    public boolean update(RolesEntity rolesEntity){
+//        entityManager.merge(rolesEntity);
+//        return true;
+//    }
 
     public boolean delete(int id){
         RolesEntity existingRole = entityManager.find(RolesEntity.class, id);
