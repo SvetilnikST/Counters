@@ -9,7 +9,7 @@ import java.util.List;
 
 @LocalBean
 @Stateless
-public class DepartmentDAO {
+public class DepartmentDAO  {
 
     @PersistenceContext(unitName = "counters-app")
     private EntityManager entityManager;
