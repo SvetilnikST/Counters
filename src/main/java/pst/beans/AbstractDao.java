@@ -40,6 +40,8 @@ public abstract class AbstractDao<T> {
         getEntityManager().persist(entity);
     }
 
+
+
     @Transactional
     public void update(T entity) {
         getEntityManager().merge(entity);
@@ -61,6 +63,11 @@ public abstract class AbstractDao<T> {
     public T find(Object id) {
         return getEntityManager().find(entityClass, id);
     }
+
+    public T read(int id){
+        return getEntityManager().find(entityClass, id);
+    }
+
 
     public List<T> findAll() {
         CriteriaQuery<T> cq = getEntityManager().getCriteriaBuilder()
