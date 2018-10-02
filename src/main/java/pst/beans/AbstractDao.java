@@ -68,7 +68,6 @@ public abstract class AbstractDao<T> {
         return getEntityManager().find(entityClass, id);
     }
 
-
     public List<T> findAll() {
         CriteriaQuery<T> cq = getEntityManager().getCriteriaBuilder()
                 .createQuery(entityClass);
@@ -76,6 +75,28 @@ public abstract class AbstractDao<T> {
 
         return getEntityManager().createQuery(cq).getResultList();
     }
+
+    public T readLogin(String login){
+        if(login.isEmpty()){
+            return null;
+        }
+        return  getEntityManager().find(entityClass, login);
+    }
+
+
+//    чтение записи по логину
+//    public UserEntity readLogin(String login) {
+//        if (login.isEmpty()) {
+//            return null;
+//        }
+//        TypedQuery<UserEntity> query = entityManager.createQuery(
+//                "select entity from  UserEntity entity where entity.username=:login",
+//                UserEntity.class).setParameter("login", login);
+//        UserEntity userEntity = query.getSingleResult();
+//        return userEntity;
+//    }
+
+
 
     public List<T> findRange(int[] range) {
         CriteriaQuery<T> cq = getEntityManager().getCriteriaBuilder()

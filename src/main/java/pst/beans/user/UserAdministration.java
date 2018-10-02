@@ -81,6 +81,8 @@ public class UserAdministration implements Serializable {
             this.departmentEntity = dep;
             rolesToSet = new String[0];
         }
+
+        //заменила
         userEntitiesList = userDAO.readUserList();
         rolesEntityList = userDAO.readRolesList();
 
@@ -88,7 +90,8 @@ public class UserAdministration implements Serializable {
             myTest.add(onerol.getRole());
         }
 
-        departmentList = departmentDAO.readList();
+        //14.09 заменила readList на findAll
+        departmentList = departmentDAO.findAll();
     }
 
     public void load(UserEntity userEntity){

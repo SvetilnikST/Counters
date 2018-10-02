@@ -18,7 +18,16 @@
                                      action="#{boxCommonAdministration.readJSON}"
                                      rendered="#{userBean.doRightVerify('createUser')}"
                     />
-                    <p:button type="button" value="UnitQ" href="/listUnitQ.xhtml"/>
+
+                    <p:menuButton value="Справочники">
+                        <p:menuitem value="Типы устройств" url="/listTypeDevice.xhtml"/>
+                        <p:menuitem value="Измерения" url="/listUnitQ.xhtml"/>
+
+                    </p:menuButton>
+
+                    <!--<p:button type="button" value="TypeDevice" href="/listTypeDevice.xhtml"/>-->
+                    <!--<p:button type="button" value="UnitQ" href="/listUnitQ.xhtml"/>-->
+
                     <p:menuButton value="Администрирование" rendered="#{userBean.doRightVerify('admin')}">
                         <p:menuitem value="Пользователи" icon="ui-icon-disk"
                                     url="/administration.xhtml"/>
