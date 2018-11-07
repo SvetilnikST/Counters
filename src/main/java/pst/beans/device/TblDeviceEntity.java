@@ -1,7 +1,7 @@
 package pst.beans.device;
 
 
-import pst.beans.networkDevice.TblNetworkDeviceEntity;
+//import pst.beans.networkDevice.TblNetworkDeviceEntity;
 import pst.beans.typeDevice.TblTypeDeviceEntity;
 import pst.beans.unitQ.TblUnitQEntity;
 
@@ -28,6 +28,13 @@ public class TblDeviceEntity {
     @Column(name="requestsCount", nullable = false)
     private int requestsCount;
 
+    @Column(name="ip",nullable = false)
+    private String ip;
+
+    @Column(name = "num_port", nullable = false)
+    private int num_port;
+
+
     @ManyToOne
     @JoinColumn(name="type_id")
     private TblTypeDeviceEntity typeDeviceEntity;
@@ -36,9 +43,9 @@ public class TblDeviceEntity {
     @JoinColumn(name = "unitQ_id")
     private TblUnitQEntity unitQEntity;
 
-    @ManyToOne
-    @JoinColumn(name="network_id")
-    private TblNetworkDeviceEntity networkDeviceEntity;
+//    @ManyToOne
+//    @JoinColumn(name="network_id")
+//    private TblNetworkDeviceEntity networkDeviceEntity;
 
     public int getId() {
         return id;
@@ -80,6 +87,22 @@ public class TblDeviceEntity {
         this.requestsCount = requestsCount;
     }
 
+    public String getIp() {
+        return ip;
+    }
+
+    public void setIp(String ip) {
+        this.ip = ip;
+    }
+
+    public int getNum_port() {
+        return num_port;
+    }
+
+    public void setNum_port(int num_port) {
+        this.num_port = num_port;
+    }
+
     public TblTypeDeviceEntity getTypeDeviceEntity() {
         return typeDeviceEntity;
     }
@@ -96,11 +119,11 @@ public class TblDeviceEntity {
         this.unitQEntity = unitQEntity;
     }
 
-    public TblNetworkDeviceEntity getNetworkDeviceEntity() {
-        return networkDeviceEntity;
-    }
-
-    public void setNetworkDeviceEntity(TblNetworkDeviceEntity networkDeviceEntity) {
-        this.networkDeviceEntity = networkDeviceEntity;
-    }
+//    public TblNetworkDeviceEntity getNetworkDeviceEntity() {
+//        return networkDeviceEntity;
+//    }
+//
+//    public void setNetworkDeviceEntity(TblNetworkDeviceEntity networkDeviceEntity) {
+//        this.networkDeviceEntity = networkDeviceEntity;
+//    }
 }
