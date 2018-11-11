@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                template="WEB-INF/template/template.xhtml">
+    <ui:define name="page_title">
+        Устройства
+    </ui:define>
+
+    <ui:define name="page_body">
+        <p:panel>
+            <p:button type="button" value="Добавить" icon="ui-icon-document"
+                      href="/editDevice.xhtml"
+            />
+        </p:panel>
+        <h:form>
+            <p:spacer/>
+            <p:dataTable
+                    id="deviceTable"
+                    widgetVar="deviceTable"
+                    var="device"
+                    value="#{deviceAdministration.tblDeviceEntitysList}">
+                <p:column headerText="ID">
+                    <h:link value="#{device.id}" outcome="editDevice">
+                        <f:param name="id" value="#{device.id}"/>
+                    </h:link>
+                </p:column>
+                <p:column headerText="Наименование">
+                    <h:outputText value="#{device.name}">
+                    </h:outputText>
+                </p:column>
+
+                <p:column headerText="измерение">
+                    <h:outputText value="#{device.unitQEntity.name}">
+                    </h:outputText>
+                </p:column>
+
+                <p:column headerText="тип устройства">
+                    <h:outputText value="#{device.typeDeviceEntity.name}">
+                    </h:outputText>
+                </p:column>
+
+                <p:column headerText="Серия">
+                    <h:outputText value="#{device.serial}">
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="последняя дата">
+                    <h:outputText value="#{deviceAdministration.lastRequestDate}">
+                        <f:convertDateTime pattern="dd MMMM YYYY г., HH:mm:ss"/>
+                    </h:outputText>
+                </p:column>
+
+                <p:column headerText="requestcount">
+                    <h:outputText value="#{deviceAdministration.requestsCount}">
+                    </h:outputText>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </ui:define>
+</ui:composition>
+
