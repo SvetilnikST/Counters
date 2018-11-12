@@ -120,6 +120,8 @@ public class TblDeviceEntity {
         this.unitQEntity = unitQEntity;
     }
 
+
+
 //    public TblNetworkDeviceEntity getNetworkDeviceEntity() {
 //        return networkDeviceEntity;
 //    }

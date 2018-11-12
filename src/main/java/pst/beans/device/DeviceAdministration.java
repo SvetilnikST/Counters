@@ -13,7 +13,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.inject.Inject;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
@@ -70,6 +69,11 @@ public class DeviceAdministration implements Serializable {
             load(tblDeviceEntity);
         } else {
             name = "";
+            serial="";
+            lastRequestDate=0;
+            requestsCount=0;
+            ip="";
+            num_port=0;
         }
         tblDeviceEntitysList = deviceDAO.findAll();
         unitQList = unitQDAO.findAll();
