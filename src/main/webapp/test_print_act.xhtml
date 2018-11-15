@@ -16,50 +16,79 @@
                     <p:outputLabel rendered="#{userAdministration.id!=0 and userAdministration.id!=null}"/>
                 </h2>
 
-                <p:dataTable id="tbl" var="type_device" value="#{typeDeviceAdministration.tblTypeDeviceEntitysList}"
-                             paginatorTemplate="{Exporters}"
-                             paginator="true" rows="10" style="margin-bottom:20px">
+                <p:dataTable id="tbl" var="type_device" value="#{typeDeviceAdministration.tblTypeDeviceEntitysList}">
 
-                    <f:facet name="{Exporters}">
-                        <div style="float:right;padding-top: 5px;">
-                            <h:commandLink>
-                                <p:graphicImage name="images/excel.png" width="24"/>
-                                <p:dataExporter type="xls" target="tbl" fileName="devices" />
-                            </h:commandLink>
+                    <!--<p:column>-->
+                        <!--<f:facet name="header">-->
+                            <!--<h:outputText value="1"/>-->
+                        <!--</f:facet>-->
+                        <!--<h:outputText value="#{type_device.id}"/>-->
+                    <!--</p:column>-->
 
-                            <h:commandLink>
-                                <p:graphicImage name="images/pdf.png" width="24"/>
-                                <p:dataExporter type="pdf" target="tbl" fileName="devices"/>
-                            </h:commandLink>
-                        </div>
+                    <!--<p:column>-->
+                        <!--<f:facet name="header">-->
+                            <!--<h:outputText value="наименование"/>-->
+                        <!--</f:facet>-->
+                        <!--<h:outputText value="#{type_device.name}"/>-->
+                    <!--</p:column>-->
+
+
+                    <f:facet name="header">
+                        Сводный акт приемки-передачи за МЕСЯЦ ГОД
                     </f:facet>
 
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Id" />
-                        </f:facet>
-                        <h:outputText value="#{type_device.id}" />
-                    </p:column>
+                    <p:columnGroup type="header">
+                        <p:row>
+                            <p:column rowspan="5" headerText="Адрес объекта" />
+                            <p:column rowspan="5" headerText="Вид нагрузок, Гкал/ч" />
+                            <p:column rowspan="5" headerText="Регистрационный № счетчика" />
+                            <p:column rowspan="5" headerText="Место установки прибора" />
+                            <p:column colspan="3" headerText="Показания прибора" />
+                            <p:column rowspan="5" headerText="Коэффицинет счета" />
+                            <p:column colspan="6" headerText="Количество потребителей тепловой энергии, Гкал." />
+                            <p:column rowspan="5" headerText="Всего" />
+                        </p:row>
+                        <p:row>
+                            <p:column rowspan="3" headerText="На конец месяца" />
+                            <p:column rowspan="3" headerText="На начало месяца" />
+                            <p:column rowspan="3" headerText="Разность" />
+                            <p:column rowspan="3" headerText="по прибору" />
+                            <p:column rowspan="3" headerText="по среднему" />
+                            <p:column colspan="3" headerText="по тепловым нагрузкам" />
+                            <p:column rowspan="3" headerText="тепловые потери" />
+                        </p:row>
 
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="наименование"/>
-                        </f:facet>
-                        <h:outputText value="#{type_device.name}" />
-                    </p:column>
+                        <p:row>
+                            <p:column rowspan="2" headerText="Г" />
+                            <p:column rowspan="2" headerText="О" />
+                            <p:column rowspan="2" headerText="В" />
+                        </p:row>
+                        <p:row>
+                            <p:column rowspan="1" headerText="1" />
+                            <p:column rowspan="1" headerText="2" />
+                            <p:column rowspan="1" headerText="3" />
+                            <p:column rowspan="1" headerText="4" />
+                            <p:column rowspan="1" headerText="5" />
+                            <p:column rowspan="1" headerText="6" />
+                            <p:column rowspan="1" headerText="7" />
+                            <p:column rowspan="1" headerText="8" />
+                            <p:column rowspan="1" headerText="9" />
+                            <p:column rowspan="1" headerText="10" />
+                            <p:column rowspan="1" headerText="11" />
+                            <p:column rowspan="1" headerText="12" />
+                            <p:column rowspan="1" headerText="13" />
+                            <p:column rowspan="1" headerText="14" />
+                            <p:column rowspan="1" headerText="15" />
+                        </p:row>
+                    </p:columnGroup>
+
 
                 </p:dataTable>
 
-                <h3>Только данные по странице экспорта</h3>
-                <h:commandLink>
-                    <p:graphicImage name="images/excel.png" />
-                    <p:dataExporter type="xls" target="tbl" fileName="devices" pageOnly="true"/>
-                </h:commandLink>
-
-                <h:commandLink>
-                    <p:graphicImage name="images/pdf.png" />
-                    <p:dataExporter type="pdf" target="tbl" fileName="devices" pageOnly="true" />
-                </h:commandLink>
+                <p:commandButton value="Печать" type="button" icon="pi pi-print"
+                                 style="display:block;margin-bottom: 20px">
+                    <p:printer target="tbl"/>
+                </p:commandButton>
             </p:panel>
         </h:form>
     </ui:define>
