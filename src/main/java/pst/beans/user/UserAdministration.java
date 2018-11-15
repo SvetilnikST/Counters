@@ -34,8 +34,10 @@ public class UserAdministration implements Serializable {
 
     @EJB
     private UserDAO userDAO;
+
     @EJB
     private RolesDAO rolesDAO;
+
     @EJB
     private DepartmentDAO departmentDAO;
 

@@ -44,4 +44,5 @@ private Set<TblDeviceEntity> tblDeviceEntitySet = new HashSet<>();
     public void setTblDeviceEntitySet(Set<TblDeviceEntity> tblDeviceEntitySet) {
         this.tblDeviceEntitySet = tblDeviceEntitySet;
     }
+
 }

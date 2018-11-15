@@ -13,7 +13,11 @@
     <ui:define name="page_body">
         <p:panel>
             <p:button type="button" value="Добавить" icon="ui-icon-document"
+<<<<<<< HEAD
                       href="/editTypeDevice.xhtml"
+=======
+                      href="/editDevice.xhtml"
+>>>>>>> d16015da41b8fd12cfd9cbf01dbc71c307f4a82a
             />
         </p:panel>
         <h:form>
@@ -24,12 +28,46 @@
                     var="device"
                     value="#{deviceAdministration.tblDeviceEntitysList}">
                 <p:column headerText="ID">
+<<<<<<< HEAD
                     <h:link value="#{typeDevice.id}" outcome="editTypeDevice">
                         <f:param name="id" value="#{typeDevice.id}"/>
                     </h:link>
                 </p:column>
                 <p:column headerText="Наименование">
                     <h:outputText value="#{typeDevice.name}">
+=======
+                    <h:link value="#{device.id}" outcome="editDevice">
+                        <f:param name="id" value="#{device.id}"/>
+                    </h:link>
+                </p:column>
+                <p:column headerText="Наименование">
+                    <h:outputText value="#{device.name}">
+                    </h:outputText>
+                </p:column>
+
+                <p:column headerText="Величина">
+                    <h:outputText value="#{device.unitQEntity.name}">
+                    </h:outputText>
+                </p:column>
+
+                <p:column headerText="Тип устройства">
+                    <h:outputText value="#{device.typeDeviceEntity.name}">
+                    </h:outputText>
+                </p:column>
+
+                <p:column headerText="Серия">
+                    <h:outputText value="#{device.serial}">
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="последняя дата">
+                    <h:outputText value="#{deviceAdministration.lastRequestDate}">
+                        <f:convertDateTime pattern="dd MMMM YYYY г., HH:mm:ss"/>
+                    </h:outputText>
+                </p:column>
+
+                <p:column headerText="requestcount">
+                    <h:outputText value="#{deviceAdministration.requestsCount}">
+>>>>>>> d16015da41b8fd12cfd9cbf01dbc71c307f4a82a
                     </h:outputText>
                 </p:column>
             </p:dataTable>

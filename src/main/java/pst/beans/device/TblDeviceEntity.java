@@ -6,6 +6,7 @@ import pst.beans.typeDevice.TblTypeDeviceEntity;
 import pst.beans.unitQ.TblUnitQEntity;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "device")
@@ -118,6 +119,8 @@ public class TblDeviceEntity {
     public void setUnitQEntity(TblUnitQEntity unitQEntity) {
         this.unitQEntity = unitQEntity;
     }
+
+
 
 //    public TblNetworkDeviceEntity getNetworkDeviceEntity() {
 //        return networkDeviceEntity;
