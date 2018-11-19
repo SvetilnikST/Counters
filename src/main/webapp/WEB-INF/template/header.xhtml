@@ -6,7 +6,7 @@
     <h:form>
         <p:toolbar>
             <f:facet name="left">
-                <p:button type="button" value="Контроль счетчиков" href="/index.xhtlm"/>
+                <p:button type="button" value="Контроль счетчиков" href="/login.xhtml"/>
             </f:facet>
             <f:facet name="right">
                 <c:if test="#{not userBean.autentificated}">
@@ -18,8 +18,8 @@
                                      action="#{boxCommonAdministration.readJSON}"
                                      rendered="#{userBean.doRightVerify('createUser')}"
                     />
-                    <p:button type="button" value="test print" href="/test_print_act.xhtml"/>
-
+                    <p:button type="button" value="акт" href="/test_print_act.xhtml"/>
+                    <p:button type="button" value="журнал" href="/test_magazine.xhtml"/>
                     <p:menuButton value="Справочники">
                         <p:menuitem value="Типы устройств" url="/listTypeDevice.xhtml"/>
                         <p:menuitem value="Измерения" url="/listUnitQ.xhtml"/>

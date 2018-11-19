@@ -13,12 +13,7 @@
     <ui:define name="page_body">
         <p:panel>
             <p:button type="button" value="Добавить" icon="ui-icon-document"
-<<<<<<< HEAD
-                      href="/editTypeDevice.xhtml"
-=======
-                      href="/editDevice.xhtml"
->>>>>>> d16015da41b8fd12cfd9cbf01dbc71c307f4a82a
-            />
+                                href="/editDevice.xhtml"/>
         </p:panel>
         <h:form>
             <p:spacer/>
@@ -28,14 +23,12 @@
                     var="device"
                     value="#{deviceAdministration.tblDeviceEntitysList}">
                 <p:column headerText="ID">
-<<<<<<< HEAD
                     <h:link value="#{typeDevice.id}" outcome="editTypeDevice">
                         <f:param name="id" value="#{typeDevice.id}"/>
                     </h:link>
                 </p:column>
                 <p:column headerText="Наименование">
-                    <h:outputText value="#{typeDevice.name}">
-=======
+                    <h:outputText value="#{typeDevice.name}"/>
                     <h:link value="#{device.id}" outcome="editDevice">
                         <f:param name="id" value="#{device.id}"/>
                     </h:link>
@@ -67,7 +60,6 @@
 
                 <p:column headerText="requestcount">
                     <h:outputText value="#{deviceAdministration.requestsCount}">
->>>>>>> d16015da41b8fd12cfd9cbf01dbc71c307f4a82a
                     </h:outputText>
                 </p:column>
             </p:dataTable>

@@ -1,5 +1,7 @@
 package pst.beans.typeDevice;
 
+import pst.beans.schedule.AutoSheduleBean;
+
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.inject.Default;
@@ -18,6 +20,7 @@ public class TypeDeviceAdministration implements Serializable {
 
     private TblTypeDeviceEntity tblTypeDeviceEntity;
     private List<TypeDeviceAdministration> typeDeviceAdministrations;
+    private AutoSheduleBean myBean;
 
     @EJB
     private TypeDeviceDAO typeDeviceDAO;
@@ -25,11 +28,13 @@ public class TypeDeviceAdministration implements Serializable {
     @Default
     private int id;
     private String name;
+    private int typeInt;
 
     private List<TblTypeDeviceEntity> tblTypeDeviceEntitysList;
 
     @PostConstruct
     void start(){
+        myBean = new AutoSheduleBean();
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
         Map<String, String> parameterMap = (Map<String, String>) externalContext.getRequestParameterMap();
@@ -50,6 +55,7 @@ public class TypeDeviceAdministration implements Serializable {
         }
         else {
             name="";
+            typeInt=9999;
         }
         tblTypeDeviceEntitysList=typeDeviceDAO.findAll();
 
@@ -58,6 +64,7 @@ public class TypeDeviceAdministration implements Serializable {
     public void load(TblTypeDeviceEntity typeDeviceEntity){
         this.setId(typeDeviceEntity.getId());
         this.setName(typeDeviceEntity.getName());
+        this.setTypeInt(typeDeviceEntity.getTypeInt());
     }
 
     public String save(){
@@ -115,6 +122,14 @@ public class TypeDeviceAdministration implements Serializable {
         this.name = name;
     }
 
+    public int getTypeInt() {
+        return typeInt;
+    }
+
+    public void setTypeInt(int typeInt) {
+        this.typeInt = typeInt;
+    }
+
     public List<TblTypeDeviceEntity> getTblTypeDeviceEntitysList() {
         return tblTypeDeviceEntitysList;
     }
@@ -122,4 +137,5 @@ public class TypeDeviceAdministration implements Serializable {
     public void setTblTypeDeviceEntitysList(List<TblTypeDeviceEntity> tblTypeDeviceEntitysList) {
         this.tblTypeDeviceEntitysList = tblTypeDeviceEntitysList;
     }
+
 }

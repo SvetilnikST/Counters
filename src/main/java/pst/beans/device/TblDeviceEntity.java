@@ -24,10 +24,10 @@ public class TblDeviceEntity {
     private String serial;
 
     @Column(name="lastRequestDate", nullable = false)
-    private int lastRequestDate;
+    private Integer lastRequestDate;
 
     @Column(name="requestsCount", nullable = false)
-    private int requestsCount;
+    private Integer requestsCount;
 
     @Column(name="ip",nullable = false)
     private String ip;
@@ -35,6 +35,8 @@ public class TblDeviceEntity {
     @Column(name = "num_port", nullable = false)
     private int num_port;
 
+    @Column(name = "requestInterval", nullable = false)
+    private int requestInterval;
 
     @ManyToOne
     @JoinColumn(name="type_id")
@@ -76,15 +78,17 @@ public class TblDeviceEntity {
         return lastRequestDate;
     }
 
-    public void setLastRequestDate(int lastRequestDate) {
-        this.lastRequestDate = lastRequestDate;
-    }
+
 
     public int getRequestsCount() {
         return requestsCount;
     }
 
-    public void setRequestsCount(int requestsCount) {
+    public void setLastRequestDate(Integer lastRequestDate) {
+        this.lastRequestDate = lastRequestDate;
+    }
+
+    public void setRequestsCount(Integer requestsCount) {
         this.requestsCount = requestsCount;
     }
 
@@ -120,7 +124,13 @@ public class TblDeviceEntity {
         this.unitQEntity = unitQEntity;
     }
 
+    public int getRequestInterval() {
+        return requestInterval;
+    }
 
+    public void setRequestInterval(int requestInterval) {
+        this.requestInterval = requestInterval;
+    }
 
 //    public TblNetworkDeviceEntity getNetworkDeviceEntity() {
 //        return networkDeviceEntity;

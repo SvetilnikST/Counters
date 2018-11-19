@@ -15,8 +15,11 @@ public class TblTypeDeviceEntity {
     @Column(name="id", nullable = false)
     private int id;
 
-    @Column(name="name", nullable = false, length = 20)
+    @Column(name="name", nullable = false, length = 100)
     private String name;
+
+    @Column(name="typeInt")
+    private Integer typeInt;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "typeDeviceEntity")
     private Set<TblDeviceEntity> deviceEntitySet = new HashSet<>();
@@ -35,6 +38,14 @@ public class TblTypeDeviceEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getTypeInt() {
+        return typeInt;
+    }
+
+    public void setTypeInt(Integer typeInt) {
+        this.typeInt = typeInt;
     }
 
     public Set<TblDeviceEntity> getDeviceEntitySet() {
