@@ -1,6 +1,7 @@
 package pst.beans.qBox.Common;
 
 import pst.beans.qBox.System.TblBoxSystemEntity;
+import pst.beans.schedule.TblScheduleEntity;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -43,6 +44,10 @@ public class TblBoxCommonEntity {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tblBoxCommonEntity")
     private List<TblBoxSystemEntity> system = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "shedule_history_id")
+    private TblScheduleEntity tblScheduleEntity;
 
     public List<TblBoxSystemEntity> getSystem() {
         return system;
@@ -136,5 +141,13 @@ public class TblBoxCommonEntity {
         for (TblBoxSystemEntity boxSystem : this.getSystem()){
             boxSystem.setTblBoxCommonEntity(this);
         }
+    }
+
+    public TblScheduleEntity getTblScheduleEntity() {
+        return tblScheduleEntity;
+    }
+
+    public void setTblScheduleEntity(TblScheduleEntity tblScheduleEntity) {
+        this.tblScheduleEntity = tblScheduleEntity;
     }
 }

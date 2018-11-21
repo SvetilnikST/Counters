@@ -1,7 +1,12 @@
 package pst.beans.schedule;
 
+import pst.beans.qBox.Common.TblBoxCommonEntity;
+import pst.beans.qBox.System.TblBoxSystemEntity;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "tblSheduleHistory")
@@ -23,6 +28,9 @@ public class TblScheduleEntity {
 
     @Column(name = "statusExecute")
     private int statusexecute;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tblScheduleEntity")
+    private List<TblBoxCommonEntity> commons = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -62,5 +70,13 @@ public class TblScheduleEntity {
 
     public void setStatusexecute(int statusexecute) {
         this.statusexecute = statusexecute;
+    }
+
+    public List<TblBoxCommonEntity> getCommons() {
+        return commons;
+    }
+
+    public void setCommons(List<TblBoxCommonEntity> commons) {
+        this.commons = commons;
     }
 }
