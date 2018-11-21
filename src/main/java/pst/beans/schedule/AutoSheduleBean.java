@@ -50,8 +50,8 @@ public class AutoSheduleBean {
     @Inject
     SheduleDAO sheduleDAO;
 
-    //    @Override
-    @Schedule(second = "30", minute = "*", hour = "*", persistent = true)
+// генерирует список опроса на следующий час
+    @Schedule(second = "01", minute = "55", hour = "*", persistent = true)
     protected void generateShedule(){
 
         List<TblDeviceEntity> deviceList = deviceDAO.listAllInTime();
@@ -73,7 +73,8 @@ public class AutoSheduleBean {
                 deviceList) {
             scheduleRecord = new TblScheduleEntity();
             scheduleRecord.setDeviceId(device.getId());
-            stringToRequest = "-format=json -number=1 -type=" + device.getTypeDeviceEntity().getTypeInt()+" -unitQ="+device.getUnitQEntity().getId() ;
+//             -format=json -number=1 -type=1 -unitQ=1 172.22.80.28:4001
+            stringToRequest = "java -jar D:\\1_SVETILNIK_NEED\\Java\\Counters\\qBoxSimulator-0.0.1.jar -format=json -number=1 -type=" + device.getTypeDeviceEntity().getTypeInt()+" -unitQ="+device.getUnitQEntity().getId() ;
             stringToRequest = stringToRequest + " "+device.getIp()+":"+device.getNum_port();
             scheduleRecord.setStringtosend(stringToRequest);
             scheduleRecord.setStatusexecute(0);
@@ -87,7 +88,8 @@ public class AutoSheduleBean {
     }
 
     //    @Override
-    @Schedule(second = "0", minute = "55", hour = "*", persistent = false)
+    //ежеминутная задача по опросу счетчика из таблицы задач (sheduler)
+    @Schedule(second = "0", minute = "*", hour = "*", persistent = false)
     protected void sendTimer() {
 //        resp.setContentType("text/html");
 //        resp.setCharacterEncoding("UTF-8");

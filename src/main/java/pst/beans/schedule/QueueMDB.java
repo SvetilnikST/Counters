@@ -76,7 +76,10 @@ public class QueueMDB implements MessageListener {
         String stringToSend = (String) rcvMsg.get("send");
 
         ProcessBuilder procBuilder;
-        procBuilder = new ProcessBuilder("java","-jar","D:\\1_SVETILNIK_NEED\\Java\\Counters\\qBoxSimulator-0.0.1.jar",stringToSend);
+//        procBuilder = new ProcessBuilder("java","-jar","D:\\1_SVETILNIK_NEED\\Java\\Counters\\qBoxSimulator-0.0.1.jar",stringToSend);
+        String[] toExec = stringToSend.split(" ");
+        procBuilder = new ProcessBuilder(toExec);
+
         Process process = null;
 
         try {

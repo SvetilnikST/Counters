@@ -54,11 +54,17 @@ public class BoxCommonAdministration implements Serializable {
 
     private String getJsonString() {
         ProcessBuilder procBuilder;
+
+        String strrr = "java -jar D:\\1_SVETILNIK_NEED\\Java\\Counters\\qBoxSimulator-0.0.1.jar -format=json -number=1 -type=1 -unitQ=1 172.22.80.28:4001";
+
+        String[] toExec = strrr.split(" ");
+
 //        String pathCmd = "D:\\1_SVETILNIK_NEED\\Java\\Counters\\1.cmd";
         String pathCmd = "D:\\1_SVETILNIK_NEED\\Java\\Counters\\2.cmd";
         String pathJson = "D:\\1_SVETILNIK_NEED\\Java\\Counters\\sku.json";
 //        procBuilder = new ProcessBuilder(pathCmd, pathJson);
-        procBuilder = new ProcessBuilder("java","-jar","D:\\1_SVETILNIK_NEED\\Java\\Counters\\qBoxSimulator-0.0.1.jar");
+//        procBuilder = new ProcessBuilder("java","-jar","D:\\1_SVETILNIK_NEED\\Java\\Counters\\qBoxSimulator-0.0.1.jar","-format=json", "-number=1","-type=1","-unitQ=1","172.22.80.28:4001");
+        procBuilder = new ProcessBuilder(toExec);
         // запуск программы
         Process process = null;
         try {
