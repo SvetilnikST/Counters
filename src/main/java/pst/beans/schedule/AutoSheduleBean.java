@@ -74,6 +74,7 @@ public class AutoSheduleBean {
             scheduleRecord = new TblScheduleEntity();
             scheduleRecord.setDeviceId(device.getId());
 //             -format=json -number=1 -type=1 -unitQ=1 172.22.80.28:4001
+            // организовать конфигурировение строки для запуска
             stringToRequest = "java -jar D:\\1_SVETILNIK_NEED\\Java\\Counters\\qBoxSimulator-0.0.1.jar -format=json -number=1 -type=" + device.getTypeDeviceEntity().getTypeInt()+" -unitQ="+device.getUnitQEntity().getId() ;
             stringToRequest = stringToRequest + " "+device.getIp()+":"+device.getNum_port();
             scheduleRecord.setStringtosend(stringToRequest);
