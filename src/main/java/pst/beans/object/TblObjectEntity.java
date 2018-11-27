@@ -4,6 +4,8 @@ import pst.beans.adress.TblAdressEntity;
 import pst.beans.organization.TblOrganizationEntity;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "tblObject")
@@ -23,10 +25,9 @@ public class TblObjectEntity {
     private TblAdressEntity adressEntity;
 
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "objectEntity")
+    private Set<TblOrganizationEntity> organizationEntitySet = new HashSet<>();
 
-    @ManyToOne
-    @JoinColumn(name = "idObject")
-    private TblOrganizationEntity  organizationEntity;
 
     public int getId() {
         return id;
@@ -52,11 +53,11 @@ public class TblObjectEntity {
         this.adressEntity = adressEntity;
     }
 
-    public TblOrganizationEntity getOrganizationEntity() {
-        return organizationEntity;
+    public Set<TblOrganizationEntity> getOrganizationEntitySet() {
+        return organizationEntitySet;
     }
 
-    public void setOrganizationEntity(TblOrganizationEntity organizationEntity) {
-        this.organizationEntity = organizationEntity;
+    public void setOrganizationEntitySet(Set<TblOrganizationEntity> organizationEntitySet) {
+        this.organizationEntitySet = organizationEntitySet;
     }
 }

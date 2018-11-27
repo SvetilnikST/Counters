@@ -18,8 +18,33 @@ public class TblOrganizationEntity {
     @Column(name = "nameOrganization", nullable = false, length = 255)
     private String nameOrganization;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "organizationEntity")
-    private Set<TblObjectEntity> objectEntitySet = new HashSet<>();
 
 
+    @ManyToOne
+    @JoinColumn(name = "idObject")
+    private TblObjectEntity objectEntity;
+
+    public int getIdOrganization() {
+        return idOrganization;
+    }
+
+    public void setIdOrganization(int idOrganization) {
+        this.idOrganization = idOrganization;
+    }
+
+    public String getNameOrganization() {
+        return nameOrganization;
+    }
+
+    public void setNameOrganization(String nameOrganization) {
+        this.nameOrganization = nameOrganization;
+    }
+
+    public TblObjectEntity getObjectEntity() {
+        return objectEntity;
+    }
+
+    public void setObjectEntity(TblObjectEntity objectEntity) {
+        this.objectEntity = objectEntity;
+    }
 }
