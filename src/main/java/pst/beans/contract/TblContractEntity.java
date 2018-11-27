@@ -1,6 +1,10 @@
 package pst.beans.contract;
 
+import pst.beans.device.TblDeviceEntity;
+
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "tblContract")
@@ -12,6 +16,8 @@ public class TblContractEntity {
 
     @Column(name = "contract")
     private String contract;
+
+
 
 
     public int getIdContract() {

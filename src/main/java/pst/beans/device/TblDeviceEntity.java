@@ -1,12 +1,14 @@
 package pst.beans.device;
 
-
-//import pst.beans.networkDevice.TblNetworkDeviceEntity;
+import pst.beans.contract.TblContractEntity;
+import pst.beans.object.TblObjectEntity;
 import pst.beans.typeDevice.TblTypeDeviceEntity;
 import pst.beans.unitQ.TblUnitQEntity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "device")
@@ -39,7 +41,7 @@ public class TblDeviceEntity {
     private int requestInterval;
 
     @ManyToOne
-    @JoinColumn(name="type_id")
+    @JoinColumn(name="typeInt")
     private TblTypeDeviceEntity typeDeviceEntity;
 
     @ManyToOne
@@ -47,8 +49,15 @@ public class TblDeviceEntity {
     private TblUnitQEntity unitQEntity;
 
 //    @ManyToOne
-//    @JoinColumn(name="network_id")
-//    private TblNetworkDeviceEntity networkDeviceEntity;
+//    @JoinColumn(name="")
+//    private TblContractEntity contractEntity;
+
+
+//    @ManyToMany
+//    @JoinTable(name = "tblObject",
+//            joinColumns = @JoinColumn(name = "idDevice"))
+//    private Set<TblObjectEntity> objectEntitySet = new HashSet<>();
+
 
     public int getId() {
         return id;
@@ -74,18 +83,16 @@ public class TblDeviceEntity {
         this.serial = serial;
     }
 
-    public int getLastRequestDate() {
+    public Integer getLastRequestDate() {
         return lastRequestDate;
-    }
-
-
-
-    public int getRequestsCount() {
-        return requestsCount;
     }
 
     public void setLastRequestDate(Integer lastRequestDate) {
         this.lastRequestDate = lastRequestDate;
+    }
+
+    public Integer getRequestsCount() {
+        return requestsCount;
     }
 
     public void setRequestsCount(Integer requestsCount) {
@@ -108,6 +115,14 @@ public class TblDeviceEntity {
         this.num_port = num_port;
     }
 
+    public int getRequestInterval() {
+        return requestInterval;
+    }
+
+    public void setRequestInterval(int requestInterval) {
+        this.requestInterval = requestInterval;
+    }
+
     public TblTypeDeviceEntity getTypeDeviceEntity() {
         return typeDeviceEntity;
     }
@@ -124,19 +139,11 @@ public class TblDeviceEntity {
         this.unitQEntity = unitQEntity;
     }
 
-    public int getRequestInterval() {
-        return requestInterval;
-    }
-
-    public void setRequestInterval(int requestInterval) {
-        this.requestInterval = requestInterval;
-    }
-
-//    public TblNetworkDeviceEntity getNetworkDeviceEntity() {
-//        return networkDeviceEntity;
+//    public Set<TblObjectEntity> getObjectEntitySet() {
+//        return objectEntitySet;
 //    }
 //
-//    public void setNetworkDeviceEntity(TblNetworkDeviceEntity networkDeviceEntity) {
-//        this.networkDeviceEntity = networkDeviceEntity;
+//    public void setObjectEntitySet(Set<TblObjectEntity> objectEntitySet) {
+//        this.objectEntitySet = objectEntitySet;
 //    }
 }
