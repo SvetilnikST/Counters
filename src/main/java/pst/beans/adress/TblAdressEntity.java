@@ -1,9 +1,12 @@
 package pst.beans.adress;
 
 import pst.beans.city.TblCityEntity;
+import pst.beans.object.TblObjectEntity;
 import pst.beans.street.TblStreetEntity;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "tblAdress")
@@ -12,9 +15,9 @@ public class TblAdressEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idAdress", nullable = false)
-    private int idStreet;
+    private int idAdress;
 
-    @Column(name = "home", nullable = false)
+    @Column(name = "home", nullable = false, length = 100)
     private String home;
 
 
@@ -23,16 +26,20 @@ public class TblAdressEntity {
     private TblStreetEntity streetEntity;
 
     @ManyToOne
-    @JoinColumn(name = "idAdress")
+    @JoinColumn(name = "idCity")
     private TblCityEntity cityEntity;
 
 
-    public int getIdStreet() {
-        return idStreet;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "adressEntity")
+    private Set<TblObjectEntity> objectEntitySet = new HashSet<>();
+
+    public int getIdAdress() {
+        return idAdress;
     }
 
-    public void setIdStreet(int idStreet) {
-        this.idStreet = idStreet;
+    public void setIdAdress(int idAdress) {
+        this.idAdress = idAdress;
     }
 
     public String getHome() {
@@ -41,5 +48,29 @@ public class TblAdressEntity {
 
     public void setHome(String home) {
         this.home = home;
+    }
+
+    public TblStreetEntity getStreetEntity() {
+        return streetEntity;
+    }
+
+    public void setStreetEntity(TblStreetEntity streetEntity) {
+        this.streetEntity = streetEntity;
+    }
+
+    public TblCityEntity getCityEntity() {
+        return cityEntity;
+    }
+
+    public void setCityEntity(TblCityEntity cityEntity) {
+        this.cityEntity = cityEntity;
+    }
+
+    public Set<TblObjectEntity> getObjectEntitySet() {
+        return objectEntitySet;
+    }
+
+    public void setObjectEntitySet(Set<TblObjectEntity> objectEntitySet) {
+        this.objectEntitySet = objectEntitySet;
     }
 }

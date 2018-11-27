@@ -1,10 +1,9 @@
 package pst.beans.object;
 
-import pst.beans.device.TblDeviceEntity;
+import pst.beans.adress.TblAdressEntity;
+import pst.beans.organization.TblOrganizationEntity;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "tblObject")
@@ -18,10 +17,16 @@ public class TblObjectEntity {
      @Column(name = "nameObject", nullable = false)
      private String nameObject;
 
-//    @ManyToMany (fetch = FetchType.EAGER)
-//    @JoinTable(name = "device", joinColumns = @JoinColumn(name = "id"))
-//    private Set<TblDeviceEntity> deviceEntitySet = new HashSet<>();
-//
+
+    @ManyToOne
+    @JoinColumn(name = "idAdress")
+    private TblAdressEntity adressEntity;
+
+
+
+    @ManyToOne
+    @JoinColumn(name = "idObject")
+    private TblOrganizationEntity  organizationEntity;
 
     public int getId() {
         return id;
@@ -39,11 +44,19 @@ public class TblObjectEntity {
         this.nameObject = nameObject;
     }
 
-//    public Set<TblDeviceEntity> getDeviceEntitySet() {
-//        return deviceEntitySet;
-//    }
-//
-//    public void setDeviceEntitySet(Set<TblDeviceEntity> deviceEntitySet) {
-//        this.deviceEntitySet = deviceEntitySet;
-//    }
+    public TblAdressEntity getAdressEntity() {
+        return adressEntity;
+    }
+
+    public void setAdressEntity(TblAdressEntity adressEntity) {
+        this.adressEntity = adressEntity;
+    }
+
+    public TblOrganizationEntity getOrganizationEntity() {
+        return organizationEntity;
+    }
+
+    public void setOrganizationEntity(TblOrganizationEntity organizationEntity) {
+        this.organizationEntity = organizationEntity;
+    }
 }
