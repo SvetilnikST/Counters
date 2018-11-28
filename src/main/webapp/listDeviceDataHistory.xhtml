@@ -7,12 +7,21 @@
                 xmlns:c="http://java.sun.com/jsp/jstl/core"
                 template="WEB-INF/template/template.xhtml">
     <ui:define name="page_title">
-       История по устройству
+        История по устройству
     </ui:define>
 
     <ui:define name="page_body">
         <h:form>
             <p:spacer/>
+
+            <p:column headerText="Наименование">
+                <h:outputText value="#{deviceAdminHistory.device.name}">
+                </h:outputText>
+            </p:column>
+
+
+
+
             <p:dataTable
                     id="deviceDataHistoryTable"
                     widgetVar="deviceDataHistoryTable"
@@ -36,7 +45,7 @@
                     <h:outputText value="#{deviceDataHistory.commons.get(0).system.get(0).m1}">
                     </h:outputText>
                 </p:column>
-                <p:column headerText="g1" >
+                <p:column headerText="g1">
                     <h:outputText value="#{deviceDataHistory.commons.get(0).system.get(0).GM1}">
                     </h:outputText>
                 </p:column>
@@ -48,7 +57,6 @@
                     <h:outputText value="#{deviceDataHistory.commons.get(0).system.get(0).p1}">
                     </h:outputText>
                 </p:column>
-
 
 
                 <p:column headerText="q2">
@@ -77,7 +85,7 @@
                 </p:column>
 
                 <p:column headerText="T раб">
-                    <h:outputText value="#{deviceDataHistory.commons.get(0).system.get(0).timeRunSys}">
+                    <h:outputText value="#{deviceDataHistory.commons.get(0).system.get(0).timeRunSys/60.0}">
                     </h:outputText>
                 </p:column>
                 <p:column headerText="Т xв.">
@@ -85,7 +93,8 @@
                     </h:outputText>
                 </p:column>
                 <p:column headerText="На приборе">
-                    <h:outputText value="#{deviceDataHistory.commons.get(0).timeDevice}">
+                    <h:outputText value="#{deviceAdminHistory.timstampFromInt(deviceDataHistory.commons.get(0).timeDevice)}">
+                        <f:convertDateTime pattern="dd MMMM YYYY г., HH:mm:ss"/>
                     </h:outputText>
                 </p:column>
 

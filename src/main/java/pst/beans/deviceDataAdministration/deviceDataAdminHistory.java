@@ -16,6 +16,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
@@ -27,6 +28,7 @@ public class deviceDataAdminHistory implements Serializable{
     TblBoxCommonEntity boxCommonEntity;
     List<TblBoxCommonEntity> boxCommonEntityList;
     List<TblScheduleEntity> tblScheduleEntityList;
+    TblDeviceEntity device;
 
     @EJB
     private DeviceDAO deviceDAO;
@@ -51,7 +53,7 @@ public class deviceDataAdminHistory implements Serializable{
             id = Integer.parseInt(param);
             //чтение записи по id
 //            this.tblDeviceEntity = deviceDAO.read(id);
-            TblDeviceEntity device = deviceDAO.read(id);
+            device = deviceDAO.read(id);
 
             //проверка если пустая entity, сообщение об ощибке
             if (device == null) {
@@ -133,5 +135,17 @@ public class deviceDataAdminHistory implements Serializable{
 
     public void setId(int id) {
         this.id = id;
+    }
+    public Timestamp timstampFromInt(int valueToTimestamp) {
+        Long temp = valueToTimestamp * 1000L;
+        return new Timestamp(temp);
+    }
+
+    public TblDeviceEntity getDevice() {
+        return device;
+    }
+
+    public void setDevice(TblDeviceEntity device) {
+        this.device = device;
     }
 }

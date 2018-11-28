@@ -31,9 +31,6 @@ public class TblDeviceEntity {
     @Column(name="requestsCount", nullable = false)
     private Integer requestsCount;
 
-//    @Column(name="ip",nullable = false, length = 200)
-//    private String ip;
-
     @Column(name= "ip", nullable = false, length = 20)
     private String ip;
 
