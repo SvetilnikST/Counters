@@ -23,16 +23,11 @@
                     var="device"
                     value="#{deviceAdministration.tblDeviceEntitysList}">
                 <p:column headerText="ID">
-                    <h:link value="#{typeDevice.id}" outcome="editTypeDevice">
-                        <f:param name="id" value="#{typeDevice.id}"/>
-                    </h:link>
-                </p:column>
-                <p:column headerText="Наименование">
-                    <h:outputText value="#{typeDevice.name}"/>
-                    <h:link value="#{device.id}" outcome="editDevice">
+                    <h:link value="#{device.id}" outcome="editTypeDevice">
                         <f:param name="id" value="#{device.id}"/>
                     </h:link>
                 </p:column>
+
                 <p:column headerText="Наименование">
                     <h:outputText value="#{device.name}">
                     </h:outputText>
@@ -62,6 +57,21 @@
                     <h:outputText value="#{deviceAdministration.requestsCount}">
                     </h:outputText>
                 </p:column>
+                <p:column headerText="ip">
+                    <h:outputText value="#{deviceAdministration.ip}">
+                    </h:outputText>
+                </p:column>
+
+                <p:column headerText="num_port">
+                    <h:outputText value="#{deviceAdministration.num_port}">
+                    </h:outputText>
+                </p:column>
+
+                <p:column headerText="requestInterval">
+                    <h:outputText value="#{deviceAdministration.requestInterval}">
+                    </h:outputText>
+                </p:column>
+
             </p:dataTable>
         </h:form>
     </ui:define>

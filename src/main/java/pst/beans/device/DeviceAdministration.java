@@ -43,6 +43,7 @@ public class DeviceAdministration implements Serializable {
     private int requestsCount;
     private String ip;
     private int num_port;
+    private int requestInterval;
     TblTypeDeviceEntity typeDeviceEntity;
     TblUnitQEntity unitQEntity;
 
@@ -74,6 +75,7 @@ public class DeviceAdministration implements Serializable {
             requestsCount=0;
             ip="";
             num_port=0;
+            requestInterval=0;
         }
         tblDeviceEntitysList = deviceDAO.findAll();
         unitQList = unitQDAO.findAll();
@@ -88,6 +90,7 @@ public class DeviceAdministration implements Serializable {
         this.setRequestsCount(deviceEntity.getRequestsCount());
         this.setIp(deviceEntity.getIp());
         this.setNum_port(deviceEntity.getNum_port());
+        this.setRequestInterval(deviceEntity.getRequestInterval());
         this.setTypeDeviceEntity(tblDeviceEntity.getTypeDeviceEntity());
         this.setUnitQEntity(tblDeviceEntity.getUnitQEntity());
     }
@@ -240,5 +243,13 @@ public class DeviceAdministration implements Serializable {
 
     public void setTblDeviceEntitysList(List<TblDeviceEntity> tblDeviceEntitysList) {
         this.tblDeviceEntitysList = tblDeviceEntitysList;
+    }
+
+    public int getRequestInterval() {
+        return requestInterval;
+    }
+
+    public void setRequestInterval(int requestInterval) {
+        this.requestInterval = requestInterval;
     }
 }
