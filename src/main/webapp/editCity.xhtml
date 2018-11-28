@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html" xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="WEB-INF/template/template.xhtml">
+    <ui:define name="page_title">
+        Улица
+    </ui:define>
+    <ui:define name="page_body">
+        <h:form>
+            <p:panel>
+                <h2>
+                    <p:outputLabel rendered="#{userAdministration.id==0 or userAdministration.id==null}">
+                        Новый город
+                    </p:outputLabel>
+                    <p:outputLabel rendered="#{userAdministration.id!=0 and userAdministration.id!=null}"
+                                   value="Изменение названия города #{cityAdministration.idCity} "/>
+                </h2>
+                <p:panelGrid styleClass="ui-panelgrid-blank">
+                    <p:row>
+                        <p:column colspan="1">
+                            <h:outputText value="Наименование"/>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column colspan="1">
+                            <p:inputText id="name" value="#{cityAdministration.nameCity}"
+                                         title="name"/>
+                        </p:column>
+                    </p:row>
+                </p:panelGrid>
+
+                <p:commandButton value="Сохранить" action="#{cityAdministration.save()}"
+                                 rendered="#{userBean.doRightVerify('createUser')}"/>
+            </p:panel>
+        </h:form>
+    </ui:define>
+</ui:composition>
+
