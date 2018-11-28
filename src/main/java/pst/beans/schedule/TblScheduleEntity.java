@@ -8,6 +8,9 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import static javax.persistence.FetchType.EAGER;
+import static javax.persistence.FetchType.LAZY;
+
 @Entity
 @Table(name = "tblSheduleHistory")
 public class TblScheduleEntity {
@@ -29,7 +32,8 @@ public class TblScheduleEntity {
     @Column(name = "statusExecute")
     private int statusexecute;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tblScheduleEntity")
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tblScheduleEntity", fetch=EAGER)
     private List<TblBoxCommonEntity> commons = new ArrayList<>();
 
     public int getId() {

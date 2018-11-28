@@ -6,7 +6,7 @@
     <h:form>
         <p:toolbar>
             <f:facet name="left">
-                <p:button type="button" value="Контроль счетчиков" href="/login.xhtml"/>
+                <p:button type="button" value="история по устройствам" href="/listDeviceDataHistory.xhtml"/>
             </f:facet>
             <f:facet name="right">
                 <c:if test="#{not userBean.autentificated}">
@@ -26,9 +26,6 @@
                         <p:menuitem value="Устройства" url="/listDevice.xhtml"/>
 
                     </p:menuButton>
-
-                    <!--<p:button type="button" value="TypeDevice" href="/listTypeDevice.xhtml"/>-->
-                    <!--<p:button type="button" value="UnitQ" href="/listUnitQ.xhtml"/>-->
 
                     <p:menuButton value="Администрирование" rendered="#{userBean.doRightVerify('admin')}">
                         <p:menuitem value="Пользователи" icon="ui-icon-disk"

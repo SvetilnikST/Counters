@@ -31,7 +31,10 @@ public class TblDeviceEntity {
     @Column(name="requestsCount", nullable = false)
     private Integer requestsCount;
 
-    @Column(name="ip",nullable = false)
+//    @Column(name="ip",nullable = false, length = 200)
+//    private String ip;
+
+    @Column(name= "ip", nullable = false, length = 20)
     private String ip;
 
     @Column(name = "num_port", nullable = false)
@@ -41,22 +44,12 @@ public class TblDeviceEntity {
     private int requestInterval;
 
     @ManyToOne
-    @JoinColumn(name="typeInt")
+    @JoinColumn(name="typeId")
     private TblTypeDeviceEntity typeDeviceEntity;
 
     @ManyToOne
     @JoinColumn(name = "unitQ_id")
     private TblUnitQEntity unitQEntity;
-
-//    @ManyToOne
-//    @JoinColumn(name="")
-//    private TblContractEntity contractEntity;
-
-
-//    @ManyToMany
-//    @JoinTable(name = "tblObject",
-//            joinColumns = @JoinColumn(name = "idDevice"))
-//    private Set<TblObjectEntity> objectEntitySet = new HashSet<>();
 
 
     public int getId() {
@@ -139,11 +132,5 @@ public class TblDeviceEntity {
         this.unitQEntity = unitQEntity;
     }
 
-//    public Set<TblObjectEntity> getObjectEntitySet() {
-//        return objectEntitySet;
-//    }
-//
-//    public void setObjectEntitySet(Set<TblObjectEntity> objectEntitySet) {
-//        this.objectEntitySet = objectEntitySet;
-//    }
+
 }

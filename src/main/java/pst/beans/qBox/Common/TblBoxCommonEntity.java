@@ -7,6 +7,9 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static javax.persistence.FetchType.EAGER;
+import static javax.persistence.FetchType.LAZY;
+
 @Entity
 @Table(name = "qBox_data_common")
 public class TblBoxCommonEntity {
@@ -42,7 +45,7 @@ public class TblBoxCommonEntity {
     @Column(name ="inStore3", columnDefinition = "BIT default 0", length = 1)
     public Boolean instore3=false;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tblBoxCommonEntity")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tblBoxCommonEntity", fetch=EAGER)
     private List<TblBoxSystemEntity> system = new ArrayList<>();
 
     @ManyToOne

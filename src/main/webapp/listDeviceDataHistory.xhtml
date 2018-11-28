@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                template="WEB-INF/template/template.xhtml">
+    <ui:define name="page_title">
+       История по устройству
+    </ui:define>
+
+    <ui:define name="page_body">
+        <h:form>
+            <p:spacer/>
+            <p:dataTable
+                    id="deviceDataHistoryTable"
+                    widgetVar="deviceDataHistoryTable"
+                    var="deviceDataHistory"
+                    value="#{deviceAdminHistory.tblScheduleEntityList}">
+                <p:column headerText="ID">
+                    <h:link value="#{deviceDataHistory.id}" outcome="editTypeDevice">
+                        <f:param name="id" value="#{deviceDataHistory.id}"/>
+                    </h:link>
+                </p:column>
+
+                <p:column headerText="q1">
+                    <h:outputText value="#{deviceDataHistory.commons.get(0).system.get(0).q1}">
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="V1">
+                    <h:outputText value="#{deviceDataHistory.commons.get(0).system.get(0).v1}">
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="M1">
+                    <h:outputText value="#{deviceDataHistory.commons.get(0).system.get(0).m1}">
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="g1" >
+                    <h:outputText value="#{deviceDataHistory.commons.get(0).system.get(0).GM1}">
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="T1">
+                    <h:outputText value="#{deviceDataHistory.commons.get(0).system.get(0).t1}">
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="p1">
+                    <h:outputText value="#{deviceDataHistory.commons.get(0).system.get(0).p1}">
+                    </h:outputText>
+                </p:column>
+
+
+
+                <p:column headerText="q2">
+                    <h:outputText value="#{deviceDataHistory.commons.get(0).system.get(0).q2}">
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="V2">
+                    <h:outputText value="#{deviceDataHistory.commons.get(0).system.get(0).v2}">
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="M2">
+                    <h:outputText value="#{deviceDataHistory.commons.get(0).system.get(0).m2}">
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="g2">
+                    <h:outputText value="#{deviceDataHistory.commons.get(0).system.get(0).GM2}">
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="T2">
+                    <h:outputText value="#{deviceDataHistory.commons.get(0).system.get(0).t2}">
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="p2">
+                    <h:outputText value="#{deviceDataHistory.commons.get(0).system.get(0).p2}">
+                    </h:outputText>
+                </p:column>
+
+                <p:column headerText="T раб">
+                    <h:outputText value="#{deviceDataHistory.commons.get(0).system.get(0).timeRunSys}">
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="Т xв.">
+                    <h:outputText value="#{deviceDataHistory.commons.get(0).system.get(0).t3}">
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="На приборе">
+                    <h:outputText value="#{deviceDataHistory.commons.get(0).timeDevice}">
+                    </h:outputText>
+                </p:column>
+
+            </p:dataTable>
+        </h:form>
+    </ui:define>
+</ui:composition>
+

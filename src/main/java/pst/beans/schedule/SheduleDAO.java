@@ -42,4 +42,18 @@ public class SheduleDAO extends AbstractDao<TblScheduleEntity> {
     }
 
 
+    //TODO В будущем требует переделки - требуется указывать диапазон времени, за который нас интересуют данные
+    public List<TblScheduleEntity> findDeviceWasReaded(int id) {
+
+        EntityManager entityManager = getEntityManager();
+        TypedQuery<TblScheduleEntity> query = entityManager.createQuery(
+                "select entity from TblScheduleEntity entity where entity.statusexecute=1 and entity.deviceId = :id " +
+                        "order by entity.id desc ",
+                TblScheduleEntity.class)
+                .setParameter("id",id)
+                .setMaxResults(60);
+        List<TblScheduleEntity> resultList = query.getResultList();
+
+        return resultList;
+    }
 }
