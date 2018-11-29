@@ -5,12 +5,10 @@ import pst.beans.device.DeviceDAO;
 import pst.beans.device.TblDeviceEntity;
 
 import javax.annotation.Resource;
-import javax.ejb.EJB;
 import javax.ejb.Schedule;
 import javax.ejb.Singleton;
 import javax.inject.Inject;
 import javax.jms.*;
-import javax.servlet.annotation.WebServlet;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;

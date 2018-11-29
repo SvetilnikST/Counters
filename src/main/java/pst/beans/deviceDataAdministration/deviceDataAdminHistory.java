@@ -1,5 +1,6 @@
 package pst.beans.deviceDataAdministration;
 
+import org.joda.time.LocalDateTime;
 import pst.beans.device.DeviceDAO;
 import pst.beans.device.TblDeviceEntity;
 import pst.beans.qBox.Common.TblBoxCommonEntity;
@@ -17,6 +18,7 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -29,6 +31,8 @@ public class deviceDataAdminHistory implements Serializable{
     List<TblBoxCommonEntity> boxCommonEntityList;
     List<TblScheduleEntity> tblScheduleEntityList;
     TblDeviceEntity device;
+
+    List<SheduleReport> sheduleReports;
 
     @EJB
     private DeviceDAO deviceDAO;
@@ -43,6 +47,7 @@ public class deviceDataAdminHistory implements Serializable{
 
     @PostConstruct
     public void start(){
+        sheduleReports = new ArrayList<>();
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
         Map<String, String> parameterMap = (Map<String, String>) externalContext.getRequestParameterMap();
@@ -79,6 +84,29 @@ public class deviceDataAdminHistory implements Serializable{
             boxCommonEntity=boxCommonEntityList.get(0);
             boxSystemEntityList=boxCommonEntity.getSystem();
         }
+        SheduleReport sheduleReport;
+
+        LocalDateTime dtOne = new LocalDateTime()
+                .withMinuteOfHour(0)
+                .withSecondOfMinute(0)
+                .withMillisOfSecond(0);
+
+        Timestamp time = new Timestamp(dtOne.toDateTime().getMillis());
+
+        for (TblScheduleEntity shedulerRecord:tblScheduleEntityList ) {
+            sheduleReport=new SheduleReport();
+            shedulerRecord.getCommons().get(0).getTimeRequest();
+
+            sheduleReport.setTimeRequest(time.toString());
+
+//todo
+
+
+
+        }
+
+
+
     }
 
     public List<TblBoxSystemEntity> getBoxSystemEntityList() {

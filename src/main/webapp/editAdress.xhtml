@@ -39,7 +39,7 @@
                             <f:selectItems value="#{adressAdministration.cityEntityList}" var="city"
                                            itemLabel="#{city.nameCity}" itemValue="#{city}" />
                             <p:column>
-                                <h:outputText value="#{cit.city}" />
+                                <h:outputText value="#{cit.nameCity}" />
                             </p:column>
                         </p:selectOneMenu>
                     </p:column>
@@ -53,7 +53,7 @@
                             <f:selectItems value="#{adressAdministration.streetEntityList}" var="street"
                                            itemLabel="#{street.nameStreet}" itemValue="#{street}" />
                             <p:column>
-                                <h:outputText value="#{str.street}" />
+                                <h:outputText value="#{str.nameStreet}" />
                             </p:column>
                         </p:selectOneMenu>
                     </p:column>

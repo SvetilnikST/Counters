@@ -7,38 +7,43 @@
                 xmlns:c="http://java.sun.com/jsp/jstl/core"
                 template="WEB-INF/template/template.xhtml">
     <ui:define name="page_title">
-        Адреса
+        объекты
     </ui:define>
     <ui:define name="page_body">
         <p:panel>
             <p:button type="button" value="Добавить" icon="ui-icon-document"
-                      href="/editAdress.xhtml"
+                      href="/editObject.xhtml"
             />
         </p:panel>
         <h:form>
             <p:spacer/>
             <p:dataTable
-                    id="adressTable"
-                    widgetVar="adressTable"
-                    var="adress"
-                    value="#{adressAdministration.tblAdressEntitysList}">
+                    id="objectTable"
+                    widgetVar="objectTable"
+                    var="object"
+                    value="#{objectAdministration.tblObjectEntitysList}">
                 <p:column headerText="ID">
-                    <h:link value="#{adress.idAdress}" outcome="editAdress">
-                        <f:param name="idAdress" value="#{adress.idAdress}"/>
+                    <h:link value="#{object.id}" outcome="editObject">
+                        <f:param name="id" value="#{object.id}"/>
                     </h:link>
                 </p:column>
-                <p:column headerText="Название улицы">
-                    <h:outputText value="#{adress.streetEntity.nameStreet}">
+                <p:column headerText="Название объекта">
+                    <h:outputText value="#{object.nameObject}">
                     </h:outputText>
                 </p:column>
 
-                <p:column headerText="Номер дома">
-                    <h:outputText value="#{adress.home}">
+                <p:column headerText="Улицы">
+                    <h:outputText value="#{object.adressEntity.streetEntity.nameStreet}">
+                    </h:outputText>
+                </p:column>
+
+                <p:column headerText="Дом">
+                    <h:outputText value="#{object.adressEntity.home}">
                     </h:outputText>
                 </p:column>
 
                 <p:column headerText="Город">
-                    <h:outputText value="#{adress.cityEntity.nameCity}">
+                    <h:outputText value="#{object.adressEntity.cityEntity.nameCity}">
                     </h:outputText>
                 </p:column>
             </p:dataTable>
