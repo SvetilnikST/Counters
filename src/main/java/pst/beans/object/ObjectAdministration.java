@@ -26,6 +26,7 @@ public class ObjectAdministration implements Serializable {
     private TblObjectEntity tblObjectEntity;
     private List<ObjectAdministration> objectAdministrations;
     private List<TblObjectEntity> tblObjectEntitysList;
+    TblAdressEntity adressEntity;
 
     @EJB
     private ObjectDAO objectDAO;
@@ -33,18 +34,14 @@ public class ObjectAdministration implements Serializable {
     @EJB
     private AdressDAO adressDAO;
 
-    @EJB
-    private DeviceDAO deviceDAO;
+//    @EJB
+//    private DeviceDAO deviceDAO;
 
 
     @Default
     private int id;
     private String nameObject;
-    TblAdressEntity adressEntity;
-    TblDeviceEntity deviceEntity;
-
-
-
+//    TblDeviceEntity deviceEntity;
 
     @PostConstruct
     void start(){
@@ -123,13 +120,13 @@ public class ObjectAdministration implements Serializable {
         this.adressDAO = adressDAO;
     }
 
-    public DeviceDAO getDeviceDAO() {
-        return deviceDAO;
-    }
-
-    public void setDeviceDAO(DeviceDAO deviceDAO) {
-        this.deviceDAO = deviceDAO;
-    }
+//    public DeviceDAO getDeviceDAO() {
+//        return deviceDAO;
+//    }
+//
+//    public void setDeviceDAO(DeviceDAO deviceDAO) {
+//        this.deviceDAO = deviceDAO;
+//    }
 
     public int getId() {
         return id;
@@ -155,13 +152,13 @@ public class ObjectAdministration implements Serializable {
         this.adressEntity = adressEntity;
     }
 
-    public TblDeviceEntity getDeviceEntity() {
-        return deviceEntity;
-    }
-
-    public void setDeviceEntity(TblDeviceEntity deviceEntity) {
-        this.deviceEntity = deviceEntity;
-    }
+//    public TblDeviceEntity getDeviceEntity() {
+//        return deviceEntity;
+//    }
+//
+//    public void setDeviceEntity(TblDeviceEntity deviceEntity) {
+//        this.deviceEntity = deviceEntity;
+//    }
 
     public List<TblObjectEntity> getTblObjectEntitysList() {
         return tblObjectEntitysList;

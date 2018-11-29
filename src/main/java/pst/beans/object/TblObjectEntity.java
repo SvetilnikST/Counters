@@ -25,9 +25,15 @@ public class TblObjectEntity {
     private TblAdressEntity adressEntity;
 
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "objectEntity")
-    private Set<TblOrganizationEntity> organizationEntitySet = new HashSet<>();
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "objectEntity")
+    private Set<TblOrganizationEntity> tblOrganizationEntitySet = new HashSet<>();
+
+
+
+    @ManyToOne
+    @JoinColumn(name = "idDevice")
+    private TblOrganizationEntity organizationEntity;
 
     public int getId() {
         return id;
@@ -53,11 +59,19 @@ public class TblObjectEntity {
         this.adressEntity = adressEntity;
     }
 
-    public Set<TblOrganizationEntity> getOrganizationEntitySet() {
-        return organizationEntitySet;
+    public Set<TblOrganizationEntity> getTblOrganizationEntitySet() {
+        return tblOrganizationEntitySet;
     }
 
-    public void setOrganizationEntitySet(Set<TblOrganizationEntity> organizationEntitySet) {
-        this.organizationEntitySet = organizationEntitySet;
+    public void setTblOrganizationEntitySet(Set<TblOrganizationEntity> tblOrganizationEntitySet) {
+        this.tblOrganizationEntitySet = tblOrganizationEntitySet;
+    }
+
+    public TblOrganizationEntity getOrganizationEntity() {
+        return organizationEntity;
+    }
+
+    public void setOrganizationEntity(TblOrganizationEntity organizationEntity) {
+        this.organizationEntity = organizationEntity;
     }
 }

@@ -20,6 +20,7 @@ public class cityAdministration implements Serializable {
 
     private TblCityEntity tblCityEntity;
     private List<cityAdministration> cityAdministrations;
+    private List<TblCityEntity> tblCityEntitysList;
 
     @EJB
     private CityDAO cityDAO;
@@ -28,7 +29,7 @@ public class cityAdministration implements Serializable {
     private int idCity;
     private String nameCity;
 
-    private List<TblCityEntity> tblCityEntitysList;
+
 
     @PostConstruct
     void start(){

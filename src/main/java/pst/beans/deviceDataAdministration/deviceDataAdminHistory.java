@@ -77,103 +77,114 @@ public class deviceDataAdminHistory implements Serializable{
 
     private void load(TblDeviceEntity device) {
         tblScheduleEntityList = sheduleDAO.findDeviceWasReaded(device.getId());
-        for (TblScheduleEntity  oneEntyty:tblScheduleEntityList ) {
-            boxCommonEntityList=oneEntyty.getCommons();
+        for (TblScheduleEntity oneEntyty : tblScheduleEntityList) {
+            boxCommonEntityList = oneEntyty.getCommons();
 
             //TODO треубется проверка на 0
-            boxCommonEntity=boxCommonEntityList.get(0);
-            boxSystemEntityList=boxCommonEntity.getSystem();
+            boxCommonEntity = boxCommonEntityList.get(0);
+            boxSystemEntityList = boxCommonEntity.getSystem();
         }
         SheduleReport sheduleReport;
 
-        LocalDateTime dtOne = new LocalDateTime()
-                .withMinuteOfHour(0)
-                .withSecondOfMinute(0)
-                .withMillisOfSecond(0);
+//        LocalDateTime dtOne = new LocalDateTime()
+//                .withMinuteOfHour(0)
+//                .withSecondOfMinute(0)
+//                .withMillisOfSecond(0);
+//
+//        Timestamp time = new Timestamp(dtOne.toDateTime().getMillis());
 
-        Timestamp time = new Timestamp(dtOne.toDateTime().getMillis());
+//        LocalDateTime dtOne = new LocalDateTime();
 
-        for (TblScheduleEntity shedulerRecord:tblScheduleEntityList ) {
-            sheduleReport=new SheduleReport();
+        LocalDateTime dtCur;
+        boolean firstTime = true;
+        LocalDateTime dtOld = new LocalDateTime(0);
+
+        for (TblScheduleEntity shedulerRecord : tblScheduleEntityList) {
+            sheduleReport = new SheduleReport();
             shedulerRecord.getCommons().get(0).getTimeRequest();
+            dtCur = new LocalDateTime(shedulerRecord.getCommons().get(0).getTimeRequest() * 1000);
 
-            sheduleReport.setTimeRequest(time.toString());
+            if (firstTime) {
+                dtOld = dtCur;
+                sheduleReport.setDateRequest(dtCur.toString());
+            }
+            if (dtCur.getDayOfMonth() == dtOld.getDayOfMonth() && !firstTime) {
+                sheduleReport.setDateRequest(" ");
+            }
+            firstTime = false;
+            if (dtCur.getDayOfMonth() != dtOld.getDayOfMonth()) {
 
-//todo
 
+            }
 
 
         }
-
-
-
     }
-
-    public List<TblBoxSystemEntity> getBoxSystemEntityList() {
-        return boxSystemEntityList;
-    }
-
-    public void setBoxSystemEntityList(List<TblBoxSystemEntity> boxSystemEntityList) {
-        this.boxSystemEntityList = boxSystemEntityList;
-    }
-
-    public TblBoxCommonEntity getBoxCommonEntity() {
-        return boxCommonEntity;
-    }
-
-    public void setBoxCommonEntity(TblBoxCommonEntity boxCommonEntity) {
-        this.boxCommonEntity = boxCommonEntity;
-    }
-
-    public List<TblBoxCommonEntity> getBoxCommonEntityList() {
-        return boxCommonEntityList;
-    }
-
-    public void setBoxCommonEntityList(List<TblBoxCommonEntity> boxCommonEntityList) {
-        this.boxCommonEntityList = boxCommonEntityList;
-    }
-
-    public List<TblScheduleEntity> getTblScheduleEntityList() {
-        return tblScheduleEntityList;
-    }
-
-    public void setTblScheduleEntityList(List<TblScheduleEntity> tblScheduleEntityList) {
-        this.tblScheduleEntityList = tblScheduleEntityList;
-    }
-
-    public DeviceDAO getDeviceDAO() {
-        return deviceDAO;
-    }
-
-    public void setDeviceDAO(DeviceDAO deviceDAO) {
-        this.deviceDAO = deviceDAO;
-    }
-
-    public SheduleDAO getSheduleDAO() {
-        return sheduleDAO;
-    }
-
-    public void setSheduleDAO(SheduleDAO sheduleDAO) {
-        this.sheduleDAO = sheduleDAO;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-    public Timestamp timstampFromInt(int valueToTimestamp) {
-        Long temp = valueToTimestamp * 1000L;
-        return new Timestamp(temp);
-    }
-
-    public TblDeviceEntity getDevice() {
-        return device;
-    }
-
-    public void setDevice(TblDeviceEntity device) {
-        this.device = device;
-    }
+//    public List<TblBoxSystemEntity> getBoxSystemEntityList() {
+//        return boxSystemEntityList;
+//    }
+//
+//    public void setBoxSystemEntityList(List<TblBoxSystemEntity> boxSystemEntityList) {
+//        this.boxSystemEntityList = boxSystemEntityList;
+//    }
+//
+//    public TblBoxCommonEntity getBoxCommonEntity() {
+//        return boxCommonEntity;
+//    }
+//
+//    public void setBoxCommonEntity(TblBoxCommonEntity boxCommonEntity) {
+//        this.boxCommonEntity = boxCommonEntity;
+//    }
+//
+//    public List<TblBoxCommonEntity> getBoxCommonEntityList() {
+//        return boxCommonEntityList;
+//    }
+//
+//    public void setBoxCommonEntityList(List<TblBoxCommonEntity> boxCommonEntityList) {
+//        this.boxCommonEntityList = boxCommonEntityList;
+//    }
+//
+//    public List<TblScheduleEntity> getTblScheduleEntityList() {
+//        return tblScheduleEntityList;
+//    }
+//
+//    public void setTblScheduleEntityList(List<TblScheduleEntity> tblScheduleEntityList) {
+//        this.tblScheduleEntityList = tblScheduleEntityList;
+//    }
+//
+//    public DeviceDAO getDeviceDAO() {
+//        return deviceDAO;
+//    }
+//
+//    public void setDeviceDAO(DeviceDAO deviceDAO) {
+//        this.deviceDAO = deviceDAO;
+//    }
+//
+//    public SheduleDAO getSheduleDAO() {
+//        return sheduleDAO;
+//    }
+//
+//    public void setSheduleDAO(SheduleDAO sheduleDAO) {
+//        this.sheduleDAO = sheduleDAO;
+//    }
+//
+//    public int getId() {
+//        return id;
+//    }
+//
+//    public void setId(int id) {
+//        this.id = id;
+//    }
+//    public Timestamp timstampFromInt(int valueToTimestamp) {
+//        Long temp = valueToTimestamp * 1000L;
+//        return new Timestamp(temp);
+//    }
+//
+//    public TblDeviceEntity getDevice() {
+//        return device;
+//    }
+//
+//    public void setDevice(TblDeviceEntity device) {
+//        this.device = device;
+//    }
 }

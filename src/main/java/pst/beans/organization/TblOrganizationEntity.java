@@ -18,8 +18,6 @@ public class TblOrganizationEntity {
     @Column(name = "nameOrganization", nullable = false, length = 255)
     private String nameOrganization;
 
-
-
     @ManyToOne
     @JoinColumn(name = "idObject")
     private TblObjectEntity objectEntity;
