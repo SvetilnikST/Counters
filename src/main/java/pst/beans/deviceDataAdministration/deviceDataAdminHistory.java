@@ -115,8 +115,13 @@ public class deviceDataAdminHistory implements Serializable {
             //сюда гоним запись всего остального.
             sheduleReport.setTimeRequest(String.valueOf(dtCur.getHourOfDay()));
 
+
+//            sheduleReport.setTimeRequest(shedulerRecord.getCommons().get(0).getTimeRequest());
             sheduleReport.setQ1(shedulerRecord.getCommons().get(0).getTimeDevice());
-//            sheduleReport.setTimeOn(shedulerRecord.getCommons().get(0).getTimeOn());
+
+//            sheduleReport.setTimeRequest(shedulerRecord.get);
+
+
 
 
 
