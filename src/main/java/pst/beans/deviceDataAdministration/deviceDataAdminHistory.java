@@ -22,9 +22,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-@ManagedBean(name="deviceAdminHistory")
+@ManagedBean(name = "deviceAdminHistory")
 @ViewScoped
-public class deviceDataAdminHistory implements Serializable{
+public class deviceDataAdminHistory implements Serializable {
 
     List<TblBoxSystemEntity> boxSystemEntityList;
     TblBoxCommonEntity boxCommonEntity;
@@ -41,12 +41,11 @@ public class deviceDataAdminHistory implements Serializable{
     private SheduleDAO sheduleDAO;
 
 
-
     @Default
     private int id;
 
     @PostConstruct
-    public void start(){
+    public void start() {
         sheduleReports = new ArrayList<>();
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
@@ -97,27 +96,59 @@ public class deviceDataAdminHistory implements Serializable{
 
         LocalDateTime dtCur;
         boolean firstTime = true;
-        LocalDateTime dtOld = new LocalDateTime(0);
+        LocalDateTime dtOld = new LocalDateTime(tblScheduleEntityList.get(0).getCommons().get(0).getTimeRequest() * 1000L);
+        String tmp;
 
         for (TblScheduleEntity shedulerRecord : tblScheduleEntityList) {
             sheduleReport = new SheduleReport();
-            shedulerRecord.getCommons().get(0).getTimeRequest();
-            dtCur = new LocalDateTime(shedulerRecord.getCommons().get(0).getTimeRequest() * 1000);
 
-            if (firstTime) {
-                dtOld = dtCur;
-                sheduleReport.setDateRequest(dtCur.toString());
-            }
+            dtCur = new LocalDateTime(shedulerRecord.getCommons().get(0).getTimeRequest() * 1000L);
+
             if (dtCur.getDayOfMonth() == dtOld.getDayOfMonth() && !firstTime) {
-                sheduleReport.setDateRequest(" ");
+                sheduleReport.setDateRequest("---");
+            } else {
+                sheduleReport.setDateRequest(dtCur.toString("dd.MMMM"));
             }
             firstTime = false;
-            if (dtCur.getDayOfMonth() != dtOld.getDayOfMonth()) {
+            dtOld = dtCur;
+
+            //сюда гоним запись всего остального.
+            sheduleReport.setTimeRequest(String.valueOf(dtCur.getHourOfDay()));
+
+            sheduleReport.setQ1(shedulerRecord.getCommons().get(0).getTimeDevice());
+//            sheduleReport.setTimeOn(shedulerRecord.getCommons().get(0).getTimeOn());
 
 
-            }
 
 
+            sheduleReport.setSIGMA_Q(shedulerRecord.getCommons().get(0).getSystem().get(0).getSIGMA_Q());
+
+            sheduleReport.setQ1(shedulerRecord.getCommons().get(0).getSystem().get(0).getQ1());
+            sheduleReport.setQ2(shedulerRecord.getCommons().get(0).getSystem().get(0).getQ2());
+            sheduleReport.setQ3(shedulerRecord.getCommons().get(0).getSystem().get(0).getQ3());
+
+            sheduleReport.setV1(shedulerRecord.getCommons().get(0).getSystem().get(0).getV1());
+            sheduleReport.setV2(shedulerRecord.getCommons().get(0).getSystem().get(0).getV2());
+
+            sheduleReport.setM1(shedulerRecord.getCommons().get(0).getSystem().get(0).getM1());
+            sheduleReport.setM2(shedulerRecord.getCommons().get(0).getSystem().get(0).getM2());
+
+            sheduleReport.setGM1(shedulerRecord.getCommons().get(0).getSystem().get(0).getGM1());
+            sheduleReport.setGM2(shedulerRecord.getCommons().get(0).getSystem().get(0).getGM2());
+
+            sheduleReport.setGV1(shedulerRecord.getCommons().get(0).getSystem().get(0).getGV1());
+            sheduleReport.setGV2(shedulerRecord.getCommons().get(0).getSystem().get(0).getGV2());
+
+            sheduleReport.setT1(shedulerRecord.getCommons().get(0).getSystem().get(0).getT1());
+            sheduleReport.setT2(shedulerRecord.getCommons().get(0).getSystem().get(0).getT2());
+            sheduleReport.setT3(shedulerRecord.getCommons().get(0).getSystem().get(0).getT3());
+
+            sheduleReport.setP1(shedulerRecord.getCommons().get(0).getSystem().get(0).getP1());
+            sheduleReport.setP1(shedulerRecord.getCommons().get(0).getSystem().get(0).getP2());
+            sheduleReport.setP1(shedulerRecord.getCommons().get(0).getSystem().get(0).getP3());
+
+            int a = 0;
+            sheduleReports.add(sheduleReport);
         }
     }
 //    public List<TblBoxSystemEntity> getBoxSystemEntityList() {
