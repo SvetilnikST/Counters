@@ -16,84 +16,82 @@
 
             <p:column headerText="Наименование">
                 <h:outputText value="#{deviceAdminHistory.device.name}">
+
                 </h:outputText>
             </p:column>
-
-
-
 
             <p:dataTable
                     id="deviceDataHistoryTable"
                     widgetVar="deviceDataHistoryTable"
                     var="deviceDataHistory"
-                    value="#{deviceAdminHistory.tblScheduleEntityList}">
+                    value="#{deviceAdminHistory.sheduleReports}">
                 <p:column headerText="ID">
-                    <h:link value="#{deviceDataHistory.id}" outcome="editTypeDevice">
-                        <f:param name="id" value="#{deviceDataHistory.id}"/>
+                    <h:link value="#{deviceDataHistory.idShedule}" outcome="editTypeDevice">
+                        <f:param name="id" value="#{deviceDataHistory.idShedule}"/>
                     </h:link>
                 </p:column>
 
                 <p:column headerText="q1">
-                    <h:outputText value="#{deviceDataHistory.commons.get(0).system.get(0).q1}">
+                    <h:outputText value="#{deviceDataHistory.q1}">
                     </h:outputText>
                 </p:column>
                 <p:column headerText="V1">
-                    <h:outputText value="#{deviceDataHistory.commons.get(0).system.get(0).v1}">
+                    <h:outputText value="#{deviceDataHistory.v1}">
                     </h:outputText>
                 </p:column>
                 <p:column headerText="M1">
-                    <h:outputText value="#{deviceDataHistory.commons.get(0).system.get(0).m1}">
+                    <h:outputText value="#{deviceDataHistory.m1}">
                     </h:outputText>
                 </p:column>
                 <p:column headerText="g1">
-                    <h:outputText value="#{deviceDataHistory.commons.get(0).system.get(0).GM1}">
+                    <h:outputText value="#{deviceDataHistory.GM1}">
                     </h:outputText>
                 </p:column>
                 <p:column headerText="T1">
-                    <h:outputText value="#{deviceDataHistory.commons.get(0).system.get(0).t1}">
+                    <h:outputText value="#{deviceDataHistory.t1}">
                     </h:outputText>
                 </p:column>
                 <p:column headerText="p1">
-                    <h:outputText value="#{deviceDataHistory.commons.get(0).system.get(0).p1}">
+                    <h:outputText value="#{deviceDataHistory.p1}">
                     </h:outputText>
                 </p:column>
 
 
                 <p:column headerText="q2">
-                    <h:outputText value="#{deviceDataHistory.commons.get(0).system.get(0).q2}">
+                    <h:outputText value="#{deviceDataHistory.q2}">
                     </h:outputText>
                 </p:column>
                 <p:column headerText="V2">
-                    <h:outputText value="#{deviceDataHistory.commons.get(0).system.get(0).v2}">
+                    <h:outputText value="#{deviceDataHistory.v2}">
                     </h:outputText>
                 </p:column>
                 <p:column headerText="M2">
-                    <h:outputText value="#{deviceDataHistory.commons.get(0).system.get(0).m2}">
+                    <h:outputText value="#{deviceDataHistory.m2}">
                     </h:outputText>
                 </p:column>
                 <p:column headerText="g2">
-                    <h:outputText value="#{deviceDataHistory.commons.get(0).system.get(0).GM2}">
+                    <h:outputText value="#{deviceDataHistory.GM2}">
                     </h:outputText>
                 </p:column>
                 <p:column headerText="T2">
-                    <h:outputText value="#{deviceDataHistory.commons.get(0).system.get(0).t2}">
+                    <h:outputText value="#{deviceDataHistory.t2}">
                     </h:outputText>
                 </p:column>
                 <p:column headerText="p2">
-                    <h:outputText value="#{deviceDataHistory.commons.get(0).system.get(0).p2}">
+                    <h:outputText value="#{deviceDataHistory.p2}">
                     </h:outputText>
                 </p:column>
 
                 <p:column headerText="T раб">
-                    <h:outputText value="#{deviceDataHistory.commons.get(0).system.get(0).timeRunSys/60.0}">
+                    <h:outputText value="#{deviceDataHistory.timeRunSys/60.0}">
                     </h:outputText>
                 </p:column>
                 <p:column headerText="Т xв.">
-                    <h:outputText value="#{deviceDataHistory.commons.get(0).system.get(0).t3}">
+                    <h:outputText value="#{deviceDataHistory.t3}">
                     </h:outputText>
                 </p:column>
                 <p:column headerText="На приборе">
-                    <h:outputText value="#{deviceAdminHistory.timstampFromInt(deviceDataHistory.commons.get(0).timeDevice)}">
+                    <h:outputText value="#{deviceAdminHistory.timstampFromInt(deviceDataHistory.timeDevice)}">
                         <f:convertDateTime pattern="dd MMMM YYYY г., HH:mm:ss"/>
                     </h:outputText>
                 </p:column>

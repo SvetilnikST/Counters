@@ -121,12 +121,7 @@ public class deviceDataAdminHistory implements Serializable {
 
 //            sheduleReport.setTimeRequest(shedulerRecord.get);
 
-
-
-
-
-
-            sheduleReport.setSIGMA_Q(shedulerRecord.getCommons().get(0).getSystem().get(0).getSIGMA_Q());
+           sheduleReport.setSIGMA_Q(shedulerRecord.getCommons().get(0).getSystem().get(0).getSIGMA_Q());
 
             sheduleReport.setQ1(shedulerRecord.getCommons().get(0).getSystem().get(0).getQ1());
             sheduleReport.setQ2(shedulerRecord.getCommons().get(0).getSystem().get(0).getQ2());
@@ -156,71 +151,82 @@ public class deviceDataAdminHistory implements Serializable {
             sheduleReports.add(sheduleReport);
         }
     }
-//    public List<TblBoxSystemEntity> getBoxSystemEntityList() {
-//        return boxSystemEntityList;
-//    }
-//
-//    public void setBoxSystemEntityList(List<TblBoxSystemEntity> boxSystemEntityList) {
-//        this.boxSystemEntityList = boxSystemEntityList;
-//    }
-//
-//    public TblBoxCommonEntity getBoxCommonEntity() {
-//        return boxCommonEntity;
-//    }
-//
-//    public void setBoxCommonEntity(TblBoxCommonEntity boxCommonEntity) {
-//        this.boxCommonEntity = boxCommonEntity;
-//    }
-//
-//    public List<TblBoxCommonEntity> getBoxCommonEntityList() {
-//        return boxCommonEntityList;
-//    }
-//
-//    public void setBoxCommonEntityList(List<TblBoxCommonEntity> boxCommonEntityList) {
-//        this.boxCommonEntityList = boxCommonEntityList;
-//    }
-//
-//    public List<TblScheduleEntity> getTblScheduleEntityList() {
-//        return tblScheduleEntityList;
-//    }
-//
-//    public void setTblScheduleEntityList(List<TblScheduleEntity> tblScheduleEntityList) {
-//        this.tblScheduleEntityList = tblScheduleEntityList;
-//    }
-//
-//    public DeviceDAO getDeviceDAO() {
-//        return deviceDAO;
-//    }
-//
-//    public void setDeviceDAO(DeviceDAO deviceDAO) {
-//        this.deviceDAO = deviceDAO;
-//    }
-//
-//    public SheduleDAO getSheduleDAO() {
-//        return sheduleDAO;
-//    }
-//
-//    public void setSheduleDAO(SheduleDAO sheduleDAO) {
-//        this.sheduleDAO = sheduleDAO;
-//    }
-//
-//    public int getId() {
-//        return id;
-//    }
-//
-//    public void setId(int id) {
-//        this.id = id;
-//    }
-//    public Timestamp timstampFromInt(int valueToTimestamp) {
-//        Long temp = valueToTimestamp * 1000L;
-//        return new Timestamp(temp);
-//    }
-//
-//    public TblDeviceEntity getDevice() {
-//        return device;
-//    }
-//
-//    public void setDevice(TblDeviceEntity device) {
-//        this.device = device;
-//    }
+
+    public List<TblBoxSystemEntity> getBoxSystemEntityList() {
+        return boxSystemEntityList;
+    }
+
+    public void setBoxSystemEntityList(List<TblBoxSystemEntity> boxSystemEntityList) {
+        this.boxSystemEntityList = boxSystemEntityList;
+    }
+
+    public TblBoxCommonEntity getBoxCommonEntity() {
+        return boxCommonEntity;
+    }
+
+    public void setBoxCommonEntity(TblBoxCommonEntity boxCommonEntity) {
+        this.boxCommonEntity = boxCommonEntity;
+    }
+
+    public List<TblBoxCommonEntity> getBoxCommonEntityList() {
+        return boxCommonEntityList;
+    }
+
+    public void setBoxCommonEntityList(List<TblBoxCommonEntity> boxCommonEntityList) {
+        this.boxCommonEntityList = boxCommonEntityList;
+    }
+
+    public List<TblScheduleEntity> getTblScheduleEntityList() {
+        return tblScheduleEntityList;
+    }
+
+    public void setTblScheduleEntityList(List<TblScheduleEntity> tblScheduleEntityList) {
+        this.tblScheduleEntityList = tblScheduleEntityList;
+    }
+
+    public TblDeviceEntity getDevice() {
+        return device;
+    }
+
+    public void setDevice(TblDeviceEntity device) {
+        this.device = device;
+    }
+
+    public List<SheduleReport> getSheduleReports() {
+        return sheduleReports;
+    }
+
+    public void setSheduleReports(List<SheduleReport> sheduleReports) {
+        this.sheduleReports = sheduleReports;
+    }
+
+    public DeviceDAO getDeviceDAO() {
+        return deviceDAO;
+    }
+
+    public void setDeviceDAO(DeviceDAO deviceDAO) {
+        this.deviceDAO = deviceDAO;
+    }
+
+    public SheduleDAO getSheduleDAO() {
+        return sheduleDAO;
+    }
+
+    public void setSheduleDAO(SheduleDAO sheduleDAO) {
+        this.sheduleDAO = sheduleDAO;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Timestamp timstampFromInt(int valueToTimestamp) {
+        Long temp = valueToTimestamp * 1000L;
+        return new Timestamp(temp);
+    }
+
 }

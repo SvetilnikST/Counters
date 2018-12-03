@@ -9,6 +9,7 @@ public class SheduleReport {
     private String timeOn;
     private String timeError;
     private int idShedule;
+    private String timeRunSys;
 //    private int number;
     private double SIGMA_Q;
     private double Q1;
@@ -220,5 +221,13 @@ public class SheduleReport {
 
     public void setP3(float p3) {
         P3 = p3;
+    }
+
+    public String getTimeRunSys() {
+        return timeRunSys;
+    }
+
+    public void setTimeRunSys(String timeRunSys) {
+        this.timeRunSys = timeRunSys;
     }
 }
