@@ -85,15 +85,6 @@ public class deviceDataAdminHistory implements Serializable {
         }
         SheduleReport sheduleReport;
 
-//        LocalDateTime dtOne = new LocalDateTime()
-//                .withMinuteOfHour(0)
-//                .withSecondOfMinute(0)
-//                .withMillisOfSecond(0);
-//
-//        Timestamp time = new Timestamp(dtOne.toDateTime().getMillis());
-
-//        LocalDateTime dtOne = new LocalDateTime();
-
         LocalDateTime dtCur;
         boolean firstTime = true;
         LocalDateTime dtOld = new LocalDateTime(tblScheduleEntityList.get(0).getCommons().get(0).getTimeRequest() * 1000L);
@@ -105,7 +96,7 @@ public class deviceDataAdminHistory implements Serializable {
             dtCur = new LocalDateTime(shedulerRecord.getCommons().get(0).getTimeRequest() * 1000L);
 
             if (dtCur.getDayOfMonth() == dtOld.getDayOfMonth() && !firstTime) {
-                sheduleReport.setDateRequest("---");
+                sheduleReport.setDateRequest("   ");
             } else {
                 sheduleReport.setDateRequest(dtCur.toString("dd.MMMM"));
             }
@@ -113,11 +104,12 @@ public class deviceDataAdminHistory implements Serializable {
             dtOld = dtCur;
 
             //сюда гоним запись всего остального.
-            sheduleReport.setTimeRequest(String.valueOf(dtCur.getHourOfDay()));
+            sheduleReport.setTimeRequest(dtCur.toString("HH:mm:ss"));
+//            sheduleReport.setTimeRequest(String.valueOf(dtCur.getHourOfDay()));
 
 
 //            sheduleReport.setTimeRequest(shedulerRecord.getCommons().get(0).getTimeRequest());
-            sheduleReport.setQ1(shedulerRecord.getCommons().get(0).getTimeDevice());
+            sheduleReport.setTimeDevice(shedulerRecord.getCommons().get(0).getTimeDevice());
 
 //            sheduleReport.setTimeRequest(shedulerRecord.get);
 
@@ -225,8 +217,8 @@ public class deviceDataAdminHistory implements Serializable {
     }
 
     public Timestamp timstampFromInt(int valueToTimestamp) {
-        Long temp = valueToTimestamp * 1000L;
-        return new Timestamp(temp);
+        Timestamp rezult  = new Timestamp(valueToTimestamp * 1000L);
+        return rezult;
     }
 
 }

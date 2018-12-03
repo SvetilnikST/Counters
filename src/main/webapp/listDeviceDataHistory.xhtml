@@ -25,10 +25,17 @@
                     widgetVar="deviceDataHistoryTable"
                     var="deviceDataHistory"
                     value="#{deviceAdminHistory.sheduleReports}">
-                <p:column headerText="ID">
-                    <h:link value="#{deviceDataHistory.idShedule}" outcome="editTypeDevice">
-                        <f:param name="id" value="#{deviceDataHistory.idShedule}"/>
-                    </h:link>
+
+
+
+                <p:column headerText="Дата опроса">
+                    <h:outputText value="#{deviceDataHistory.dateRequest}">
+                    </h:outputText>
+                </p:column>
+
+                <p:column headerText="Время опроса">
+                    <h:outputText value="#{deviceDataHistory.timeRequest}">
+                    </h:outputText>
                 </p:column>
 
                 <p:column headerText="q1">

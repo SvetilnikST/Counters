@@ -152,8 +152,8 @@ public class UserAdministration implements Serializable {
     }
 
     public Timestamp timstampFromInt(int valueToTimestamp) {
-        Long temp = valueToTimestamp * 1000L;
-        return new Timestamp(temp);
+        Timestamp rezult  = new Timestamp(valueToTimestamp * 1000L);
+        return rezult;
     }
 
     public UserEntity getUserEntity() {

@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 public class SheduleReport {
     private String dateRequest;
     private String timeRequest;
-    private String timeDevice;
+    private int timeDevice;
     private String timeOn;
     private String timeError;
     private int idShedule;
@@ -47,11 +47,11 @@ public class SheduleReport {
         this.timeRequest = timeRequest;
     }
 
-    public String getTimeDevice() {
+    public int getTimeDevice() {
         return timeDevice;
     }
 
-    public void setTimeDevice(String timeDevice) {
+    public void setTimeDevice(int timeDevice) {
         this.timeDevice = timeDevice;
     }
 
