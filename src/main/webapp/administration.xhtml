@@ -25,7 +25,7 @@
                     widgetVar="userTable"
                     var="user"
                     value="#{userAdministration.userEntitiesList}">
-                <p:column headerText="Логин">
+                <p:column headerText="Логин" >
                     <h:link value="#{user.username}" outcome="viewUser">
                         <f:param name="idUser" value="#{user.id}"/>
                     </h:link>

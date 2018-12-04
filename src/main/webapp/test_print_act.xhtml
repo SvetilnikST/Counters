@@ -7,8 +7,9 @@
         Сводный акт приёмки-передачи
     </ui:define>
     <ui:define name="page_body">
-        <h:form>
-            <p:panel>
+        <h:form style="font-size:14px" styleClass="center">
+
+           <p:panel>
                 <h2>
                     <p:outputLabel rendered="#{userAdministration.id==0 or userAdministration.id==null}">
                         Сводный акт приемки-передачи
@@ -119,15 +120,10 @@
                     </p:column>
                 </p:dataTable>
 
-                <p:commandButton value="Печать" type="button" icon="pi pi-print"
-                                 style="display:block;margin-bottom: 20px">
+                <p:commandButton value="Печать" type="button" icon="ui-icon-print">
                     <p:printer target="tbl"/>
                 </p:commandButton>
 
-                <h:commandLink>
-                    <p:graphicImage url="images/pdf.png" width="24"/>
-                    <p:dataExporter type="pdf" target="type_device" fileName="act"/>
-                </h:commandLink>
 
             </p:panel>
         </h:form>
