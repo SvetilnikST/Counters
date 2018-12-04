@@ -14,12 +14,21 @@
                         Новый пользователь
                     </p:outputLabel>
                     <p:outputLabel rendered="#{userAdministration.id!=0 and userAdministration.id!=null}"
-                                   value="Изменение данных о пользователе #{userAdministration.username} "/>
+                                   value="Изменение данных пользователя #{userAdministration.username} "/>
                 </h2>
                 <p:panelGrid styleClass="ui-panelgrid-blank">
                     <p:row>
                         <p:column colspan="1">
+                            <h:outputText value="Логин"/>
+                        </p:column>
+                        <p:column colspan="1">
+                            <h:outputText value="Фамилия"/>
+                        </p:column>
+                        <p:column colspan="1">
                             <h:outputText value="Имя"/>
+                        </p:column>
+                        <p:column colspan="1">
+                            <h:outputText value="Отчество"/>
                         </p:column>
                         <p:column colspan="1">
                             <h:outputText value="Email"/>
@@ -30,15 +39,27 @@
                         <p:column colspan="3">
                             <h:outputText value="Подразделение"/>
                         </p:column>
-                        <p:column colspan="3">
-                            <h:outputText value="Пароль"/>
-                        </p:column>
+
                     </p:row>
                     <p:row>
                         <p:column colspan="1">
                             <p:inputText id="userName" value="#{userAdministration.username}"
                                          title="userName"/>
                         </p:column>
+
+                        <p:column colspan="1">
+                            <p:inputText id="surname" value="#{userAdministration.surname}"
+                                         title="Surname"/>
+                        </p:column>
+                        <p:column colspan="1">
+                            <p:inputText id="name" value="#{userAdministration.name}"
+                                         title="Surname"/>
+                        </p:column>
+                        <p:column colspan="1">
+                            <p:inputText id="nameSur" value="#{userAdministration.nameSur}"
+                                         title="Surname"/>
+                        </p:column>
+
                         <p:column colspan="1">
                             <p:inputText id="email" value="#{userAdministration.email}"
                                          title="Email"/>
@@ -60,14 +81,24 @@
                                 </p:column>
                             </p:selectOneMenu>
                         </p:column>
-                        <p:column colspan="3">
-                            <p:password id="passwrd" value="#{userAdministration.password}"
-                                         title="Пароль"/>
-                            <p:selectBooleanCheckbox value="#{userAdministration.updatePassword}" />
-                        </p:column>
+
                     </p:row>
                 </p:panelGrid>
                 <p:panelGrid styleClass="ui-noborder">
+
+<p:row>
+    <p:column colspan="3">
+        <h:outputText value="Пароль"/>
+    </p:column>
+</p:row>
+
+                    <p:column colspan="3">
+                        <p:password id="passwrd" value="#{userAdministration.password}"
+                                    title="Пароль"/>
+                        <p:selectBooleanCheckbox value="#{userAdministration.updatePassword}" />
+                    </p:column>
+
+
                     <p:row>
                         <p:column colspan="1">
                             <p:selectCheckboxMenu id="multiple" value="#{userAdministration.rolesToSet}"

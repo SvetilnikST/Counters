@@ -8,10 +8,16 @@
         Пользователи
     </ui:define>
     <ui:define name="page_body">
-        <p:panel>
-            <p:button type="button" value="Новый пользователь" icon="ui-icon-document"
-                      href="/editUser.xhtml"/>
-        </p:panel>
+
+        <p:toolbar>
+            <f:facet name="left">
+                <p:button type="button" value="Добавить пользователя" icon="ui-icon-plus" href="/editUser.xhtml"/>
+                <p:button type="button" title="Все пользователи" value="Список пользователей" icon="ui-icon-person" href="/administration.xhtml"/>
+
+            </f:facet>
+
+        </p:toolbar>
+
         <h:form>
             <p:spacer/>
             <p:dataTable
@@ -19,12 +25,24 @@
                     widgetVar="userTable"
                     var="user"
                     value="#{userAdministration.userEntitiesList}">
-                <p:column headerText="UserName">
+                <p:column headerText="Логин">
                     <h:link value="#{user.username}" outcome="viewUser">
                         <f:param name="idUser" value="#{user.id}"/>
                     </h:link>
                 </p:column>
 
+                <p:column headerText="Фамилия">
+                    <h:outputText value="#{user.surname}">
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="Имя">
+                    <h:outputText value="#{user.name}">
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="Отчество">
+                    <h:outputText value="#{user.nameSur}">
+                    </h:outputText>
+                </p:column>
                 <p:column headerText="Email">
                     <h:outputText value="#{user.email}">
                     </h:outputText>

@@ -55,6 +55,9 @@ public class UserAdministration implements Serializable {
     TblDepartmentEntity departmentEntity;
     private String password;
     private Boolean updatePassword;
+    private String surname;
+    private String name;
+    private String nameSur;
 
     @PostConstruct
     void start(){
@@ -82,6 +85,9 @@ public class UserAdministration implements Serializable {
             TblDepartmentEntity dep = departmentDAO.read(20);
             this.departmentEntity = dep;
             rolesToSet = new String[0];
+            this.surname = "";
+            this.name="";
+            this.nameSur="";
         }
 
         //заменила
@@ -107,6 +113,9 @@ public class UserAdministration implements Serializable {
         this.setCreated_at(timstampFromInt(userEntity.getCreated_at()));
         this.setUpdated_at(timstampFromInt(userEntity.getUpdated_at()));
         this.setDepartmentEntity(userEntity.getDepartmentEntity());
+        this.setSurname(userEntity.getSurname());
+        this.setName(userEntity.getName());
+        this.setNameSur(userEntity.getNameSur());
 
         roles = new ArrayList<>();
         List<String> tmpUserRoleList = new ArrayList<>();
@@ -135,6 +144,9 @@ public class UserAdministration implements Serializable {
         userEntity.setUserRoleEntitySet(userRoleEntitySet);
         userEntity.setUsername(this.username);
         userEntity.setEmail(this.email);
+        userEntity.setSurname(this.surname);
+        userEntity.setName(this.name);
+        userEntity.setNameSur(this.nameSur);
         userEntity.setStatus(this.status);
         userEntity.setDepartmentEntity(departmentEntity);
         if (updatePassword) {
@@ -372,4 +384,27 @@ public class UserAdministration implements Serializable {
         this.userEntitiesList = userEntitiesList;
     }
 
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getNameSur() {
+        return nameSur;
+    }
+
+    public void setNameSur(String nameSur) {
+        this.nameSur = nameSur;
+    }
 }

@@ -6,12 +6,13 @@
     <h:form>
         <p:toolbar>
             <f:facet name="left">
+                <p:button type="button" icon="ui-icon-home" href="http://localhost:8080/counters/"/>
                 <p:button type="button" value="история по устройствам" href="/listDeviceDataHistory.xhtml"/>
             </f:facet>
             <f:facet name="right">
                 <c:if test="#{not userBean.autentificated}">
                     <p:button type="button" value="Счетчики"/>
-                    <p:button type="button" value="Войти" href="/login.xhtml"/>
+                    <p:button type="button"  value="Войти" href="/login.xhtml"/>
                 </c:if>
                 <c:if test="#{userBean.autentificated}">
                     <p:button type="button" value="акт" href="/test_print_act.xhtml"/>
@@ -22,14 +23,14 @@
                         <p:menuitem value="Устройства" url="/listDevice.xhtml"/>
                         <p:menuitem value="Улицы" url="/listStreet.xhtml"/>
                         <p:menuitem value="Города" url="/listCity.xhtml"/>
-                        <p:menuitem value="Объекты" url="/listObject.xhtml"/>
+                        <p:menuitem value="Объекты" icon="ui-icon-cart" url="/listObject.xhtml"/>
                     </p:menuButton>
 
-                    <p:menuButton value="Администрирование" rendered="#{userBean.doRightVerify('admin')}">
-                        <p:menuitem value="Пользователи" icon="ui-icon-disk"
+                    <p:menuButton value="Панель администратора" rendered="#{userBean.doRightVerify('admin')}">
+                        <p:menuitem value="Пользователи" icon="ui-icon-person"
                                     url="/administration.xhtml"/>
                     </p:menuButton>
-                    <p:commandButton value="Выход(#{userBean.login})" icon="ui-icon-document"
+                    <p:commandButton value="Выход(#{userBean.login})" icon="ui-icon-person"
                                      action="#{userBean.doLogout}"/>
                 </c:if>
             </f:facet>

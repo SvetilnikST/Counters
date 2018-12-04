@@ -32,6 +32,14 @@ public class UserEntity {
     @Column(name = "updated_at", nullable = false)
     private int updated_at;
 
+    @Column(name = "surname", length = 255, nullable = false)
+    private String surname;
+    @Column(name = "name", length = 255, nullable = false)
+    private String name;
+    @Column(name = "nameSur", length = 255, nullable = false)
+    private String nameSur;
+
+
     @ManyToOne
     @JoinColumn(name = "department")
     private TblDepartmentEntity departmentEntity;
@@ -128,5 +136,29 @@ public class UserEntity {
 
     public void setUserRoleEntitySet(Set<RolesEntity> userRoleEntitySet) {
         this.userRoleEntitySet = userRoleEntitySet;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getNameSur() {
+        return nameSur;
+    }
+
+    public void setNameSur(String nameSur) {
+        this.nameSur = nameSur;
     }
 }
