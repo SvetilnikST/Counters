@@ -72,6 +72,9 @@ public class UnitQAdministration implements Serializable {
         return "listUnitQ.xhtml?faces-redirect=true&id=" + String.valueOf(tblUnitQEntity.getId());
     }
 
+
+
+
     public TblUnitQEntity getTblUnitQEntity() {
         return tblUnitQEntity;
     }

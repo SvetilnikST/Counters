@@ -7,29 +7,29 @@
                 xmlns:c="http://java.sun.com/jsp/jstl/core"
                 template="WEB-INF/template/template.xhtml">
     <ui:define name="page_title">
-        Типы измерений
+        Подразделения
     </ui:define>
 
     <ui:define name="page_body">
         <p:panel>
             <p:button type="button" value="Добавить" icon="ui-icon-document"
-                      href="/editUnitQ.xhtml"
+                      href="/editDepartment.xhtml"
             />
         </p:panel>
         <h:form>
             <p:spacer/>
             <p:dataTable
-                    id="unitQTable"
-                    widgetVar="unitQTable"
-                    var="unitQ"
-                    value="#{unitQAdministration.tblUnitQEntitysList}">
+                    id="departmentTable"
+                    widgetVar="departmentTable"
+                    var="department"
+                    value="#{departmentAdministration.tblDepartmentEntitysList}">
                 <p:column headerText="ID">
-                    <h:link value="#{unitQ.id}" outcome="editUnitQ">
-                        <f:param name="id" value="#{unitQ.id}"/>
+                    <h:link value="#{department.idDepartment}" outcome="editDepartment">
+                        <f:param name="idDepartment" value="#{department.idDepartment}"/>
                     </h:link>
                 </p:column>
                 <p:column headerText="Наименование">
-                    <h:outputText value="#{unitQ.name}">
+                    <h:outputText value="#{department.department}">
                     </h:outputText>
                 </p:column>
             </p:dataTable>
