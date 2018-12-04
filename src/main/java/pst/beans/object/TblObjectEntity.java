@@ -31,9 +31,9 @@ public class TblObjectEntity {
 
 
 
-    @ManyToOne
-    @JoinColumn(name = "idDevice")
-    private TblOrganizationEntity organizationEntity;
+//    @ManyToOne
+//    @JoinColumn(name = "idDevice")
+//    private TblOrganizationEntity organizationEntity;
 
     public int getId() {
         return id;
@@ -67,11 +67,11 @@ public class TblObjectEntity {
         this.tblOrganizationEntitySet = tblOrganizationEntitySet;
     }
 
-    public TblOrganizationEntity getOrganizationEntity() {
-        return organizationEntity;
-    }
-
-    public void setOrganizationEntity(TblOrganizationEntity organizationEntity) {
-        this.organizationEntity = organizationEntity;
-    }
+//    public TblOrganizationEntity getOrganizationEntity() {
+//        return organizationEntity;
+//    }
+//
+//    public void setOrganizationEntity(TblOrganizationEntity organizationEntity) {
+//        this.organizationEntity = organizationEntity;
+//    }
 }

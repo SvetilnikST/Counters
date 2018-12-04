@@ -4,17 +4,17 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 template="WEB-INF/template/template.xhtml">
     <ui:define name="page_title">
-        Улица
+        Задача
     </ui:define>
     <ui:define name="page_body">
         <h:form>
             <p:panel>
                 <h2>
                     <p:outputLabel rendered="#{userAdministration.id==0 or userAdministration.id==null}">
-                        Новый город
+                        Новая задача
                     </p:outputLabel>
                     <p:outputLabel rendered="#{userAdministration.id!=0 and userAdministration.id!=null}"
-                                   value="Изменение названия города #{cityAdministration.idCity} "/>
+                                   value="Изменение данных о объекте #{objectAdministration.id} "/>
                 </h2>
                 <p:panelGrid styleClass="ui-panelgrid-blank">
                     <p:row>
@@ -24,15 +24,30 @@
                     </p:row>
                     <p:row>
                         <p:column colspan="1">
-                            <p:inputText id="name" value="#{cityAdministration.nameCity}"
+                            <p:inputText id="name" value="#{objectAdministration.nameObject}"
                                          title="name"/>
                         </p:column>
                     </p:row>
+
+
+
+                    <p:row>
+                        <p:column colspan="1">
+                            <h:outputText value="Улица"/>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column colspan="1">
+                            <p:inputText id="idObject" value="#{objectAdministration.}"
+                                         title="name"/>
+                        </p:column>
+                    </p:row>
+
+
+
                 </p:panelGrid>
 
-                <p:commandButton value="Сохранить" action="#{cityAdministration.save()}"
-                                 rendered="#{userBean.doRightVerify('createUser')}"/>
-                <p:commandButton value="Удалить" action="#{cityAdministration.save()}"
+                <p:commandButton value="Сохранить" action="#{objectAdministration.save()}"
                                  rendered="#{userBean.doRightVerify('createUser')}"/>
             </p:panel>
         </h:form>

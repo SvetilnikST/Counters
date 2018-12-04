@@ -112,6 +112,9 @@
                 </p:panelGrid>
                 <p:commandButton value="Сохранить" action="#{userAdministration.save()}"
                                  rendered="#{userBean.doRightVerify('createUser')}"/>
+
+                <p:commandButton value="Удалить пользователя" action="#{userAdministration.remove()}"
+                                 rendered="#{userBean.doRightVerify('createUser')}"/>
             </p:panel>
         </h:form>
     </ui:define>

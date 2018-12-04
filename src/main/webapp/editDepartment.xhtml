@@ -44,6 +44,9 @@
 
                 <p:commandButton value="Сохранить" action="#{departmentAdministration.save()}"
                                  rendered="#{userBean.doRightVerify('createUser')}"/>
+
+                <p:commandButton value="Удалить запись" action="#{departmentAdministration.remove()}"
+                                 rendered="#{userBean.doRightVerify('createUser')}"/>
             </p:panel>
         </h:form>
     </ui:define>

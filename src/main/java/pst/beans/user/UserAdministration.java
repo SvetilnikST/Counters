@@ -163,6 +163,14 @@ public class UserAdministration implements Serializable {
         return "viewUser.xhtml?faces-redirect=true&idUser=" + String.valueOf(userEntity.getId());
     }
 
+
+    public String remove(){
+        userEntity = userDAO.read(this.id);
+        userDAO.delete(userEntity.getId());
+        return "administration.xhtml";
+    }
+
+
     public Timestamp timstampFromInt(int valueToTimestamp) {
         Timestamp rezult  = new Timestamp(valueToTimestamp * 1000L);
         return rezult;

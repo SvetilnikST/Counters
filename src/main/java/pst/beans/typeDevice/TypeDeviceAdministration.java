@@ -73,6 +73,7 @@ public class TypeDeviceAdministration implements Serializable {
             tblTypeDeviceEntity = new TblTypeDeviceEntity();
         }
         tblTypeDeviceEntity.setName(this.name);
+        tblTypeDeviceEntity.setTypeInt(this.typeInt);
         if(tblTypeDeviceEntity.getId()==0){
             typeDeviceDAO.create(tblTypeDeviceEntity);
         }
@@ -80,6 +81,12 @@ public class TypeDeviceAdministration implements Serializable {
             typeDeviceDAO.update(tblTypeDeviceEntity);
         }
         return "listTypeDevice.xhtml?faces-redirect=true&id"+String.valueOf(tblTypeDeviceEntity.getId());
+    }
+
+    public String remove(){
+        tblTypeDeviceEntity = typeDeviceDAO.find(this.id);
+            typeDeviceDAO.remove(tblTypeDeviceEntity);
+        return "listTypeDevice.xhtml";
     }
 
     public TblTypeDeviceEntity getTblTypeDeviceEntity() {

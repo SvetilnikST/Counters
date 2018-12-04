@@ -17,18 +17,19 @@
                     <p:button type="button" value="Акт сверки" href="/test_print_act.xhtml"/>
                     <p:button type="button" value="Журнал" href="/test_magazine.xhtml"/>
                     <p:menuButton value="Справочники">
+                        <p:menuitem value="Объекты" icon="ui-icon-cart" url="/listObject.xhtml"/>
+                        <p:menuitem value="Устройства" url="/listDevice.xhtml"/>
                         <p:menuitem value="Типы устройств" url="/listTypeDevice.xhtml"/>
                         <p:menuitem value="Измерения" url="/listUnitQ.xhtml"/>
-                        <p:menuitem value="Устройства" url="/listDevice.xhtml"/>
                         <p:menuitem value="Улицы" url="/listStreet.xhtml"/>
                         <p:menuitem value="Города" url="/listCity.xhtml"/>
-                        <p:menuitem value="Объекты" icon="ui-icon-cart" url="/listObject.xhtml"/>
+
                     </p:menuButton>
 
                     <p:menuButton value="Панель администратора" rendered="#{userBean.doRightVerify('admin')}">
                         <p:menuitem value="Пользователи" icon="ui-icon-person"
                                     url="/administration.xhtml"/>
-                        <p:menuitem value="Подразделения" icon="ui-icon-person"
+                        <p:menuitem value="Подразделения" icon="ui-icon-contact"
                                     url="/listDepartment.xhtml"/>
                     </p:menuButton>
                     <p:commandButton value="Выход(#{userBean.login})" icon="ui-icon-person"

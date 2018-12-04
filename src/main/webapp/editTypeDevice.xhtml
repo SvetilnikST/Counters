@@ -19,7 +19,7 @@
                 <p:panelGrid styleClass="ui-panelgrid-blank">
                     <p:row>
                         <p:column colspan="1">
-                            <h:outputText value="Наименование"/>
+                            <h:outputText value="Название типа устройства"/>
                         </p:column>
                     </p:row>
                     <p:row>
@@ -28,9 +28,24 @@
                                          title="name"/>
                         </p:column>
                     </p:row>
+                    <p:row>
+                        <p:column colspan="1">
+                            <h:outputText value="Код Int"/>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column colspan="1">
+                            <p:inputText id="typeInt" value="#{typeDeviceAdministration.typeInt}"
+                                         title="typeInt"/>
+                        </p:column>
+                    </p:row>
                 </p:panelGrid>
 
                 <p:commandButton value="Сохранить" action="#{typeDeviceAdministration.save()}"
+                                 rendered="#{userBean.doRightVerify('createUser')}"/>
+
+
+                <p:commandButton value="Удалить запись" action="#{typeDeviceAdministration.remove()}"
                                  rendered="#{userBean.doRightVerify('createUser')}"/>
             </p:panel>
         </h:form>

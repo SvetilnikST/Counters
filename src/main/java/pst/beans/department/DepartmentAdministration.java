@@ -70,6 +70,12 @@ public class DepartmentAdministration implements Serializable {
         return "listDepartment.xhtml?faces-redirect=true&idDepartment=" + String.valueOf(tblDepartmentEntity.getIdDepartment());
     }
 
+    public String remove(){
+        tblDepartmentEntity = departmentDAO.find(this.idDepartment);
+        departmentDAO.remove(tblDepartmentEntity);
+        return "listDepartment.xhtml";
+    }
+
     public TblDepartmentEntity getTblDepartmentEntity() {
         return tblDepartmentEntity;
     }
