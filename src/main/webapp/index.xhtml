@@ -9,13 +9,13 @@
 
     <ui:define name="page_body">
         <h:form style="font-size:14px" styleClass="center">
-
             <p:toolbar>
-            <f:facet name="left">
-                <p:outputLabel>Мониторинг журналов тепловой энергии</p:outputLabel>
-            </f:facet>
+                <f:facet name="left">
+                    <p:outputLabel style="color: deepskyblue">Мониторинг журналов тепловой энергии</p:outputLabel>
+                </f:facet>
                 <f:facet name="right">
-                    <p:button style="align-items: left" type="button" icon="ui-icon-document" value="Сводный акт" href="/test_print_act.xhtml"/>
+                    <p:button style="align-items: left" type="button" icon="ui-icon-document" value="Сводный акт"
+                              href="/test_print_act.xhtml"/>
                 </f:facet>
             </p:toolbar>
 
@@ -42,49 +42,72 @@
                     <h:outputText value="#{device.serial}">
                     </h:outputText>
                 </p:column>
-                <p:column headerText="последняя дата">
+                <p:column headerText="Последнее время опроса">
                     <h:outputText value="#{deviceAdministration.lastRequestDate}">
                         <f:convertDateTime pattern="dd MMMM YYYY г., HH:mm:ss"/>
                     </h:outputText>
                 </p:column>
-                <p:column headerText="requestcount">
+                <p:column headerText="Количество опросов">
                     <h:outputText value="#{deviceAdministration.requestsCount}">
                     </h:outputText>
                 </p:column>
-                <p:column headerText="ip">
+                <p:column headerText="IP-адрес">
                     <h:outputText value="#{device.ip}">
                     </h:outputText>
                 </p:column>
-                <p:column headerText="num_port">
+                <p:column headerText="Номер порта">
                     <h:outputText value="#{device.num_port}">
                     </h:outputText>
                 </p:column>
-                <p:column headerText="requestInterval">
+                <p:column headerText="Интервал опроса">
                     <h:outputText value="#{device.requestInterval}">
                     </h:outputText>
                 </p:column>
             </p:dataTable>
+
+
+            <br/><br/><br/><br/>
+            <p:outputLabel style="color: darkcyan">Документы для ознакомления:</p:outputLabel>
+            <br/>
+
+            <br/>
+            <p:button type="button" icon="ui-icon-document" href="docs/1.pdf" target="pdf-frame"/>
+            <p:outputLabel>Температурный график 2018-2019г.г.</p:outputLabel>
+            <br/>
+            <p:button type="button" icon="ui-icon-document" href="docs/2.pdf" target="pdf-frame"/>
+            <p:outputLabel>Температурный график ОЗП 2017-2018</p:outputLabel>
+            <br/>
+            <p:button type="button" icon="ui-icon-document" href="docs/3.pdf" target="pdf-frame"/>
+            <p:outputLabel>Вкладыш в журнал учета</p:outputLabel>
+            <br/>
+            <p:button type="button" icon="ui-icon-document" href="docs/4.pdf" target="pdf-frame"/>
+            <p:outputLabel>Таблицы термодинамических свойств воды</p:outputLabel>
+            <br/>
+            <p:button type="" icon="ui-icon-document" href="docs/5.pdf" target="pdf-frame"/>
+            <p:outputLabel> Таблица переводов единиц давлений</p:outputLabel>
+            <br/>
+
+
         </h:form>
-        <!--<ui:include src="/listDevice.xhtml" />-->
     </ui:define>
     <ui:define name="page_body_inf">
-            <p:panel header="Документы для ознакомления:" style="min-width:400px;min-height:200px;">
-                <br/>
-                <p:button type="button" icon="ui-icon-document" href="docs/1.pdf" target="pdf-frame"/>
-                <p:outputLabel>Температурный график 2018-2019г.г.</p:outputLabel>
-                <br/>
-                <p:button type="button" icon="ui-icon-document" href="docs/2.pdf" target="pdf-frame"/>
-                <p:outputLabel>Температурный график ОЗП 2017-2018</p:outputLabel>
-                <br/>
-                <p:button type="button" icon="ui-icon-document" href="docs/3.pdf" target="pdf-frame"/>
-                <p:outputLabel>Вкладыш в журнал учета</p:outputLabel>
-                <br/>
-                <p:button type="button" icon="ui-icon-document" href="docs/4.pdf" target="pdf-frame"/>
-                <p:outputLabel>Таблицы термодинамических свойств воды</p:outputLabel>
-                <br/>
-                <p:button type="" icon="ui-icon-document" href="docs/5.pdf" target="pdf-frame"/>
-                <p:outputLabel> Таблица переводов единиц давлений</p:outputLabel>
-                <br/>
-            </p:panel>
+        <!--<p:panel header="Документы для ознакомления:" style="min-width:400px;min-height:200px;">-->
+        <!--<br/>-->
+        <!--<p:button type="button" icon="ui-icon-document" href="docs/1.pdf" target="pdf-frame"/>-->
+        <!--<p:outputLabel>Температурный график 2018-2019г.г.</p:outputLabel>-->
+        <!--<br/>-->
+        <!--<p:button type="button" icon="ui-icon-document" href="docs/2.pdf" target="pdf-frame"/>-->
+        <!--<p:outputLabel>Температурный график ОЗП 2017-2018</p:outputLabel>-->
+        <!--<br/>-->
+        <!--<p:button type="button" icon="ui-icon-document" href="docs/3.pdf" target="pdf-frame"/>-->
+        <!--<p:outputLabel>Вкладыш в журнал учета</p:outputLabel>-->
+        <!--<br/>-->
+        <!--<p:button type="button" icon="ui-icon-document" href="docs/4.pdf" target="pdf-frame"/>-->
+        <!--<p:outputLabel>Таблицы термодинамических свойств воды</p:outputLabel>-->
+        <!--<br/>-->
+        <!--<p:button type="" icon="ui-icon-document" href="docs/5.pdf" target="pdf-frame"/>-->
+        <!--<p:outputLabel> Таблица переводов единиц давлений</p:outputLabel>-->
+        <!--<br/>-->
+        <!--</p:panel>-->
     </ui:define>
 </ui:composition>
