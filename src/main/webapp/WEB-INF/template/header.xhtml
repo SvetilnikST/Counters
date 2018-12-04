@@ -14,10 +14,6 @@
                     <p:button type="button" value="Войти" href="/login.xhtml"/>
                 </c:if>
                 <c:if test="#{userBean.autentificated}">
-                    <p:commandButton value="JSON"
-                                     action="#{boxCommonAdministration.readJSON}"
-                                     rendered="#{userBean.doRightVerify('createUser')}"
-                    />
                     <p:button type="button" value="акт" href="/test_print_act.xhtml"/>
                     <p:button type="button" value="журнал" href="/test_magazine.xhtml"/>
                     <p:menuButton value="Справочники">
