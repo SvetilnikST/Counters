@@ -40,6 +40,7 @@ public class ObjectAdministration implements Serializable {
     @Default
     private int idObject;
     private String home;
+    private String nameObject;
 
     private List<TblCityEntity> cityEntityList;
     private List<TblStreetEntity> streetEntityList;
@@ -64,6 +65,7 @@ public class ObjectAdministration implements Serializable {
 
         } else {
             this.home = "";
+            this.nameObject="";
         }
         tblObjectEntitysList = objectDAO.findAll();
         cityEntityList = cityDAO.findAll();
@@ -73,6 +75,7 @@ public class ObjectAdministration implements Serializable {
     private void load(TblObjectEntity objectEntity) {
         this.setIdObject(objectEntity.getIdObject());
         this.setHome(objectEntity.getHome());
+        this.setNameObject(objectEntity.getNameObject());
         this.setCityEntity(objectEntity.getCityEntity());
         this.setStreetEntity(objectEntity.getStreetEntity());
     }
@@ -83,6 +86,7 @@ public class ObjectAdministration implements Serializable {
         if (tblObjectEntity == null) {
             tblObjectEntity = new TblObjectEntity();
         }
+        tblObjectEntity.setNameObject(this.nameObject);
         tblObjectEntity.setHome(this.home);
         tblObjectEntity.setCityEntity(cityEntity);
         tblObjectEntity.setStreetEntity(streetEntity);
@@ -189,5 +193,13 @@ public class ObjectAdministration implements Serializable {
 
     public void setTblObjectEntitysList(List<TblObjectEntity> tblObjectEntitysList) {
         this.tblObjectEntitysList = tblObjectEntitysList;
+    }
+
+    public String getNameObject() {
+        return nameObject;
+    }
+
+    public void setNameObject(String nameObject) {
+        this.nameObject = nameObject;
     }
 }

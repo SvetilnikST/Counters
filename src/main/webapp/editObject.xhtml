@@ -17,6 +17,20 @@
                                    value="Изменение адреса #{objectAdministration.idObject} "/>
                 </h2>
                 <p:panelGrid styleClass="ui-panelgrid-blank">
+
+                    <p:row>
+                        <p:column colspan="1">
+                            <h:outputText value="Наименование объекта"/>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column colspan="1">
+                            <p:inputText id="nameObject" value="#{objectAdministration.nameObject}"
+                                         title="Наименование"/>
+                        </p:column>
+                    </p:row>
+
+
                     <p:row>
                         <p:column colspan="1">
                             <h:outputText value="Номер дома"/>
