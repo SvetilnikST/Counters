@@ -2,6 +2,7 @@ package pst.beans.object;
 
 import pst.beans.city.TblCityEntity;
 import pst.beans.device.TblDeviceEntity;
+import pst.beans.organization.TblOrganizationEntity;
 import pst.beans.street.TblStreetEntity;
 
 import javax.persistence.*;
@@ -20,8 +21,6 @@ public class TblObjectEntity {
     @Column(name = "nameObject", nullable = false, length = 100)
     private String nameObject;
 
-
-
     @Column(name = "home", nullable = false, length = 100)
     private String home;
 
@@ -33,6 +32,10 @@ public class TblObjectEntity {
     @ManyToOne
     @JoinColumn(name = "idCity")
     private TblCityEntity cityEntity;
+
+    @ManyToOne
+    @JoinColumn(name = "idOrganization")
+    private TblOrganizationEntity organizationEntity;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "objectEntity")
     private Set<TblDeviceEntity> tblDeviceEntitySet = new HashSet<>();
@@ -77,4 +80,21 @@ public class TblObjectEntity {
     public void setNameObject(String nameObject) {
         this.nameObject = nameObject;
     }
+
+    public TblOrganizationEntity getOrganizationEntity() {
+        return organizationEntity;
+    }
+
+    public void setOrganizationEntity(TblOrganizationEntity organizationEntity) {
+        this.organizationEntity = organizationEntity;
+    }
+
+    public Set<TblDeviceEntity> getTblDeviceEntitySet() {
+        return tblDeviceEntitySet;
+    }
+
+    public void setTblDeviceEntitySet(Set<TblDeviceEntity> tblDeviceEntitySet) {
+        this.tblDeviceEntitySet = tblDeviceEntitySet;
+    }
+
 }

@@ -2,6 +2,8 @@ package pst.beans.object;
 
 import pst.beans.city.CityDAO;
 import pst.beans.city.TblCityEntity;
+import pst.beans.organization.OrganizationDAO;
+import pst.beans.organization.TblOrganizationEntity;
 import pst.beans.street.StreetDAO;
 import pst.beans.street.TblStreetEntity;
 
@@ -27,6 +29,7 @@ public class ObjectAdministration implements Serializable {
     private List<ObjectAdministration> objectAdministrations;
     TblCityEntity cityEntity;
     TblStreetEntity streetEntity;
+    TblOrganizationEntity organizationEntity;
 
     @EJB
     private ObjectDAO objectDAO;
@@ -37,6 +40,11 @@ public class ObjectAdministration implements Serializable {
     @EJB
     private StreetDAO streetDAO;
 
+    @EJB
+    private OrganizationDAO organizationDAO;
+
+
+
     @Default
     private int idObject;
     private String home;
@@ -44,6 +52,7 @@ public class ObjectAdministration implements Serializable {
 
     private List<TblCityEntity> cityEntityList;
     private List<TblStreetEntity> streetEntityList;
+    private List<TblOrganizationEntity> organizationEntityList;
 
     private List<TblObjectEntity> tblObjectEntitysList;
 
@@ -70,6 +79,7 @@ public class ObjectAdministration implements Serializable {
         tblObjectEntitysList = objectDAO.findAll();
         cityEntityList = cityDAO.findAll();
         streetEntityList = streetDAO.findAll();
+        organizationEntityList = organizationDAO.findAll();
     }
 
     private void load(TblObjectEntity objectEntity) {
@@ -78,6 +88,7 @@ public class ObjectAdministration implements Serializable {
         this.setNameObject(objectEntity.getNameObject());
         this.setCityEntity(objectEntity.getCityEntity());
         this.setStreetEntity(objectEntity.getStreetEntity());
+        this.setOrganizationEntity(objectEntity.getOrganizationEntity());
     }
 
 
@@ -90,6 +101,7 @@ public class ObjectAdministration implements Serializable {
         tblObjectEntity.setHome(this.home);
         tblObjectEntity.setCityEntity(cityEntity);
         tblObjectEntity.setStreetEntity(streetEntity);
+        tblObjectEntity.setOrganizationEntity(organizationEntity);
         if (tblObjectEntity.getIdObject() == 0) {
 
             objectDAO.create(tblObjectEntity);
@@ -201,5 +213,29 @@ public class ObjectAdministration implements Serializable {
 
     public void setNameObject(String nameObject) {
         this.nameObject = nameObject;
+    }
+
+    public TblOrganizationEntity getOrganizationEntity() {
+        return organizationEntity;
+    }
+
+    public void setOrganizationEntity(TblOrganizationEntity organizationEntity) {
+        this.organizationEntity = organizationEntity;
+    }
+
+    public OrganizationDAO getOrganizationDAO() {
+        return organizationDAO;
+    }
+
+    public void setOrganizationDAO(OrganizationDAO organizationDAO) {
+        this.organizationDAO = organizationDAO;
+    }
+
+    public List<TblOrganizationEntity> getOrganizationEntityList() {
+        return organizationEntityList;
+    }
+
+    public void setOrganizationEntityList(List<TblOrganizationEntity> organizationEntityList) {
+        this.organizationEntityList = organizationEntityList;
     }
 }
