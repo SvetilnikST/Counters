@@ -1,7 +1,6 @@
 package pst.beans.adress;
 
 import pst.beans.city.TblCityEntity;
-import pst.beans.object.TblObjectEntity;
 import pst.beans.street.TblStreetEntity;
 
 import javax.persistence.*;
@@ -9,13 +8,18 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "tblAdress")
-public class TblAdressEntity {
+@Table(name = "tblObject")
+public class TblObjectEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="idAdress", nullable = false)
-    private int idAdress;
+    @Column(name="idObject", nullable = false)
+    private int idObject;
+
+    @Column(name = "nameObject", nullable = false, length = 100)
+    private String nameObject;
+
+
 
     @Column(name = "home", nullable = false, length = 100)
     private String home;
@@ -29,17 +33,16 @@ public class TblAdressEntity {
     @JoinColumn(name = "idCity")
     private TblCityEntity cityEntity;
 
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "objectEntitySet")
+//    private Set<TblObjectEntity> objectEntitySet = new HashSet<>();
 
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "adressEntity")
-    private Set<TblObjectEntity> objectEntitySet = new HashSet<>();
-
-    public int getIdAdress() {
-        return idAdress;
+    public int getIdObject() {
+        return idObject;
     }
 
-    public void setIdAdress(int idAdress) {
-        this.idAdress = idAdress;
+    public void setIdObject(int idObject) {
+        this.idObject = idObject;
     }
 
     public String getHome() {
@@ -66,11 +69,11 @@ public class TblAdressEntity {
         this.cityEntity = cityEntity;
     }
 
-    public Set<TblObjectEntity> getObjectEntitySet() {
-        return objectEntitySet;
+    public String getNameObject() {
+        return nameObject;
     }
 
-    public void setObjectEntitySet(Set<TblObjectEntity> objectEntitySet) {
-        this.objectEntitySet = objectEntitySet;
+    public void setNameObject(String nameObject) {
+        this.nameObject = nameObject;
     }
 }

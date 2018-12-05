@@ -1,7 +1,6 @@
 package pst.beans.city;
 
-
-import pst.beans.adress.TblAdressEntity;
+import pst.beans.adress.TblObjectEntity;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -19,7 +18,7 @@ public class TblCityEntity {
     private String nameCity;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cityEntity")
-    private Set<TblAdressEntity> tblAdressEntitySet = new HashSet<>();
+    private Set<TblObjectEntity> tblObjectEntitySet = new HashSet<>();
 
     public int getIdCity() {
         return idCity;

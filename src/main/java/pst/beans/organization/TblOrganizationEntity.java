@@ -1,6 +1,6 @@
 package pst.beans.organization;
 
-import pst.beans.object.TblObjectEntity;
+import pst.beans.adress.TblObjectEntity;
 
 import javax.persistence.*;
 import java.util.HashSet;

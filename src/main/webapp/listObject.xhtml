@@ -23,8 +23,8 @@
                     var="object"
                     value="#{objectAdministration.tblObjectEntitysList}">
                 <p:column headerText="ID">
-                    <h:link value="#{object.id}" outcome="editObject">
-                        <f:param name="id" value="#{object.id}"/>
+                    <h:link value="#{object.idObject}" outcome="editObject">
+                        <f:param name="id" value="#{object.idObject}"/>
                     </h:link>
                 </p:column>
                 <p:column headerText="Название объекта">
@@ -33,17 +33,17 @@
                 </p:column>
 
                 <p:column headerText="Улицы">
-                    <h:outputText value="#{object.adressEntity.streetEntity.nameStreet}">
+                    <h:outputText value="#{object.streetEntity.nameStreet}">
                     </h:outputText>
                 </p:column>
 
                 <p:column headerText="Дом">
-                    <h:outputText value="#{object.adressEntity.home}">
+                    <h:outputText value="#{object.home}">
                     </h:outputText>
                 </p:column>
 
                 <p:column headerText="Город">
-                    <h:outputText value="#{object.adressEntity.cityEntity.nameCity}">
+                    <h:outputText value="#{object.cityEntity.nameCity}">
                     </h:outputText>
                 </p:column>
             </p:dataTable>

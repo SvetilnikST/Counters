@@ -1,8 +1,10 @@
 package pst.beans.organization;
 
 
-import pst.beans.object.ObjectDAO;
-import pst.beans.object.TblObjectEntity;
+
+
+import pst.beans.adress.ObjectDAO;
+import pst.beans.adress.TblObjectEntity;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -22,6 +24,7 @@ public class OrganizAdministration implements Serializable {
 
     private TblOrganizationEntity tblOrganizationEntity;
     private List<OrganizAdministration> organizationAdministrations;
+
     TblObjectEntity objectEntity;
 
     @EJB

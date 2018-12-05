@@ -11,10 +11,10 @@
             <p:panel>
                 <h2>
                     <p:outputLabel rendered="#{userAdministration.id==0 or userAdministration.id==null}">
-                        Новый адрес
+                        Новый объект
                     </p:outputLabel>
                     <p:outputLabel rendered="#{userAdministration.id!=0 and userAdministration.id!=null}"
-                                   value="Изменение адреса #{adressAdministration.idAdress} "/>
+                                   value="Изменение адреса #{objectAdministration.idObject} "/>
                 </h2>
                 <p:panelGrid styleClass="ui-panelgrid-blank">
                     <p:row>
@@ -24,7 +24,7 @@
                     </p:row>
                     <p:row>
                         <p:column colspan="1">
-                            <p:inputText id="name" value="#{adressAdministration.home}"
+                            <p:inputText id="name" value="#{objectAdministration.home}"
                                          title="name"/>
                         </p:column>
                     </p:row>
@@ -32,11 +32,11 @@
 
                     <p:column colspan="3">
 
-                        <p:selectOneMenu id="idCity" value="#{adressAdministration.cityEntity}"
+                        <p:selectOneMenu id="idCity" value="#{objectAdministration.cityEntity}"
                                          converter="omnifaces.SelectItemsConverter"
                                          var="cit"
                         >
-                            <f:selectItems value="#{adressAdministration.cityEntityList}" var="city"
+                            <f:selectItems value="#{objectAdministration.cityEntityList}" var="city"
                                            itemLabel="#{city.nameCity}" itemValue="#{city}" />
                             <p:column>
                                 <h:outputText value="#{cit.nameCity}" />
@@ -46,11 +46,11 @@
 
                     <p:column colspan="3">
 
-                        <p:selectOneMenu id="idStreet" value="#{adressAdministration.streetEntity}"
+                        <p:selectOneMenu id="idStreet" value="#{objectAdministration.streetEntity}"
                                          converter="omnifaces.SelectItemsConverter"
                                          var="str"
                         >
-                            <f:selectItems value="#{adressAdministration.streetEntityList}" var="street"
+                            <f:selectItems value="#{objectAdministration.streetEntityList}" var="street"
                                            itemLabel="#{street.nameStreet}" itemValue="#{street}" />
                             <p:column>
                                 <h:outputText value="#{str.nameStreet}" />
@@ -60,7 +60,7 @@
 
                 </p:panelGrid>
 
-                <p:commandButton value="Сохранить" action="#{adressAdministration.save()}"
+                <p:commandButton value="Сохранить" action="#{objectAdministration.save()}"
                                  rendered="#{userBean.doRightVerify('createUser')}"/>
             </p:panel>
         </h:form>
