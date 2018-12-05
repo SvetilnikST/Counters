@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Дек 05 2018 г., 16:07
+-- Время создания: Дек 05 2018 г., 16:51
 -- Версия сервера: 5.5.60-0+deb8u1
 -- Версия PHP: 5.6.33-0+deb8u1
 
@@ -408,17 +408,18 @@ CREATE TABLE IF NOT EXISTS `tblObject` (
   `nameObject` varchar(255) NOT NULL,
   `home` varchar(20) NOT NULL,
   `idCity` int(11) NOT NULL,
-  `idStreet` int(11) NOT NULL
+  `idStreet` int(11) NOT NULL,
+  `idOrganization` int(11) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `tblObject`
 --
 
-INSERT INTO `tblObject` (`idObject`, `nameObject`, `home`, `idCity`, `idStreet`) VALUES
-(1, 'ЦТП №1', '8', 1, 1),
-(2, 'ЦТП №2', '5', 1, 1),
-(3, 'Аэродром', '12', 1, 3);
+INSERT INTO `tblObject` (`idObject`, `nameObject`, `home`, `idCity`, `idStreet`, `idOrganization`) VALUES
+(1, 'ЦТП №1', '8', 1, 1, 0),
+(2, 'ЦТП №2', '5', 1, 1, 0),
+(3, 'Аэродром', '12', 1, 3, 0);
 
 -- --------------------------------------------------------
 
@@ -428,8 +429,7 @@ INSERT INTO `tblObject` (`idObject`, `nameObject`, `home`, `idCity`, `idStreet`)
 
 CREATE TABLE IF NOT EXISTS `tblOrganization` (
 `idOrganization` int(11) NOT NULL,
-  `nameOrganization` varchar(255) NOT NULL,
-  `idObject` int(11) NOT NULL
+  `nameOrganization` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -817,13 +817,13 @@ ALTER TABLE `tblDepartment`
 -- Индексы таблицы `tblObject`
 --
 ALTER TABLE `tblObject`
- ADD PRIMARY KEY (`idObject`), ADD KEY `idCity` (`idCity`), ADD KEY `idStreet` (`idStreet`);
+ ADD PRIMARY KEY (`idObject`), ADD KEY `idCity` (`idCity`), ADD KEY `idStreet` (`idStreet`), ADD KEY `idOrganization` (`idOrganization`);
 
 --
 -- Индексы таблицы `tblOrganization`
 --
 ALTER TABLE `tblOrganization`
- ADD PRIMARY KEY (`idOrganization`), ADD KEY `idObject` (`idObject`);
+ ADD PRIMARY KEY (`idOrganization`);
 
 --
 -- Индексы таблицы `tblOrganizationUser`
@@ -1008,12 +1008,6 @@ ADD CONSTRAINT `qBox_data_system_ibfk_1` FOREIGN KEY (`qBox_data_common_id`) REF
 ALTER TABLE `tblObject`
 ADD CONSTRAINT `tblObject_ibfk_1` FOREIGN KEY (`idCity`) REFERENCES `tblCity` (`idCity`),
 ADD CONSTRAINT `tblObject_ibfk_2` FOREIGN KEY (`idStreet`) REFERENCES `tblStreet` (`idStreet`);
-
---
--- Ограничения внешнего ключа таблицы `tblOrganization`
---
-ALTER TABLE `tblOrganization`
-ADD CONSTRAINT `tblOrganization_ibfk_1` FOREIGN KEY (`idObject`) REFERENCES `tblObject` (`idObject`);
 
 --
 -- Ограничения внешнего ключа таблицы `tblOrganizationUser`
