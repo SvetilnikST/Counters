@@ -1,6 +1,5 @@
 package pst.beans.device;
 
-import pst.beans.contract.TblContractEntity;
 import pst.beans.object.TblObjectEntity;
 import pst.beans.typeDevice.TblTypeDeviceEntity;
 import pst.beans.unitQ.TblUnitQEntity;
@@ -48,6 +47,9 @@ public class TblDeviceEntity {
     @JoinColumn(name = "unitQ_id")
     private TblUnitQEntity unitQEntity;
 
+    @ManyToOne
+    @JoinColumn(name = "idObject")
+    private TblObjectEntity objectEntity;
 
     public int getId() {
         return id;
@@ -129,5 +131,11 @@ public class TblDeviceEntity {
         this.unitQEntity = unitQEntity;
     }
 
+    public TblObjectEntity getObjectEntity() {
+        return objectEntity;
+    }
 
+    public void setObjectEntity(TblObjectEntity objectEntity) {
+        this.objectEntity = objectEntity;
+    }
 }

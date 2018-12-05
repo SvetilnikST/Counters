@@ -1,5 +1,7 @@
 package pst.beans.device;
 
+import pst.beans.object.ObjectDAO;
+import pst.beans.object.TblObjectEntity;
 import pst.beans.typeDevice.TblTypeDeviceEntity;
 import pst.beans.typeDevice.TypeDeviceDAO;
 import pst.beans.unitQ.TblUnitQEntity;
@@ -25,6 +27,7 @@ public class DeviceAdministration implements Serializable {
 
     private List<TblTypeDeviceEntity> typeDeviceList;
     private List<TblUnitQEntity> unitQList;
+    private List<TblObjectEntity> objectEntityList;
 
     @EJB
     private DeviceDAO deviceDAO;
@@ -34,6 +37,10 @@ public class DeviceAdministration implements Serializable {
 
     @EJB
     private UnitQDAO unitQDAO;
+
+    @EJB
+    private ObjectDAO objectDAO;
+
 
     @Default
     private int id;
@@ -46,6 +53,7 @@ public class DeviceAdministration implements Serializable {
     private int requestInterval;
     TblTypeDeviceEntity typeDeviceEntity;
     TblUnitQEntity unitQEntity;
+    TblObjectEntity objectEntity;
 
     private List<TblDeviceEntity> tblDeviceEntitysList;
 
@@ -70,29 +78,32 @@ public class DeviceAdministration implements Serializable {
             load(tblDeviceEntity);
         } else {
             name = "";
-            serial="";
-            lastRequestDate=0;
-            requestsCount=0;
-            ip="";
-            num_port=0;
-            requestInterval=0;
+            serial = "";
+            lastRequestDate = 0;
+            requestsCount = 0;
+            ip = "";
+            num_port = 0;
+            requestInterval = 0;
         }
         tblDeviceEntitysList = deviceDAO.findAll();
         unitQList = unitQDAO.findAll();
-        typeDeviceList=typeDeviceDAO.findAll();
+        typeDeviceList = typeDeviceDAO.findAll();
+        objectEntityList = objectDAO.findAll();
+
     }
 
     public void load(TblDeviceEntity deviceEntity) {
         this.setId(deviceEntity.getId());
         this.setName(deviceEntity.getName());
+        this.setTypeDeviceEntity(deviceEntity.getTypeDeviceEntity());
+        this.setUnitQEntity(deviceEntity.getUnitQEntity());
         this.setSerial(deviceEntity.getSerial());
         this.setLastRequestDate(deviceEntity.getLastRequestDate());
         this.setRequestsCount(deviceEntity.getRequestsCount());
         this.setIp(deviceEntity.getIp());
         this.setNum_port(deviceEntity.getNum_port());
         this.setRequestInterval(deviceEntity.getRequestInterval());
-        this.setTypeDeviceEntity(tblDeviceEntity.getTypeDeviceEntity());
-        this.setUnitQEntity(tblDeviceEntity.getUnitQEntity());
+        this.setObjectEntity(deviceEntity.getObjectEntity());
     }
 
     public String save() {
@@ -100,7 +111,18 @@ public class DeviceAdministration implements Serializable {
         if (tblDeviceEntity == null) {
             tblDeviceEntity = new TblDeviceEntity();
         }
+
         tblDeviceEntity.setName(this.name);
+        tblDeviceEntity.setTypeDeviceEntity(typeDeviceEntity);
+        tblDeviceEntity.setUnitQEntity(unitQEntity);
+        tblDeviceEntity.setSerial(this.serial);
+        tblDeviceEntity.setLastRequestDate(this.lastRequestDate);
+        tblDeviceEntity.setRequestsCount(this.requestsCount);
+        tblDeviceEntity.setIp(this.ip);
+        tblDeviceEntity.setNum_port(this.num_port);
+        tblDeviceEntity.setRequestInterval(this.requestInterval);
+        tblDeviceEntity.setObjectEntity(objectEntity);
+
         if (tblDeviceEntity.getId() == 0) {
             deviceDAO.create(tblDeviceEntity);
         } else {
@@ -141,6 +163,14 @@ public class DeviceAdministration implements Serializable {
         this.unitQList = unitQList;
     }
 
+    public List<TblObjectEntity> getObjectEntityList() {
+        return objectEntityList;
+    }
+
+    public void setObjectEntityList(List<TblObjectEntity> objectEntityList) {
+        this.objectEntityList = objectEntityList;
+    }
+
     public DeviceDAO getDeviceDAO() {
         return deviceDAO;
     }
@@ -163,6 +193,14 @@ public class DeviceAdministration implements Serializable {
 
     public void setUnitQDAO(UnitQDAO unitQDAO) {
         this.unitQDAO = unitQDAO;
+    }
+
+    public ObjectDAO getObjectDAO() {
+        return objectDAO;
+    }
+
+    public void setObjectDAO(ObjectDAO objectDAO) {
+        this.objectDAO = objectDAO;
     }
 
     public int getId() {
@@ -221,6 +259,14 @@ public class DeviceAdministration implements Serializable {
         this.num_port = num_port;
     }
 
+    public int getRequestInterval() {
+        return requestInterval;
+    }
+
+    public void setRequestInterval(int requestInterval) {
+        this.requestInterval = requestInterval;
+    }
+
     public TblTypeDeviceEntity getTypeDeviceEntity() {
         return typeDeviceEntity;
     }
@@ -237,19 +283,19 @@ public class DeviceAdministration implements Serializable {
         this.unitQEntity = unitQEntity;
     }
 
+    public TblObjectEntity getObjectEntity() {
+        return objectEntity;
+    }
+
+    public void setObjectEntity(TblObjectEntity objectEntity) {
+        this.objectEntity = objectEntity;
+    }
+
     public List<TblDeviceEntity> getTblDeviceEntitysList() {
         return tblDeviceEntitysList;
     }
 
     public void setTblDeviceEntitysList(List<TblDeviceEntity> tblDeviceEntitysList) {
         this.tblDeviceEntitysList = tblDeviceEntitysList;
-    }
-
-    public int getRequestInterval() {
-        return requestInterval;
-    }
-
-    public void setRequestInterval(int requestInterval) {
-        this.requestInterval = requestInterval;
     }
 }

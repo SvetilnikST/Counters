@@ -1,10 +1,8 @@
 package pst.beans.organization;
 
-import pst.beans.adress.TblObjectEntity;
+import pst.beans.object.TblObjectEntity;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "tblOrganization")

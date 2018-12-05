@@ -1,6 +1,6 @@
-package pst.beans.object;
+package pst.beans.objecttodel;
 
-import pst.beans.adress.TblAdressEntity;
+import pst.beans.object.TblAdressEntity;
 import pst.beans.organization.TblOrganizationEntity;
 
 import javax.persistence.*;

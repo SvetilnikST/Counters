@@ -1,6 +1,7 @@
-package pst.beans.adress;
+package pst.beans.object;
 
 import pst.beans.city.TblCityEntity;
+import pst.beans.device.TblDeviceEntity;
 import pst.beans.street.TblStreetEntity;
 
 import javax.persistence.*;
@@ -33,8 +34,8 @@ public class TblObjectEntity {
     @JoinColumn(name = "idCity")
     private TblCityEntity cityEntity;
 
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "objectEntitySet")
-//    private Set<TblObjectEntity> objectEntitySet = new HashSet<>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "objectEntity")
+    private Set<TblDeviceEntity> tblDeviceEntitySet = new HashSet<>();
 
 
     public int getIdObject() {

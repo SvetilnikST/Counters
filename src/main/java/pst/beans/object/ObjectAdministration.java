@@ -1,4 +1,4 @@
-package pst.beans.adress;
+package pst.beans.object;
 
 import pst.beans.city.CityDAO;
 import pst.beans.city.TblCityEntity;

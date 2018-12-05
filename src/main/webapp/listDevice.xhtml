@@ -24,10 +24,16 @@
                     value="#{deviceAdministration.tblDeviceEntitysList}">
 
                 <p:column headerText="Наименование">
-                    <h:link value="#{device.name}" outcome="listDeviceDataHistory">
+                    <h:link value="#{device.id}" outcome="editDevice">
                         <f:param name="id" value="#{device.id}"/>
                     </h:link>
                 </p:column>
+
+                <p:column headerText="Объект">
+                    <h:outputText value="#{device.objectEntity.nameObject}">
+                    </h:outputText>
+                </p:column>
+
                 <p:column headerText="Величина">
                     <h:outputText value="#{device.unitQEntity.name}">
                     </h:outputText>

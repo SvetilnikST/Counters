@@ -1,7 +1,7 @@
-package pst.beans.object;
+package pst.beans.objecttodel;
 
-import pst.beans.adress.AdressDAO;
-import pst.beans.adress.TblAdressEntity;
+import pst.beans.object.AdressDAO;
+import pst.beans.object.TblAdressEntity;
 import pst.beans.device.DeviceDAO;
 import pst.beans.device.TblDeviceEntity;
 import pst.beans.unitQ.TblUnitQEntity;

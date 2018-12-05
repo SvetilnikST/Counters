@@ -39,11 +39,8 @@
                         <p:column colspan="1">
                             <h:outputText value="IP"/>
                         </p:column>
-                        <p:column colspan="1">
-                            <h:outputText value="№ порта"/>
-                        </p:column>
-                    </p:row>
 
+                    </p:row>
                     <p:row>
                         <p:column colspan="1">
                             <p:inputText id="name" value="#{deviceAdministration.name}"
@@ -60,7 +57,6 @@
                                 </p:column>
                             </p:selectOneMenu>
                         </p:column>
-
                         <p:column colspan="3">
                             <p:selectOneMenu id="unit_Q" value="#{deviceAdministration.unitQEntity}"
                                              converter="omnifaces.SelectItemsConverter"
@@ -72,12 +68,10 @@
                                 </p:column>
                             </p:selectOneMenu>
                         </p:column>
-
                         <p:column colspan="1">
                             <p:inputText id="serial" value="#{deviceAdministration.serial}"
                                          title="serial"/>
                         </p:column>
-
                         <p:column colspan="1">
                             <p:inputText id="lastRequestDate" value="#{deviceAdministration.lastRequestDate}"
                                          title="lastRequestDate"/>
@@ -86,19 +80,52 @@
                             <p:inputText id="requestsCount" value="#{deviceAdministration.requestsCount}"
                                          title="requestsCount"/>
                         </p:column>
-
                         <p:column colspan="1">
                             <p:inputText id="ip" value="#{deviceAdministration.ip}"
                                          title="IP"/>
                         </p:column>
+                    </p:row>
+                </p:panelGrid>
+
+                <p:panelGrid styleClass="ui-panelgrid-blank">
+                    <p:row>
+
+                        <p:column colspan="1">
+                            <h:outputText value="№ порта"/>
+                        </p:column>
+                        <p:column colspan="1">
+                            <h:outputText value="request interval"/>
+                        </p:column>
+                        <p:column colspan="1">
+                            <h:outputText value="объект"/>
+                        </p:column>
+                    </p:row>
+                    <p:row>
 
                         <p:column colspan="1">
                             <p:inputText id="num_port" value="#{deviceAdministration.num_port}"
                                          title="num_port"/>
                         </p:column>
+                        <p:column colspan="1">
+                            <p:inputText id="requestInterval" value="#{deviceAdministration.requestInterval}"
+                                         title="интервал"/>
+                        </p:column>
+
+                        <p:column colspan="3">
+                            <p:selectOneMenu id="object" value="#{deviceAdministration.objectEntity}"
+                                             converter="omnifaces.SelectItemsConverter"
+                                             var="object">
+                                <f:selectItems value="#{deviceAdministration.objectEntityList}" var="object"
+                                               itemLabel="#{object.nameObject}" itemValue="#{object}"/>
+                                <p:column>
+                                    <h:outputText value="#{object.nameObject}"/>
+                                </p:column>
+                            </p:selectOneMenu>
+                        </p:column>
 
                     </p:row>
                 </p:panelGrid>
+
 
                 <p:commandButton value="Сохранить" action="#{deviceAdministration.save()}"
                                  rendered="#{userBean.doRightVerify('createUser')}"/>
