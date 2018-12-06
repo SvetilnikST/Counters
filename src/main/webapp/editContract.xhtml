@@ -32,8 +32,6 @@
                         </p:column>
                     </p:row>
 
-
-
                     <p:column colspan="3">
                         <p:selectOneMenu id="device_id" value="#{contractAdministration.deviceEntity}"
                                          converter="omnifaces.SelectItemsConverter"
@@ -47,12 +45,6 @@
                     </p:column>
 
                 </p:panelGrid>
-
-
-
-
-
-
                 <p:commandButton value="Сохранить" action="#{contractAdministration.save()}"
                                  rendered="#{userBean.doRightVerify('createUser')}"/>
             </p:panel>
