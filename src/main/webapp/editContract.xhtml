@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html" xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="WEB-INF/template/template.xhtml">
+    <ui:define name="page_title">
+        Документ
+    </ui:define>
+    <ui:define name="page_body">
+        <h:form>
+            <p:panel>
+                <h2>
+                    <p:outputLabel rendered="#{userAdministration.id==0 or userAdministration.id==null}">
+                        Новый документ
+                    </p:outputLabel>
+                    <p:outputLabel rendered="#{userAdministration.id!=0 and userAdministration.id!=null}"
+                                   value="Изменение данных о документе #{contractAdministration.idContract} "/>
+                </h2>
+                <p:panelGrid styleClass="ui-panelgrid-blank">
+                    <p:row>
+                        <p:column colspan="1">
+                            <h:outputText value="Наименование"/>
+                        </p:column>
+                        <p:column colspan="3">
+                            <h:outputText value="Устройство"/>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column colspan="1">
+                            <p:inputText id="name" value="#{contractAdministration.contract}"
+                                         title="название"/>
+                        </p:column>
+                    </p:row>
+
+
+
+                    <p:column colspan="3">
+                        <p:selectOneMenu id="device" value="#{contractAdministration.deviceEntity}"
+                                         converter="omnifaces.SelectItemsConverter"
+                                         var="device">
+                            <f:selectItems value="#{contractAdministration.deviceEntity}" var="device"
+                                           itemLabel="#{device.name}" itemValue="#{device}"/>
+                            <p:column>
+                                <h:outputText value="#{devicе.name}"/>
+                            </p:column>
+                        </p:selectOneMenu>
+                    </p:column>
+
+                </p:panelGrid>
+
+
+
+
+
+
+                <p:commandButton value="Сохранить" action="#{contractAdministration.save()}"
+                                 rendered="#{userBean.doRightVerify('createUser')}"/>
+            </p:panel>
+        </h:form>
+    </ui:define>
+</ui:composition>
+

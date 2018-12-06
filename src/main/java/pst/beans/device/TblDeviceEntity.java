@@ -1,5 +1,6 @@
 package pst.beans.device;
 
+import pst.beans.contract.TblContractEntity;
 import pst.beans.object.TblObjectEntity;
 import pst.beans.typeDevice.TblTypeDeviceEntity;
 import pst.beans.unitQ.TblUnitQEntity;
@@ -50,6 +51,11 @@ public class TblDeviceEntity {
     @ManyToOne
     @JoinColumn(name = "idObject")
     private TblObjectEntity objectEntity;
+
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "deviceEntity")
+    private Set<TblContractEntity> tblContractEntitySet = new HashSet<>();
+
 
     public int getId() {
         return id;
@@ -137,5 +143,13 @@ public class TblDeviceEntity {
 
     public void setObjectEntity(TblObjectEntity objectEntity) {
         this.objectEntity = objectEntity;
+    }
+
+    public Set<TblContractEntity> getTblContractEntitySet() {
+        return tblContractEntitySet;
+    }
+
+    public void setTblContractEntitySet(Set<TblContractEntity> tblContractEntitySet) {
+        this.tblContractEntitySet = tblContractEntitySet;
     }
 }

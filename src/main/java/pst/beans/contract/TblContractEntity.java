@@ -17,7 +17,9 @@ public class TblContractEntity {
     @Column(name = "contract")
     private String contract;
 
-
+    @ManyToOne
+    @JoinColumn(name = "idDevice")
+    private TblDeviceEntity deviceEntity;
 
 
     public int getIdContract() {
@@ -34,5 +36,13 @@ public class TblContractEntity {
 
     public void setContract(String contract) {
         this.contract = contract;
+    }
+
+    public TblDeviceEntity getDeviceEntity() {
+        return deviceEntity;
+    }
+
+    public void setDeviceEntity(TblDeviceEntity deviceEntity) {
+        this.deviceEntity = deviceEntity;
     }
 }

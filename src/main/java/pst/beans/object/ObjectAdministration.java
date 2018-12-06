@@ -53,7 +53,6 @@ public class ObjectAdministration implements Serializable {
     private List<TblCityEntity> cityEntityList;
     private List<TblStreetEntity> streetEntityList;
     private List<TblOrganizationEntity> organizationEntityList;
-
     private List<TblObjectEntity> tblObjectEntitysList;
 
     @PostConstruct
