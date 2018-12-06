@@ -35,13 +35,13 @@
 
 
                     <p:column colspan="3">
-                        <p:selectOneMenu id="device" value="#{contractAdministration.deviceEntity}"
+                        <p:selectOneMenu id="device_id" value="#{contractAdministration.deviceEntity}"
                                          converter="omnifaces.SelectItemsConverter"
                                          var="device">
-                            <f:selectItems value="#{contractAdministration.deviceEntity}" var="device"
+                            <f:selectItems value="#{contractAdministration.deviceEntityList}" var="device"
                                            itemLabel="#{device.name}" itemValue="#{device}"/>
                             <p:column>
-                                <h:outputText value="#{devicе.name}"/>
+                                <h:outputText value="#{device.name}"/>
                             </p:column>
                         </p:selectOneMenu>
                     </p:column>

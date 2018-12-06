@@ -48,7 +48,7 @@
                         <p:column colspan="6">
                             <p:selectOneMenu id="type_id" value="#{deviceAdministration.typeDeviceEntity}"
                                              converter="omnifaces.SelectItemsConverter"
-                                             var="type">
+                                             var="type_device">
                                 <f:selectItems value="#{deviceAdministration.typeDeviceList}" var="type_device"
                                                itemLabel="#{type_device.name}" itemValue="#{type_device}"/>
                                 <p:column>
