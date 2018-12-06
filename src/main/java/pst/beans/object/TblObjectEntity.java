@@ -97,4 +97,5 @@ public class TblObjectEntity {
         this.tblDeviceEntitySet = tblDeviceEntitySet;
     }
 
+
 }

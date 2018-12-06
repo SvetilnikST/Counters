@@ -29,8 +29,6 @@
                                          title="Наименование"/>
                         </p:column>
                     </p:row>
-
-
                     <p:row>
                         <p:column colspan="1">
                             <h:outputText value="Номер дома"/>
@@ -42,8 +40,6 @@
                                          title="name"/>
                         </p:column>
                     </p:row>
-
-
                     <p:column colspan="3">
 
                         <p:selectOneMenu id="idCity" value="#{objectAdministration.cityEntity}"
@@ -59,7 +55,6 @@
                     </p:column>
 
                     <p:column colspan="3">
-
                         <p:selectOneMenu id="idStreet" value="#{objectAdministration.streetEntity}"
                                          converter="omnifaces.SelectItemsConverter"
                                          var="str"
@@ -71,6 +66,21 @@
                             </p:column>
                         </p:selectOneMenu>
                     </p:column>
+
+                    <p:column colspan="3">
+                        <p:selectOneMenu id="idOrganization" value="#{objectAdministration.organizationEntity}"
+                                         converter="omnifaces.SelectItemsConverter"
+                                         var="organiz"
+                        >
+                            <f:selectItems value="#{objectAdministration.organizationEntityList}" var="organization"
+                                           itemLabel="#{organization.nameOrganization}" itemValue="#{organiz}" />
+                            <p:column>
+                                <h:outputText value="#{organiz.nameOrganization}" />
+                            </p:column>
+                        </p:selectOneMenu>
+                    </p:column>
+
+
 
                 </p:panelGrid>
 

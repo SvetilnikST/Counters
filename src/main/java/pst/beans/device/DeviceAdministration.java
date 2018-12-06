@@ -27,7 +27,7 @@ public class DeviceAdministration implements Serializable {
 
     private List<TblTypeDeviceEntity> typeDeviceList;
     private List<TblUnitQEntity> unitQList;
-    private List<TblObjectEntity> objectEntityList;
+    private List<TblObjectEntity> objectList;
 
     @EJB
     private DeviceDAO deviceDAO;
@@ -88,7 +88,7 @@ public class DeviceAdministration implements Serializable {
         tblDeviceEntitysList = deviceDAO.findAll();
         unitQList = unitQDAO.findAll();
         typeDeviceList = typeDeviceDAO.findAll();
-        objectEntityList = objectDAO.findAll();
+        objectList = objectDAO.findAll();
 
     }
 
@@ -163,12 +163,12 @@ public class DeviceAdministration implements Serializable {
         this.unitQList = unitQList;
     }
 
-    public List<TblObjectEntity> getObjectEntityList() {
-        return objectEntityList;
+    public List<TblObjectEntity> getObjectList() {
+        return objectList;
     }
 
-    public void setObjectEntityList(List<TblObjectEntity> objectEntityList) {
-        this.objectEntityList = objectEntityList;
+    public void setObjectList(List<TblObjectEntity> objectList) {
+        this.objectList = objectList;
     }
 
     public DeviceDAO getDeviceDAO() {

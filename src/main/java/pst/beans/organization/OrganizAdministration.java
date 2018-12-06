@@ -1,11 +1,6 @@
 package pst.beans.organization;
 
-
-
-
-import pst.beans.object.ObjectDAO;
 import pst.beans.object.TblObjectEntity;
-
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.inject.Default;
@@ -25,20 +20,14 @@ public class OrganizAdministration implements Serializable {
     private TblOrganizationEntity tblOrganizationEntity;
     private List<OrganizAdministration> organizationAdministrations;
 
-//    TblObjectEntity objectEntity;
-
     @EJB
     private OrganizationDAO organizationDAO;
-
-//    @EJB
-//    private ObjectDAO objectDAO;
 
     @Default
     private int idOrganization;
     private String nameOrganization;
 
     private List<TblObjectEntity> objectEntityList;
-
 
     private List<TblOrganizationEntity> tblOrganizationEntitysList;
 
@@ -62,14 +51,12 @@ public class OrganizAdministration implements Serializable {
             this.nameOrganization = "";
         }
         tblOrganizationEntitysList = organizationDAO.findAll();
-//        objectEntityList = objectDAO.findAll();
     }
 
     public void load(TblOrganizationEntity organizationEntity) {
         this.setIdOrganization(organizationEntity.getIdOrganization());
         this.setNameOrganization(organizationEntity.getNameOrganization());
         this.setIdOrganization(organizationEntity.getIdOrganization());
-//        this.setObjectEntity(organizationEntity.);
     }
 
     public String save() {
@@ -135,14 +122,6 @@ public class OrganizAdministration implements Serializable {
         this.tblOrganizationEntitysList = tblOrganizationEntitysList;
     }
 
-//    public ObjectDAO getObjectDAO() {
-//        return objectDAO;
-//    }
-//
-//    public void setObjectDAO(ObjectDAO objectDAO) {
-//        this.objectDAO = objectDAO;
-//    }
-
     public List<TblObjectEntity> getObjectEntityList() {
         return objectEntityList;
     }
@@ -151,11 +130,5 @@ public class OrganizAdministration implements Serializable {
         this.objectEntityList = objectEntityList;
     }
 
-//    public TblObjectEntity getObjectEntity() {
-//        return objectEntity;
-//    }
-//
-//    public void setObjectEntity(TblObjectEntity objectEntity) {
-//        this.objectEntity = objectEntity;
-//    }
+
 }

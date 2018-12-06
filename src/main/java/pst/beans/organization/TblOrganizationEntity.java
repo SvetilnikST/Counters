@@ -18,11 +18,6 @@ public class TblOrganizationEntity {
     @Column(name = "nameOrganization", nullable = false, length = 255)
     private String nameOrganization;
 
-//    @ManyToOne
-//    @JoinColumn(name = "idObject")
-//    private TblObjectEntity objectEntity;
-
-
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "organizationEntity")
     private Set<TblObjectEntity> tblObjectEntitySet = new HashSet<>();
 
@@ -42,5 +37,11 @@ public class TblOrganizationEntity {
         this.nameOrganization = nameOrganization;
     }
 
+    public Set<TblObjectEntity> getTblObjectEntitySet() {
+        return tblObjectEntitySet;
+    }
 
+    public void setTblObjectEntitySet(Set<TblObjectEntity> tblObjectEntitySet) {
+        this.tblObjectEntitySet = tblObjectEntitySet;
+    }
 }
