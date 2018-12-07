@@ -7,7 +7,7 @@
                 xmlns:c="http://java.sun.com/jsp/jstl/core"
                 template="WEB-INF/template/template.xhtml">
     <ui:define name="page_title">
-        Типы измерений
+        Организации
     </ui:define>
 
     <ui:define name="page_body">
@@ -30,6 +30,14 @@
                 </p:column>
                 <p:column headerText="Наименование">
                     <h:outputText value="#{organization.nameOrganization}">
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="УНП">
+                    <h:outputText value="#{organization.UNP}">
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="Телефон">
+                    <h:outputText value="#{organization.phone}">
                     </h:outputText>
                 </p:column>
             </p:dataTable>

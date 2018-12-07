@@ -1,6 +1,7 @@
 package pst.beans.city;
 
 import pst.beans.object.TblObjectEntity;
+import pst.beans.organization.TblOrganizationEntity;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -20,6 +21,9 @@ public class TblCityEntity {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cityEntity")
     private Set<TblObjectEntity> tblObjectEntitySet = new HashSet<>();
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cityEntity")
+    private Set<TblOrganizationEntity> tblOrganizationEntitySet = new HashSet<>();
+
     public int getIdCity() {
         return idCity;
     }
@@ -36,5 +40,19 @@ public class TblCityEntity {
         this.nameCity = nameCity;
     }
 
+    public Set<TblObjectEntity> getTblObjectEntitySet() {
+        return tblObjectEntitySet;
+    }
 
+    public void setTblObjectEntitySet(Set<TblObjectEntity> tblObjectEntitySet) {
+        this.tblObjectEntitySet = tblObjectEntitySet;
+    }
+
+    public Set<TblOrganizationEntity> getTblOrganizationEntitySet() {
+        return tblOrganizationEntitySet;
+    }
+
+    public void setTblOrganizationEntitySet(Set<TblOrganizationEntity> tblOrganizationEntitySet) {
+        this.tblOrganizationEntitySet = tblOrganizationEntitySet;
+    }
 }

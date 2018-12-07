@@ -1,6 +1,7 @@
 package pst.beans.street;
 
 import pst.beans.object.TblObjectEntity;
+import pst.beans.organization.TblOrganizationEntity;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -20,6 +21,9 @@ public class TblStreetEntity {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "streetEntity")
     private Set<TblObjectEntity> tblObjectEntitySet = new HashSet<>();
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "streetEntity")
+    private Set<TblOrganizationEntity> tblOrganizationEntitySet = new HashSet<>();
 
 
     public int getIdStreet() {
@@ -45,4 +49,13 @@ public class TblStreetEntity {
     public void setTblObjectEntitySet(Set<TblObjectEntity> tblObjectEntitySet) {
         this.tblObjectEntitySet = tblObjectEntitySet;
     }
+
+    public Set<TblOrganizationEntity> getTblOrganizationEntitySet() {
+        return tblOrganizationEntitySet;
+    }
+
+    public void setTblOrganizationEntitySet(Set<TblOrganizationEntity> tblOrganizationEntitySet) {
+        this.tblOrganizationEntitySet = tblOrganizationEntitySet;
+    }
+
 }

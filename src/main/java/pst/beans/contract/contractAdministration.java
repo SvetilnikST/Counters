@@ -30,8 +30,6 @@ public class contractAdministration implements Serializable {
     @EJB
     private DeviceDAO deviceDAO;
 
-
-
     @Default
     private int idContract;
     private String contract;
@@ -54,7 +52,6 @@ public class contractAdministration implements Serializable {
                         new FacesMessage(FacesMessage.SEVERITY_ERROR, message, null));
             }
             load(tblContractEntity);
-
         } else {
             this.contract= "";
         }
@@ -77,7 +74,6 @@ public class contractAdministration implements Serializable {
         tblContractEntity.setContract(this.contract);
         tblContractEntity.setDeviceEntity(deviceEntity);
         if (tblContractEntity.getIdContract() == 0) {
-
             contractDAO.create(tblContractEntity);
         } else {
             contractDAO.update(tblContractEntity);

@@ -1,6 +1,11 @@
 package pst.beans.organization;
 
+import pst.beans.city.CityDAO;
+import pst.beans.city.TblCityEntity;
 import pst.beans.object.TblObjectEntity;
+import pst.beans.street.StreetDAO;
+import pst.beans.street.TblStreetEntity;
+
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.inject.Default;
@@ -19,6 +24,14 @@ public class OrganizAdministration implements Serializable {
 
     private TblOrganizationEntity tblOrganizationEntity;
     private List<OrganizAdministration> organizationAdministrations;
+    TblCityEntity cityEntity;
+    TblStreetEntity streetEntity;
+
+    @EJB
+    private CityDAO cityDAO;
+
+    @EJB
+    private StreetDAO streetDAO;
 
     @EJB
     private OrganizationDAO organizationDAO;
@@ -26,6 +39,10 @@ public class OrganizAdministration implements Serializable {
     @Default
     private int idOrganization;
     private String nameOrganization;
+    private int UNP;
+    private String phone;
+    private List<TblCityEntity> cityEntityList;
+    private List<TblStreetEntity> streetEntityList;
 
     private List<TblObjectEntity> objectEntityList;
 
@@ -49,14 +66,22 @@ public class OrganizAdministration implements Serializable {
 
         } else {
             this.nameOrganization = "";
+            this.UNP = 0;
+            this.phone="";
         }
         tblOrganizationEntitysList = organizationDAO.findAll();
+        cityEntityList = cityDAO.findAll();
+        streetEntityList = streetDAO.findAll();
     }
 
     public void load(TblOrganizationEntity organizationEntity) {
         this.setIdOrganization(organizationEntity.getIdOrganization());
         this.setNameOrganization(organizationEntity.getNameOrganization());
         this.setIdOrganization(organizationEntity.getIdOrganization());
+        this.setUNP(organizationEntity.getUNP());
+        this.setPhone(organizationEntity.getPhone());
+        this.setStreetEntity(organizationEntity.getStreetEntity());
+        this.setCityEntity(organizationEntity.getCityEntity());
     }
 
     public String save() {
@@ -65,6 +90,9 @@ public class OrganizAdministration implements Serializable {
             tblOrganizationEntity= new TblOrganizationEntity();
         }
         tblOrganizationEntity.setNameOrganization(this.nameOrganization);
+        tblOrganizationEntity.setUNP(this.UNP);
+        tblOrganizationEntity.setPhone(this.phone);
+
         if (tblOrganizationEntity.getIdOrganization() == 0) {
 
             organizationDAO.create(tblOrganizationEntity);
@@ -130,5 +158,67 @@ public class OrganizAdministration implements Serializable {
         this.objectEntityList = objectEntityList;
     }
 
+    public int getUNP() {
+        return UNP;
+    }
 
+    public void setUNP(int UNP) {
+        this.UNP = UNP;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public TblCityEntity getCityEntity() {
+        return cityEntity;
+    }
+
+    public void setCityEntity(TblCityEntity cityEntity) {
+        this.cityEntity = cityEntity;
+    }
+
+    public TblStreetEntity getStreetEntity() {
+        return streetEntity;
+    }
+
+    public void setStreetEntity(TblStreetEntity streetEntity) {
+        this.streetEntity = streetEntity;
+    }
+
+    public CityDAO getCityDAO() {
+        return cityDAO;
+    }
+
+    public void setCityDAO(CityDAO cityDAO) {
+        this.cityDAO = cityDAO;
+    }
+
+    public StreetDAO getStreetDAO() {
+        return streetDAO;
+    }
+
+    public void setStreetDAO(StreetDAO streetDAO) {
+        this.streetDAO = streetDAO;
+    }
+
+    public List<TblCityEntity> getCityEntityList() {
+        return cityEntityList;
+    }
+
+    public void setCityEntityList(List<TblCityEntity> cityEntityList) {
+        this.cityEntityList = cityEntityList;
+    }
+
+    public List<TblStreetEntity> getStreetEntityList() {
+        return streetEntityList;
+    }
+
+    public void setStreetEntityList(List<TblStreetEntity> streetEntityList) {
+        this.streetEntityList = streetEntityList;
+    }
 }

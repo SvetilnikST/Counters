@@ -21,11 +21,39 @@
                         <p:column colspan="1">
                             <h:outputText value="Наименование"/>
                         </p:column>
+                        <p:column colspan="1">
+                            <h:outputText value="УНП"/>
+                        </p:column>
+                        <p:column colspan="1">
+                            <h:outputText value="Телефон"/>
+                        </p:column>
+                        <p:column colspan="1">
+                            <h:outputText value="Улица"/>
+                        </p:column>
+                        <p:column colspan="1">
+                            <h:outputText value="Город"/>
+                        </p:column>
                     </p:row>
                     <p:row>
                         <p:column colspan="1">
                             <p:inputText id="name" value="#{organizationAdministration.nameOrganization}"
                                          title="name"/>
+                        </p:column>
+                        <p:column colspan="1">
+                            <p:inputText id="unp" value="#{organizationAdministration.UNP}"
+                                         title="УНП"/>
+                        </p:column>
+                        <p:column colspan="1">
+                            <p:inputText id="phone" value="#{organizationAdministration.phone}"
+                                         title="Телефон"/>
+                        </p:column>
+                        <p:column colspan="1">
+                            <p:inputText id="street" value="#{organizationAdministration.streetEntity.nameStreet}"
+                                         title="Улица"/>
+                        </p:column>
+                        <p:column colspan="1">
+                            <p:inputText id="city" value="#{organizationAdministration.cityEntity.nameCity}"
+                                         title="Город"/>
                         </p:column>
                     </p:row>
                 </p:panelGrid>
