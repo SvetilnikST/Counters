@@ -11,11 +11,11 @@
     </ui:define>
 
     <ui:define name="page_body">
-        <p:panel>
-            <p:button type="button" value="Добавить" icon="ui-icon-document"
-                      href="/editOrganization.xhtml"
-            />
-        </p:panel>
+        <p:toolbar>
+            <f:facet name="left">
+                <p:button type="button" value="Добавить запись" icon="ui-icon-plus" href="/editOrganization.xhtml"/>
+            </f:facet>
+        </p:toolbar>
         <h:form>
             <p:spacer/>
             <p:dataTable

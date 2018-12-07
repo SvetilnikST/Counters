@@ -30,19 +30,22 @@
                             <p:inputText id="name" value="#{contractAdministration.contract}"
                                          title="название"/>
                         </p:column>
+
+
+                        <p:column colspan="3">
+                            <p:selectOneMenu id="device_id" value="#{contractAdministration.deviceEntity}"
+                                             converter="omnifaces.SelectItemsConverter"
+                                             var="device">
+                                <f:selectItems value="#{contractAdministration.deviceEntityList}" var="device"
+                                               itemLabel="#{device.name}" itemValue="#{device}"/>
+                                <p:column>
+                                    <h:outputText value="#{device.name}"/>
+                                </p:column>
+                            </p:selectOneMenu>
+                        </p:column>
+
                     </p:row>
 
-                    <p:column colspan="3">
-                        <p:selectOneMenu id="device_id" value="#{contractAdministration.deviceEntity}"
-                                         converter="omnifaces.SelectItemsConverter"
-                                         var="device">
-                            <f:selectItems value="#{contractAdministration.deviceEntityList}" var="device"
-                                           itemLabel="#{device.name}" itemValue="#{device}"/>
-                            <p:column>
-                                <h:outputText value="#{device.name}"/>
-                            </p:column>
-                        </p:selectOneMenu>
-                    </p:column>
 
                 </p:panelGrid>
                 <p:commandButton value="Сохранить" action="#{contractAdministration.save()}"
