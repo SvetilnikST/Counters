@@ -53,6 +53,18 @@
                     <h:outputText value="#{object.organizationEntity.nameOrganization}">
                     </h:outputText>
                 </p:column>
+                <p:column headerText="ГВС">
+                    <h:outputText value="#{object.hotWater}">
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="Отоп.">
+                    <h:outputText value="#{object.heating}">
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="Вентиляция">
+                    <h:outputText value="#{object.ventilation}">
+                    </h:outputText>
+                </p:column>
             </p:dataTable>
         </h:form>
     </ui:define>

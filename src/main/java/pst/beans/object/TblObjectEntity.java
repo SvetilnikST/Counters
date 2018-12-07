@@ -24,6 +24,16 @@ public class TblObjectEntity {
     @Column(name = "home", nullable = false, length = 100)
     private String home;
 
+    @Column(name = "hotWater", nullable = false)
+    private double hotWater;
+
+    @Column(name = "heating", nullable = false)
+    private double heating;
+
+    @Column(name = "ventilation", nullable = false)
+    private double ventilation;
+
+
 
     @ManyToOne
     @JoinColumn(name = "idStreet")
@@ -97,5 +107,27 @@ public class TblObjectEntity {
         this.tblDeviceEntitySet = tblDeviceEntitySet;
     }
 
+    public double getHotWater() {
+        return hotWater;
+    }
 
+    public void setHotWater(double hotWater) {
+        this.hotWater = hotWater;
+    }
+
+    public double getHeating() {
+        return heating;
+    }
+
+    public void setHeating(double heating) {
+        this.heating = heating;
+    }
+
+    public double getVentilation() {
+        return ventilation;
+    }
+
+    public void setVentilation(double ventilation) {
+        this.ventilation = ventilation;
+    }
 }

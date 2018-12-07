@@ -82,6 +82,46 @@
 
 
 
+
+
+                    <p:row>
+                        <p:column colspan="1">
+                            <h:outputText value="ГВС"/>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column colspan="1">
+                            <p:inputText id="hotWater" value="#{objectAdministration.hotWater}"
+                                         title="Горячее водоснабжение"/>
+                        </p:column>
+                    </p:row>
+
+
+                    <p:row>
+                        <p:column colspan="1">
+                            <h:outputText value="Отопление"/>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column colspan="1">
+                            <p:inputText id="heating" value="#{objectAdministration.heating}"
+                                         title="Отопление"/>
+                        </p:column>
+                    </p:row>
+
+                    <p:row>
+                        <p:column colspan="1">
+                            <h:outputText value="Вентиляция"/>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column colspan="1">
+                            <p:inputText id="ventilation" value="#{objectAdministration.ventilation}"
+                                         title="Вентиляция"/>
+                        </p:column>
+                    </p:row>
+
+
                 </p:panelGrid>
 
                 <p:commandButton value="Сохранить" action="#{objectAdministration.save()}"

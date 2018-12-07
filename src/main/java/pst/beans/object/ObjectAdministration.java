@@ -49,6 +49,9 @@ public class ObjectAdministration implements Serializable {
     private int idObject;
     private String home;
     private String nameObject;
+    private double hotWater;
+    private double heating;
+    private double ventilation;
 
     private List<TblCityEntity> cityEntityList;
     private List<TblStreetEntity> streetEntityList;
@@ -74,6 +77,9 @@ public class ObjectAdministration implements Serializable {
         } else {
             this.home = "";
             this.nameObject="";
+            this.hotWater=0.0;
+            this.heating=0.0;
+            this.ventilation=0.0;
         }
         tblObjectEntitysList = objectDAO.findAll();
         cityEntityList = cityDAO.findAll();
@@ -88,6 +94,9 @@ public class ObjectAdministration implements Serializable {
         this.setCityEntity(objectEntity.getCityEntity());
         this.setStreetEntity(objectEntity.getStreetEntity());
         this.setOrganizationEntity(objectEntity.getOrganizationEntity());
+        this.setHotWater(objectEntity.getHotWater());
+        this.setHeating(objectEntity.getHeating());
+        this.setVentilation(objectEntity.getVentilation());
     }
 
 
@@ -101,6 +110,9 @@ public class ObjectAdministration implements Serializable {
         tblObjectEntity.setCityEntity(cityEntity);
         tblObjectEntity.setStreetEntity(streetEntity);
         tblObjectEntity.setOrganizationEntity(organizationEntity);
+        tblObjectEntity.setHotWater(this.hotWater);
+        tblObjectEntity.setHeating(this.heating);
+        tblObjectEntity.setVentilation(this.ventilation);
         if (tblObjectEntity.getIdObject() == 0) {
 
             objectDAO.create(tblObjectEntity);
@@ -236,5 +248,29 @@ public class ObjectAdministration implements Serializable {
 
     public void setOrganizationEntityList(List<TblOrganizationEntity> organizationEntityList) {
         this.organizationEntityList = organizationEntityList;
+    }
+
+    public double getHotWater() {
+        return hotWater;
+    }
+
+    public void setHotWater(double hotWater) {
+        this.hotWater = hotWater;
+    }
+
+    public double getHeating() {
+        return heating;
+    }
+
+    public void setHeating(double heating) {
+        this.heating = heating;
+    }
+
+    public double getVentilation() {
+        return ventilation;
+    }
+
+    public void setVentilation(double ventilation) {
+        this.ventilation = ventilation;
     }
 }
