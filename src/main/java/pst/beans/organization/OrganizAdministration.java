@@ -43,6 +43,7 @@ public class OrganizAdministration implements Serializable {
     private String phone;
     private List<TblCityEntity> cityEntityList;
     private List<TblStreetEntity> streetEntityList;
+    private String home;
 
     private List<TblObjectEntity> objectEntityList;
 
@@ -68,6 +69,7 @@ public class OrganizAdministration implements Serializable {
             this.nameOrganization = "";
             this.UNP = 0;
             this.phone="";
+            this.home="";
         }
         tblOrganizationEntitysList = organizationDAO.findAll();
         cityEntityList = cityDAO.findAll();
@@ -92,6 +94,7 @@ public class OrganizAdministration implements Serializable {
         tblOrganizationEntity.setNameOrganization(this.nameOrganization);
         tblOrganizationEntity.setUNP(this.UNP);
         tblOrganizationEntity.setPhone(this.phone);
+        tblOrganizationEntity.setHome(this.home);
 
         if (tblOrganizationEntity.getIdOrganization() == 0) {
 
@@ -220,5 +223,13 @@ public class OrganizAdministration implements Serializable {
 
     public void setStreetEntityList(List<TblStreetEntity> streetEntityList) {
         this.streetEntityList = streetEntityList;
+    }
+
+    public String getHome() {
+        return home;
+    }
+
+    public void setHome(String home) {
+        this.home = home;
     }
 }

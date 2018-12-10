@@ -34,6 +34,8 @@ public class TblOrganizationEntity {
     @JoinColumn(name = "idCity")
     private TblCityEntity cityEntity;
 
+    @Column(name = "home", nullable = false , length = 25)
+    private String home;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "organizationEntity")
     private Set<TblObjectEntity> tblObjectEntitySet = new HashSet<>();
@@ -94,4 +96,11 @@ public class TblOrganizationEntity {
         this.cityEntity = cityEntity;
     }
 
+    public String getHome() {
+        return home;
+    }
+
+    public void setHome(String home) {
+        this.home = home;
+    }
 }

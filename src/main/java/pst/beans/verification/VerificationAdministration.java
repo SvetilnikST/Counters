@@ -1,8 +1,5 @@
 package pst.beans.verification;
 
-
-
-
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.inject.Default;
@@ -27,7 +24,7 @@ public class VerificationAdministration implements Serializable {
 
     @Default
     private int idVerification;
-    private String PPR;
+    private int PPR;
     private int IVB;
     private int TCP;
     private int additionalDevice;
@@ -51,7 +48,7 @@ public class VerificationAdministration implements Serializable {
             load(tblVerificationEntity);
 
         } else {
-            this.PPR = "";
+            this.PPR = 0;
             this.IVB=0;
             this.TCP=0;
             this.additionalDevice=0;
@@ -119,11 +116,11 @@ public class VerificationAdministration implements Serializable {
         this.idVerification = idVerification;
     }
 
-    public String getPPR() {
+    public int getPPR() {
         return PPR;
     }
 
-    public void setPPR(String PPR) {
+    public void setPPR(int PPR) {
         this.PPR = PPR;
     }
 

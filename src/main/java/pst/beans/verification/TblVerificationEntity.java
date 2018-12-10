@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "tblverification")
+@Table(name = "tblVerification")
 public class TblVerificationEntity {
 
     @Id
@@ -19,7 +19,7 @@ public class TblVerificationEntity {
     private int IVB;
 
     @Column(name = "PPR", nullable = false)
-    private String PPR;
+    private int PPR;
 
     @Column(name = "TCP", nullable = false)
     private int TCP;
@@ -46,11 +46,11 @@ public class TblVerificationEntity {
         this.IVB = IVB;
     }
 
-    public String getPPR() {
+    public int getPPR() {
         return PPR;
     }
 
-    public void setPPR(String PPR) {
+    public void setPPR(int PPR) {
         this.PPR = PPR;
     }
 
