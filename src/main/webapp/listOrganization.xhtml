@@ -7,9 +7,8 @@
                 xmlns:c="http://java.sun.com/jsp/jstl/core"
                 template="WEB-INF/template/template.xhtml">
     <ui:define name="page_title">
-        Организации
+        Список организаций
     </ui:define>
-
     <ui:define name="page_body">
         <p:toolbar>
             <f:facet name="left">
@@ -36,12 +35,28 @@
                     <h:outputText value="#{organization.UNP}">
                     </h:outputText>
                 </p:column>
-                <p:column headerText="Телефон">
-                    <h:outputText value="#{organization.phone}">
+                <p:column headerText="Город">
+                    <h:outputText value="#{organization.cityEntity.nameCity}">
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="Улица">
+                    <h:outputText value="#{organization.streetEntity.nameStreet}">
                     </h:outputText>
                 </p:column>
                 <p:column headerText="№ дома">
                     <h:outputText value="#{organization.home}">
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="Телефон/факс">
+                    <h:outputText value="#{organization.phone}">
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="Информация о руководстве">
+                    <h:outputText value="#{organization.dataBoss}">
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="Ответственное лицо">
+                    <h:outputText value="#{organization.dataWoker}">
                     </h:outputText>
                 </p:column>
             </p:dataTable>

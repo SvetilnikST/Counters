@@ -9,12 +9,20 @@
     <ui:define name="page_body">
         <h:form>
             <p:panel>
+                <p:toolbar>
+                    <f:facet name="left">
+                        <p:commandButton value="Сохранить" action="#{streetAdministration.save()}"
+                                         rendered="#{userBean.doRightVerify('createUser')}"/>
+                        <p:commandButton value="Удалить запись" action="#{streetAdministration.remove()}"
+                                         rendered="#{userBean.doRightVerify('createUser')}"/>
+                    </f:facet>
+                </p:toolbar>
                 <h2>
-                    <p:outputLabel rendered="#{userAdministration.id==0 or userAdministration.id==null}">
+                    <p:outputLabel rendered="#{streetAdministration.idStreet==0 or streetAdministration.idStreet==null}">
                         Новая улица
                     </p:outputLabel>
-                    <p:outputLabel rendered="#{userAdministration.id!=0 and userAdministration.id!=null}"
-                                   value="Изменение названия улицы #{streetAdministration.idStreet} "/>
+                    <p:outputLabel rendered="#{streetAdministration.idStreet!=0 and streetAdministration.idStreet!=null}"
+                                   value="Редактирование названия улицы #{streetAdministration.nameStreet} "/>
                 </h2>
                 <p:panelGrid styleClass="ui-panelgrid-blank">
                     <p:row>
@@ -30,8 +38,7 @@
                     </p:row>
                 </p:panelGrid>
 
-                <p:commandButton value="Сохранить" action="#{streetAdministration.save()}"
-                                 rendered="#{userBean.doRightVerify('createUser')}"/>
+
             </p:panel>
         </h:form>
     </ui:define>

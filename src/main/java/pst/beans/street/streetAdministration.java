@@ -72,6 +72,12 @@ public class streetAdministration implements Serializable {
     }
 
 
+    public String remove(){
+        tblStreetEntity = streetDAO.find(this.idStreet);
+        streetDAO.remove(tblStreetEntity);
+        return "listStreet.xhtml";
+    }
+
     public TblStreetEntity getTblStreetEntity() {
         return tblStreetEntity;
     }

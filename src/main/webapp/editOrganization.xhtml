@@ -10,11 +10,13 @@
         <h:form>
             <p:panel>
                 <h2>
-                    <p:outputLabel rendered="#{userAdministration.id==0 or userAdministration.id==null}">
+                    <p:outputLabel
+                            rendered="#{organizationAdministration.idOrganization==0 or organizationAdministration.idOrganization==null}">
                         Новая организация
                     </p:outputLabel>
-                    <p:outputLabel rendered="#{userAdministration.id!=0 and userAdministration.id!=null}"
-                                   value="Изменение данных о организации #{organizationAdministration.idOrganization} "/>
+                    <p:outputLabel
+                            rendered="#{organizationAdministration.idOrganization!=0 and organizationAdministration.idOrganization!=null}"
+                            value="Изменение данных организации #{organizationAdministration.nameOrganization} "/>
                 </h2>
                 <p:panelGrid styleClass="ui-panelgrid-blank">
                     <p:row>
@@ -24,15 +26,21 @@
                         <p:column colspan="1">
                             <h:outputText value="УНП"/>
                         </p:column>
+
                         <p:column colspan="1">
-                            <h:outputText value="Телефон"/>
+                            <h:outputText value="Город"/>
                         </p:column>
                         <p:column colspan="1">
                             <h:outputText value="Улица"/>
                         </p:column>
                         <p:column colspan="1">
-                            <h:outputText value="Город"/>
+                            <h:outputText value="№ дома"/>
                         </p:column>
+
+                        <p:column colspan="1">
+                            <h:outputText value="Телефон"/>
+                        </p:column>
+
                     </p:row>
                     <p:row>
                         <p:column colspan="1">
@@ -43,27 +51,82 @@
                             <p:inputText id="unp" value="#{organizationAdministration.UNP}"
                                          title="УНП"/>
                         </p:column>
-                        <p:column colspan="1">
-                            <p:inputText id="phone" value="#{organizationAdministration.phone}"
-                                         title="Телефон"/>
-                        </p:column>
-                        <p:column colspan="1">
-                            <p:inputText id="street" value="#{organizationAdministration.streetEntity.nameStreet}"
-                                         title="Улица"/>
-                        </p:column>
-                        <p:column colspan="1">
-                            <p:inputText id="city" value="#{organizationAdministration.cityEntity.nameCity}"
-                                         title="Город"/>
+
+                        <!--<p:column colspan="1">-->
+                            <!--<p:inputText id="city" value="#{organizationAdministration.cityEntity.nameCity}"-->
+                                         <!--title="Город"/>-->
+                        <!--</p:column>-->
+                        <!--<p:column colspan="1">-->
+                            <!--<p:inputText id="street" value="#{organizationAdministration.streetEntity.nameStreet}"-->
+                                         <!--title="Улица"/>-->
+                        <!--</p:column>-->
+
+
+                        <p:column colspan="3">
+
+                            <p:selectOneMenu id="idCity" value="#{organizationAdministration.cityEntity}"
+                                             converter="omnifaces.SelectItemsConverter"
+                                             var="cit"
+                            >
+                                <f:selectItems value="#{organizationAdministration.cityEntityList}" var="city"
+                                               itemLabel="#{city.nameCity}" itemValue="#{city}" />
+                                <p:column>
+                                    <h:outputText value="#{cit.nameCity}" />
+                                </p:column>
+                            </p:selectOneMenu>
                         </p:column>
 
+                        <p:column colspan="3">
+                            <p:selectOneMenu id="idStreet" value="#{organizationAdministration.streetEntity}"
+                                             converter="omnifaces.SelectItemsConverter"
+                                             var="str"
+                            >
+                                <f:selectItems value="#{organizationAdministration.streetEntityList}" var="street"
+                                               itemLabel="#{street.nameStreet}" itemValue="#{street}" />
+                                <p:column>
+                                    <h:outputText value="#{str.nameStreet}" />
+                                </p:column>
+                            </p:selectOneMenu>
+                        </p:column>
 
                         <p:column colspan="1">
                             <p:inputText id="home" value="#{organizationAdministration.home}"
                                          title="Номер дома"/>
                         </p:column>
-
+                        <p:column colspan="1">
+                            <p:inputText id="phone" value="#{organizationAdministration.phone}"
+                                         title="Телефон"/>
+                        </p:column>
                     </p:row>
                 </p:panelGrid>
+
+                <p:panelGrid styleClass="ui-panelgrid-blank">
+                    <p:row>
+                        <p:column colspan="4">
+                            <h:outputText value="Руководитель"/>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column colspan="4">
+                            <p:inputText id="dataBoss" value="#{organizationAdministration.dataBoss}"
+                                         title="Руководство"/>
+                        </p:column>
+                    </p:row>
+                </p:panelGrid>
+                <p:panelGrid styleClass="ui-panelgrid-blank">
+                    <p:row>
+                        <p:column colspan="4">
+                            <h:outputText value="Информация об ответственном за учет"/>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column colspan="4">
+                            <p:inputText id="dataWorker" value="#{organizationAdministration.dataWorker}"
+                                         title="Ответственный за учет"/>
+                        </p:column>
+                    </p:row>
+                </p:panelGrid>
+
 
                 <p:commandButton value="Сохранить" action="#{organizationAdministration.save()}"
                                  rendered="#{userBean.doRightVerify('createUser')}"/>
