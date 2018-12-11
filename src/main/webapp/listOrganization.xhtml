@@ -22,14 +22,19 @@
                     widgetVar="organizationTable"
                     var="organization"
                     value="#{organizationAdministration.tblOrganizationEntitysList}">
-                <p:column headerText="ID">
-                    <h:link value="#{organization.idOrganization}" outcome="editOrganization">
+                <!--<p:column headerText="ID">-->
+                    <!--<h:link value="#{organization.idOrganization}" outcome="editOrganization">-->
+                        <!--<f:param name="idOrganization" value="#{organization.idOrganization}"/>-->
+                    <!--</h:link>-->
+                <!--</p:column>-->
+                <p:column headerText="Наименование">
+                    <!--<h:outputText value="#{organization.nameOrganization}">-->
+                    <!--</h:outputText>-->
+                    <h:link value="#{organization.nameOrganization}" outcome="editOrganization">
                         <f:param name="idOrganization" value="#{organization.idOrganization}"/>
                     </h:link>
-                </p:column>
-                <p:column headerText="Наименование">
-                    <h:outputText value="#{organization.nameOrganization}">
-                    </h:outputText>
+
+
                 </p:column>
                 <p:column headerText="УНП">
                     <h:outputText value="#{organization.UNP}">

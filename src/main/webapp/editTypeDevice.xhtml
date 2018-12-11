@@ -10,11 +10,11 @@
         <h:form>
             <p:panel>
                 <h2>
-                    <p:outputLabel rendered="#{userAdministration.id==0 or userAdministration.id==null}">
+                    <p:outputLabel rendered="#{typeDeviceAdministration.id==0 or typeDeviceAdministration.id==null}">
                         Новый тип устройства
                     </p:outputLabel>
-                    <p:outputLabel rendered="#{userAdministration.id!=0 and userAdministration.id!=null}"
-                                   value="Изменение данных #{typeDeviceAdministration.id} "/>
+                    <p:outputLabel rendered="#{typeDeviceAdministration.id!=0 and typeDeviceAdministration.id!=null}"
+                                   value="Изменение данных #{typeDeviceAdministration.name} "/>
                 </h2>
                 <p:panelGrid styleClass="ui-panelgrid-blank">
                     <p:row>

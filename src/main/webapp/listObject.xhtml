@@ -24,14 +24,21 @@
                     widgetVar="objectTable"
                     var="object"
                     value="#{objectAdministration.tblObjectEntitysList}">
-                <p:column headerText="ID">
-                    <h:link value="#{object.idObject}" outcome="editObject">
+                <!--<p:column headerText="ID">-->
+                    <!--<h:link value="#{object.idObject}" outcome="editObject">-->
+                        <!--<f:param name="idObject" value="#{object.idObject}"/>-->
+                    <!--</h:link>-->
+                <!--</p:column>-->
+                <p:column headerText="Название объекта">
+                    <h:link value="#{object.nameObject}" outcome="editObject">
                         <f:param name="idObject" value="#{object.idObject}"/>
                     </h:link>
-                </p:column>
-                <p:column headerText="Название объекта">
-                    <h:outputText value="#{object.nameObject}">
-                    </h:outputText>
+
+                    <!--<h:outputText value="#{object.nameObject}">-->
+                    <!--</h:outputText>-->
+                    <!---->
+
+
                 </p:column>
 
                 <p:column headerText="Улицы">

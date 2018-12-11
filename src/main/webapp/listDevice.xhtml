@@ -26,20 +26,25 @@
                     value="#{deviceAdministration.tblDeviceEntitysList}">
 
                 <p:column headerText="Наименование">
-                    <h:link value="#{device.id}" outcome="editDevice">
+                    <h:link value="#{device.name}" outcome="editDevice">
                         <f:param name="id" value="#{device.id}"/>
                     </h:link>
-                </p:column>
-
-                <p:column headerText="Объект">
-                    <h:outputText value="#{device.objectEntity.nameObject}">
-                    </h:outputText>
                 </p:column>
 
                 <p:column headerText="Величина">
                     <h:outputText value="#{device.unitQEntity.name}">
                     </h:outputText>
                 </p:column>
+
+                <p:column headerText="Объект">
+                    <h:outputText value="#{device.objectEntity.nameObject}">
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="Абонент">
+                    <h:outputText value="#{device.objectEntity.organizationEntity.nameOrganization}">
+                    </h:outputText>
+                </p:column>
+
                 <p:column headerText="Тип устройства">
                     <h:outputText value="#{device.typeDeviceEntity.name}">
                     </h:outputText>
@@ -48,24 +53,27 @@
                     <h:outputText value="#{device.serial}">
                     </h:outputText>
                 </p:column>
-                <p:column headerText="последняя дата">
+
+                <p:column headerText="IP-адрес">
+                    <h:outputText value="#{device.ip}">
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="№ порта">
+                    <h:outputText value="#{device.num_port}">
+                    </h:outputText>
+                </p:column>
+
+                <p:column headerText="Последний опрос">
                     <h:outputText value="#{deviceAdministration.lastRequestDate}">
                         <f:convertDateTime pattern="dd MMMM YYYY г., HH:mm:ss"/>
                     </h:outputText>
                 </p:column>
-                <p:column headerText="requestcount">
+                <p:column headerText="Количество опросов">
                     <h:outputText value="#{deviceAdministration.requestsCount}">
                     </h:outputText>
                 </p:column>
-                <p:column headerText="ip">
-                    <h:outputText value="#{device.ip}">
-                    </h:outputText>
-                </p:column>
-                <p:column headerText="num_port">
-                    <h:outputText value="#{device.num_port}">
-                    </h:outputText>
-                </p:column>
-                <p:column headerText="requestInterval">
+
+                <p:column headerText="Расписание опроса">
                     <h:outputText value="#{device.requestInterval}">
                     </h:outputText>
                 </p:column>
