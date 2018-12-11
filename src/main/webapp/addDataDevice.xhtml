@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html" xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="WEB-INF/template/template.xhtml">
+    <ui:define name="page_title">
+        Добавление показаний
+    </ui:define>
+    <ui:define name="page_body">
+        <h:form>
+            <p:panel>
+                <h2>
+                    <p:outputLabel
+                            rendered="#{organizationAdministration.idOrganization==0 or organizationAdministration.idOrganization==null}">
+                        Новая организация
+                    </p:outputLabel>
+                    <p:outputLabel
+                            rendered="#{organizationAdministration.idOrganization!=0 and organizationAdministration.idOrganization!=null}"
+                            value="Ввод данных #{organizationAdministration.nameOrganization} "/>
+                </h2>
+
+
+                <p:panelGrid styleClass="ui-panelgrid-blank">
+                    <p:row>
+                        <p:column colspan="1">
+                            <h:outputText value="Дата снятия показаний"/>
+                        </p:column>
+                        <p:column colspan="1">
+                            <h:outputText value="Время снятия показаний"/>
+                        </p:column>
+                        <p:row >
+                            <h:outputText value="Примечения"/>
+                        </p:row>
+                    </p:row>
+
+                    <p:row>
+                        <p:column colspan="1">
+                            <p:inputTextarea rows="1" cols="70" id="name"
+                                             value="#{organizationAdministration.nameOrganization}"
+                                             title="name"/>
+                        </p:column>
+                        <p:column colspan="1">
+                            <p:inputText id="unp" value="#{organizationAdministration.UNP}"
+                                         title="УНП"/>
+                        </p:column>
+
+                        <p:row >
+                            <p:inputText id="all" value="#{organizationAdministration.UNP}"
+                                         title="Примечания"/>
+                        </p:row>
+
+                    </p:row>
+
+                </p:panelGrid>
+                <br/>
+
+                <br/>
+                <p:panelGrid styleClass="ui-panelgrid-blank">
+                    <p:row>
+                        <p:column colspan="4">
+                            <h:outputText value="Информация о руководстве организации"/>
+                        </p:column>
+                        <p:column colspan="4">
+                            <h:outputText value="Информация об ответственном за учет"/>
+                        </p:column>
+
+                    </p:row>
+                    <p:row>
+                        <p:column colspan="4">
+                            <p:inputTextarea rows="6" cols="46" id="dataBoss"
+                                             value="#{organizationAdministration.dataBoss}"
+                                             title="Руководство"/>
+                        </p:column>
+                        <p:column colspan="4">
+                            <p:inputTextarea rows="6" cols="46" id="dataWorker"
+                                             value="#{organizationAdministration.dataWorker}"
+                                             title="Ответственный за учет"/>
+                        </p:column>
+
+
+                    </p:row>
+                </p:panelGrid>
+
+<p:panelGrid>
+                <p:commandButton value="Сохранить" action="#{organizationAdministration.save()}"
+                                 rendered="#{userBean.doRightVerify('createUser')}"/>
+</p:panelGrid>
+            </p:panel>
+        </h:form>
+    </ui:define>
+</ui:composition>
+
