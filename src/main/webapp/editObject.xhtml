@@ -10,83 +10,100 @@
         <h:form>
             <p:panel>
                 <h2>
-                    <p:outputLabel rendered="#{objectAdministration.idObject==0 or objectAdministration.idObject==null}">
+                    <p:outputLabel
+                            rendered="#{objectAdministration.idObject==0 or objectAdministration.idObject==null}">
                         Новый объект учета
                     </p:outputLabel>
-                    <p:outputLabel rendered="#{objectAdministration.idObject!=0 and objectAdministration.idObject!=null}"
-                                   value="Изменение объекта #{objectAdministration.nameObject} "/>
+                    <p:outputLabel
+                            rendered="#{objectAdministration.idObject!=0 and objectAdministration.idObject!=null}"
+                            value="Изменение объекта #{objectAdministration.nameObject} "/>
                 </h2>
+
                 <p:panelGrid styleClass="ui-panelgrid-blank">
+                    <p:row>
+                        <p:column colspan="1">
+                            <h:outputText value="Наименование объекта учета"/>
+                        </p:column>
+                        <p:column colspan="3">
+                            <h:outputText value="Организация"/>
+                        </p:column>
+                    </p:row>
 
                     <p:row>
                         <p:column colspan="1">
-                            <h:outputText value="Наименование объекта"/>
+                            <p:inputTextarea rows="1" cols="70" id="nameObject"
+                                             value="#{objectAdministration.nameObject}"
+                                             title="name"/>
+                        </p:column>
+                        <p:column colspan="3">
+                            <p:selectOneMenu id="idOrganization" value="#{objectAdministration.organizationEntity}"
+                                             converter="omnifaces.SelectItemsConverter"
+                                             var="organiz"
+                            >
+                                <f:selectItems value="#{objectAdministration.organizationEntityList}" var="organization"
+                                               itemLabel="#{organization.nameOrganization}" itemValue="#{organiz}"/>
+                                <p:column>
+                                    <h:outputText value="#{organiz.nameOrganization}"/>
+                                </p:column>
+                            </p:selectOneMenu>
                         </p:column>
                     </p:row>
+                </p:panelGrid>
+                <br/>
+                <p:panelGrid styleClass="ui-panelgrid-blank">
                     <p:row>
-                        <p:column colspan="1">
-                            <p:inputText id="nameObject" value="#{objectAdministration.nameObject}"
-                                         title="Наименование"/>
+                        <p:column colspan="2">
+                            <h:outputText value="Город"/>
                         </p:column>
-                    </p:row>
-                    <p:row>
+                        <p:column colspan="3">
+                            <h:outputText value="Улица"/>
+                        </p:column>
                         <p:column colspan="1">
                             <h:outputText value="Номер дома"/>
                         </p:column>
                     </p:row>
                     <p:row>
+                        <p:column colspan="2">
+                            <p:selectOneMenu id="idCity" value="#{objectAdministration.cityEntity}"
+                                             converter="omnifaces.SelectItemsConverter"
+                                             var="cit"
+                            >
+                                <f:selectItems value="#{objectAdministration.cityEntityList}" var="city"
+                                               itemLabel="#{city.nameCity}" itemValue="#{city}"/>
+                                <p:column>
+                                    <h:outputText value="#{cit.nameCity}"/>
+                                </p:column>
+                            </p:selectOneMenu>
+                        </p:column>
+                        <p:column colspan="3">
+                            <p:selectOneMenu id="idStreet" value="#{objectAdministration.streetEntity}"
+                                             converter="omnifaces.SelectItemsConverter"
+                                             var="str"
+                            >
+                                <f:selectItems value="#{objectAdministration.streetEntityList}" var="street"
+                                               itemLabel="#{street.nameStreet}" itemValue="#{street}"/>
+                                <p:column>
+                                    <h:outputText value="#{str.nameStreet}"/>
+                                </p:column>
+                            </p:selectOneMenu>
+                        </p:column>
                         <p:column colspan="1">
                             <p:inputText id="name" value="#{objectAdministration.home}"
-                                         title="name"/>
+                                         title="Номер дома"/>
                         </p:column>
                     </p:row>
-                    <p:column colspan="3">
-
-                        <p:selectOneMenu id="idCity" value="#{objectAdministration.cityEntity}"
-                                         converter="omnifaces.SelectItemsConverter"
-                                         var="cit"
-                        >
-                            <f:selectItems value="#{objectAdministration.cityEntityList}" var="city"
-                                           itemLabel="#{city.nameCity}" itemValue="#{city}" />
-                            <p:column>
-                                <h:outputText value="#{cit.nameCity}" />
-                            </p:column>
-                        </p:selectOneMenu>
-                    </p:column>
-
-                    <p:column colspan="3">
-                        <p:selectOneMenu id="idStreet" value="#{objectAdministration.streetEntity}"
-                                         converter="omnifaces.SelectItemsConverter"
-                                         var="str"
-                        >
-                            <f:selectItems value="#{objectAdministration.streetEntityList}" var="street"
-                                           itemLabel="#{street.nameStreet}" itemValue="#{street}" />
-                            <p:column>
-                                <h:outputText value="#{str.nameStreet}" />
-                            </p:column>
-                        </p:selectOneMenu>
-                    </p:column>
-
-                    <p:column colspan="3">
-                        <p:selectOneMenu id="idOrganization" value="#{objectAdministration.organizationEntity}"
-                                         converter="omnifaces.SelectItemsConverter"
-                                         var="organiz"
-                        >
-                            <f:selectItems value="#{objectAdministration.organizationEntityList}" var="organization"
-                                           itemLabel="#{organization.nameOrganization}" itemValue="#{organiz}" />
-                            <p:column>
-                                <h:outputText value="#{organiz.nameOrganization}" />
-                            </p:column>
-                        </p:selectOneMenu>
-                    </p:column>
-
-
-
-
-
+                </p:panelGrid>
+                <br/>
+                <p:panelGrid styleClass="ui-panelgrid-blank">
                     <p:row>
                         <p:column colspan="1">
                             <h:outputText value="ГВС"/>
+                        </p:column>
+                        <p:column colspan="1">
+                            <h:outputText value="Отопление"/>
+                        </p:column>
+                        <p:column colspan="1">
+                            <h:outputText value="Вентиляция"/>
                         </p:column>
                     </p:row>
                     <p:row>
@@ -94,36 +111,17 @@
                             <p:inputText id="hotWater" value="#{objectAdministration.hotWater}"
                                          title="Горячее водоснабжение"/>
                         </p:column>
-                    </p:row>
-
-
-                    <p:row>
-                        <p:column colspan="1">
-                            <h:outputText value="Отопление"/>
-                        </p:column>
-                    </p:row>
-                    <p:row>
                         <p:column colspan="1">
                             <p:inputText id="heating" value="#{objectAdministration.heating}"
                                          title="Отопление"/>
                         </p:column>
-                    </p:row>
-
-                    <p:row>
-                        <p:column colspan="1">
-                            <h:outputText value="Вентиляция"/>
-                        </p:column>
-                    </p:row>
-                    <p:row>
                         <p:column colspan="1">
                             <p:inputText id="ventilation" value="#{objectAdministration.ventilation}"
                                          title="Вентиляция"/>
                         </p:column>
                     </p:row>
-
-
+                    <p:row>Плановые объемы по объекту</p:row>
                 </p:panelGrid>
-
                 <p:commandButton value="Сохранить" action="#{objectAdministration.save()}"
                                  rendered="#{userBean.doRightVerify('createUser')}"/>
             </p:panel>
