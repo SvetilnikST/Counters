@@ -1,7 +1,7 @@
 package pst.beans.user;
 
 import org.apache.commons.lang3.StringUtils;
-import pst.beans.department.TblDepartmentEntity;
+//import pst.beans.department.TblDepartmentEntity;
 import pst.beans.rightsItems.RightsItemEntity;
 import pst.beans.roles.RolesEntity;
 import pst.library.BCrypt;
@@ -47,21 +47,21 @@ public class AutenticationBean {
         return LoginResult.SUCCSES;
     }
 
-    public TblDepartmentEntity getDepartmentEntity(String login) {
-        if (StringUtils.isEmpty(login)) {
-           return null;
-        }
-        TypedQuery<UserEntity> query = entityManager.createQuery(
-                "select entity from UserEntity entity where entity.username like :login",
-                UserEntity.class);
-        query.setParameter("login", login);
-
-        UserEntity userEntity = query.getSingleResult();
-        if (userEntity == null) {
-            return null;
-        }
-        return userEntity.getDepartmentEntity();
-    }
+//    public TblDepartmentEntity getDepartmentEntity(String login) {
+//        if (StringUtils.isEmpty(login)) {
+//           return null;
+//        }
+//        TypedQuery<UserEntity> query = entityManager.createQuery(
+//                "select entity from UserEntity entity where entity.username like :login",
+//                UserEntity.class);
+//        query.setParameter("login", login);
+//
+//        UserEntity userEntity = query.getSingleResult();
+//        if (userEntity == null) {
+//            return null;
+//        }
+//        return userEntity.getDepartmentEntity();
+//    }
 
     public Map<String, String> getRight(String login) {
         Map< String, String > rights = new HashMap< String, String >();

@@ -17,10 +17,10 @@ import java.util.logging.Logger;
 
 
 
-@MessageDriven(name = "CountersToAskMDB", activationConfig = {
-        @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "queue/CountersToAskMDBQueue"),
-        @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue"),
-        @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge")})
+//@MessageDriven(name = "CountersToAskMDB", activationConfig = {
+//        @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "queue/CountersToAskMDBQueue"),
+//        @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue"),
+//        @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge")})
 
 public class QueueMDB implements MessageListener {
 

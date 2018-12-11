@@ -44,6 +44,8 @@ public class OrganizAdministration implements Serializable {
     private List<TblCityEntity> cityEntityList;
     private List<TblStreetEntity> streetEntityList;
     private String home;
+    private String dataBoss;
+    private String dataWorker;
 
     private List<TblObjectEntity> objectEntityList;
 
@@ -70,6 +72,8 @@ public class OrganizAdministration implements Serializable {
             this.UNP = 0;
             this.phone="";
             this.home="";
+            this.dataBoss="";
+            this.dataWorker="";
         }
         tblOrganizationEntitysList = organizationDAO.findAll();
         cityEntityList = cityDAO.findAll();
@@ -84,6 +88,10 @@ public class OrganizAdministration implements Serializable {
         this.setPhone(organizationEntity.getPhone());
         this.setStreetEntity(organizationEntity.getStreetEntity());
         this.setCityEntity(organizationEntity.getCityEntity());
+        this.setHome(organizationEntity.getHome());
+        this.setDataBoss(organizationEntity.getDataBoss());
+        this.setDataWorker(organizationEntity.getDataWoker());
+
     }
 
     public String save() {
@@ -95,6 +103,8 @@ public class OrganizAdministration implements Serializable {
         tblOrganizationEntity.setUNP(this.UNP);
         tblOrganizationEntity.setPhone(this.phone);
         tblOrganizationEntity.setHome(this.home);
+        tblOrganizationEntity.setDataBoss(this.dataBoss);
+        tblOrganizationEntity.setDataWoker(this.dataWorker);
 
         if (tblOrganizationEntity.getIdOrganization() == 0) {
 
@@ -231,5 +241,21 @@ public class OrganizAdministration implements Serializable {
 
     public void setHome(String home) {
         this.home = home;
+    }
+
+    public String getDataBoss() {
+        return dataBoss;
+    }
+
+    public void setDataBoss(String dataBoss) {
+        this.dataBoss = dataBoss;
+    }
+
+    public String getDataWorker() {
+        return dataWorker;
+    }
+
+    public void setDataWorker(String dataWorker) {
+        this.dataWorker = dataWorker;
     }
 }

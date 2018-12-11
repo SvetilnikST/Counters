@@ -1,6 +1,6 @@
 package pst.beans.user;
 
-import pst.beans.department.TblDepartmentEntity;
+//import pst.beans.department.TblDepartmentEntity;
 import pst.beans.roles.RolesEntity;
 
 import javax.persistence.*;
@@ -40,9 +40,9 @@ public class UserEntity {
     private String nameSur;
 
 
-    @ManyToOne
-    @JoinColumn(name = "department")
-    private TblDepartmentEntity departmentEntity;
+//    @ManyToOne
+//    @JoinColumn(name = "department")
+//    private TblDepartmentEntity departmentEntity;
 
     @ManyToMany (fetch = FetchType.EAGER)
     @JoinTable(name = "tblUserRole",
@@ -122,13 +122,13 @@ public class UserEntity {
         this.updated_at = updated_at;
     }
 
-    public TblDepartmentEntity getDepartmentEntity() {
-        return departmentEntity;
-    }
-
-    public void setDepartmentEntity(TblDepartmentEntity departmentEntity) {
-        this.departmentEntity = departmentEntity;
-    }
+//    public TblDepartmentEntity getDepartmentEntity() {
+//        return departmentEntity;
+//    }
+//
+//    public void setDepartmentEntity(TblDepartmentEntity departmentEntity) {
+//        this.departmentEntity = departmentEntity;
+//    }
 
     public Set<RolesEntity> getUserRoleEntitySet() {
         return userRoleEntitySet;

@@ -4,50 +4,33 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 template="WEB-INF/template/template.xhtml"
 >
-
     <ui:define name="page_title">
-        Пользователь
+        Данные пользователя
     </ui:define>
-
     <ui:define name="page_body">
         <h:form>
             <p:panel>
                 <p:toolbar>
                     <f:facet name="left">
-                        <!--<p:button type="button" icon="ui-icon-home" href="http://localhost:8080/counters/"/>-->
-                        <!--<p:commandButton type="button" value="Изменить" icon="ui-icon-pencil"/>-->
-
                         <p:button outcome="editUser" value="Изменить" icon="ui-icon-pencil"
                                   rendered="#{userBean.doRightVerify('createUser')}">
                             <f:param name="idUser" value="#{userAdministration.id}"/>
                         </p:button>
-
-                       
-                        <p:button type="button" title="Все пользователи" value="Список пользователей" icon="ui-icon-person" href="/administration.xhtml"/>
+                        <p:button type="button" title="Все пользователи" value="Список пользователей"
+                                  icon="ui-icon-person" href="/administration.xhtml"/>
                     </f:facet>
-
                 </p:toolbar>
-<br/>
-
-                <!--<h2><p:outputLabel value="#{userAdministration.username}"/></h2>-->
-                <!--<p:button type="button" icon="ui-icon-home" value="На главную" href="http://localhost:8080/counters/"/>-->
-
-
-                <!--<p:button type="button" value="Все пользователи" href="/administration.xhtml"/>-->
-
-
+                <br/>
                 <p:panelGrid>
                     <p:row>
                         <p:column colspan="1">Логин:</p:column>
                         <p:column colspan="1"><h:outputText
                                 value="#{userAdministration.username}"/></p:column>
                     </p:row>
-
                     <p:row>
                         <p:column colspan="1">Фамилия:</p:column>
                         <p:column colspan="1"><h:outputText value="#{userAdministration.surname}"/></p:column>
                     </p:row>
-
                     <p:row>
                         <p:column colspan="1">Имя:</p:column>
                         <p:column colspan="1"><h:outputText value="#{userAdministration.name}"/></p:column>
@@ -56,26 +39,14 @@
                         <p:column colspan="1">Отчество:</p:column>
                         <p:column colspan="1"><h:outputText value="#{userAdministration.nameSur}"/></p:column>
                     </p:row>
-
                     <p:row>
                         <p:column colspan="1">Email:</p:column>
                         <p:column colspan="1"><h:outputText value="#{userAdministration.email}"/></p:column>
                     </p:row>
-
                     <p:row>
                         <p:column colspan="1">Статус:</p:column>
                         <p:column colspan="1"><h:outputText value="#{userAdministration.status}"/></p:column>
                     </p:row>
-
-                    <p:row>
-                        <p:column colspan="1">Подразделение:</p:column>
-                        <p:column colspan="1">
-                            <h:outputText value="#{userAdministration.departmentEntity.department}">
-                                <f:convertDateTime pattern="dd MMMM YYYY г., HH:mm"/>
-                            </h:outputText>
-                        </p:column>
-                    </p:row>
-
                     <p:row>
                         <p:column colspan="1">Создано:</p:column>
                         <p:column colspan="1">
@@ -84,7 +55,6 @@
                             </h:outputText>
                         </p:column>
                     </p:row>
-
                     <p:row>
                         <p:column colspan="1">Изменено:</p:column>
                         <p:column colspan="1">

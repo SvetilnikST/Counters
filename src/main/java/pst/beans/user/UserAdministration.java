@@ -1,7 +1,7 @@
 package pst.beans.user;
 
-import pst.beans.department.DepartmentDAO;
-import pst.beans.department.TblDepartmentEntity;
+//import pst.beans.department.DepartmentDAO;
+//import pst.beans.department.TblDepartmentEntity;
 import pst.beans.roles.RolesDAO;
 import pst.beans.roles.RolesEntity;
 
@@ -27,7 +27,7 @@ public class UserAdministration implements Serializable {
     private String[] rolesToSet1;
     private List<RolesEntity> rolesEntityList;
     private List<String> myTest;
-    private List<TblDepartmentEntity> departmentList;
+//    private List<TblDepartmentEntity> departmentList;
     private String stope;
     private Integer myid;
     private List<UserEntity> userEntitiesList;
@@ -38,8 +38,8 @@ public class UserAdministration implements Serializable {
     @EJB
     private RolesDAO rolesDAO;
 
-    @EJB
-    private DepartmentDAO departmentDAO;
+//    @EJB
+//    private DepartmentDAO departmentDAO;
 
     @Inject
     private UserBean userBean;
@@ -52,7 +52,7 @@ public class UserAdministration implements Serializable {
     private short status;
     private Timestamp created_at;
     private Timestamp updated_at;
-    TblDepartmentEntity departmentEntity;
+//    TblDepartmentEntity departmentEntity;
     private String password;
     private Boolean updatePassword;
     private String surname;
@@ -82,8 +82,8 @@ public class UserAdministration implements Serializable {
             this.username = "";
             this.email = "";
             this.status = 10;
-            TblDepartmentEntity dep = departmentDAO.read(20);
-            this.departmentEntity = dep;
+//            TblDepartmentEntity dep = departmentDAO.read(20);
+//            this.departmentEntity = dep;
             rolesToSet = new String[0];
             this.surname = "";
             this.name="";
@@ -99,7 +99,7 @@ public class UserAdministration implements Serializable {
         }
 
         //14.09 заменила readList на findAll
-        departmentList = departmentDAO.findAll();
+//        departmentList = departmentDAO.findAll();
     }
 
     public void load(UserEntity userEntity){
@@ -112,7 +112,7 @@ public class UserAdministration implements Serializable {
         this.setStatus(userEntity.getStatus());
         this.setCreated_at(timstampFromInt(userEntity.getCreated_at()));
         this.setUpdated_at(timstampFromInt(userEntity.getUpdated_at()));
-        this.setDepartmentEntity(userEntity.getDepartmentEntity());
+//        this.setDepartmentEntity(userEntity.getDepartmentEntity());
         this.setSurname(userEntity.getSurname());
         this.setName(userEntity.getName());
         this.setNameSur(userEntity.getNameSur());
@@ -148,7 +148,7 @@ public class UserAdministration implements Serializable {
         userEntity.setName(this.name);
         userEntity.setNameSur(this.nameSur);
         userEntity.setStatus(this.status);
-        userEntity.setDepartmentEntity(departmentEntity);
+//        userEntity.setDepartmentEntity(departmentEntity);
         if (updatePassword) {
             userEntity.setPassword_hash(userBean.generateHashPass(password));
             userEntity.setAuth_key("Переделать");
@@ -231,14 +231,14 @@ public class UserAdministration implements Serializable {
     public void setMyTest(List<String> myTest) {
         this.myTest = myTest;
     }
-
-    public List<TblDepartmentEntity> getDepartmentList() {
-        return departmentList;
-    }
-
-    public void setDepartmentList(List<TblDepartmentEntity> departmentList) {
-        this.departmentList = departmentList;
-    }
+//
+//    public List<TblDepartmentEntity> getDepartmentList() {
+//        return departmentList;
+//    }
+//
+//    public void setDepartmentList(List<TblDepartmentEntity> departmentList) {
+//        this.departmentList = departmentList;
+//    }
 
     public String getStope() {
         return stope;
@@ -272,13 +272,13 @@ public class UserAdministration implements Serializable {
         this.rolesDAO = rolesDAO;
     }
 
-    public DepartmentDAO getDepartmentDAO() {
-        return departmentDAO;
-    }
+//    public DepartmentDAO getDepartmentDAO() {
+//        return departmentDAO;
+//    }
 
-    public void setDepartmentDAO(DepartmentDAO departmentDAO) {
-        this.departmentDAO = departmentDAO;
-    }
+//    public void setDepartmentDAO(DepartmentDAO departmentDAO) {
+//        this.departmentDAO = departmentDAO;
+//    }
 
     public UserBean getUserBean() {
         return userBean;
@@ -360,13 +360,13 @@ public class UserAdministration implements Serializable {
         this.updated_at = updated_at;
     }
 
-    public TblDepartmentEntity getDepartmentEntity() {
-        return departmentEntity;
-    }
-
-    public void setDepartmentEntity(TblDepartmentEntity departmentEntity) {
-        this.departmentEntity = departmentEntity;
-    }
+//    public TblDepartmentEntity getDepartmentEntity() {
+//        return departmentEntity;
+//    }
+//
+//    public void setDepartmentEntity(TblDepartmentEntity departmentEntity) {
+//        this.departmentEntity = departmentEntity;
+//    }
 
     public String getPassword() {
         return password;

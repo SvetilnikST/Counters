@@ -1,7 +1,7 @@
 package pst.beans.user;
 
 import org.apache.commons.lang3.StringUtils;
-import pst.beans.department.TblDepartmentEntity;
+//import pst.beans.department.TblDepartmentEntity;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -25,7 +25,7 @@ public class UserBean implements Serializable {
     private UserEntity userEntity;
     private String login;
     private String password;
-    private TblDepartmentEntity departmentEntity;
+//    private TblDepartmentEntity departmentEntity;
     private boolean autentificated;
     private Map<String, String> rights = new HashMap<String, String>();
 
@@ -38,7 +38,7 @@ public class UserBean implements Serializable {
     public void doLogin() {
         autentificated = (autenticationBean.doLogin(login, password) == AutenticationBean.LoginResult.SUCCSES);
         if (autentificated) {
-            this.departmentEntity = autenticationBean.getDepartmentEntity(login);
+//            this.departmentEntity = autenticationBean.getDepartmentEntity(login);
             this.userEntity = userDAO.readLogin(login);
             this.rights = autenticationBean.getRight(login);
             setCookie(COOKIE_NAME, login, COOKIE_TIME_TO_REMEMBER);
@@ -85,7 +85,7 @@ public class UserBean implements Serializable {
                 String tmpName = cookie.getValue();
                 if(!StringUtils.isEmpty(tmpName)){
                     this.login=tmpName;
-                    this.departmentEntity = autenticationBean.getDepartmentEntity(login);
+//                    this.departmentEntity = autenticationBean.getDepartmentEntity(login);
                     this.rights = autenticationBean.getRight(login);
                     this.userEntity = userDAO.readLogin(login);
                     autentificated=true;
@@ -165,13 +165,13 @@ public class UserBean implements Serializable {
         this.autentificated = autentificated;
     }
 
-    public TblDepartmentEntity getDepartmentEntity() {
-        return departmentEntity;
-    }
-
-    public void setDepartmentEntity(TblDepartmentEntity departmentEntity) {
-        this.departmentEntity = departmentEntity;
-    }
+//    public TblDepartmentEntity getDepartmentEntity() {
+//        return departmentEntity;
+//    }
+//
+//    public void setDepartmentEntity(TblDepartmentEntity departmentEntity) {
+//        this.departmentEntity = departmentEntity;
+//    }
 
     public UserEntity getUserEntity() {
         return userEntity;

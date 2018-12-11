@@ -37,6 +37,13 @@ public class TblOrganizationEntity {
     @Column(name = "home", nullable = false , length = 25)
     private String home;
 
+
+    @Column(name = "DataBoss", nullable = true , length = 500)
+    private String dataBoss;
+
+    @Column(name = "DataWoker", nullable = true , length = 500)
+    private String dataWoker;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "organizationEntity")
     private Set<TblObjectEntity> tblObjectEntitySet = new HashSet<>();
 
@@ -102,5 +109,21 @@ public class TblOrganizationEntity {
 
     public void setHome(String home) {
         this.home = home;
+    }
+
+    public String getDataBoss() {
+        return dataBoss;
+    }
+
+    public void setDataBoss(String dataBoss) {
+        this.dataBoss = dataBoss;
+    }
+
+    public String getDataWoker() {
+        return dataWoker;
+    }
+
+    public void setDataWoker(String dataWoker) {
+        this.dataWoker = dataWoker;
     }
 }

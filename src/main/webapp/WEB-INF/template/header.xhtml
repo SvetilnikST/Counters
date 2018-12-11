@@ -14,25 +14,23 @@
                     <p:button type="button"  value="Войти" href="/login.xhtml"/>
                 </c:if>
                 <c:if test="#{userBean.autentificated}">
-                    <p:button type="button" value="Акт сверки" href="/test_print_act.xhtml"/>
-                    <p:button type="button" value="Журнал" href="/test_magazine.xhtml"/>
-                    <p:menuButton value="Справочники">
-                        <p:menuitem value="Объекты" icon="ui-icon-cart" url="/listObject.xhtml"/>
-                        <p:menuitem value="Устройства" url="/listDevice.xhtml"/>
+                    <p:button type="button" value="Устройства" href="/listDevice.xhtml"/>
+                    <p:button type="button" value="Объекты" href="/listObject.xhtml"/>
+                    <p:button type="button" value="Документы" href="/listContract.xhtml"/>
+
+
+                    <!--<p:button type="button" value="Акт сверки" href="/test_print_act.xhtml"/>-->
+                    <!--<p:button type="button" value="Журнал" href="/test_magazine.xhtml"/>-->
+                    <p:menuButton value="Панель диспетчера">
+                        <p:menuitem value="Организации" url="/listOrganization.xhtml"/>
                         <p:menuitem value="Типы устройств" url="/listTypeDevice.xhtml"/>
                         <p:menuitem value="Измерения" url="/listUnitQ.xhtml"/>
-                        <p:menuitem value="Улицы" url="/listStreet.xhtml"/>
-                        <p:menuitem value="Города" url="/listCity.xhtml"/>
-                        <p:menuitem value="Организации" url="/listOrganization.xhtml"/>
-                        <p:menuitem value="Документы" url="/listContract.xhtml"/>
-
+                        <p:menuitem value="Список городов" url="/listCity.xhtml"/>
+                        <p:menuitem value="Список улиц" url="/listStreet.xhtml"/>
                     </p:menuButton>
-
                     <p:menuButton value="Панель администратора" rendered="#{userBean.doRightVerify('admin')}">
                         <p:menuitem value="Пользователи" icon="ui-icon-person"
                                     url="/administration.xhtml"/>
-                        <p:menuitem value="Подразделения" icon="ui-icon-contact"
-                                    url="/listDepartment.xhtml"/>
                     </p:menuButton>
                     <p:commandButton value="Выход(#{userBean.login})" icon="ui-icon-person"
                                      action="#{userBean.doLogout}"/>

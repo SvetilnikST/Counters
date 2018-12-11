@@ -4,17 +4,28 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 template="WEB-INF/template/template.xhtml">
     <ui:define name="page_title">
-        Пользователь
+        Страница редактирования пользователя
     </ui:define>
     <ui:define name="page_body">
         <h:form>
             <p:panel>
+                <p:toolbar>
+                    <f:facet name="left">
+                        <p:commandButton value="Сохранить пользователя" action="#{userAdministration.save()}"
+                                         rendered="#{userBean.doRightVerify('createUser')}"/>
+                        <p:button type="button" title="Список пользователей" value="Все"
+                                  icon="ui-icon-person" href="/administration.xhtml"/>
+                        <p:commandButton value="Удалить пользователя" action="#{userAdministration.remove()}"
+                                         rendered="#{userBean.doRightVerify('createUser')}"/>
+                    </f:facet>
+                </p:toolbar>
+
                 <h2>
                     <p:outputLabel rendered="#{userAdministration.id==0 or userAdministration.id==null}">
                         Новый пользователь
                     </p:outputLabel>
                     <p:outputLabel rendered="#{userAdministration.id!=0 and userAdministration.id!=null}"
-                                   value="Изменение данных пользователя #{userAdministration.username} "/>
+                                   value="Редактирование данных #{userAdministration.username} "/>
                 </h2>
                 <p:panelGrid styleClass="ui-panelgrid-blank">
                     <p:row>
@@ -36,10 +47,6 @@
                         <p:column colspan="1">
                             <h:outputText value="Статус"/>
                         </p:column>
-                        <p:column colspan="3">
-                            <h:outputText value="Подразделение"/>
-                        </p:column>
-
                     </p:row>
                     <p:row>
                         <p:column colspan="1">
@@ -59,7 +66,6 @@
                             <p:inputText id="nameSur" value="#{userAdministration.nameSur}"
                                          title="Surname"/>
                         </p:column>
-
                         <p:column colspan="1">
                             <p:inputText id="email" value="#{userAdministration.email}"
                                          title="Email"/>
@@ -68,37 +74,20 @@
                             <p:inputText id="status" value="#{userAdministration.status}"
                                          title="Статус"/>
                         </p:column>
-                        <p:column colspan="3">
-
-                            <p:selectOneMenu id="idDepartment" value="#{userAdministration.departmentEntity}"
-                                             converter="omnifaces.SelectItemsConverter"
-                                             var="dep"
-                            >
-                                <f:selectItems value="#{userAdministration.departmentList}" var="department"
-                                               itemLabel="#{department.department}" itemValue="#{department}" />
-                                <p:column>
-                                    <h:outputText value="#{dep.department}" />
-                                </p:column>
-                            </p:selectOneMenu>
-                        </p:column>
-
                     </p:row>
                 </p:panelGrid>
                 <p:panelGrid styleClass="ui-noborder">
-
-<p:row>
-    <p:column colspan="3">
-        <h:outputText value="Пароль"/>
-    </p:column>
-</p:row>
+                    <p:row>
+                        <p:column colspan="3">
+                            <h:outputText value="Пароль"/>
+                        </p:column>
+                    </p:row>
 
                     <p:column colspan="3">
                         <p:password id="passwrd" value="#{userAdministration.password}"
                                     title="Пароль"/>
-                        <p:selectBooleanCheckbox value="#{userAdministration.updatePassword}" />
+                        <p:selectBooleanCheckbox value="#{userAdministration.updatePassword}"/>
                     </p:column>
-
-
                     <p:row>
                         <p:column colspan="1">
                             <p:selectCheckboxMenu id="multiple" value="#{userAdministration.rolesToSet}"
@@ -110,11 +99,7 @@
                         </p:column>
                     </p:row>
                 </p:panelGrid>
-                <p:commandButton value="Сохранить" action="#{userAdministration.save()}"
-                                 rendered="#{userBean.doRightVerify('createUser')}"/>
 
-                <p:commandButton value="Удалить пользователя" action="#{userAdministration.remove()}"
-                                 rendered="#{userBean.doRightVerify('createUser')}"/>
             </p:panel>
         </h:form>
     </ui:define>
