@@ -23,10 +23,23 @@
                     widgetVar="contractTable"
                     var="contract"
                     value="#{contractAdministration.tblContractEntitysList}">
-                <p:column headerText="ID">
-                    <h:link value="#{contract.idContract}" outcome="editContract">
+                <!--<p:column headerText="ID">-->
+                    <!--<h:link value="#{contract.idContract}" outcome="editContract">-->
+                        <!--<f:param name="idContract" value="#{contract.idContract}"/>-->
+                    <!--</h:link>-->
+                <!--</p:column>-->
+                <p:column headerText="Дата">
+                    <h:outputText value="#{contract.date}">
+                        <f:convertDateTime pattern="dd MMMM YYYY г., HH:mm:ss"/>
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="Номер документа">
+                    <h:link value="#{contract.number}" outcome="editContract">
                         <f:param name="idContract" value="#{contract.idContract}"/>
                     </h:link>
+
+                    <!--<h:outputText value="#{contract.number}">-->
+                    <!--</h:outputText>-->
                 </p:column>
                 <p:column headerText="Наименование">
                     <h:outputText value="#{contract.contract}">
@@ -36,8 +49,16 @@
                     <h:outputText value="#{contract.deviceEntity.name}">
                     </h:outputText>
                 </p:column>
+                <p:column headerText="Объект учета">
+                    <h:outputText value="#{contract.deviceEntity.objectEntity.nameObject}">
+                    </h:outputText>
+                </p:column>
                 <p:column headerText="Организация">
                     <h:outputText value="#{contract.deviceEntity.objectEntity.organizationEntity.nameOrganization}">
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="Описание">
+                    <h:outputText value="#{contract.description}">
                     </h:outputText>
                 </p:column>
             </p:dataTable>

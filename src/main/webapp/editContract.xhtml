@@ -10,28 +10,48 @@
         <h:form>
             <p:panel>
                 <h2>
-                    <p:outputLabel rendered="#{userAdministration.id==0 or userAdministration.id==null}">
+                    <p:outputLabel rendered="#{contractAdministration.idContract==0 or contractAdministration.idContract==null}">
                         Новый документ
                     </p:outputLabel>
-                    <p:outputLabel rendered="#{userAdministration.id!=0 and userAdministration.id!=null}"
-                                   value="Изменение данных о документе #{contractAdministration.idContract} "/>
+                    <p:outputLabel rendered="#{contractAdministration.idContract!=0 and contractAdministration.idContract!=null}"
+                                   value="Изменение данных о документе #{contractAdministration.number} "/>
                 </h2>
                 <p:panelGrid styleClass="ui-panelgrid-blank">
                     <p:row>
+                        <p:column colspan="1">
+                            <h:outputText value="Дата">
+
+                            </h:outputText>
+                        </p:column>
+                        <p:column colspan="1">
+                            <h:outputText value="Номер"/>
+                        </p:column>
+
                         <p:column colspan="1">
                             <h:outputText value="Наименование"/>
                         </p:column>
                         <p:column colspan="3">
                             <h:outputText value="Устройство"/>
                         </p:column>
+
+                        <p:column colspan="1">
+                            <h:outputText value="Описание"/>
+                        </p:column>
                     </p:row>
                     <p:row>
                         <p:column colspan="1">
-                            <p:inputText id="name" value="#{contractAdministration.contract}"
-                                         title="название"/>
+                            <p:inputText id="date" value="#{contractAdministration.date}"
+                                         title="Дата документа"/>
                         </p:column>
 
-
+                        <p:column colspan="1">
+                            <p:inputText id="number" value="#{contractAdministration.number}"
+                                         title="Номер документа"/>
+                        </p:column>
+                        <p:column colspan="1">
+                            <p:inputText id="name" value="#{contractAdministration.contract}"
+                                         title="Наименование"/>
+                        </p:column>
                         <p:column colspan="3">
                             <p:selectOneMenu id="device_id" value="#{contractAdministration.deviceEntity}"
                                              converter="omnifaces.SelectItemsConverter"
@@ -42,6 +62,12 @@
                                     <h:outputText value="#{device.name}"/>
                                 </p:column>
                             </p:selectOneMenu>
+                        </p:column>
+
+
+                        <p:column colspan="1">
+                            <p:inputText id="description" value="#{contractAdministration.description}"
+                                         title="Описание"/>
                         </p:column>
 
                     </p:row>

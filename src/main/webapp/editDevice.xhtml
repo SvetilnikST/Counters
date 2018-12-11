@@ -125,6 +125,52 @@
                 <p:commandButton value="Сохранить" action="#{deviceAdministration.save()}"
                                  rendered="#{userBean.doRightVerify('createUser')}"/>
             </p:panel>
+
+
+
+
+            <p:panelGrid >
+                <f:facet name="header">
+                    <p:row>
+                        ПРОВЕРИТЬ ЧТОБЫ ОТОБРАЖАЛО ПО ДАННОМУ УСТРОЙСТВУ
+                        <p:column colspan="2">Сроки поверки оборудования</p:column>
+                    </p:row>
+                </f:facet>
+                    <p:row>
+                        <p:column colspan="1">Измерительно-вычислительный блок:</p:column>
+                        <p:column colspan="1"><h:outputText
+                                value="#{verificationAdministration.IVB}">
+                            <f:convertDateTime pattern="dd MMMM YYYY г., HH:mm:ss"/></h:outputText>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column colspan="1">Первичный преобразователь расхода:</p:column>
+                        <p:column colspan="1"><h:outputText
+                                value="#{verificationAdministration.PPR}">
+                            <f:convertDateTime pattern="dd MMMM YYYY г., HH:mm:ss"/></h:outputText>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column colspan="1">Термометр сопративления:</p:column>
+                        <p:column colspan="1"><h:outputText
+                                value="#{verificationAdministration.TCP}">
+                            <f:convertDateTime pattern="dd MMMM YYYY г., HH:mm:ss"/></h:outputText>
+                        </p:column>
+                    </p:row>
+
+                    <p:row>
+                        <p:column colspan="1">Дополнительное оборудование:</p:column>
+                        <p:column colspan="1">
+                            <h:outputText value="#{verificationAdministration.additionalDevice}">
+                                <f:convertDateTime pattern="dd MMMM YYYY г., HH:mm:ss"/></h:outputText>
+                        </p:column>
+
+                    </p:row>
+
+
+            </p:panelGrid>
+
+
         </h:form>
     </ui:define>
 </ui:composition>

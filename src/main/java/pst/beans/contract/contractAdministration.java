@@ -33,6 +33,9 @@ public class contractAdministration implements Serializable {
     @Default
     private int idContract;
     private String contract;
+    private int date;
+    private String description;
+    private String number;
     private List<TblDeviceEntity> deviceEntityList;
 
 
@@ -64,6 +67,9 @@ public class contractAdministration implements Serializable {
         this.setIdContract(contractEntity.getIdContract());
         this.setContract(contractEntity.getContract());
         this.setDeviceEntity(contractEntity.getDeviceEntity());
+        this.setDate(contractEntity.getDate());
+        this.setDescription(contractEntity.getDescription());
+        this.setNumber(contractEntity.getNumber());
     }
 
     public String save() {
@@ -73,6 +79,9 @@ public class contractAdministration implements Serializable {
         }
         tblContractEntity.setContract(this.contract);
         tblContractEntity.setDeviceEntity(deviceEntity);
+        tblContractEntity.setDate(this.date);
+        tblContractEntity.setDescription(this.description);
+        tblContractEntity.setNumber(this.number);
         if (tblContractEntity.getIdContract() == 0) {
             contractDAO.create(tblContractEntity);
         } else {
@@ -153,4 +162,27 @@ public class contractAdministration implements Serializable {
         this.deviceEntityList = deviceEntityList;
     }
 
+    public int getDate() {
+        return date;
+    }
+
+    public void setDate(int date) {
+        this.date = date;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
 }

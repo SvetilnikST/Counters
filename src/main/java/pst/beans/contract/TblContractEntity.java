@@ -14,8 +14,17 @@ public class TblContractEntity {
     @Column(name = "idContract")
     private int idContract;
 
-    @Column(name = "contract")
+    @Column(name = "contract", nullable = true,length = 255)
     private String contract;
+
+    @Column(name = "date")
+    private int date;
+
+    @Column(name = "description",nullable = true,length = 500)
+    private String  description;
+
+    @Column(name = "number",nullable = true,length = 50)
+    private String number;
 
     @ManyToOne
     @JoinColumn(name = "idDevice")
@@ -44,5 +53,29 @@ public class TblContractEntity {
 
     public void setDeviceEntity(TblDeviceEntity deviceEntity) {
         this.deviceEntity = deviceEntity;
+    }
+
+    public int getDate() {
+        return date;
+    }
+
+    public void setDate(int date) {
+        this.date = date;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
     }
 }

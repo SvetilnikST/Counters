@@ -40,21 +40,21 @@
 
 
                 </p:column>
-
+                <p:column headerText="Город">
+                    <h:outputText value="#{object.cityEntity.nameCity}">
+                    </h:outputText>
+                </p:column>
                 <p:column headerText="Улицы">
                     <h:outputText value="#{object.streetEntity.nameStreet}">
                     </h:outputText>
                 </p:column>
 
-                <p:column headerText="Дом">
+                <p:column headerText="№Дома">
                     <h:outputText value="#{object.home}">
                     </h:outputText>
                 </p:column>
 
-                <p:column headerText="Город">
-                    <h:outputText value="#{object.cityEntity.nameCity}">
-                    </h:outputText>
-                </p:column>
+
 
                 <p:column headerText="Организация">
                     <h:outputText value="#{object.organizationEntity.nameOrganization}">
