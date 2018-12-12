@@ -7,6 +7,7 @@ import pst.beans.unitQ.TblUnitQEntity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -39,6 +40,19 @@ public class TblDeviceEntity {
 
     @Column(name = "requestInterval", nullable = false)
     private int requestInterval;
+
+
+    @Column(name = "IVB", nullable = true)
+    private Timestamp IVB;
+
+    @Column(name = "PPR", nullable = true)
+    private Timestamp PPR;
+
+    @Column(name = "TCP", nullable = true)
+    private Timestamp TCP;
+
+    @Column(name = "additionalDevice", nullable = true)
+    private Timestamp additionalDevice;
 
     @ManyToOne
     @JoinColumn(name="typeId")
@@ -151,5 +165,37 @@ public class TblDeviceEntity {
 
     public void setTblContractEntitySet(Set<TblContractEntity> tblContractEntitySet) {
         this.tblContractEntitySet = tblContractEntitySet;
+    }
+
+    public Timestamp getIVB() {
+        return IVB;
+    }
+
+    public void setIVB(Timestamp IVB) {
+        this.IVB = IVB;
+    }
+
+    public Timestamp getPPR() {
+        return PPR;
+    }
+
+    public void setPPR(Timestamp PPR) {
+        this.PPR = PPR;
+    }
+
+    public Timestamp getTCP() {
+        return TCP;
+    }
+
+    public void setTCP(Timestamp TCP) {
+        this.TCP = TCP;
+    }
+
+    public Timestamp getAdditionalDevice() {
+        return additionalDevice;
+    }
+
+    public void setAdditionalDevice(Timestamp additionalDevice) {
+        this.additionalDevice = additionalDevice;
     }
 }

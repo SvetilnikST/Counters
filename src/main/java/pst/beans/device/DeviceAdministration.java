@@ -16,6 +16,8 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import java.io.Serializable;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -51,6 +53,12 @@ public class DeviceAdministration implements Serializable {
     private String ip;
     private int num_port;
     private int requestInterval;
+    private Date PPR;
+    private Date IVB;
+    private Date TCP;
+    private Date additionalDevice;
+
+
     TblTypeDeviceEntity typeDeviceEntity;
     TblUnitQEntity unitQEntity;
     TblObjectEntity objectEntity;
@@ -84,6 +92,10 @@ public class DeviceAdministration implements Serializable {
             ip = "";
             num_port = 0;
             requestInterval = 0;
+            PPR = null;
+            IVB=null;
+            TCP=null;
+            additionalDevice=null;
         }
         tblDeviceEntitysList = deviceDAO.findAll();
         unitQList = unitQDAO.findAll();
@@ -104,6 +116,11 @@ public class DeviceAdministration implements Serializable {
         this.setNum_port(deviceEntity.getNum_port());
         this.setRequestInterval(deviceEntity.getRequestInterval());
         this.setObjectEntity(deviceEntity.getObjectEntity());
+
+        this.setPPR(timestampFromDate(deviceEntity.getPPR()));
+        this.setIVB(timestampFromDate(deviceEntity.getIVB()));
+        this.setTCP(timestampFromDate(deviceEntity.getTCP()));
+        this.setAdditionalDevice(timestampFromDate(deviceEntity.getAdditionalDevice()));
     }
 
     public String save() {
@@ -122,6 +139,11 @@ public class DeviceAdministration implements Serializable {
         tblDeviceEntity.setNum_port(this.num_port);
         tblDeviceEntity.setRequestInterval(this.requestInterval);
         tblDeviceEntity.setObjectEntity(objectEntity);
+        tblDeviceEntity.setPPR(timestampFromDate(this.PPR));
+        tblDeviceEntity.setIVB(timestampFromDate(this.IVB));
+        tblDeviceEntity.setTCP(timestampFromDate(this.TCP));
+        tblDeviceEntity.setAdditionalDevice(timestampFromDate(this.additionalDevice));
+
 
         if (tblDeviceEntity.getId() == 0) {
             deviceDAO.create(tblDeviceEntity);
@@ -130,6 +152,11 @@ public class DeviceAdministration implements Serializable {
         }
         return "listDevice.xhtml?faces-redirect=true&id" + String.valueOf(tblDeviceEntity.getId());
     }
+
+    private Timestamp timestampFromDate(Date fromDate) {
+        return new Timestamp(fromDate.getTime());
+    }
+
 
     public TblDeviceEntity getTblDeviceEntity() {
         return tblDeviceEntity;
@@ -297,5 +324,37 @@ public class DeviceAdministration implements Serializable {
 
     public void setTblDeviceEntitysList(List<TblDeviceEntity> tblDeviceEntitysList) {
         this.tblDeviceEntitysList = tblDeviceEntitysList;
+    }
+
+    public Date getPPR() {
+        return PPR;
+    }
+
+    public void setPPR(Date PPR) {
+        this.PPR = PPR;
+    }
+
+    public Date getIVB() {
+        return IVB;
+    }
+
+    public void setIVB(Date IVB) {
+        this.IVB = IVB;
+    }
+
+    public Date getTCP() {
+        return TCP;
+    }
+
+    public void setTCP(Date TCP) {
+        this.TCP = TCP;
+    }
+
+    public Date getAdditionalDevice() {
+        return additionalDevice;
+    }
+
+    public void setAdditionalDevice(Date additionalDevice) {
+        this.additionalDevice = additionalDevice;
     }
 }
