@@ -3,6 +3,7 @@ package pst.beans.deviceDataAdministration;
 import org.joda.time.LocalDateTime;
 import pst.beans.device.DeviceDAO;
 import pst.beans.device.TblDeviceEntity;
+import pst.beans.qBox.Common.BoxCommonDAO;
 import pst.beans.qBox.Common.TblBoxCommonEntity;
 import pst.beans.qBox.System.TblBoxSystemEntity;
 import pst.beans.schedule.SheduleDAO;
@@ -39,6 +40,9 @@ public class deviceDataAdminHistory implements Serializable {
 
     @EJB
     private SheduleDAO sheduleDAO;
+
+    @EJB
+    private BoxCommonDAO boxCommonDAO;
 
 
     @Default
@@ -139,9 +143,22 @@ public class deviceDataAdminHistory implements Serializable {
             sheduleReport.setP1(shedulerRecord.getCommons().get(0).getSystem().get(0).getP2());
             sheduleReport.setP1(shedulerRecord.getCommons().get(0).getSystem().get(0).getP3());
 
+            sheduleReport.setInStore1(shedulerRecord.getCommons().get(0).getInstore1());
+
             int a = 0;
             sheduleReports.add(sheduleReport);
         }
+    }
+
+
+    private void addRecordToRegister(int idShedule){
+        TblScheduleEntity scheduleEntity= sheduleDAO.read(idShedule);
+        TblBoxCommonEntity tblBoxCommonEntity = scheduleEntity.getCommons().get(0);
+        tblBoxCommonEntity.setInstore1(true);
+        boxCommonDAO.update(tblBoxCommonEntity);
+
+//        sheduleReports.setInStore1(true);
+
     }
 
     public List<TblBoxSystemEntity> getBoxSystemEntityList() {

@@ -9,6 +9,7 @@ public class SheduleReport {
     private String timeOn;
     private String timeError;
     private int idShedule;
+
     private String timeRunSys;
 //    private int number;
     private double SIGMA_Q;
@@ -30,6 +31,15 @@ public class SheduleReport {
     private float P2;
     private float P3;
 
+    private boolean inStore1;
+
+    public boolean isInStore1() {
+        return inStore1;
+    }
+
+    public void setInStore1(boolean inStore1) {
+        this.inStore1 = inStore1;
+    }
 
     public String getDateRequest() {
         return dateRequest;

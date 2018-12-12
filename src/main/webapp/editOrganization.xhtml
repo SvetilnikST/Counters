@@ -37,8 +37,9 @@
                                              title="name"/>
                         </p:column>
                         <p:column colspan="1">
-                            <p:inputText id="unp" value="#{organizationAdministration.UNP}"
-                                         title="УНП"/>
+                            <!--<p:inputText id="unp" value="#{organizationAdministration.UNP}"-->
+                                         <!--title="УНП"/>-->
+                            <p:inputMask id="unp" mask="999999999" value="#{organizationAdministration.UNP}"/>
                         </p:column>
                     </p:row>
                 </p:panelGrid>
@@ -96,8 +97,13 @@
                                          title="Номер дома"/>
                         </p:column>
                         <p:column colspan="1">
-                            <p:inputText id="phone" value="#{organizationAdministration.phone}"
-                                         title="Телефон"/>
+                            <!--<p:inputMask id="mask" mask="99-99-99"/>-->
+                            <!--<p:inputText id="phone" phone="99-99-99" value="#{organizationAdministration.phone}"-->
+                                         <!--title="Телефон"/>-->
+                            <p:inputMask id="phone" mask="99-99-99" value="#{organizationAdministration.phone}"/>
+                                <!--<p:inputText id="phone" phone="99-99-99" value="#{organizationAdministration.phone}"-->
+                                             <!--title="Телефон"/>-->
+
                         </p:column>
                     </p:row>
                 </p:panelGrid>
