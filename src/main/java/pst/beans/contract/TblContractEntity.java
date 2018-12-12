@@ -3,6 +3,7 @@ package pst.beans.contract;
 import pst.beans.device.TblDeviceEntity;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,8 +18,8 @@ public class TblContractEntity {
     @Column(name = "contract", nullable = true,length = 255)
     private String contract;
 
-    @Column(name = "date")
-    private int date;
+    @Column(name = "date", nullable = false)
+    private Timestamp date;
 
     @Column(name = "description",nullable = true,length = 500)
     private String  description;
@@ -55,11 +56,11 @@ public class TblContractEntity {
         this.deviceEntity = deviceEntity;
     }
 
-    public int getDate() {
+    public Timestamp getDate() {
         return date;
     }
 
-    public void setDate(int date) {
+    public void setDate(Timestamp date) {
         this.date = date;
     }
 

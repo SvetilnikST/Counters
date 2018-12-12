@@ -12,8 +12,11 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import java.io.Serializable;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
 
 @ManagedBean (name="contractAdministration")
 @ViewScoped
@@ -33,7 +36,7 @@ public class contractAdministration implements Serializable {
     @Default
     private int idContract;
     private String contract;
-    private int date;
+    private Date date;
     private String description;
     private String number;
     private List<TblDeviceEntity> deviceEntityList;
@@ -57,6 +60,9 @@ public class contractAdministration implements Serializable {
             load(tblContractEntity);
         } else {
             this.contract= "";
+            this.date=null;
+            this.description="";
+            this.number="";
         }
         tblContractEntitysList = contractDAO.findAll();
         deviceEntityList = deviceDAO.findAll();
@@ -67,7 +73,7 @@ public class contractAdministration implements Serializable {
         this.setIdContract(contractEntity.getIdContract());
         this.setContract(contractEntity.getContract());
         this.setDeviceEntity(contractEntity.getDeviceEntity());
-        this.setDate(contractEntity.getDate());
+        this.setDate(timestampFromDate(contractEntity.getDate()));
         this.setDescription(contractEntity.getDescription());
         this.setNumber(contractEntity.getNumber());
     }
@@ -79,7 +85,7 @@ public class contractAdministration implements Serializable {
         }
         tblContractEntity.setContract(this.contract);
         tblContractEntity.setDeviceEntity(deviceEntity);
-        tblContractEntity.setDate(this.date);
+        tblContractEntity.setDate(timestampFromDate(this.date));
         tblContractEntity.setDescription(this.description);
         tblContractEntity.setNumber(this.number);
         if (tblContractEntity.getIdContract() == 0) {
@@ -90,6 +96,9 @@ public class contractAdministration implements Serializable {
         return "listContract.xhtml?faces-redirect=true&id=" + String.valueOf(tblContractEntity.getIdContract());
     }
 
+    public Timestamp timestampFromDate(Date fromDate) {
+        return new Timestamp(fromDate.getTime());
+    }
     public TblContractEntity getTblContractEntity() {
         return tblContractEntity;
     }
@@ -162,11 +171,11 @@ public class contractAdministration implements Serializable {
         this.deviceEntityList = deviceEntityList;
     }
 
-    public int getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(int date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

@@ -40,8 +40,11 @@
                     </p:row>
                     <p:row>
                         <p:column colspan="1">
-                            <p:inputText id="date" value="#{contractAdministration.date}"
-                                         title="Дата документа"/>
+
+                            <p:calendar id="date" value="#{contractAdministration.date}"
+                                        pattern="dd.MM.yyyy" lang="ru" locale="ru"
+                                        title=""
+                            />
                         </p:column>
 
                         <p:column colspan="1">
