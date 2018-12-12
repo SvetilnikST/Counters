@@ -34,10 +34,10 @@
                             <h:outputText value="Последняя дата изменений"/>
                         </p:column>
                         <p:column colspan="1">
-                            <h:outputText value="request count"/>
+                            <h:outputText value="Количетство опросов"/>
                         </p:column>
                         <p:column colspan="1">
-                            <h:outputText value="IP"/>
+                            <h:outputText value="IP-адрес"/>
                         </p:column>
 
                     </p:row>
@@ -93,25 +93,13 @@
                             <h:outputText value="№ порта"/>
                         </p:column>
                         <p:column colspan="1">
-                            <h:outputText value="request interval"/>
+                            <h:outputText value="Расписание опроса"/>
                         </p:column>
                         <p:column colspan="3">
-                            <h:outputText value="объект"/>
+                            <h:outputText value="Объект учета"/>
                         </p:column>
 
 
-                        <!--<p:column colspan="1">-->
-                            <!--<h:outputText value="ИВБ"/>-->
-                        <!--</p:column>-->
-                        <!--<p:column colspan="1">-->
-                            <!--<h:outputText value="ППР"/>-->
-                        <!--</p:column>-->
-                        <!--<p:column colspan="1">-->
-                            <!--<h:outputText value="ТСП"/>-->
-                        <!--</p:column>-->
-                        <!--<p:column colspan="1">-->
-                            <!--<h:outputText value="доп.оборудование"/>-->
-                        <!--</p:column>-->
 
                     </p:row>
                     <p:row>
@@ -135,25 +123,51 @@
                             </p:selectOneMenu>
                         </p:column>
 
-                        <!--<p:column colspan="1">-->
-                            <!--<p:inputText id="IVB" value="#{deviceAdministration.IVB}"-->
-                                         <!--title="Измерительно-вычислительный блок"/>-->
-                        <!--</p:column>-->
+                        <p:row>
+                            <p:column colspan="2">
+                                <h:outputText >Сроки поверки оборудования</h:outputText>
+                            </p:column>
+                        </p:row>
 
+                        <p:row>
+                            <p:column colspan="1">Измерительно-вычислительный блок:</p:column>
+                            <p:column colspan="1">
+                                <p:calendar id="IVB" value="#{deviceAdministration.IVB}"
+                                            pattern="dd.MM.yyyy" lang="ru" locale="ru"
+                                            title=""
+                                />
+                            </p:column>
+                        </p:row>
 
-                        <!--<p:column colspan="1">-->
-                            <!--<p:inputText id="PPR" value="#{deviceAdministration.PPR}"-->
-                                         <!--title="Первичный преобразователь расхода"/>-->
-                        <!--</p:column>-->
+                        <p:row>
+                            <p:column colspan="1">Первичный преобразователь расхода:</p:column>
+                            <p:column colspan="1">
+                                <p:calendar id="PPR" value="#{deviceAdministration.PPR}"
+                                            pattern="dd.MM.yyyy" lang="ru" locale="ru"
+                                            title=""
+                                />
+                            </p:column>
+                        </p:row>
 
-                        <!--<p:column colspan="1">-->
-                            <!--<p:inputText id="TCP" value="#{deviceAdministration.TCP}"-->
-                                         <!--title="Термометр сопративления"/>-->
-                        <!--</p:column>-->
-                        <!--<p:column colspan="1">-->
-                            <!--<p:inputText id="additionalDevice" value="#{deviceAdministration.additionalDevice}"-->
-                                         <!--title="Дополнительное оборудование"/>-->
-                        <!--</p:column>-->
+                        <p:row>
+                            <p:column colspan="1">Термометр сопративления:</p:column>
+                            <p:column colspan="1">
+                                <p:calendar id="TCP" value="#{deviceAdministration.TCP}"
+                                            pattern="dd.MM.yyyy" lang="ru" locale="ru"
+                                            title=""
+                                />
+                            </p:column>
+                        </p:row>
+
+                        <p:row>
+                            <p:column colspan="1">Дополнительное оборудование:</p:column>
+                            <p:column colspan="1">
+                                <p:calendar id="additionalDevice" value="#{deviceAdministration.additionalDevice}"
+                                            pattern="dd.MM.yyyy" lang="ru" locale="ru"
+                                            title=""
+                                />
+                            </p:column>
+                        </p:row>
 
                     </p:row>
                 </p:panelGrid>
@@ -161,69 +175,6 @@
                 <p:commandButton value="Сохранить" action="#{deviceAdministration.save()}"
                                  rendered="#{userBean.doRightVerify('createUser')}"/>
             </p:panel>
-
-
-
-
-            <p:panelGrid >
-                <f:facet name="header">
-                    <p:row>
-                        <p:column colspan="2">Сроки поверки оборудования</p:column>
-                    </p:row>
-                </f:facet>
-                    <p:row>
-                        <p:column colspan="1">Измерительно-вычислительный блок:</p:column>
-                        <p:column colspan="1">
-                            <!--<h:outputText-->
-                                <!--value="#{deviceAdministration.IVB}">-->
-                            <!--<f:convertDateTime pattern="dd MMMM YYYY г., HH:mm:ss"/></h:outputText>-->
-                            <p:calendar id="IVB" value="#{deviceAdministration.IVB}"
-                                        pattern="dd.MM.yyyy" lang="ru" locale="ru"
-                                        title=""
-                            />
-                        </p:column>
-                    </p:row>
-                    <p:row>
-                        <p:column colspan="1">Первичный преобразователь расхода:</p:column>
-                        <p:column colspan="1">
-                            <!--<h:outputText-->
-                                <!--value="#{deviceAdministration.PPR}">-->
-                            <!--<f:convertDateTime pattern="dd MMMM YYYY г., HH:mm:ss"/></h:outputText>-->
-                            <p:calendar id="PPR" value="#{deviceAdministration.PPR}"
-                                        pattern="dd.MM.yyyy" lang="ru" locale="ru"
-                                        title=""
-                            />
-                        </p:column>
-                    </p:row>
-                    <p:row>
-                        <p:column colspan="1">Термометр сопративления:</p:column>
-                        <p:column colspan="1">
-                            <!--<h:outputText-->
-                                <!--value="#{deviceAdministration.TCP}">-->
-                            <!--<f:convertDateTime pattern="dd MMMM YYYY г., HH:mm:ss"/></h:outputText>-->
-                            <p:calendar id="TCP" value="#{deviceAdministration.TCP}"
-                                        pattern="dd.MM.yyyy" lang="ru" locale="ru"
-                                        title=""
-                            />
-                        </p:column>
-                    </p:row>
-
-                    <p:row>
-                        <p:column colspan="1">Дополнительное оборудование:</p:column>
-                        <p:column colspan="1">
-                            <!--<h:outputText value="#{deviceAdministration.additionalDevice}">-->
-                                <!--<f:convertDateTime pattern="dd MMMM YYYY г., HH:mm:ss"/></h:outputText>-->
-                            <p:calendar id="additionalDevice" value="#{deviceAdministration.additionalDevice}"
-                                        pattern="dd.MM.yyyy" lang="ru" locale="ru"
-                                        title=""
-                            />
-                        </p:column>
-
-                    </p:row>
-
-
-            </p:panelGrid>
-
 
         </h:form>
     </ui:define>
