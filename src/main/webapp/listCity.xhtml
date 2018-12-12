@@ -20,15 +20,18 @@
                     widgetVar="cityTable"
                     var="city"
                     value="#{cityAdministration.tblCityEntitysList}">
-                <p:column headerText="ID">
-                    <h:link value="#{city.idCity}" outcome="editCity">
-                        <f:param name="idCity" value="#{city.idCity}"/>
-                    </h:link>
-                </p:column>
+                <!--<p:column headerText="ID">-->
+                    <!--<h:link value="#{city.idCity}" outcome="editCity">-->
+                        <!--<f:param name="idCity" value="#{city.idCity}"/>-->
+                    <!--</h:link>-->
+                <!--</p:column>-->
                 <p:column headerText="Название города">
-                    <h:outputText value="#{city.nameCity}">
-                    </h:outputText>
-                </p:column>
+                    <!--<h:outputText value="#{city.nameCity}">-->
+                    <!--</h:outputText>-->
+
+                    <h:link value="#{city.nameCity}" outcome="editCity">
+                        <f:param name="idCity" value="#{city.idCity}"/>
+                    </h:link>                </p:column>
             </p:dataTable>
         </h:form>
     </ui:define>

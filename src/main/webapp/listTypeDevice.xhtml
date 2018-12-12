@@ -24,14 +24,19 @@
                     widgetVar="typeDeviceTable"
                     var="typeDevice"
                     value="#{typeDeviceAdministration.tblTypeDeviceEntitysList}">
-                <p:column headerText="ID">
-                    <h:link value="#{typeDevice.id}" outcome="editTypeDevice">
+                <!--<p:column headerText="ID">-->
+                    <!--<h:link value="#{typeDevice.id}" outcome="editTypeDevice">-->
+                        <!--<f:param name="id" value="#{typeDevice.id}"/>-->
+                    <!--</h:link>-->
+                <!--</p:column>-->
+                <p:column headerText="Наименование">
+                    <!--<h:outputText value="#{typeDevice.name}">-->
+                    <!--</h:outputText>-->
+
+
+                    <h:link value="#{typeDevice.name}" outcome="editTypeDevice">
                         <f:param name="id" value="#{typeDevice.id}"/>
                     </h:link>
-                </p:column>
-                <p:column headerText="Наименование">
-                    <h:outputText value="#{typeDevice.name}">
-                    </h:outputText>
                 </p:column>
                 <p:column headerText="Код Int ">
                     <h:outputText value="#{typeDevice.typeInt}">

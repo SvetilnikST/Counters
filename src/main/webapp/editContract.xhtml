@@ -8,20 +8,23 @@
     </ui:define>
     <ui:define name="page_body">
         <h:form>
+
             <p:panel>
+
                 <h2>
-                    <p:outputLabel rendered="#{contractAdministration.idContract==0 or contractAdministration.idContract==null}">
+                    <p:outputLabel
+                            rendered="#{contractAdministration.idContract==0 or contractAdministration.idContract==null}">
                         Новый документ
                     </p:outputLabel>
-                    <p:outputLabel rendered="#{contractAdministration.idContract!=0 and contractAdministration.idContract!=null}"
-                                   value="Изменение данных о документе #{contractAdministration.number} "/>
+                    <p:outputLabel
+                            rendered="#{contractAdministration.idContract!=0 and contractAdministration.idContract!=null}"
+                            value="Изменение данных о документе #{contractAdministration.number} "/>
                 </h2>
+
                 <p:panelGrid styleClass="ui-panelgrid-blank">
                     <p:row>
                         <p:column colspan="1">
-                            <h:outputText value="Дата">
-
-                            </h:outputText>
+                            <h:outputText value="Дата"/>
                         </p:column>
                         <p:column colspan="1">
                             <h:outputText value="Номер"/>
@@ -32,10 +35,6 @@
                         </p:column>
                         <p:column colspan="3">
                             <h:outputText value="Устройство"/>
-                        </p:column>
-
-                        <p:column colspan="1">
-                            <h:outputText value="Описание"/>
                         </p:column>
                     </p:row>
                     <p:row>
@@ -67,14 +66,23 @@
                             </p:selectOneMenu>
                         </p:column>
 
-
-                        <p:column colspan="1">
-                            <p:inputText id="description" value="#{contractAdministration.description}"
-                                         title="Описание"/>
-                        </p:column>
-
                     </p:row>
 
+                    <p:row>
+
+                        <!--<p:column colspan="1">-->
+                        <!--&lt;!&ndash;<p:inputText id="description" value="#{contractAdministration.description}"&ndash;&gt;-->
+                        <!--&lt;!&ndash;title="Описание"/>&ndash;&gt;-->
+                        <!--</p:column>-->
+
+                        <p:column colspan="4">
+                            <p:inputTextarea rows="6" cols="46" id="description"
+                                             value="#{contractAdministration.description}"
+                                             title="Описание документа"/>
+                        </p:column>
+
+
+                    </p:row>
 
                 </p:panelGrid>
                 <p:commandButton value="Сохранить" action="#{contractAdministration.save()}"

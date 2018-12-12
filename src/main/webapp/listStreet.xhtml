@@ -22,14 +22,17 @@
                     widgetVar="streetTable"
                     var="street"
                     value="#{streetAdministration.tblStreetEntitysList}">
-                <p:column headerText="ID">
-                    <h:link value="#{street.idStreet}" outcome="editStreet">
+                <!--<p:column headerText="ID">-->
+                    <!--<h:link value="#{street.idStreet}" outcome="editStreet">-->
+                        <!--<f:param name="idStreet" value="#{street.idStreet}"/>-->
+                    <!--</h:link>-->
+                <!--</p:column>-->
+                <p:column headerText="Название улицы">
+                    <!--<h:outputText value="#{street.nameStreet}">-->
+                    <!--</h:outputText>-->
+                    <h:link value="#{street.nameStreet}" outcome="editStreet">
                         <f:param name="idStreet" value="#{street.idStreet}"/>
                     </h:link>
-                </p:column>
-                <p:column headerText="Название улицы">
-                    <h:outputText value="#{street.nameStreet}">
-                    </h:outputText>
                 </p:column>
             </p:dataTable>
         </h:form>

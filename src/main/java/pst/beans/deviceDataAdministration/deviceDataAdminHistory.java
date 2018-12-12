@@ -156,7 +156,7 @@ public class deviceDataAdminHistory implements Serializable {
         TblBoxCommonEntity tblBoxCommonEntity = scheduleEntity.getCommons().get(0);
         tblBoxCommonEntity.setInstore1(true);
         boxCommonDAO.update(tblBoxCommonEntity);
-
+//мб просто обновлять в этом месте страницу?
 //        sheduleReports.setInStore1(true);
 
     }
