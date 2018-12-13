@@ -1,6 +1,7 @@
 package pst.beans.schedule;
 
 import org.joda.time.LocalDateTime;
+import org.primefaces.model.SortOrder;
 import pst.beans.AbstractDao;
 import pst.beans.device.TblDeviceEntity;
 
@@ -8,7 +9,9 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import java.math.BigInteger;
 import java.util.List;
+import java.util.Map;
 
 @LocalBean
 @Stateless
@@ -56,4 +59,60 @@ public class SheduleDAO extends AbstractDao<TblScheduleEntity> {
 
         return resultList;
     }
+
+    public int getTotalCount(Map<String, Object> filters) {
+
+        EntityManager entityManager = getEntityManager();
+
+        Integer dateFirstFilter = ((Long) filters.get("dateFrom")).intValue();
+        Integer dateLastFilter =  ((Long) filters.get("dateLast")).intValue();
+//        String deviceIds = (String) filters.get("deviceId");
+//        Integer deviceId = Integer.parseInt(deviceIds);
+        Integer deviceId = (Integer) filters.get("deviceId");
+
+        int rez = ((Long) entityManager.createQuery("select count(shedul.id) from TblScheduleEntity shedul  left join TblBoxCommonEntity box ON box.tblScheduleEntity=shedul where  box.instore1=true and shedul.deviceId =:deviceId")
+//                .setParameter("dateFirst",dateFirstFilter)
+//                .setParameter("dateLast",dateLastFilter)
+                .setParameter("deviceId",deviceId)
+                .getSingleResult()).intValue();
+
+//        TypedQuery<TblScheduleEntity> query = entityManager.createQuery(
+//                "select shedul from TblScheduleEntity shedul  left join TblBoxCommonEntity box ON box.tblScheduleEntity=shedul where  box.instore1=true and shedul.deviceId :=deviceId",
+//                TblScheduleEntity.class)
+//                .setParameter("deviceId", 1); // вместо 1 надо будет подставлять реальный номер устройства
+//        List<TblScheduleEntity> resultList = query.getResultList();
+//        int a=0;
+   return rez;
+
+    }
+
+
+    public List<TblScheduleEntity> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
+
+        EntityManager entityManager = getEntityManager();
+
+        Integer dateFirstFilter = ((Long) filters.get("dateFrom")).intValue();
+        Integer dateLastFilter =  ((Long) filters.get("dateLast")).intValue();
+//        String deviceIds = (String) filters.get("deviceId");
+//        Integer deviceId = Integer.parseInt(deviceIds);
+
+        Integer deviceId = (Integer) filters.get("deviceId");
+
+        List<TblScheduleEntity> rez = ( entityManager.createQuery("select shedul from TblScheduleEntity shedul  left join TblBoxCommonEntity box ON box.tblScheduleEntity=shedul where  box.instore1=true and shedul.deviceId =:deviceId and box.timeRequest between :dateFirst AND :dateLast")
+                .setParameter("dateFirst",dateFirstFilter)
+                .setParameter("dateLast",dateLastFilter)
+                .setParameter("deviceId",deviceId)
+                .getResultList());
+
+//        TypedQuery<TblScheduleEntity> query = entityManager.createQuery(
+//                "select shedul from TblScheduleEntity shedul  left join TblBoxCommonEntity box ON box.tblScheduleEntity=shedul where  box.instore1=true and shedul.deviceId :=deviceId",
+//                TblScheduleEntity.class)
+//                .setParameter("deviceId", 1); // вместо 1 надо будет подставлять реальный номер устройства
+//        List<TblScheduleEntity> resultList = query.getResultList();
+//        int a=0;
+        return rez;
+
+    }
+
+
 }

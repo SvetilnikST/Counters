@@ -14,13 +14,16 @@
                     <p:button type="button"  value="Войти" href="/login.xhtml"/>
                 </c:if>
                 <c:if test="#{userBean.autentificated}">
+                    <p:button type="button" value="Журнал" href="/registerList.xhtml"/>
+
+
                     <p:button type="button" value="Устройства" href="/listDevice.xhtml"/>
                     <p:button type="button" value="Объекты" href="/listObject.xhtml"/>
                     <p:button type="button" value="Документы" href="/listContract.xhtml"/>
 
 
                     <!--<p:button type="button" value="Акт сверки" href="/test_print_act.xhtml"/>-->
-                    <!--<p:button type="button" value="Журнал" href="/test_magazine.xhtml"/>-->
+
                     <p:menuButton value="Панель диспетчера">
                         <p:menuitem value="Организации" url="/listOrganization.xhtml"/>
                         <p:menuitem value="Типы устройств" url="/listTypeDevice.xhtml"/>

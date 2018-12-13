@@ -1,13 +1,17 @@
 package pst.beans.device;
 
+import org.joda.time.DateTime;
 import org.joda.time.LocalDateTime;
 import pst.beans.AbstractDao;
 import pst.beans.schedule.TblScheduleEntity;
+import pst.beans.typeDevice.TblTypeDeviceEntity;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @LocalBean
@@ -39,11 +43,31 @@ public class DeviceDAO extends AbstractDao<TblDeviceEntity> {
     public void test() {
         EntityManager entityManager = getEntityManager();
         TypedQuery<TblScheduleEntity> query = entityManager.createQuery(
-                "select shedul from TblScheduleEntity shedul  left join TblBoxCommonEntity box ON box.tblScheduleEntity=shedul where  box.instore1=true ",
-                TblScheduleEntity.class);
-//                .setParameter("taskHour", dtPlusOneHour.getHourOfDay());
+                "select shedul from TblScheduleEntity shedul  left join TblBoxCommonEntity box ON box.tblScheduleEntity=shedul where  box.instore1=true and shedul.deviceId :=deviceId",
+                TblScheduleEntity.class)
+                .setParameter("deviceId", 1); // вместо 1 надо будет подставлять реальный номер устройства
         List<TblScheduleEntity> resultList = query.getResultList();
         int a=0;
+
+    }
+
+
+
+    public static int daysOfMonth(int year, int month) {
+        DateTime dateTime = new DateTime(year, month, 14, 12, 0, 0, 000);
+        return dateTime.dayOfMonth().getMaximumValue();
+    }
+
+    public void test2(){
+//        Date dt = new Date();
+//        DateTime dtOrg = new DateTime(dt);
+//
+//        for (int i=0;i<30 ; i++ ) {
+//            //добавляет один день
+//            DateTime dtPlusOne = dtOrg.plusDays(1);
+//        }
+//       int a=0;
+
 
     }
 

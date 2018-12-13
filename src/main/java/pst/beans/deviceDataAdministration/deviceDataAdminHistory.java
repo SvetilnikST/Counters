@@ -62,7 +62,10 @@ public class deviceDataAdminHistory implements Serializable {
             //чтение записи по id
 //            this.tblDeviceEntity = deviceDAO.read(id);
             device = deviceDAO.read(id);
-            deviceDAO.test();
+
+            //TODO закомментировать
+//            deviceDAO.test();
+            deviceDAO.test2();
 
             //проверка если пустая entity, сообщение об ощибке
             if (device == null) {
@@ -89,6 +92,7 @@ public class deviceDataAdminHistory implements Serializable {
             boxCommonEntity = boxCommonEntityList.get(0);
             boxSystemEntityList = boxCommonEntity.getSystem();
         }
+
         SheduleReport sheduleReport;
 
         LocalDateTime dtCur;
@@ -112,39 +116,27 @@ public class deviceDataAdminHistory implements Serializable {
             //сюда гоним запись всего остального.
             sheduleReport.setTimeRequest(dtCur.toString("HH:mm:ss"));
 //            sheduleReport.setTimeRequest(String.valueOf(dtCur.getHourOfDay()));
-
-
 //            sheduleReport.setTimeRequest(shedulerRecord.getCommons().get(0).getTimeRequest());
             sheduleReport.setTimeDevice(shedulerRecord.getCommons().get(0).getTimeDevice());
-
 //            sheduleReport.setTimeRequest(shedulerRecord.get);
-
-           sheduleReport.setSIGMA_Q(shedulerRecord.getCommons().get(0).getSystem().get(0).getSIGMA_Q());
-
+            sheduleReport.setSIGMA_Q(shedulerRecord.getCommons().get(0).getSystem().get(0).getSIGMA_Q());
             sheduleReport.setQ1(shedulerRecord.getCommons().get(0).getSystem().get(0).getQ1());
             sheduleReport.setQ2(shedulerRecord.getCommons().get(0).getSystem().get(0).getQ2());
             sheduleReport.setQ3(shedulerRecord.getCommons().get(0).getSystem().get(0).getQ3());
-
             sheduleReport.setV1(shedulerRecord.getCommons().get(0).getSystem().get(0).getV1());
             sheduleReport.setV2(shedulerRecord.getCommons().get(0).getSystem().get(0).getV2());
-
             sheduleReport.setM1(shedulerRecord.getCommons().get(0).getSystem().get(0).getM1());
             sheduleReport.setM2(shedulerRecord.getCommons().get(0).getSystem().get(0).getM2());
-
             sheduleReport.setGM1(shedulerRecord.getCommons().get(0).getSystem().get(0).getGM1());
             sheduleReport.setGM2(shedulerRecord.getCommons().get(0).getSystem().get(0).getGM2());
-
             sheduleReport.setGV1(shedulerRecord.getCommons().get(0).getSystem().get(0).getGV1());
             sheduleReport.setGV2(shedulerRecord.getCommons().get(0).getSystem().get(0).getGV2());
-
             sheduleReport.setT1(shedulerRecord.getCommons().get(0).getSystem().get(0).getT1());
             sheduleReport.setT2(shedulerRecord.getCommons().get(0).getSystem().get(0).getT2());
             sheduleReport.setT3(shedulerRecord.getCommons().get(0).getSystem().get(0).getT3());
-
             sheduleReport.setP1(shedulerRecord.getCommons().get(0).getSystem().get(0).getP1());
             sheduleReport.setP1(shedulerRecord.getCommons().get(0).getSystem().get(0).getP2());
             sheduleReport.setP1(shedulerRecord.getCommons().get(0).getSystem().get(0).getP3());
-
             sheduleReport.setInStore1(shedulerRecord.getCommons().get(0).getInstore1());
             sheduleReport.setIdShedule(shedulerRecord.getId());
 
@@ -159,9 +151,8 @@ public class deviceDataAdminHistory implements Serializable {
         TblBoxCommonEntity tblBoxCommonEntity = scheduleEntity.getCommons().get(0);
         tblBoxCommonEntity.setInstore1(true);
         boxCommonDAO.update(tblBoxCommonEntity);
-//мб просто обновлять в этом месте страницу?
-//        sheduleReports.setInStore1(true);
 
+//        sheduleReports.setInStore1(true);
     }
 
     public List<TblBoxSystemEntity> getBoxSystemEntityList() {

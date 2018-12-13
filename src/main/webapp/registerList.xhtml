@@ -7,7 +7,7 @@
         Показания на период
     </ui:define>
     <ui:define name="page_body">
-        <h:form>
+        <h:form style="font-size:14px" styleClass="center">
             <p:panel>
                 <h2>
                     <p:outputLabel rendered="#{userAdministration.id==0 or userAdministration.id==null}">
@@ -16,7 +16,21 @@
                     <p:outputLabel rendered="#{userAdministration.id!=0 and userAdministration.id!=null}"/>
                 </h2>
 
-                <p:dataTable id="tbl" var="type_device" value="#{typeDeviceAdministration.tblTypeDeviceEntitysList}">
+                <p:dataTable
+                        id="orderTable"
+                        widgetVar="OrderTable"
+                        var="shedul"
+                        value="#{register}"
+
+                        paginator="true"
+                        paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                        rows="10"
+                        rowsPerPageTemplate="5,10,15"
+
+                        lazy="true"
+                        tableStyle="width: auto"
+                        emptyMessage="Нет записей">
+
                     <f:facet name="header">
                         Журнал показаний за МЕСЯЦ ГОД
                     </f:facet>
@@ -53,108 +67,104 @@
                     </p:columnGroup>
 
                     <p:column>
-                        <h:outputText value="#{type_device.id}"></h:outputText>
+                        <h:outputText value="#{shedul.getCommons().get(0).getTimeRequest()}"></h:outputText>
                     </p:column>
                     <p:column>
-                        <p:outputLabel value="#{type_device.id}"></p:outputLabel>
-                    </p:column>
-
-                    <p:column>
-                        <h:outputText value="#{type_device.id}"></h:outputText>
-                    </p:column>
-                    <p:column>
-                        <p:outputLabel value="#{type_device.id}"></p:outputLabel>
+                        <p:outputLabel value="#{shedul.id}"></p:outputLabel>
                     </p:column>
 
                     <p:column>
-                        <h:outputText value="#{type_device.id}"></h:outputText>
+                        <h:outputText value="#{shedul.id}"></h:outputText>
                     </p:column>
                     <p:column>
-                        <p:outputLabel value="#{type_device.id}"></p:outputLabel>
-                    </p:column>
-
-                    <p:column>
-                        <h:outputText value="#{type_device.id}"></h:outputText>
-                    </p:column>
-                    <p:column>
-                        <p:outputLabel value="#{type_device.id}"></p:outputLabel>
+                        <p:outputLabel value="#{shedul.id}"></p:outputLabel>
                     </p:column>
 
                     <p:column>
-                        <h:outputText value="#{type_device.id}"></h:outputText>
+                        <h:outputText value="#{shedul.id}"></h:outputText>
                     </p:column>
                     <p:column>
-                        <p:outputLabel value="#{type_device.id}"></p:outputLabel>
-                    </p:column>
-
-                    <p:column>
-                        <h:outputText value="#{type_device.id}"></h:outputText>
-                    </p:column>
-                    <p:column>
-                        <p:outputLabel value="#{type_device.id}"></p:outputLabel>
+                        <p:outputLabel value="#{shedul.id}"></p:outputLabel>
                     </p:column>
 
                     <p:column>
-                        <h:outputText value="#{type_device.id}"></h:outputText>
+                        <h:outputText value="#{shedul.id}"></h:outputText>
                     </p:column>
                     <p:column>
-                        <p:outputLabel value="#{type_device.id}"></p:outputLabel>
-                    </p:column>
-
-                    <p:column>
-                        <h:outputText value="#{type_device.id}"></h:outputText>
+                        <p:outputLabel value="#{shedul.id}"></p:outputLabel>
                     </p:column>
 
                     <p:column>
-                        <h:outputText value="#{type_device.id}"></h:outputText>
+                        <h:outputText value="#{shedul.id}"></h:outputText>
+                    </p:column>
+                    <p:column>
+                        <p:outputLabel value="#{shedul.id}"></p:outputLabel>
                     </p:column>
 
                     <p:column>
-                        <h:outputText value="#{type_device.id}"></h:outputText>
+                        <h:outputText value="#{shedul.id}"></h:outputText>
+                    </p:column>
+                    <p:column>
+                        <p:outputLabel value="#{shedul.id}"></p:outputLabel>
                     </p:column>
 
                     <p:column>
-                        <h:outputText value="#{type_device.id}"></h:outputText>
+                        <h:outputText value="#{shedul.id}"></h:outputText>
+                    </p:column>
+                    <p:column>
+                        <p:outputLabel value="#{shedul.id}"></p:outputLabel>
                     </p:column>
 
                     <p:column>
-                        <h:outputText value="#{type_device.id}"></h:outputText>
+                        <h:outputText value="#{shedul.id}"></h:outputText>
                     </p:column>
 
                     <p:column>
-                        <h:outputText value="#{type_device.id}"></h:outputText>
+                        <h:outputText value="#{shedul.id}"></h:outputText>
                     </p:column>
 
                     <p:column>
-                        <h:outputText value="#{type_device.id}"></h:outputText>
+                        <h:outputText value="#{shedul.id}"></h:outputText>
                     </p:column>
 
                     <p:column>
-                        <h:outputText value="#{type_device.id}"></h:outputText>
+                        <h:outputText value="#{shedul.id}"></h:outputText>
                     </p:column>
 
                     <p:column>
-                        <h:outputText value="#{type_device.id}"></h:outputText>
+                        <h:outputText value="#{shedul.id}"></h:outputText>
                     </p:column>
 
                     <p:column>
-                        <h:outputText value="#{type_device.id}"></h:outputText>
+                        <h:outputText value="#{shedul.id}"></h:outputText>
                     </p:column>
 
                     <p:column>
-                        <h:outputText value="#{type_device.id}"></h:outputText>
+                        <h:outputText value="#{shedul.id}"></h:outputText>
                     </p:column>
 
                     <p:column>
-                        <h:outputText value="#{type_device.id}"></h:outputText>
+                        <h:outputText value="#{shedul.id}"></h:outputText>
+                    </p:column>
+
+                    <p:column>
+                        <h:outputText value="#{shedul.id}"></h:outputText>
+                    </p:column>
+
+                    <p:column>
+                        <h:outputText value="#{shedul.id}"></h:outputText>
+                    </p:column>
+
+                    <p:column>
+                        <h:outputText value="#{shedul.id}"></h:outputText>
+                    </p:column>
+
+                    <p:column>
+                        <h:outputText value="#{shedul.id}"></h:outputText>
                     </p:column>
 
                 </p:dataTable>
 
-                <p:commandButton value="Печать" type="button" icon="pi pi-print"
-                                 style="display:block;margin-bottom: 20px">
-                    <p:printer target="tbl"/>
-                </p:commandButton>
 
 
 
