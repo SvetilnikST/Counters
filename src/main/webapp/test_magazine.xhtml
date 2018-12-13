@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html" xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="WEB-INF/template/template.xhtml">
+    <ui:define name="page_title">
+        Показания на период
+    </ui:define>
+    <ui:define name="page_body">
+        <h:form>
+            <p:panel>
+                <h2>
+                    <p:outputLabel rendered="#{userAdministration.id==0 or userAdministration.id==null}">
+                        Журнал
+                    </p:outputLabel>
+                    <p:outputLabel rendered="#{userAdministration.id!=0 and userAdministration.id!=null}"/>
+                </h2>
+
+                <p:dataTable id="tbl" var="type_device" value="#{typeDeviceAdministration.tblTypeDeviceEntitysList}">
+                    <f:facet name="header">
+                        Журнал показаний за МЕСЯЦ ГОД
+                    </f:facet>
+
+                    <p:columnGroup type="header">
+                        <p:row>
+                            <p:column rowspan="1" headerText="Дата/Время"/>
+                            <p:column rowspan="1" headerText="Г"/>
+                            <p:column rowspan="1" headerText="О"/>
+                            <p:column colspan="1" headerText="В"/>
+                            <p:column colspan="1" headerText="нсп"/>
+                            <p:column colspan="1" headerText="нпв"/>
+                            <p:column colspan="1" headerText="Тнв"/>
+                            <p:column colspan="1" headerText="Q1 ГДж."/>
+                            <p:column colspan="1" headerText="дельта Q1"/>
+                            <p:column colspan="1" headerText="V1 м.куб"/>
+                            <p:column colspan="1" headerText="G1 т/ч"/>
+                            <p:column colspan="1" headerText="T1"/>
+                            <p:column colspan="1" headerText="P1 МПа"/>
+                            <p:column colspan="1" headerText="Q2 ГДж."/>
+                            <p:column colspan="1" headerText="дельта Q2"/>
+                            <p:column colspan="1" headerText="V2 м.куб"/>
+                            <p:column colspan="1" headerText="G2 т/ч"/>
+                            <p:column colspan="1" headerText="Т2 С"/>
+                            <p:column colspan="1" headerText="Р2 МПа"/>
+                            <p:column colspan="1" headerText="Раб/Ошиб ч"/>
+                            <p:column colspan="1" headerText="дельта раб ч"/>
+                            <p:column colspan="1" headerText="Тхв"/>
+                            <p:column colspan="1" headerText="Сум Q Гкал."/>
+                            <p:column colspan="1" headerText="дельта Q,Гкал."/>
+                            <p:column colspan="1" headerText="дельта V м куб"/>
+                            <p:column colspan="1" headerText="Флаг"/>
+                        </p:row>
+                    </p:columnGroup>
+
+                    <p:column>
+                        <h:outputText value="#{type_device.id}"></h:outputText>
+                    </p:column>
+                    <p:column>
+                        <p:outputLabel value="#{type_device.id}"></p:outputLabel>
+                    </p:column>
+
+                    <p:column>
+                        <h:outputText value="#{type_device.id}"></h:outputText>
+                    </p:column>
+                    <p:column>
+                        <p:outputLabel value="#{type_device.id}"></p:outputLabel>
+                    </p:column>
+
+                    <p:column>
+                        <h:outputText value="#{type_device.id}"></h:outputText>
+                    </p:column>
+                    <p:column>
+                        <p:outputLabel value="#{type_device.id}"></p:outputLabel>
+                    </p:column>
+
+                    <p:column>
+                        <h:outputText value="#{type_device.id}"></h:outputText>
+                    </p:column>
+                    <p:column>
+                        <p:outputLabel value="#{type_device.id}"></p:outputLabel>
+                    </p:column>
+
+                    <p:column>
+                        <h:outputText value="#{type_device.id}"></h:outputText>
+                    </p:column>
+                    <p:column>
+                        <p:outputLabel value="#{type_device.id}"></p:outputLabel>
+                    </p:column>
+
+                    <p:column>
+                        <h:outputText value="#{type_device.id}"></h:outputText>
+                    </p:column>
+                    <p:column>
+                        <p:outputLabel value="#{type_device.id}"></p:outputLabel>
+                    </p:column>
+
+                    <p:column>
+                        <h:outputText value="#{type_device.id}"></h:outputText>
+                    </p:column>
+                    <p:column>
+                        <p:outputLabel value="#{type_device.id}"></p:outputLabel>
+                    </p:column>
+
+                    <p:column>
+                        <h:outputText value="#{type_device.id}"></h:outputText>
+                    </p:column>
+
+                    <p:column>
+                        <h:outputText value="#{type_device.id}"></h:outputText>
+                    </p:column>
+
+                    <p:column>
+                        <h:outputText value="#{type_device.id}"></h:outputText>
+                    </p:column>
+
+                    <p:column>
+                        <h:outputText value="#{type_device.id}"></h:outputText>
+                    </p:column>
+
+                    <p:column>
+                        <h:outputText value="#{type_device.id}"></h:outputText>
+                    </p:column>
+
+                    <p:column>
+                        <h:outputText value="#{type_device.id}"></h:outputText>
+                    </p:column>
+
+                    <p:column>
+                        <h:outputText value="#{type_device.id}"></h:outputText>
+                    </p:column>
+
+                    <p:column>
+                        <h:outputText value="#{type_device.id}"></h:outputText>
+                    </p:column>
+
+                    <p:column>
+                        <h:outputText value="#{type_device.id}"></h:outputText>
+                    </p:column>
+
+                    <p:column>
+                        <h:outputText value="#{type_device.id}"></h:outputText>
+                    </p:column>
+
+                    <p:column>
+                        <h:outputText value="#{type_device.id}"></h:outputText>
+                    </p:column>
+
+                    <p:column>
+                        <h:outputText value="#{type_device.id}"></h:outputText>
+                    </p:column>
+
+                </p:dataTable>
+
+                <p:commandButton value="Печать" type="button" icon="pi pi-print"
+                                 style="display:block;margin-bottom: 20px">
+                    <p:printer target="tbl"/>
+                </p:commandButton>
+
+
+
+            </p:panel>
+        </h:form>
+    </ui:define>
+</ui:composition>

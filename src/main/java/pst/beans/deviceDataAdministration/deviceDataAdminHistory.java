@@ -74,6 +74,7 @@ public class deviceDataAdminHistory implements Serializable {
         } else {
 
         }
+        int a=0;
 //
 //        //TODO исправить на получение реального номера устройства
 //        TblDeviceEntity device = deviceDAO.read(1);
@@ -145,6 +146,7 @@ public class deviceDataAdminHistory implements Serializable {
             sheduleReport.setP1(shedulerRecord.getCommons().get(0).getSystem().get(0).getP3());
 
             sheduleReport.setInStore1(shedulerRecord.getCommons().get(0).getInstore1());
+            sheduleReport.setIdShedule(shedulerRecord.getId());
 
             int a = 0;
             sheduleReports.add(sheduleReport);
@@ -152,7 +154,7 @@ public class deviceDataAdminHistory implements Serializable {
     }
 
 
-    private void addRecordToRegister(int idShedule){
+    public void addRecordToRegister(int idShedule){
         TblScheduleEntity scheduleEntity= sheduleDAO.read(idShedule);
         TblBoxCommonEntity tblBoxCommonEntity = scheduleEntity.getCommons().get(0);
         tblBoxCommonEntity.setInstore1(true);
