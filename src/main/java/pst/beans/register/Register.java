@@ -1,5 +1,6 @@
 package pst.beans.register;
 
+import org.primefaces.model.LazyDataModel;
 import pst.beans.deviceDataAdministration.SheduleReport;
 import pst.beans.schedule.SheduleDAO;
 import pst.beans.schedule.TblScheduleEntity;
@@ -14,7 +15,9 @@ import java.io.Serializable;
 
 @ManagedBean(name = "register")
 @Stateless
-public class Register implements Serializable {
+public class Register
+//        extends LazyDataModel<>
+{
 
     @EJB
     private SheduleDAO sheduleDAO;

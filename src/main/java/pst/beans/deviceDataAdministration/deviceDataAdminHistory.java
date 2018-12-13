@@ -62,6 +62,7 @@ public class deviceDataAdminHistory implements Serializable {
             //чтение записи по id
 //            this.tblDeviceEntity = deviceDAO.read(id);
             device = deviceDAO.read(id);
+            deviceDAO.test();
 
             //проверка если пустая entity, сообщение об ощибке
             if (device == null) {

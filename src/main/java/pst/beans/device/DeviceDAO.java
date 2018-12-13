@@ -2,6 +2,7 @@ package pst.beans.device;
 
 import org.joda.time.LocalDateTime;
 import pst.beans.AbstractDao;
+import pst.beans.schedule.TblScheduleEntity;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -33,6 +34,17 @@ public class DeviceDAO extends AbstractDao<TblDeviceEntity> {
         List<TblDeviceEntity> resultList = query.getResultList();
 
         return resultList;
+    }
+
+    public void test() {
+        EntityManager entityManager = getEntityManager();
+        TypedQuery<TblScheduleEntity> query = entityManager.createQuery(
+                "select shedul from TblScheduleEntity shedul  left join TblBoxCommonEntity box ON box.tblScheduleEntity=shedul where  box.instore1=true ",
+                TblScheduleEntity.class);
+//                .setParameter("taskHour", dtPlusOneHour.getHourOfDay());
+        List<TblScheduleEntity> resultList = query.getResultList();
+        int a=0;
+
     }
 
 }
