@@ -55,10 +55,13 @@ public class deviceDataAdminHistory implements Serializable {
     @PostConstruct
     public void start() {
 
+
         Calendar c1 = Calendar.getInstance();
         endDate = c1.getTime();
         Calendar c2 =Calendar.getInstance();
-        c2.set(Calendar.DAY_OF_MONTH,-7);
+
+//        c2.set(Calendar.DAY_OF_MONTH,-7);
+        c2.add(Calendar.DAY_OF_YEAR,-7);
         startDate = c2.getTime();
 
         sheduleReports = new ArrayList<>();
