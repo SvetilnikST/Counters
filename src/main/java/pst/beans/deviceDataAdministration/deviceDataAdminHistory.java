@@ -19,9 +19,9 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @ManagedBean(name = "deviceAdminHistory")
 @ViewScoped
@@ -32,6 +32,10 @@ public class deviceDataAdminHistory implements Serializable {
     List<TblBoxCommonEntity> boxCommonEntityList;
     List<TblScheduleEntity> tblScheduleEntityList;
     TblDeviceEntity device;
+    String dateRangeString;
+    private Date startDate;
+    private Date endDate;
+    private DateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
 
     List<SheduleReport> sheduleReports;
 
@@ -50,6 +54,13 @@ public class deviceDataAdminHistory implements Serializable {
 
     @PostConstruct
     public void start() {
+
+        Calendar c1 = Calendar.getInstance();
+        endDate = c1.getTime();
+        Calendar c2 =Calendar.getInstance();
+        c2.set(Calendar.DAY_OF_MONTH,-7);
+        startDate = c2.getTime();
+
         sheduleReports = new ArrayList<>();
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
@@ -239,4 +250,31 @@ public class deviceDataAdminHistory implements Serializable {
         return rezult;
     }
 
+    public String getDateRangeString() {
+        return String.format("From: %s To: %s%n",
+                formatter.format(startDate), formatter.format(endDate));
+    }
+
+    public void setDateRangeString(String dateRangeString) {
+        this.dateRangeString = dateRangeString;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+        if(endDate.before(startDate)){
+            endDate = startDate;
+        }
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
 }

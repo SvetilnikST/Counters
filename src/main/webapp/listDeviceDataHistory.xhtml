@@ -10,7 +10,19 @@
     </ui:define>
 
     <ui:define name="page_body">
+        <p:outputPanel id="mainPanel">
+            <p:outputLabel for="dateSelectBtn" value="#{deviceAdminHistory.dateRangeString}"/>
+        </p:outputPanel>
+
+        <p:commandButton id="dateSelectBtn" value="Select new date range" type="button"
+                         onclick="PF('dateRangeDlg').show();"/>
         <h:form style="font-size:14px" styleClass="center">
+
+            <p:toolbar>
+                <f:facet name="left">
+                    <h:outputLabel>Текущие дистанционные данные</h:outputLabel>
+                </f:facet>
+            </p:toolbar>
             <p:panelGrid>
                 <p:row>
                     <p:column colspan="1">Адрес:</p:column>
@@ -39,14 +51,10 @@
                 </p:row>
             </p:panelGrid>
             <br/>
-            <p:panelGrid>
-                <p:row>
-                    <p:column colspan="1">Диапозон данных:</p:column>
-                    <p:column colspan="1"><h:outputText value="#{userAdministration.surname}"/></p:column>
-                </p:row>
-            </p:panelGrid>
-            <br/>
 
+
+
+            <br/>
             <p:dataTable
                     id="deviceDataHistoryTable"
                     widgetVar="deviceDataHistoryTable"
@@ -57,22 +65,21 @@
                     <h:outputText value="#{deviceDataHistory.dateRequest}">
                     </h:outputText>
                 </p:column>
-
                 <p:column headerText="Время опроса">
                     <h:outputText value="#{deviceDataHistory.timeRequest}">
                     </h:outputText>
                 </p:column>
-
                 <p:column>
-                    <p:commandButton icon=" ui-icon-circle-arrow-s" update="deviceDataHistoryTable" rendered="#{ deviceDataHistory.inStore1 == false}"
+                    <p:commandButton icon=" ui-icon-circle-arrow-s" update="deviceDataHistoryTable"
+                                     rendered="#{ deviceDataHistory.inStore1 == false}"
                                      action="#{deviceAdminHistory.addRecordToRegister(deviceDataHistory.idShedule)}">
                     </p:commandButton>
-                    <p:commandButton icon=" ui-icon-check" update="deviceDataHistoryTable" rendered="#{ deviceDataHistory.inStore1 == true}"
+                    <p:commandButton icon=" ui-icon-check" update="deviceDataHistoryTable"
+                                     rendered="#{ deviceDataHistory.inStore1 == true}"
                                      action="#{deviceAdminHistory.addRecordToRegister(deviceDataHistory.idShedule)}">
                     </p:commandButton>
                 </p:column>
-
-                <p:column headerText="q1">
+                <p:column headerText="Q1">
                     <h:outputText value="#{deviceDataHistory.q1}">
                         <f:convertNumber pattern="#0.000"/>
                     </h:outputText>
@@ -87,7 +94,7 @@
                         <f:convertNumber pattern="#0.000"/>
                     </h:outputText>
                 </p:column>
-                <p:column headerText="g1">
+                <p:column headerText="Q1">
                     <h:outputText value="#{deviceDataHistory.GM1}">
                         <f:convertNumber pattern="#0.000"/>
                     </h:outputText>
@@ -97,14 +104,12 @@
                         <f:convertNumber pattern="#0.000"/>
                     </h:outputText>
                 </p:column>
-                <p:column headerText="p1">
+                <p:column headerText="P1">
                     <h:outputText value="#{deviceDataHistory.p1}">
                         <f:convertNumber pattern="#0.000"/>
                     </h:outputText>
                 </p:column>
-
-
-                <p:column headerText="q2">
+                <p:column headerText="P2">
                     <h:outputText value="#{deviceDataHistory.q2}">
                         <f:convertNumber pattern="#0.000"/>
                     </h:outputText>
@@ -119,7 +124,7 @@
                         <f:convertNumber pattern="#0.000"/>
                     </h:outputText>
                 </p:column>
-                <p:column headerText="g2">
+                <p:column headerText="G2">
                     <h:outputText value="#{deviceDataHistory.GM2}">
                         <f:convertNumber pattern="#0.000"/>
                     </h:outputText>
@@ -129,13 +134,13 @@
                         <f:convertNumber pattern="#0.000"/>
                     </h:outputText>
                 </p:column>
-                <p:column headerText="p2">
+                <p:column headerText="P2">
                     <h:outputText value="#{deviceDataHistory.p2}">
                         <f:convertNumber pattern="#0.000"/>
                     </h:outputText>
                 </p:column>
 
-                <p:column headerText="T раб">
+                <p:column headerText="T раб.">
                     <h:outputText value="#{deviceDataHistory.timeRunSys/60.0}">
                     </h:outputText>
                 </p:column>
@@ -149,9 +154,32 @@
                         <f:convertDateTime pattern="dd.MM.YYYY, HH:mm:ss"/>
                     </h:outputText>
                 </p:column>
-
             </p:dataTable>
         </h:form>
+
+        <p:dialog closable="false"
+                  header="Date Range Picker" resizable="false"
+                  widgetVar="dateRangeDlg" minHeight="40" modal="true">
+            <p:outputPanel>
+                <h:form>
+                    <p:calendar id="idStartDate" readonlyInput="true" locale="ru"
+                                value="#{deviceAdminHistory.startDate}">
+                        <p:ajax event="dateSelect" update="idEndDate"/>
+                    </p:calendar>
+                    <p:calendar id="idEndDate" readonlyInput="true" locale="ru"
+                                value="#{deviceAdminHistory.endDate}"
+                                mindate="#{deviceAdminHistory.startDate}">
+                        <p:ajax event="dateSelect"/>
+                    </p:calendar>
+                    <br/>
+                    <p:commandButton value="Close" icon="ui-icon-close"
+                                     update=":mainPanel"
+                                     onclick="PF('dateRangeDlg').hide()"/>
+                </h:form>
+            </p:outputPanel>
+        </p:dialog>
+
+
     </ui:define>
 </ui:composition>
 
