@@ -21,7 +21,8 @@
         </p:toolbar>
 
         <p:commandButton id="dateSelectBtn" value="Выберите период для отображения" type="button"
-                         onclick="PF('dateRangeDlg').show();">
+                         onclick="PF('dateRangeDlg').show();"
+        >
 
         </p:commandButton>
         <h:form style="font-size:14px" styleClass="center">
@@ -63,7 +64,7 @@
                     id="deviceDataHistoryTable"
                     widgetVar="deviceDataHistoryTable"
                     var="deviceDataHistory"
-                    value="#{deviceAdminHistory.sheduleReports}"
+                    value="#{deviceAdminHistory}"
 
                     paginator="true"
                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"

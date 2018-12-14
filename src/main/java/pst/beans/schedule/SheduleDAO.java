@@ -66,19 +66,18 @@ public class SheduleDAO extends AbstractDao<TblScheduleEntity> {
 
         Integer dateFirstFilter = ((Long) filters.get("dateFrom")).intValue();
         Integer dateLastFilter =  ((Long) filters.get("dateLast")).intValue();
-//        String deviceIds = (String) filters.get("deviceId");
-//        Integer deviceId = Integer.parseInt(deviceIds);
         Integer statusExecute = (Integer) filters.get("statusExecute");
         if(statusExecute!=1){
             statusExecute=0;
         }
-
         Integer deviceId = (Integer) filters.get("deviceId");
 
-        int rez = ((Long) entityManager.createQuery("select count(shedul.id) from TblScheduleEntity shedul  left join TblBoxCommonEntity box ON box.tblScheduleEntity=shedul where shedul.statusexecute =:statusExecute and box.instore1=true and shedul.deviceId =:deviceId")
+        int rez = ((Long) entityManager.createQuery("select count(shedul.id) from TblScheduleEntity shedul  left join TblBoxCommonEntity box ON box.tblScheduleEntity=shedul where shedul.statusexecute =:statusExecute and box.instore1=true and shedul.deviceId =:deviceId and box.timeRequest between :dateFirst AND :dateLast")
 //                .setParameter("dateFirst",dateFirstFilter)
 //                .setParameter("dateLast",dateLastFilter)
                 .setParameter("statusExecute",statusExecute)
+                .setParameter("dateFirst",dateFirstFilter)
+                .setParameter("dateLast",dateLastFilter)
                 .setParameter("deviceId",deviceId)
                 .getSingleResult()).intValue();
 
@@ -103,7 +102,6 @@ public class SheduleDAO extends AbstractDao<TblScheduleEntity> {
         if(statusExecute!=1){
             statusExecute=0;
         }
-
         Integer deviceId = (Integer) filters.get("deviceId");
 
         List<TblScheduleEntity> rez = ( entityManager.createQuery("select shedul from TblScheduleEntity shedul left join TblBoxCommonEntity box ON box.tblScheduleEntity=shedul where shedul.statusexecute =:statusExecute and box.instore1=true and shedul.deviceId =:deviceId and box.timeRequest between :dateFirst AND :dateLast")
