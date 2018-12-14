@@ -151,6 +151,13 @@ public class deviceDataAdminHistory implements Serializable {
         TblBoxCommonEntity tblBoxCommonEntity = scheduleEntity.getCommons().get(0);
         tblBoxCommonEntity.setInstore1(true);
         boxCommonDAO.update(tblBoxCommonEntity);
+        for (SheduleReport oneRecord :sheduleReports) {
+            if(oneRecord.getIdShedule()==idShedule){
+                oneRecord.setInStore1(true);
+                break;
+            }
+
+        }
 
 //        sheduleReports.setInStore1(true);
     }

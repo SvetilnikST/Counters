@@ -64,59 +64,74 @@
                 </p:column>
 
                 <p:column>
-                    <p:commandButton value="занести"
+                    <p:commandButton icon=" ui-icon-circle-arrow-s" update="deviceDataHistoryTable" rendered="#{ deviceDataHistory.inStore1 == false}"
+                                     action="#{deviceAdminHistory.addRecordToRegister(deviceDataHistory.idShedule)}">
+                    </p:commandButton>
+                    <p:commandButton icon=" ui-icon-check" update="deviceDataHistoryTable" rendered="#{ deviceDataHistory.inStore1 == true}"
                                      action="#{deviceAdminHistory.addRecordToRegister(deviceDataHistory.idShedule)}">
                     </p:commandButton>
                 </p:column>
 
                 <p:column headerText="q1">
                     <h:outputText value="#{deviceDataHistory.q1}">
+                        <f:convertNumber pattern="#0.000"/>
                     </h:outputText>
                 </p:column>
                 <p:column headerText="V1">
                     <h:outputText value="#{deviceDataHistory.v1}">
+                        <f:convertNumber pattern="#0.000"/>
                     </h:outputText>
                 </p:column>
                 <p:column headerText="M1">
                     <h:outputText value="#{deviceDataHistory.m1}">
+                        <f:convertNumber pattern="#0.000"/>
                     </h:outputText>
                 </p:column>
                 <p:column headerText="g1">
                     <h:outputText value="#{deviceDataHistory.GM1}">
+                        <f:convertNumber pattern="#0.000"/>
                     </h:outputText>
                 </p:column>
                 <p:column headerText="T1">
                     <h:outputText value="#{deviceDataHistory.t1}">
+                        <f:convertNumber pattern="#0.000"/>
                     </h:outputText>
                 </p:column>
                 <p:column headerText="p1">
                     <h:outputText value="#{deviceDataHistory.p1}">
+                        <f:convertNumber pattern="#0.000"/>
                     </h:outputText>
                 </p:column>
 
 
                 <p:column headerText="q2">
                     <h:outputText value="#{deviceDataHistory.q2}">
+                        <f:convertNumber pattern="#0.000"/>
                     </h:outputText>
                 </p:column>
                 <p:column headerText="V2">
                     <h:outputText value="#{deviceDataHistory.v2}">
+                        <f:convertNumber pattern="#0.000"/>
                     </h:outputText>
                 </p:column>
                 <p:column headerText="M2">
                     <h:outputText value="#{deviceDataHistory.m2}">
+                        <f:convertNumber pattern="#0.000"/>
                     </h:outputText>
                 </p:column>
                 <p:column headerText="g2">
                     <h:outputText value="#{deviceDataHistory.GM2}">
+                        <f:convertNumber pattern="#0.000"/>
                     </h:outputText>
                 </p:column>
                 <p:column headerText="T2">
                     <h:outputText value="#{deviceDataHistory.t2}">
+                        <f:convertNumber pattern="#0.000"/>
                     </h:outputText>
                 </p:column>
                 <p:column headerText="p2">
                     <h:outputText value="#{deviceDataHistory.p2}">
+                        <f:convertNumber pattern="#0.000"/>
                     </h:outputText>
                 </p:column>
 
@@ -126,11 +141,12 @@
                 </p:column>
                 <p:column headerText="Т xв.">
                     <h:outputText value="#{deviceDataHistory.t3}">
+                        <f:convertNumber pattern="#0.000"/>
                     </h:outputText>
                 </p:column>
                 <p:column headerText="На приборе">
                     <h:outputText value="#{deviceAdminHistory.timstampFromInt(deviceDataHistory.timeDevice)}">
-                        <f:convertDateTime pattern="dd MMMM YYYY г., HH:mm:ss"/>
+                        <f:convertDateTime pattern="dd.MM.YYYY, HH:mm:ss"/>
                     </h:outputText>
                 </p:column>
 
