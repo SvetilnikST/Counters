@@ -1,6 +1,8 @@
 package pst.beans.deviceDataAdministration;
 
 import org.joda.time.LocalDateTime;
+import org.primefaces.model.LazyDataModel;
+import org.primefaces.model.SortOrder;
 import pst.beans.device.DeviceDAO;
 import pst.beans.device.TblDeviceEntity;
 import pst.beans.qBox.Common.BoxCommonDAO;
@@ -25,7 +27,7 @@ import java.util.*;
 
 @ManagedBean(name = "deviceAdminHistory")
 @ViewScoped
-public class deviceDataAdminHistory implements Serializable {
+public class deviceDataAdminHistory extends LazyDataModel<SheduleReport> {
 
     List<TblBoxSystemEntity> boxSystemEntityList;
     TblBoxCommonEntity boxCommonEntity;
@@ -254,7 +256,7 @@ public class deviceDataAdminHistory implements Serializable {
     }
 
     public String getDateRangeString() {
-        return String.format("From: %s To: %s%n",
+        return String.format("С: %s по: %s%n",
                 formatter.format(startDate), formatter.format(endDate));
     }
 
@@ -280,4 +282,90 @@ public class deviceDataAdminHistory implements Serializable {
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
+
+    @Override
+    public List<SheduleReport> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
+
+        filters.put("dateFrom",startDate.getTime()/1000);
+        filters.put("dateLast",endDate.getTime()/1000);
+        filters.put("statusExecute",1);
+
+        filters.put("deviceId",device.getId());//исправить на правильный номер устройства
+
+//        tblScheduleEntityList = sheduleDAO.findDeviceWasReaded(1);
+
+
+        setRowCount(sheduleDAO.getTotalCount(filters));
+//        TblScheduleEntity scheduleEntity;
+//        scheduleEntity.getCommons().get(0).getTimeRequest();
+
+        tblScheduleEntityList =sheduleDAO.load(first, pageSize, sortField, sortOrder, filters);
+/////
+
+        for (TblScheduleEntity oneEntyty : tblScheduleEntityList) {
+            boxCommonEntityList = oneEntyty.getCommons();
+
+            //TODO треубется проверка на 0
+            boxCommonEntity = boxCommonEntityList.get(0);
+            boxSystemEntityList = boxCommonEntity.getSystem();
+        }
+
+        SheduleReport sheduleReport;
+
+        LocalDateTime dtCur;
+        boolean firstTime = true;
+        LocalDateTime dtOld = new LocalDateTime(tblScheduleEntityList.get(0).getCommons().get(0).getTimeRequest() * 1000L);
+        String tmp;
+
+        for (TblScheduleEntity shedulerRecord : tblScheduleEntityList) {
+            sheduleReport = new SheduleReport();
+
+            dtCur = new LocalDateTime(shedulerRecord.getCommons().get(0).getTimeRequest() * 1000L);
+
+            if (dtCur.getDayOfMonth() == dtOld.getDayOfMonth() && !firstTime) {
+                sheduleReport.setDateRequest("   ");
+            } else {
+                sheduleReport.setDateRequest(dtCur.toString("dd.MMMM"));
+            }
+            firstTime = false;
+            dtOld = dtCur;
+
+            //сюда гоним запись всего остального.
+            sheduleReport.setTimeRequest(dtCur.toString("HH:mm:ss"));
+//            sheduleReport.setTimeRequest(String.valueOf(dtCur.getHourOfDay()));
+//            sheduleReport.setTimeRequest(shedulerRecord.getCommons().get(0).getTimeRequest());
+            sheduleReport.setTimeDevice(shedulerRecord.getCommons().get(0).getTimeDevice());
+//            sheduleReport.setTimeRequest(shedulerRecord.get);
+            sheduleReport.setSIGMA_Q(shedulerRecord.getCommons().get(0).getSystem().get(0).getSIGMA_Q());
+            sheduleReport.setQ1(shedulerRecord.getCommons().get(0).getSystem().get(0).getQ1());
+            sheduleReport.setQ2(shedulerRecord.getCommons().get(0).getSystem().get(0).getQ2());
+            sheduleReport.setQ3(shedulerRecord.getCommons().get(0).getSystem().get(0).getQ3());
+            sheduleReport.setV1(shedulerRecord.getCommons().get(0).getSystem().get(0).getV1());
+            sheduleReport.setV2(shedulerRecord.getCommons().get(0).getSystem().get(0).getV2());
+            sheduleReport.setM1(shedulerRecord.getCommons().get(0).getSystem().get(0).getM1());
+            sheduleReport.setM2(shedulerRecord.getCommons().get(0).getSystem().get(0).getM2());
+            sheduleReport.setGM1(shedulerRecord.getCommons().get(0).getSystem().get(0).getGM1());
+            sheduleReport.setGM2(shedulerRecord.getCommons().get(0).getSystem().get(0).getGM2());
+            sheduleReport.setGV1(shedulerRecord.getCommons().get(0).getSystem().get(0).getGV1());
+            sheduleReport.setGV2(shedulerRecord.getCommons().get(0).getSystem().get(0).getGV2());
+            sheduleReport.setT1(shedulerRecord.getCommons().get(0).getSystem().get(0).getT1());
+            sheduleReport.setT2(shedulerRecord.getCommons().get(0).getSystem().get(0).getT2());
+            sheduleReport.setT3(shedulerRecord.getCommons().get(0).getSystem().get(0).getT3());
+            sheduleReport.setP1(shedulerRecord.getCommons().get(0).getSystem().get(0).getP1());
+            sheduleReport.setP1(shedulerRecord.getCommons().get(0).getSystem().get(0).getP2());
+            sheduleReport.setP1(shedulerRecord.getCommons().get(0).getSystem().get(0).getP3());
+            sheduleReport.setInStore1(shedulerRecord.getCommons().get(0).getInstore1());
+            sheduleReport.setIdShedule(shedulerRecord.getId());
+
+            int a = 0;
+            sheduleReports.add(sheduleReport);
+        }
+
+
+
+//////
+        return sheduleReports;
+    }
+
+
 }

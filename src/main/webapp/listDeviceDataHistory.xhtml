@@ -10,19 +10,23 @@
     </ui:define>
 
     <ui:define name="page_body">
-        <p:outputPanel id="mainPanel">
-            <p:outputLabel for="dateSelectBtn" value="#{deviceAdminHistory.dateRangeString}"/>
-        </p:outputPanel>
+        <p:toolbar>
+            <f:facet name="left">
 
-        <p:commandButton id="dateSelectBtn" value="Select new date range" type="button"
-                         onclick="PF('dateRangeDlg').show();"/>
+                <p:outputPanel id="mainPanel">
+                    <p:outputLabel for="dateSelectBtn" value="Текущие дистанционные данные за период #{deviceAdminHistory.dateRangeString}"/>
+                </p:outputPanel>
+
+            </f:facet>
+        </p:toolbar>
+
+        <p:commandButton id="dateSelectBtn" value="Выберите период для отображения" type="button"
+                         onclick="PF('dateRangeDlg').show();">
+
+        </p:commandButton>
         <h:form style="font-size:14px" styleClass="center">
 
-            <p:toolbar>
-                <f:facet name="left">
-                    <h:outputLabel>Текущие дистанционные данные</h:outputLabel>
-                </f:facet>
-            </p:toolbar>
+
             <p:panelGrid>
                 <p:row>
                     <p:column colspan="1">Адрес:</p:column>
@@ -59,7 +63,17 @@
                     id="deviceDataHistoryTable"
                     widgetVar="deviceDataHistoryTable"
                     var="deviceDataHistory"
-                    value="#{deviceAdminHistory.sheduleReports}">
+                    value="#{deviceAdminHistory.sheduleReports}"
+
+                    paginator="true"
+                    paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                    rows="10"
+                    rowsPerPageTemplate="5,10,15"
+
+                    lazy="true"
+                    tableStyle="width: auto"
+                    emptyMessage="Нет записей">
+            >
 
                 <p:column headerText="Дата опроса">
                     <h:outputText value="#{deviceDataHistory.dateRequest}">
