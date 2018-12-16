@@ -81,7 +81,7 @@ public class deviceDataAdminHistory extends LazyDataModel<SheduleReport> {
 
             //TODO закомментировать
 //            deviceDAO.test();
-            deviceDAO.test2();
+//            deviceDAO.test2();
 
             //проверка если пустая entity, сообщение об ощибке
             if (device == null) {

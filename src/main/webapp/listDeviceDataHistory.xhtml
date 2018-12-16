@@ -10,24 +10,26 @@
     </ui:define>
 
     <ui:define name="page_body">
+
         <p:toolbar>
             <f:facet name="left">
 
                 <p:outputPanel id="mainPanel">
-                    <p:outputLabel for="dateSelectBtn" value="Текущие дистанционные данные за период #{deviceAdminHistory.dateRangeString}"/>
+
+                    <p:outputLabel for="dateSelectBtn"
+                                   value="Текущие дистанционные данные за период #{deviceAdminHistory.dateRangeString}  "/>
+
+
+                    <p:commandButton id="dateSelectBtn" value="Изменить период" type="button"
+                                     onclick="PF('dateRangeDlg').show();">
+                    </p:commandButton>
                 </p:outputPanel>
 
             </f:facet>
         </p:toolbar>
 
-        <p:commandButton id="dateSelectBtn" value="Выберите период для отображения" type="button"
-                         onclick="PF('dateRangeDlg').show();"
-        >
 
-        </p:commandButton>
         <h:form style="font-size:14px" styleClass="center">
-
-
             <p:panelGrid>
                 <p:row>
                     <p:column colspan="1">Адрес:</p:column>
@@ -56,120 +58,143 @@
                 </p:row>
             </p:panelGrid>
             <br/>
-
         </h:form>
+<p:toolbar>
+    <f:facet name="right">
+        <p:button type="button" icon="ui-icon-calendar" value="ЖУРНАЛ УЧЕТА ТЕПЛОПОТРЕБЛЕНИЯ" outcome="registerList">
+            <f:param name="id" value="#{deviceAdminHistory.device.id}"/>
+        </p:button>
+    </f:facet>
+</p:toolbar>
 
-            <br/>
-            <p:dataTable
-                    id="deviceDataHistoryTable"
-                    widgetVar="deviceDataHistoryTable"
-                    var="deviceDataHistory"
-                    value="#{deviceAdminHistory}"
+        <br/>
+        <p:dataTable
+                id="deviceDataHistoryTable"
+                widgetVar="deviceDataHistoryTable"
+                var="deviceDataHistory"
+                value="#{deviceAdminHistory}"
 
-                    paginator="true"
-                    paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                    rows="10"
-                    rowsPerPageTemplate="5,10,15"
+                paginator="true"
+                paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                rows="10"
+                rowsPerPageTemplate="5,10,15"
 
-                    lazy="true"
-                    tableStyle="width: auto"
-                    emptyMessage="Нет записей">
+                lazy="true"
+                tableStyle="width: auto"
+                emptyMessage="Нет записей">
             >
 
-                <p:column headerText="Дата опроса">
-                    <h:outputText value="#{deviceDataHistory.dateRequest}">
-                    </h:outputText>
-                </p:column>
-                <p:column headerText="Время опроса">
-                    <h:outputText value="#{deviceDataHistory.timeRequest}">
-                    </h:outputText>
-                </p:column>
-                <p:column>
-                    <p:commandButton icon=" ui-icon-circle-arrow-s" update="deviceDataHistoryTable"
-                                     rendered="#{ deviceDataHistory.inStore1 == false}"
-                                     action="#{deviceAdminHistory.addRecordToRegister(deviceDataHistory.idShedule)}">
-                    </p:commandButton>
-                    <p:commandButton icon=" ui-icon-check" update="deviceDataHistoryTable"
-                                     rendered="#{ deviceDataHistory.inStore1 == true}"
-                                     action="#{deviceAdminHistory.addRecordToRegister(deviceDataHistory.idShedule)}">
-                    </p:commandButton>
-                </p:column>
-                <p:column headerText="Q1">
-                    <h:outputText value="#{deviceDataHistory.q1}">
-                        <f:convertNumber pattern="#0.000"/>
-                    </h:outputText>
-                </p:column>
-                <p:column headerText="V1">
-                    <h:outputText value="#{deviceDataHistory.v1}">
-                        <f:convertNumber pattern="#0.000"/>
-                    </h:outputText>
-                </p:column>
-                <p:column headerText="M1">
-                    <h:outputText value="#{deviceDataHistory.m1}">
-                        <f:convertNumber pattern="#0.000"/>
-                    </h:outputText>
-                </p:column>
-                <p:column headerText="Q1">
-                    <h:outputText value="#{deviceDataHistory.GM1}">
-                        <f:convertNumber pattern="#0.000"/>
-                    </h:outputText>
-                </p:column>
-                <p:column headerText="T1">
-                    <h:outputText value="#{deviceDataHistory.t1}">
-                        <f:convertNumber pattern="#0.000"/>
-                    </h:outputText>
-                </p:column>
-                <p:column headerText="P1">
-                    <h:outputText value="#{deviceDataHistory.p1}">
-                        <f:convertNumber pattern="#0.000"/>
-                    </h:outputText>
-                </p:column>
-                <p:column headerText="P2">
-                    <h:outputText value="#{deviceDataHistory.q2}">
-                        <f:convertNumber pattern="#0.000"/>
-                    </h:outputText>
-                </p:column>
-                <p:column headerText="V2">
-                    <h:outputText value="#{deviceDataHistory.v2}">
-                        <f:convertNumber pattern="#0.000"/>
-                    </h:outputText>
-                </p:column>
-                <p:column headerText="M2">
-                    <h:outputText value="#{deviceDataHistory.m2}">
-                        <f:convertNumber pattern="#0.000"/>
-                    </h:outputText>
-                </p:column>
-                <p:column headerText="G2">
-                    <h:outputText value="#{deviceDataHistory.GM2}">
-                        <f:convertNumber pattern="#0.000"/>
-                    </h:outputText>
-                </p:column>
-                <p:column headerText="T2">
-                    <h:outputText value="#{deviceDataHistory.t2}">
-                        <f:convertNumber pattern="#0.000"/>
-                    </h:outputText>
-                </p:column>
-                <p:column headerText="P2">
-                    <h:outputText value="#{deviceDataHistory.p2}">
-                        <f:convertNumber pattern="#0.000"/>
-                    </h:outputText>
-                </p:column>
+            <p:column headerText="Дата опроса">
+                <h:outputText value="#{deviceDataHistory.dateRequest}">
+                </h:outputText>
+            </p:column>
 
-                <p:column headerText="T раб.">
-                    <h:outputText value="#{deviceDataHistory.timeRunSys/60.0}">
-                    </h:outputText>
-                </p:column>
-                <p:column headerText="Т xв.">
-                    <h:outputText value="#{deviceDataHistory.t3}">
-                        <f:convertNumber pattern="#0.000"/>
-                    </h:outputText>
-                </p:column>
-                <p:column headerText="На приборе">
-                    <h:outputText value="#{deviceAdminHistory.timstampFromInt(deviceDataHistory.timeDevice)}">
-                        <f:convertDateTime pattern="dd.MM.YYYY, HH:mm:ss"/>
-                    </h:outputText>
-                </p:column>
-            </p:dataTable>
+            <p:column headerText="Время опроса">
+                <h:outputText value="#{deviceDataHistory.timeRequest}">
+                </h:outputText>
+            </p:column>
+
+            <p:column>
+                <p:commandButton icon=" ui-icon-circle-arrow-s" update="deviceDataHistoryTable"
+                                 rendered="#{ deviceDataHistory.inStore1 == false}"
+                                 action="#{deviceAdminHistory.addRecordToRegister(deviceDataHistory.idShedule)}">
+                </p:commandButton>
+                <p:commandButton icon=" ui-icon-check" update="deviceDataHistoryTable"
+                                 rendered="#{ deviceDataHistory.inStore1 == true}"
+                                 action="#{deviceAdminHistory.addRecordToRegister(deviceDataHistory.idShedule)}">
+                </p:commandButton>
+            </p:column>
+
+            <p:column headerText="Q1">
+                <h:outputText value="#{deviceDataHistory.q1}">
+                    <f:convertNumber pattern="#0.000"/>
+                </h:outputText>
+            </p:column>
+
+            <p:column headerText="V1">
+                <h:outputText value="#{deviceDataHistory.v1}">
+                    <f:convertNumber pattern="#0.000"/>
+                </h:outputText>
+            </p:column>
+
+            <p:column headerText="M1">
+                <h:outputText value="#{deviceDataHistory.m1}">
+                    <f:convertNumber pattern="#0.000"/>
+                </h:outputText>
+            </p:column>
+
+            <p:column headerText="Q1">
+                <h:outputText value="#{deviceDataHistory.GM1}">
+                    <f:convertNumber pattern="#0.000"/>
+                </h:outputText>
+            </p:column>
+
+            <p:column headerText="T1">
+                <h:outputText value="#{deviceDataHistory.t1}">
+                    <f:convertNumber pattern="#0.000"/>
+                </h:outputText>
+            </p:column>
+
+            <p:column headerText="P1">
+                <h:outputText value="#{deviceDataHistory.p1}">
+                    <f:convertNumber pattern="#0.000"/>
+                </h:outputText>
+            </p:column>
+
+            <p:column headerText="P2">
+                <h:outputText value="#{deviceDataHistory.q2}">
+                    <f:convertNumber pattern="#0.000"/>
+                </h:outputText>
+            </p:column>
+
+            <p:column headerText="V2">
+                <h:outputText value="#{deviceDataHistory.v2}">
+                    <f:convertNumber pattern="#0.000"/>
+                </h:outputText>
+            </p:column>
+
+            <p:column headerText="M2">
+                <h:outputText value="#{deviceDataHistory.m2}">
+                    <f:convertNumber pattern="#0.000"/>
+                </h:outputText>
+            </p:column>
+
+            <p:column headerText="G2">
+                <h:outputText value="#{deviceDataHistory.GM2}">
+                    <f:convertNumber pattern="#0.000"/>
+                </h:outputText>
+            </p:column>
+
+            <p:column headerText="T2">
+                <h:outputText value="#{deviceDataHistory.t2}">
+                    <f:convertNumber pattern="#0.000"/>
+                </h:outputText>
+            </p:column>
+
+            <p:column headerText="P2">
+                <h:outputText value="#{deviceDataHistory.p2}">
+                    <f:convertNumber pattern="#0.000"/>
+                </h:outputText>
+            </p:column>
+
+            <p:column headerText="T раб.">
+                <h:outputText value="#{deviceDataHistory.timeRunSys/60.0}">
+                </h:outputText>
+            </p:column>
+
+            <p:column headerText="Т xв.">
+                <h:outputText value="#{deviceDataHistory.t3}">
+                    <f:convertNumber pattern="#0.000"/>
+                </h:outputText>
+            </p:column>
+
+            <p:column headerText="На приборе">
+                <h:outputText value="#{deviceAdminHistory.timstampFromInt(deviceDataHistory.timeDevice)}">
+                    <f:convertDateTime pattern="dd.MM.YYYY, HH:mm:ss"/>
+                </h:outputText>
+            </p:column>
+
+        </p:dataTable>
 
 
         <p:dialog closable="false"
@@ -194,8 +219,6 @@
                 </h:form>
             </p:outputPanel>
         </p:dialog>
-
-
     </ui:define>
 </ui:composition>
 
