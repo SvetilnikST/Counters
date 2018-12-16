@@ -10,12 +10,7 @@
 
     <ui:define name="page_body">
         <h:form style="font-size:14px" styleClass="center">
-            <p:toolbar>
-                <f:facet name="left">
 
-                </f:facet>
-
-            </p:toolbar>
             <p:panel style="background:whitesmoke">
                 <p:outputLabel style="color: darkslateblue; text-align: center"
                                value="Мониторинг журналов учёта тепловой энергии"/>
@@ -34,15 +29,12 @@
                 </p:column>
 
                 <p:column>
-
                     <p:button type="button" icon="ui-icon-info" value="Данные" outcome="listDeviceDataHistory">
                         <f:param name="id" value="#{device.id}"/>
                     </p:button>
-
                     <p:button type="button" icon="ui-icon-calendar" value="Журнал" outcome="registerList">
                         <f:param name="id" value="#{device.id}"/>
                     </p:button>
-
                 </p:column>
 
                 <p:column headerText="Объект">
@@ -50,9 +42,8 @@
                     <h:outputText value="г. #{device.objectEntity.cityEntity.nameCity},
                                          ул. #{device.objectEntity.streetEntity.nameStreet},
                                          д.#{device.objectEntity.home}"/>
-
-
                 </p:column>
+
                 <p:column headerText="Тип, серийный номер">
                     <h:outputText value="#{device.typeDeviceEntity.name} ,"/><br/>
                     <h:outputText value="# #{device.serial}"/>
@@ -75,22 +66,30 @@
 
                 </p:column>
                 <p:column headerText="Поверка устройств">
-
-                    <h:outputText value="#{device.IVB} "> <f:convertDateTime pattern="dd MMMM YYYY г."/> </h:outputText>
+                    <h:outputText value="ИВБ - "/>
+                    <h:outputText value="#{device.IVB}">
+                        <f:convertDateTime pattern = "dd MMMM YYYY г." />
+                    </h:outputText>
                     <br/>
-                    <h:outputText value="ППР. - #{device.PPR} "> </h:outputText>
+                    <h:outputText value="ППР - "/>
+                    <h:outputText value="#{device.PPR}">
+                        <f:convertDateTime pattern = "dd MMMM YYYY г." />
+                    </h:outputText>
                     <br/>
-                    <h:outputText value="ТСП. - #{device.TCP} "> </h:outputText>
+                    <h:outputText value="ТСП - "/>
+                    <h:outputText value="#{device.TCP}">
+                        <f:convertDateTime pattern = "dd MMMM YYYY г." />
+                    </h:outputText>
                     <br/>
-                    <h:outputText value="доп. оборуд.- #{device.additionalDevice} "> </h:outputText>
+                    <h:outputText value="доп. оборуд.- "/>
+                    <h:outputText value="#{device.additionalDevice}">
+                        <f:convertDateTime pattern = "dd MMMM YYYY г." />
+                    </h:outputText>
                     <br/>
                 </p:column>
-
             </p:dataTable>
 
-
-            <br/><br/><br/><br/>
-
+            <br/><br/>
 
             <p:panel id="basic" header="Документы для ознакомления:" style=" background: lavender; margin-bottom:20px">
                 <h:panelGrid>
@@ -132,11 +131,8 @@
                         <p:column colspan="1">Email:</p:column>
                         <p:column colspan="1"><h:outputText value="#{userBean.userEntity.email}"/></p:column>
                     </p:row>
-
-
                 </h:panelGrid>
             </p:panel>
-
         </h:form>
     </ui:define>
     <ui:define name="page_body_inf">
