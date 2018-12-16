@@ -7,17 +7,19 @@
         Counters
     </ui:define>
 
+
     <ui:define name="page_body">
         <h:form style="font-size:14px" styleClass="center">
             <p:toolbar>
                 <f:facet name="left">
-                    <p:outputLabel style="color: deepskyblue">Мониторинг журналов тепловой энергии</p:outputLabel>
+
                 </f:facet>
-                <f:facet name="right">
-                    <p:button style="align-items: left" type="button" icon="ui-icon-document" value="Сводный акт"
-                              href="/test_print_act.xhtml"/>
-                </f:facet>
+
             </p:toolbar>
+            <p:panel style="background:whitesmoke">
+                <p:outputLabel style="color: darkslateblue; text-align: center"
+                               value="Мониторинг журналов учёта тепловой энергии"/>
+            </p:panel>
 
             <p:dataTable
                     id="deviceTable"
@@ -25,89 +27,118 @@
                     var="device"
                     value="#{deviceAdministration.tblDeviceEntitysList}">
 
-                <p:column headerText="Наименование">
-                    <h:link value="#{device.name}" outcome="listDeviceDataHistory">
+                <p:column headerText="Устройство">
+                    <h:link value="#{device.name}" outcome="editDevice">
                         <f:param name="id" value="#{device.id}"/>
                     </h:link>
                 </p:column>
-                <p:column headerText="Величина">
-                    <h:outputText value="#{device.unitQEntity.name}">
-                    </h:outputText>
+
+                <p:column>
+
+                    <p:button type="button" icon="ui-icon-info" value="Данные" outcome="listDeviceDataHistory">
+                        <f:param name="id" value="#{device.id}"/>
+                    </p:button>
+
+                    <p:button type="button" icon="ui-icon-calendar" value="Журнал" outcome="registerList">
+                        <f:param name="id" value="#{device.id}"/>
+                    </p:button>
+
                 </p:column>
-                <p:column headerText="Тип устройства">
-                    <h:outputText value="#{device.typeDeviceEntity.name}">
-                    </h:outputText>
+
+                <p:column headerText="Объект">
+                    <h:outputText value="#{device.objectEntity.nameObject} - "/><br/>
+                    <h:outputText value="г. #{device.objectEntity.cityEntity.nameCity},
+                                         ул. #{device.objectEntity.streetEntity.nameStreet},
+                                         д.#{device.objectEntity.home}"/>
+
+
                 </p:column>
-                <p:column headerText="Серия">
-                    <h:outputText value="#{device.serial}">
-                    </h:outputText>
+                <p:column headerText="Тип, серийный номер">
+                    <h:outputText value="#{device.typeDeviceEntity.name} ,"/><br/>
+                    <h:outputText value="# #{device.serial}"/>
                 </p:column>
-                <p:column headerText="Последний опрос">
-                    <h:outputText value="#{deviceAdministration.lastRequestDate}">
-                        <f:convertDateTime pattern="dd MMMM YYYY г., HH:mm:ss"/>
-                    </h:outputText>
+
+
+                <p:column headerText="IP-адрес, Номер порта">
+                    <h:outputText value="IP: #{device.ip} "/><br/>
+                    <h:outputText value="Порт:#{device.num_port}"/>
                 </p:column>
-                <p:column headerText="Количество опросов">
-                    <h:outputText value="#{deviceAdministration.requestsCount}">
+                <p:column headerText="Плановая нагрузка">
+                    <h:outputText value="нагр. #{device.objectEntity.hotWater+device.objectEntity.heating+device.objectEntity.ventilation} Гкал/ч ">
+                        <f:convertNumber pattern="#0.0000"/>
                     </h:outputText>
+                    <br/>
+
+                    <h:outputText value="ГВС #{device.objectEntity.hotWater} "/><br/>
+                    <h:outputText value="Отоп. #{device.objectEntity.heating} "/><br/>
+                    <h:outputText value="Вент. #{device.objectEntity.ventilation} "/><br/>
+
                 </p:column>
-                <p:column headerText="IP-адрес">
-                    <h:outputText value="#{device.ip}">
-                    </h:outputText>
+                <p:column headerText="Поверка устройств">
+
+                    <h:outputText value="#{device.IVB} "> <f:convertDateTime pattern="dd MMMM YYYY г."/> </h:outputText>
+                    <br/>
+                    <h:outputText value="ППР. - #{device.PPR} "> </h:outputText>
+                    <br/>
+                    <h:outputText value="ТСП. - #{device.TCP} "> </h:outputText>
+                    <br/>
+                    <h:outputText value="доп. оборуд.- #{device.additionalDevice} "> </h:outputText>
+                    <br/>
                 </p:column>
-                <p:column headerText="Номер порта">
-                    <h:outputText value="#{device.num_port}">
-                    </h:outputText>
-                </p:column>
-                <p:column headerText="Интервал опроса">
-                    <h:outputText value="#{device.requestInterval}">
-                    </h:outputText>
-                </p:column>
+
             </p:dataTable>
 
 
             <br/><br/><br/><br/>
-            <p:outputLabel style="color: darkcyan">Документы для ознакомления:</p:outputLabel>
-            <br/>
 
-            <br/>
-            <p:button type="button" icon="ui-icon-document" href="docs/1.pdf" target="pdf-frame"/>
-            <p:outputLabel>Температурный график 2018-2019г.г.</p:outputLabel>
-            <br/>
-            <p:button type="button" icon="ui-icon-document" href="docs/2.pdf" target="pdf-frame"/>
-            <p:outputLabel>Температурный график ОЗП 2017-2018</p:outputLabel>
-            <br/>
-            <p:button type="button" icon="ui-icon-document" href="docs/3.pdf" target="pdf-frame"/>
-            <p:outputLabel>Вкладыш в журнал учета</p:outputLabel>
-            <br/>
-            <p:button type="button" icon="ui-icon-document" href="docs/4.pdf" target="pdf-frame"/>
-            <p:outputLabel>Таблицы термодинамических свойств воды</p:outputLabel>
-            <br/>
-            <p:button type="" icon="ui-icon-document" href="docs/5.pdf" target="pdf-frame"/>
-            <p:outputLabel> Таблица переводов единиц давлений</p:outputLabel>
-            <br/>
 
+            <p:panel id="basic" header="Документы для ознакомления:" style=" background: lavender; margin-bottom:20px">
+                <h:panelGrid>
+                    <p:link href="docs/1.pdf" target="pdf-frame">Температурный график 2018-2019</p:link>
+                    <br/>
+                    <p:link href="docs/2.pdf" target="pdf-frame">Температурный график ОЗП 2017-2018</p:link>
+
+                    <br/>
+                    <p:link href="docs/3.pdf" target="pdf-frame">Вкладыш в журнал учета</p:link>
+
+                    <br/>
+                    <p:link href="docs/4.pdf" target="pdf-frame"> Таблицы термодинамических свойств воды</p:link>
+                    <br/>
+                    <p:link type="" icon="ui-icon-document" href="docs/5.pdf"
+                            target="pdf-frame">Таблица переводов единиц давлений</p:link>
+                </h:panelGrid>
+            </p:panel>
+
+            <p:panel id="user" header="Информация о пользователе:" style=" background: lavender">
+                <h:panelGrid>
+                    <p:row>
+                        <p:column colspan="1">Логин:</p:column>
+                        <p:column colspan="1"><h:outputText
+                                value="#{userBean.userEntity.username}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column colspan="1">Фамилия:</p:column>
+                        <p:column colspan="1"><h:outputText value="#{userBean.userEntity.surname}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column colspan="1">Имя:</p:column>
+                        <p:column colspan="1"><h:outputText value="#{userBean.userEntity.name}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column colspan="1">Отчество:</p:column>
+                        <p:column colspan="1"><h:outputText value="#{userBean.userEntity.nameSur}"/></p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column colspan="1">Email:</p:column>
+                        <p:column colspan="1"><h:outputText value="#{userBean.userEntity.email}"/></p:column>
+                    </p:row>
+
+
+                </h:panelGrid>
+            </p:panel>
 
         </h:form>
     </ui:define>
     <ui:define name="page_body_inf">
-        <!--<p:panel header="Документы для ознакомления:" style="min-width:400px;min-height:200px;">-->
-        <!--<br/>-->
-        <!--<p:button type="button" icon="ui-icon-document" href="docs/1.pdf" target="pdf-frame"/>-->
-        <!--<p:outputLabel>Температурный график 2018-2019г.г.</p:outputLabel>-->
-        <!--<br/>-->
-        <!--<p:button type="button" icon="ui-icon-document" href="docs/2.pdf" target="pdf-frame"/>-->
-        <!--<p:outputLabel>Температурный график ОЗП 2017-2018</p:outputLabel>-->
-        <!--<br/>-->
-        <!--<p:button type="button" icon="ui-icon-document" href="docs/3.pdf" target="pdf-frame"/>-->
-        <!--<p:outputLabel>Вкладыш в журнал учета</p:outputLabel>-->
-        <!--<br/>-->
-        <!--<p:button type="button" icon="ui-icon-document" href="docs/4.pdf" target="pdf-frame"/>-->
-        <!--<p:outputLabel>Таблицы термодинамических свойств воды</p:outputLabel>-->
-        <!--<br/>-->
-        <!--<p:button type="" icon="ui-icon-document" href="docs/5.pdf" target="pdf-frame"/>-->
-        <!--<p:outputLabel> Таблица переводов единиц давлений</p:outputLabel>-->
-        <!--<br/>-->
-        <!--</p:panel>-->
     </ui:define>
 </ui:composition>
