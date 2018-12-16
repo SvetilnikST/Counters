@@ -71,7 +71,8 @@ public class cityAdministration implements Serializable {
         } else {
             cityDAO.update(tblCityEntity);
         }
-        return "listCity.xhtml?faces-redirect=true&id=" + String.valueOf(tblCityEntity.getIdCity());
+//        return "listCity.xhtml?faces-redirect=true&id=" + String.valueOf(tblCityEntity.getIdCity());
+        return "list.xhtml";
     }
 
     public TblCityEntity getTblCityEntity() {

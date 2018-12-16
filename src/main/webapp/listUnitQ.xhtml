@@ -23,19 +23,14 @@
                     widgetVar="unitQTable"
                     var="unitQ"
                     value="#{unitQAdministration.tblUnitQEntitysList}">
-                <!--<p:column headerText="ID">-->
-                    <!--<h:link value="#{unitQ.id}" outcome="editUnitQ">-->
-                        <!--<f:param name="id" value="#{unitQ.id}"/>-->
-                    <!--</h:link>-->
-                <!--</p:column>-->
+
                 <p:column headerText="Наименование">
 
                     <h:link value="#{unitQ.name}" outcome="editUnitQ">
                         <f:param name="id" value="#{unitQ.id}"/>
                     </h:link>
 
-                    <!--<h:outputText value="#{unitQ.name}">-->
-                    <!--</h:outputText>-->
+
                 </p:column>
             </p:dataTable>
         </h:form>

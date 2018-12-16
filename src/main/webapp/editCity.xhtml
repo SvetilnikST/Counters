@@ -9,16 +9,8 @@
     <ui:define name="page_body">
         <h:form>
             <p:panel>
-                <p:toolbar>
-                    <f:facet name="left">
-                        <p:commandButton value="Сохранить" action="#{cityAdministration.save()}"
-                                         rendered="#{userBean.doRightVerify('createUser')}"/>
-                        <p:commandButton value="Удалить запись" action="#{cityAdministration.save()}"
-                                         rendered="#{userBean.doRightVerify('createUser')}"/>
-                        <p:button type="button" title="Список городов" value="Список городов"
-                                  icon="ui-icon-person" href="/administration.xhtml"/>
-                    </f:facet>
-                </p:toolbar>
+
+
                 <h2>
                     <p:outputLabel rendered="#{cityAdministration.idCity==0 or cityAdministration.idCity==null}">
                         Создание города
@@ -39,6 +31,10 @@
                         </p:column>
                     </p:row>
                 </p:panelGrid>
+                <p:commandButton value="Сохранить" action="#{cityAdministration.save()}"
+                                 rendered="#{userBean.doRightVerify('createUser')}"/>
+                <p:commandButton value="Удалить запись" action="#{cityAdministration.save()}"
+                                 rendered="#{userBean.doRightVerify('createUser')}"/>
 
             </p:panel>
         </h:form>

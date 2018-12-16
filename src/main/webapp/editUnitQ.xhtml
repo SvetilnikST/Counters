@@ -10,10 +10,10 @@
         <h:form>
             <p:panel>
                 <h2>
-                    <p:outputLabel rendered="#{userAdministration.id==0 or userAdministration.id==null}">
+                    <p:outputLabel rendered="#{unitQAdministration.id==0 or unitQAdministration.id==null}">
                         Новое измерение
                     </p:outputLabel>
-                    <p:outputLabel rendered="#{userAdministration.id!=0 and userAdministration.id!=null}"
+                    <p:outputLabel rendered="#{unitQAdministration.id!=0 and unitQAdministration.id!=null}"
                                    value="Изменение данных #{unitQAdministration.name} "/>
                 </h2>
                 <p:panelGrid styleClass="ui-panelgrid-blank">

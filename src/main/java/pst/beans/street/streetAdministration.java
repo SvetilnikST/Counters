@@ -68,7 +68,8 @@ public class streetAdministration implements Serializable {
         } else {
             streetDAO.update(tblStreetEntity);
         }
-        return "listStreet.xhtml?faces-redirect=true&id=" + String.valueOf(tblStreetEntity.getIdStreet());
+//        return "listStreet.xhtml?faces-redirect=true&id=" + String.valueOf(tblStreetEntity.getIdStreet());
+        return "list.xhtml";
     }
 
 

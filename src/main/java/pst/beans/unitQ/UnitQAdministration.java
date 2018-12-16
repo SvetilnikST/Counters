@@ -69,7 +69,8 @@ public class UnitQAdministration implements Serializable {
         } else {
             unitQDAO.update(tblUnitQEntity);
         }
-        return "listUnitQ.xhtml?faces-redirect=true&id=" + String.valueOf(tblUnitQEntity.getId());
+//        return "listUnitQ.xhtml?faces-redirect=true&id=" + String.valueOf(tblUnitQEntity.getId());
+        return "list.xhtml";
     }
 
 
