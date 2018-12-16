@@ -57,7 +57,7 @@
             </p:panelGrid>
             <br/>
 
-
+        </h:form>
 
             <br/>
             <p:dataTable
@@ -170,10 +170,10 @@
                     </h:outputText>
                 </p:column>
             </p:dataTable>
-        </h:form>
+
 
         <p:dialog closable="false"
-                  header="Date Range Picker" resizable="false"
+                  header="Выбор периода" resizable="false"
                   widgetVar="dateRangeDlg" minHeight="40" modal="true">
             <p:outputPanel>
                 <h:form>
@@ -187,8 +187,9 @@
                         <p:ajax event="dateSelect"/>
                     </p:calendar>
                     <br/>
-                    <p:commandButton value="Close" icon="ui-icon-close"
-                                     update=":mainPanel"
+                    <p:commandButton value="Применить" icon="ui-icon-close"
+                                     update=":mainPanel, :deviceDataHistoryTable"
+
                                      onclick="PF('dateRangeDlg').hide()"/>
                 </h:form>
             </p:outputPanel>
