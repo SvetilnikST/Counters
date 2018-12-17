@@ -67,19 +67,30 @@ public class SheduleDAO extends AbstractDao<TblScheduleEntity> {
         Integer dateFirstFilter = ((Long) filters.get("dateFrom")).intValue();
         Integer dateLastFilter =  ((Long) filters.get("dateLast")).intValue();
         Integer statusExecute = (Integer) filters.get("statusExecute");
-        if(statusExecute!=1){
-            statusExecute=0;
-        }
+        Boolean inStore1 = (Boolean) filters.get("inStore1");
         Integer deviceId = (Integer) filters.get("deviceId");
+        int rez;
 
-        int rez = ((Long) entityManager.createQuery("select count(shedul.id) from TblScheduleEntity shedul  left join TblBoxCommonEntity box ON box.tblScheduleEntity=shedul where shedul.statusexecute =:statusExecute and box.instore1=true and shedul.deviceId =:deviceId and box.timeRequest between :dateFirst AND :dateLast")
+        if(inStore1  ==null) {
+            rez = ((Long) entityManager.createQuery("select count(shedul.id) from TblScheduleEntity shedul  left join TblBoxCommonEntity box ON box.tblScheduleEntity=shedul where shedul.statusexecute =:statusExecute and shedul.deviceId =:deviceId and box.timeRequest between :dateFirst AND :dateLast")
 //                .setParameter("dateFirst",dateFirstFilter)
 //                .setParameter("dateLast",dateLastFilter)
-                .setParameter("statusExecute",statusExecute)
-                .setParameter("dateFirst",dateFirstFilter)
-                .setParameter("dateLast",dateLastFilter)
-                .setParameter("deviceId",deviceId)
-                .getSingleResult()).intValue();
+                    .setParameter("statusExecute", statusExecute)
+                    .setParameter("dateFirst", dateFirstFilter)
+                    .setParameter("dateLast", dateLastFilter)
+                    .setParameter("deviceId", deviceId)
+                    .getSingleResult()).intValue();
+        }else{
+            rez = ((Long) entityManager.createQuery("select count(shedul.id) from TblScheduleEntity shedul  left join TblBoxCommonEntity box ON box.tblScheduleEntity=shedul where shedul.statusexecute =:statusExecute and box.instore1=:inStore1 and shedul.deviceId =:deviceId and box.timeRequest between :dateFirst AND :dateLast")
+//                .setParameter("dateFirst",dateFirstFilter)
+//                .setParameter("dateLast",dateLastFilter)
+                    .setParameter("statusExecute", statusExecute)
+                    .setParameter("dateFirst", dateFirstFilter)
+                    .setParameter("dateLast", dateLastFilter)
+                    .setParameter("inStore1", inStore1)
+                    .setParameter("deviceId", deviceId)
+                    .getSingleResult()).intValue();
+        }
 
 //        TypedQuery<TblScheduleEntity> query = entityManager.createQuery(
 //                "select shedul from TblScheduleEntity shedul  left join TblBoxCommonEntity box ON box.tblScheduleEntity=shedul where  box.instore1=true and shedul.deviceId :=deviceId",
@@ -99,24 +110,27 @@ public class SheduleDAO extends AbstractDao<TblScheduleEntity> {
         Integer dateFirstFilter = ((Long) filters.get("dateFrom")).intValue();
         Integer dateLastFilter =  ((Long) filters.get("dateLast")).intValue();
         Integer statusExecute = (Integer) filters.get("statusExecute");
-        if(statusExecute!=1){
-            statusExecute=0;
-        }
+        Boolean inStore1 = (Boolean) filters.get("inStore1");
         Integer deviceId = (Integer) filters.get("deviceId");
+        List<TblScheduleEntity> rez;
 
-        List<TblScheduleEntity> rez = ( entityManager.createQuery("select shedul from TblScheduleEntity shedul left join TblBoxCommonEntity box ON box.tblScheduleEntity=shedul where shedul.statusexecute =:statusExecute and box.instore1=true and shedul.deviceId =:deviceId and box.timeRequest between :dateFirst AND :dateLast")
-                .setParameter("dateFirst",dateFirstFilter)
-                .setParameter("dateLast",dateLastFilter)
-                .setParameter("deviceId",deviceId)
-                .setParameter("statusExecute",statusExecute)
-                .getResultList());
+        if(inStore1  ==null){
+            rez = ( entityManager.createQuery("select shedul from TblScheduleEntity shedul left join TblBoxCommonEntity box ON box.tblScheduleEntity=shedul where shedul.statusexecute =:statusExecute and shedul.deviceId =:deviceId and box.timeRequest between :dateFirst AND :dateLast")
+                    .setParameter("dateFirst",dateFirstFilter)
+                    .setParameter("dateLast",dateLastFilter)
+                    .setParameter("deviceId",deviceId)
+                    .setParameter("statusExecute",statusExecute)
+                    .getResultList());
+        }else {
+            rez = (entityManager.createQuery("select shedul from TblScheduleEntity shedul left join TblBoxCommonEntity box ON box.tblScheduleEntity=shedul where shedul.statusexecute =:statusExecute and box.instore1=:inStore1 and shedul.deviceId =:deviceId and box.timeRequest between :dateFirst AND :dateLast")
+                    .setParameter("dateFirst", dateFirstFilter)
+                    .setParameter("dateLast", dateLastFilter)
+                    .setParameter("deviceId", deviceId)
+                    .setParameter("statusExecute", statusExecute)
+                    .setParameter("inStore1", inStore1)
+                    .getResultList());
+        }
 
-//        TypedQuery<TblScheduleEntity> query = entityManager.createQuery(
-//                "select shedul from TblScheduleEntity shedul  left join TblBoxCommonEntity box ON box.tblScheduleEntity=shedul where  box.instore1=true and shedul.deviceId :=deviceId",
-//                TblScheduleEntity.class)
-//                .setParameter("deviceId", 1); // вместо 1 надо будет подставлять реальный номер устройства
-//        List<TblScheduleEntity> resultList = query.getResultList();
-//        int a=0;
         return rez;
 
     }

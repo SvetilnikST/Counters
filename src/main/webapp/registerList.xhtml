@@ -62,124 +62,120 @@
                             <p:column colspan="1" headerText="Сум Q Гкал."/>
                             <p:column colspan="1" headerText="дельта Q,Гкал."/>
                             <p:column colspan="1" headerText="дельта V м куб"/>
-                            <p:column colspan="1" headerText="Флаг"/>
                         </p:row>
                     </p:columnGroup>
-
                     <p:column>
-                        <h:outputText value="#{shedul.getCommons().get(0).getTimeRequest()}"></h:outputText>
+                        <p:outputLabel title="Дата" value="12.23"></p:outputLabel>
                     </p:column>
                     <p:column>
-                        <p:outputLabel value="#{shedul.getCommons().get(0).getTimeRequest()}"></p:outputLabel>
-                    </p:column>
-
-                    <p:column>
-                        <h:outputText value="#{shedul.getCommons().get(0).getTimeRequest()}"></h:outputText>
+                        <h:outputText title="Г" value="Г"></h:outputText>
                     </p:column>
                     <p:column>
-                        <p:outputLabel value="#{shedul.getCommons().get(0).getTimeRequest()}"></p:outputLabel>
-                    </p:column>
-
-                    <p:column>
-                        <h:outputText value="#{shedul.getCommons().get(0).getTimeRequest()}"></h:outputText>
+                        <p:outputLabel title="O" value="О"></p:outputLabel>
                     </p:column>
                     <p:column>
-                        <p:outputLabel value="#{shedul.getCommons().get(0).getTimeRequest()}"></p:outputLabel>
-                    </p:column>
-
-                    <p:column>
-                        <h:outputText value="#{shedul.getCommons().get(0).getTimeRequest()}"></h:outputText>
+                        <h:outputText title="В" value="В"></h:outputText>
                     </p:column>
                     <p:column>
-                        <p:outputLabel value="#{shedul.getCommons().get(0).getTimeRequest()}"></p:outputLabel>
-                    </p:column>
-
-                    <p:column>
-                        <h:outputText value="#{shedul.getCommons().get(0).getTimeRequest()}"></h:outputText>
+                        <p:outputLabel title="нсп" value=" "></p:outputLabel>
                     </p:column>
                     <p:column>
-                        <p:outputLabel value="#{shedul.getCommons().get(0).getTimeRequest()}"></p:outputLabel>
-                    </p:column>
-
-                    <p:column>
-                        <h:outputText value="#{shedul.getCommons().get(0).getTimeRequest()}"></h:outputText>
+                        <h:outputText title="нпв" value=" "></h:outputText>
                     </p:column>
                     <p:column>
-                        <p:outputLabel value="#{shedul.getCommons().get(0).getTimeRequest()}"></p:outputLabel>
-                    </p:column>
-
-                    <p:column>
-                        <h:outputText value="#{shedul.getCommons().get(0).getTimeRequest()}"></h:outputText>
+                        <p:outputLabel title="Тнв" value="Тнв"></p:outputLabel>
                     </p:column>
                     <p:column>
-                        <p:outputLabel value="#{shedul.getCommons().get(0).getTimeRequest()}"></p:outputLabel>
+                        <p:outputLabel title="Q1" value="#{shedul.getCommons().get(0).getSystem().get(0).getQ1()}">
+                            <f:convertNumber pattern="#0.000"/>
+                        </p:outputLabel>
                     </p:column>
-
                     <p:column>
-                        <p:outputLabel value="#{shedul.getCommons().get(0).getTimeRequest()}"></p:outputLabel>
-
+                        <h:outputText title="дельта Q" value=" ">
+                            <f:convertNumber pattern="#0.000"/>
+                        </h:outputText>
                     </p:column>
-
                     <p:column>
-                        <p:outputLabel value="#{shedul.getCommons().get(0).getTimeRequest()}"></p:outputLabel>
-
+                        <p:outputLabel title="V1 м3" value="#{shedul.getCommons().get(0).getSystem().get(0).getV1()}">
+                            <f:convertNumber pattern="#0.000"/>
+                        </p:outputLabel>
                     </p:column>
-
                     <p:column>
-                        <p:outputLabel value="#{shedul.getCommons().get(0).getTimeRequest()}"></p:outputLabel>
-
+                        <h:outputText title="G1" value="#{shedul.getCommons().get(0).getSystem().get(0).getGM1()}">
+                            <f:convertNumber pattern="#0.000"/>
+                        </h:outputText>
                     </p:column>
-
                     <p:column>
-                        <p:outputLabel value="#{shedul.getCommons().get(0).getTimeRequest()}"></p:outputLabel>
-
+                        <p:outputLabel title="T1" value="#{shedul.getCommons().get(0).getSystem().get(0).getT1()}">
+                            <f:convertNumber pattern="#0.000"/>
+                        </p:outputLabel>
                     </p:column>
-
                     <p:column>
-                        <p:outputLabel value="#{shedul.getCommons().get(0).getTimeRequest()}"></p:outputLabel>
-
+                        <h:outputText title="P1" value="#{shedul.getCommons().get(0).getSystem().get(0).getP1()}">
+                            <f:convertNumber pattern="#0.000"/>
+                        </h:outputText>
                     </p:column>
-
                     <p:column>
-                        <p:outputLabel value="#{shedul.getCommons().get(0).getTimeRequest()}"></p:outputLabel>
-
+                        <p:outputLabel title="Q2" value="#{shedul.getCommons().get(0).getSystem().get(0).getQ2()}">
+                            <f:convertNumber pattern="#0.000"/>
+                        </p:outputLabel>
                     </p:column>
-
                     <p:column>
-                        <p:outputLabel value="#{shedul.getCommons().get(0).getTimeRequest()}"></p:outputLabel>
-
+                        <h:outputText title="дельта Q2" value="  ">
+                            <f:convertNumber pattern="#0.000"/>
+                        </h:outputText>
                     </p:column>
-
                     <p:column>
-                        <p:outputLabel value="#{shedul.getCommons().get(0).getTimeRequest()}"></p:outputLabel>
-
+                        <p:outputLabel title="V2" value="#{shedul.getCommons().get(0).getSystem().get(0).getV2()}">
+                            <f:convertNumber pattern="#0.000"/>
+                        </p:outputLabel>
                     </p:column>
-
                     <p:column>
-                        <p:outputLabel value="#{shedul.getCommons().get(0).getTimeRequest()}"></p:outputLabel>
-
+                        <p:outputLabel title="G2" value="#{shedul.getCommons().get(0).getSystem().get(0).getGM2()}">
+                            <f:convertNumber pattern="#0.000"/>
+                        </p:outputLabel>
                     </p:column>
-
                     <p:column>
-                        <p:outputLabel value="#{shedul.getCommons().get(0).getTimeRequest()}"></p:outputLabel>
-
+                        <p:outputLabel value="#{shedul.getCommons().get(0).getTimeRequest()}">
+                            <f:convertNumber pattern="#0.000"/>
+                        </p:outputLabel>
                     </p:column>
-
                     <p:column>
-                        <p:outputLabel value="#{shedul.getCommons().get(0).getTimeRequest()}"></p:outputLabel>
-
+                        <p:outputLabel value="#{shedul.getCommons().get(0).getTimeRequest()}">
+                            <f:convertNumber pattern="#0.000"/>
+                        </p:outputLabel>
                     </p:column>
-
                     <p:column>
-                        <p:outputLabel value="#{shedul.getCommons().get(0).getTimeRequest()}"></p:outputLabel>
-
+                        <p:outputLabel title="раб. ошибки" value=" ">
+                            <f:convertNumber pattern="#0.000"/>
+                        </p:outputLabel>
                     </p:column>
-
+                    <p:column>
+                        <p:outputLabel title="дельта раб" value="  ">
+                            <f:convertNumber pattern="#0.000"/>
+                        </p:outputLabel>
+                    </p:column>
+                    <p:column>
+                        <p:outputLabel title="Tхв" value="0.000">
+                            <f:convertNumber pattern="#0.000"/>
+                        </p:outputLabel>
+                    </p:column>
+                    <p:column>
+                        <p:outputLabel title="Сумма Q" value="0.000">
+                            <f:convertNumber pattern="#0.000"/>
+                        </p:outputLabel>
+                    </p:column>
+                    <p:column>
+                        <p:outputLabel title=" дельт Q" value="0.000">
+                            <f:convertNumber pattern="#0.000"/>
+                        </p:outputLabel>
+                    </p:column>
+                    <p:column>
+                        <p:outputLabel title="дельт V м куб" value="0.000">
+                            <f:convertNumber pattern="#0.000"/>
+                        </p:outputLabel>
+                    </p:column>
                 </p:dataTable>
-
-
-
-
             </p:panel>
         </h:form>
     </ui:define>

@@ -70,7 +70,8 @@ public class Register  extends LazyDataModel<TblScheduleEntity> {
 
         filters.put("dateFrom",dateFrom.getTime()/1000);
         filters.put("dateLast",dateLast.getTime()/1000);
-
+        filters.put("statusExecute",1);
+        filters.put("inStore1",true);
 
         filters.put("deviceId",1);//исправить на правильный номер устройства
 

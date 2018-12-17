@@ -361,6 +361,10 @@ public class deviceDataAdminHistory extends LazyDataModel<SheduleReport> {
             sheduleReport.setIdShedule(shedulerRecord.getId());
 
 
+
+
+
+
             sheduleReports.add(sheduleReport);
         }
 
