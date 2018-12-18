@@ -7,15 +7,10 @@
         Показания на период
     </ui:define>
     <ui:define name="page_body">
+
+
         <h:form style="font-size:14px" styleClass="center">
             <p:panel>
-                <h2>
-                    <p:outputLabel rendered="#{userAdministration.id==0 or userAdministration.id==null}">
-                        Журнал
-                    </p:outputLabel>
-                    <p:outputLabel rendered="#{userAdministration.id!=0 and userAdministration.id!=null}"/>
-                </h2>
-
                 <p:dataTable
                         id="orderTable"
                         widgetVar="OrderTable"
@@ -25,50 +20,62 @@
                         lazy="true"
                         tableStyle="width: auto"
                         emptyMessage="Нет записей">
-
                     <f:facet name="header">
-                        Журнал показаний за МЕСЯЦ ГОД
+                        Журнал показаний за месяц
                     </f:facet>
-
                     <p:columnGroup type="header">
                         <p:row>
                             <p:column rowspan="1" headerText="Дата/Время"/>
                             <p:column rowspan="1" headerText="Г"/>
                             <p:column rowspan="1" headerText="О"/>
                             <p:column colspan="1" headerText="В"/>
-
-
-                            <p:column colspan="1" headerText="Q1 ГДж."/>
-                            <p:column colspan="1" headerText="д.Q1"/>
-                            <p:column colspan="1" headerText="V1 м.куб"/>
-                            <p:column colspan="1" headerText="G1 т/ч"/>
-                            <p:column colspan="1" headerText="T1"/>
-                            <p:column colspan="1" headerText="P1 МПа"/>
-                            <p:column colspan="1" headerText="Q2 ГДж."/>
-                            <p:column colspan="1" headerText="д.Q2"/>
-                            <p:column colspan="1" headerText="V2 м.куб"/>
-                            <p:column colspan="1" headerText="G2 т/ч"/>
-                            <p:column colspan="1" headerText="Т2 С"/>
-                            <p:column colspan="1" headerText="Р2 МПа"/>
-                            <p:column colspan="1" headerText="Раб/Ошиб ч"/>
-                            <p:column colspan="1" headerText="д.раб ч"/>
+                            <p:column colspan="1" headerText="Q1,ГДж."/>
+                            <p:column colspan="1" headerText="ΔQ1"/>
+                            <p:column colspan="1" headerText="V1м³"/>
+                            <p:column colspan="1" headerText="G1,т/ч"/>
+                            <p:column colspan="1" headerText="T1°C"/>
+                            <p:column colspan="1" headerText="P1,МПа"/>
+                            <p:column colspan="1" headerText="Q2,ГДж."/>
+                            <p:column colspan="1" headerText="ΔQ2"/>
+                            <p:column colspan="1" headerText="V2м³"/>
+                            <p:column colspan="1" headerText="G2,т/ч"/>
+                            <p:column colspan="1" headerText="Т2°C"/>
+                            <p:column colspan="1" headerText="Р2,МПа"/>
+                            <p:column colspan="1" headerText="Раб/Ошиб"/>
+                            <p:column colspan="1" headerText="Δраб,ч"/>
                             <p:column colspan="1" headerText="Тхв"/>
-                            <p:column colspan="1" headerText="Сум Q Гкал."/>
-                            <p:column colspan="1" headerText="д. Q,Гкал."/>
-                            <p:column colspan="1" headerText="д.V м куб"/>
+                            <p:column colspan="1" headerText="∑Q,Гкал."/>
+                            <p:column colspan="1" headerText="ΔQ,Гкал."/>
+                            <p:column colspan="1" headerText="ΔVм³"/>
                         </p:row>
                     </p:columnGroup>
+
                     <p:column>
                         <h:outputText title="Дата" value="#{reg.date}"/>
                     </p:column>
                     <p:column>
-                        <h:outputText title="Г" value="#{reg.hotWater}"/>
+                        <h:outputLabel value="-"
+                                       rendered="#{reg.hotWater == false}">
+                        </h:outputLabel>
+                        <h:outputLabel value="✓"
+                                       rendered="#{reg.hotWater == true}">
+                        </h:outputLabel>
                     </p:column>
                     <p:column>
-                        <h:outputText title="O" value="#{reg.heating}"/>
+                        <h:outputLabel value="-"
+                                       rendered="#{reg.heating == false}">
+                        </h:outputLabel>
+                        <h:outputLabel value="✓"
+                                       rendered="#{reg.heating == true}">
+                        </h:outputLabel>
                     </p:column>
                     <p:column>
-                        <h:outputText title="В" value="#{reg.ventilation}"/>
+                        <h:outputLabel value="—"
+                                       rendered="#{reg.ventilation == false}">
+                        </h:outputLabel>
+                        <h:outputLabel value="✓"
+                                       rendered="#{reg.ventilation == true}">
+                        </h:outputLabel>
                     </p:column>
 
                     <p:column>
@@ -78,7 +85,7 @@
                     </p:column>
                     <p:column>
                         <h:outputText title="д.Q" value="#{reg.q1delta}" rendered="#{reg.q1delta!=null}">
-                            <f:convertNumber pattern="#0.000" />
+                            <f:convertNumber pattern="#0.000"/>
                         </h:outputText>
                     </p:column>
                     <p:column>
@@ -132,7 +139,7 @@
                         </p:outputLabel>
                     </p:column>
                     <p:column>
-                        <p:outputLabel title="раб. ошибки" value=" " rendered="#{reg.toShow}">
+                        <p:outputLabel title="раб. ошибки" value="#{reg.timeOn}" rendered="#{reg.toShow}">
                             <f:convertNumber pattern="#0.00"/>
                         </p:outputLabel>
                     </p:column>

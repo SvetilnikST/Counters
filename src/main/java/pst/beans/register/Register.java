@@ -70,9 +70,6 @@ public class Register extends LazyDataModel<RegisterReport> {
 //            this.tblDeviceEntity = deviceDAO.read(id);
             device = deviceDAO.read(id);
 
-            //TODO закомментировать
-//            deviceDAO.test();
-//            deviceDAO.test2();
 
             //проверка если пустая entity, сообщение об ощибке
             if (device == null) {
@@ -85,11 +82,6 @@ public class Register extends LazyDataModel<RegisterReport> {
 
         }
         int a = 0;
-//
-//        //TODO исправить на получение реального номера устройства
-//        TblDeviceEntity device = deviceDAO.read(1);
-
-
     }
 
     private void load2() {
@@ -249,12 +241,7 @@ public class Register extends LazyDataModel<RegisterReport> {
             oneRecord.setTimeOn(scheduleEntity.getCommons().get(0).getTimeOn());
             registerReports.add(oneRecord);
         }
-
         fillDeltaData(registerReports);
-
-
-
-
     }
 
     private void fillDeltaData(List<RegisterReport> registerReports) {
@@ -369,19 +356,5 @@ public class Register extends LazyDataModel<RegisterReport> {
     public void setRegisterReports(List<RegisterReport> registerReports) {
         this.registerReports = registerReports;
     }
-
-    //    public void togleDuring(OrderEntity orderEntity){
-//        if(!userBean.doRightVerify("changeStatus")){
-//            return;
-//        }
-//        orderEntity.during = !orderEntity.during;
-//        if(orderEntity.during){
-//            orderEntity.setStatus((short)100);
-//        }else {
-//            orderEntity.setStatus((short)10);
-//        }
-//        orderDAOBean.update(orderEntity);
-//    }
-
 
 }
