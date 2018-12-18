@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html" xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="WEB-INF/template/template.xhtml">
+    <ui:define name="page_title">
+        Сводный акт приёмки-передачи
+    </ui:define>
+    <ui:define name="page_body">
+        <h:form style="font-size:14px" styleClass="center">
+
+           <p:panel>
+               <h:panelGroup style="text-align: center">
+                <h4>
+                    <h:outputText value="АКТ"/><br/>
+                    <h:outputText value="Приемки-передачи"/><br/>
+                    <h:outputText value="тепловой энергии на объектах, оборудованных приборами учета тепловой энергии"/><br/>
+                    <h:outputText value="по договору №___ _______________ "/><br/>
+                    <h:outputLabel value="за #{deviceAdminHistory.startDate}"/>
+                </h4>
+               </h:panelGroup>
+
+                <p:dataTable id="tbl" var="type_device" value="#{typeDeviceAdministration.tblTypeDeviceEntitysList}">
+
+                    <p:columnGroup type="header">
+                        <p:row>
+                            <p:column rowspan="3" headerText="Адрес объекта"/>
+                            <p:column rowspan="3" headerText="Вид нагрузок, Гкал/ч"/>
+                            <p:column rowspan="3" headerText="Устройство"/>
+                            <p:column colspan="3" headerText="Показания прибора на конец месяца"/>
+                            <p:column colspan="3" headerText="Показания прибора на начало месяца"/>
+
+                            <p:column rowspan="3" headerText="Коэф пересчета в Гкал"/>
+                            <p:column rowspan="3" headerText="Время работы прибора"/>
+                            <p:column colspan="8" headerText="Потребление за отчетный период"/>
+                            <!--<p:column rowspan="3" headerText="Всего"/>-->
+                        </p:row>
+                        <p:row>
+                            <p:column colspan="3" rowspan="1" headerText="ВЫВЕСТИ ДАТУ !!!!!end"/>
+                            <p:column colspan="3" rowspan="1" headerText="ВЫВЕСТИ ДАТУ!!!! start"/>
+                            <p:column colspan="2" headerText="По прибору"/>
+                            <p:column colspan="2" headerText="По среднему значению"/>
+                            <p:column colspan="2" headerText="По нагрузке"/>
+                            <p:column colspan="2" headerText="Всего"/>
+                            <!--<p:column rowspan="2" headerText="Разность"/>-->
+                            <!--<p:column rowspan="2" headerText="по прибору"/>-->
+                            <!--<p:column rowspan="2" headerText="по среднему"/>-->
+                            <!--<p:column colspan="3" headerText="по тепловым нагрузкам"/>-->
+                            <!--<p:column rowspan="2" headerText="тепловые потери"/>-->
+                        </p:row>
+                        <p:row>
+                            <p:column rowspan="1" headerText="Таймер,ч"/>
+                            <p:column rowspan="1" headerText="Энергия, Гкал"/>
+                            <p:column rowspan="1" headerText="Объем,м³"/>
+                            <p:column rowspan="1" headerText="Таймер,ч"/>
+                            <p:column rowspan="1" headerText="Энергия, Гкал"/>
+                            <p:column rowspan="1" headerText="Объем,м³"/>
+                            <p:column rowspan="1" headerText="Гкал"/>
+                            <p:column rowspan="1" headerText="м³"/>
+                            <p:column rowspan="1" headerText="Гкал"/>
+                            <p:column rowspan="1" headerText="м³"/>
+                            <p:column rowspan="1" headerText="Гкал"/>
+                            <p:column rowspan="1" headerText="м³"/>
+
+                            <p:column rowspan="1" headerText="Гкал"/>
+                            <p:column rowspan="1" headerText="м³"/>
+
+                        </p:row>
+                        <p:row>
+                            <p:column rowspan="1" headerText="1"/>
+                            <p:column rowspan="1" headerText="2"/>
+                            <p:column colspan="1" headerText="3"/>
+                            <p:column colspan="1" headerText="4"/>
+                            <p:column colspan="1" headerText="5"/>
+                            <p:column colspan="1" headerText="6"/>
+                            <p:column colspan="1" headerText="7"/>
+                            <p:column colspan="1" headerText="8"/>
+                            <p:column colspan="1" headerText="9"/>
+                            <p:column colspan="1" headerText="10"/>
+                            <p:column colspan="1" headerText="11"/>
+                            <p:column colspan="1" headerText="12"/>
+                            <p:column colspan="1" headerText="13"/>
+                            <p:column colspan="1" headerText="14"/>
+                            <p:column colspan="1" headerText="15"/>
+                            <p:column colspan="1" headerText="16"/>
+                            <p:column colspan="1" headerText="17"/>
+                            <p:column colspan="1" headerText="18"/>
+                            <p:column colspan="1" headerText="19"/>
+                        </p:row>
+                    </p:columnGroup>
+
+                    <p:column>
+                        <h:outputText value="#{type_device.id}"></h:outputText>
+                    </p:column>
+                    <p:column>
+                        <p:outputLabel value="#{type_device.name}"></p:outputLabel>
+                    </p:column>
+
+                    <p:column>
+                        <h:outputText value="#{type_device.id}"></h:outputText>
+                    </p:column>
+
+
+                    <p:column>
+                        <h:outputText value="#{type_device.id}"></h:outputText>
+                    </p:column>
+                    <p:column>
+                        <p:outputLabel value="#{type_device.name}"></p:outputLabel>
+                    </p:column>
+
+                    <p:column>
+                        <h:outputText value="#{type_device.id}"></h:outputText>
+                    </p:column>
+                    <p:column>
+                        <p:outputLabel value="#{type_device.name}"></p:outputLabel>
+                    </p:column>
+
+                    <p:column>
+                        <h:outputText value="#{type_device.id}"></h:outputText>
+                    </p:column>
+                    <p:column>
+                        <p:outputLabel value="#{type_device.name}"></p:outputLabel>
+                    </p:column>
+
+                    <p:column>
+                        <h:outputText value="#{type_device.id}"></h:outputText>
+                    </p:column>
+                    <p:column>
+                        <p:outputLabel value="#{type_device.name}"></p:outputLabel>
+                    </p:column>
+
+                    <p:column>
+                        <h:outputText value="#{type_device.id}"></h:outputText>
+                    </p:column>
+                    <p:column>
+                        <p:outputLabel value="#{type_device.name}"></p:outputLabel>
+                    </p:column>
+
+                    <p:column>
+                        <h:outputText value="#{type_device.id}"></h:outputText>
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="#{type_device.id}"></h:outputText>
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="#{type_device.id}"></h:outputText>
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="#{type_device.id}"></h:outputText>
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="#{type_device.id}"></h:outputText>
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="#{type_device.id}"></h:outputText>
+                    </p:column>
+                </p:dataTable>
+
+                <p:commandButton value="Печать" type="button" icon="ui-icon-print">
+                    <p:printer target="tbl"/>
+                </p:commandButton>
+
+
+            </p:panel>
+        </h:form>
+    </ui:define>
+</ui:composition>
