@@ -19,13 +19,8 @@
                 <p:dataTable
                         id="orderTable"
                         widgetVar="OrderTable"
-                        var="shedul"
-                        value="#{register}"
-
-                        paginator="true"
-                        paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                        rows="10"
-                        rowsPerPageTemplate="5,10,15"
+                        var="reg"
+                        value="#{register.registerReports}"
 
                         lazy="true"
                         tableStyle="width: auto"
@@ -41,137 +36,128 @@
                             <p:column rowspan="1" headerText="Г"/>
                             <p:column rowspan="1" headerText="О"/>
                             <p:column colspan="1" headerText="В"/>
-                            <p:column colspan="1" headerText="нсп"/>
-                            <p:column colspan="1" headerText="нпв"/>
-                            <p:column colspan="1" headerText="Тнв"/>
+
+
                             <p:column colspan="1" headerText="Q1 ГДж."/>
-                            <p:column colspan="1" headerText="дельта Q1"/>
+                            <p:column colspan="1" headerText="д.Q1"/>
                             <p:column colspan="1" headerText="V1 м.куб"/>
                             <p:column colspan="1" headerText="G1 т/ч"/>
                             <p:column colspan="1" headerText="T1"/>
                             <p:column colspan="1" headerText="P1 МПа"/>
                             <p:column colspan="1" headerText="Q2 ГДж."/>
-                            <p:column colspan="1" headerText="дельта Q2"/>
+                            <p:column colspan="1" headerText="д.Q2"/>
                             <p:column colspan="1" headerText="V2 м.куб"/>
                             <p:column colspan="1" headerText="G2 т/ч"/>
                             <p:column colspan="1" headerText="Т2 С"/>
                             <p:column colspan="1" headerText="Р2 МПа"/>
                             <p:column colspan="1" headerText="Раб/Ошиб ч"/>
-                            <p:column colspan="1" headerText="дельта раб ч"/>
+                            <p:column colspan="1" headerText="д.раб ч"/>
                             <p:column colspan="1" headerText="Тхв"/>
                             <p:column colspan="1" headerText="Сум Q Гкал."/>
-                            <p:column colspan="1" headerText="дельта Q,Гкал."/>
-                            <p:column colspan="1" headerText="дельта V м куб"/>
+                            <p:column colspan="1" headerText="д. Q,Гкал."/>
+                            <p:column colspan="1" headerText="д.V м куб"/>
                         </p:row>
                     </p:columnGroup>
                     <p:column>
-                        <p:outputLabel title="Дата" value="12.23"></p:outputLabel>
+                        <h:outputText title="Дата" value="#{reg.date}"/>
                     </p:column>
                     <p:column>
-                        <h:outputText title="Г" value="Г"></h:outputText>
+                        <h:outputText title="Г" value="#{reg.hotWater}"/>
                     </p:column>
                     <p:column>
-                        <p:outputLabel title="O" value="О"></p:outputLabel>
+                        <h:outputText title="O" value="#{reg.heating}"/>
                     </p:column>
                     <p:column>
-                        <h:outputText title="В" value="В"></h:outputText>
+                        <h:outputText title="В" value="#{reg.ventilation}"/>
                     </p:column>
+
                     <p:column>
-                        <p:outputLabel title="нсп" value=" "></p:outputLabel>
-                    </p:column>
-                    <p:column>
-                        <h:outputText title="нпв" value=" "></h:outputText>
-                    </p:column>
-                    <p:column>
-                        <p:outputLabel title="Тнв" value="Тнв"></p:outputLabel>
-                    </p:column>
-                    <p:column>
-                        <p:outputLabel title="Q1" value="#{shedul.getCommons().get(0).getSystem().get(0).getQ1()}">
+                        <p:outputLabel title="Q1" value="#{reg.q1}" rendered="#{reg.toShow}">
                             <f:convertNumber pattern="#0.000"/>
                         </p:outputLabel>
                     </p:column>
                     <p:column>
-                        <h:outputText title="дельта Q" value=" ">
+                        <h:outputText title="д.Q" value="#{reg.q1delta}" rendered="#{reg.q1delta!=null}">
+                            <f:convertNumber pattern="#0.000" />
+                        </h:outputText>
+                    </p:column>
+                    <p:column>
+                        <p:outputLabel title="V1 м3" value="#{reg.v1}" rendered="#{reg.toShow}">
+                            <f:convertNumber pattern="#0.000"/>
+                        </p:outputLabel>
+                    </p:column>
+                    <p:column>
+                        <h:outputText title="G1" value="#{reg.GM1}" rendered="#{reg.toShow}">
                             <f:convertNumber pattern="#0.000"/>
                         </h:outputText>
                     </p:column>
                     <p:column>
-                        <p:outputLabel title="V1 м3" value="#{shedul.getCommons().get(0).getSystem().get(0).getV1()}">
+                        <p:outputLabel title="T1" value="#{reg.t1}" rendered="#{reg.toShow}">
                             <f:convertNumber pattern="#0.000"/>
                         </p:outputLabel>
                     </p:column>
                     <p:column>
-                        <h:outputText title="G1" value="#{shedul.getCommons().get(0).getSystem().get(0).getGM1()}">
+                        <h:outputText title="P1" value="#{reg.p1}" rendered="#{reg.toShow}">
                             <f:convertNumber pattern="#0.000"/>
                         </h:outputText>
                     </p:column>
                     <p:column>
-                        <p:outputLabel title="T1" value="#{shedul.getCommons().get(0).getSystem().get(0).getT1()}">
+                        <p:outputLabel title="Q2" value="#{reg.q2}" rendered="#{reg.toShow}">
                             <f:convertNumber pattern="#0.000"/>
                         </p:outputLabel>
                     </p:column>
                     <p:column>
-                        <h:outputText title="P1" value="#{shedul.getCommons().get(0).getSystem().get(0).getP1()}">
+                        <h:outputText title="д.Q2" value="#{reg.q2delta}" rendered="#{reg.q2delta!=null}">
                             <f:convertNumber pattern="#0.000"/>
                         </h:outputText>
                     </p:column>
                     <p:column>
-                        <p:outputLabel title="Q2" value="#{shedul.getCommons().get(0).getSystem().get(0).getQ2()}">
+                        <p:outputLabel title="V2" value="#{reg.v2}" rendered="#{reg.toShow}">
                             <f:convertNumber pattern="#0.000"/>
                         </p:outputLabel>
                     </p:column>
                     <p:column>
-                        <h:outputText title="дельта Q2" value="  ">
-                            <f:convertNumber pattern="#0.000"/>
-                        </h:outputText>
-                    </p:column>
-                    <p:column>
-                        <p:outputLabel title="V2" value="#{shedul.getCommons().get(0).getSystem().get(0).getV2()}">
+                        <p:outputLabel title="G2" value="#{reg.GM2}" rendered="#{reg.toShow}">
                             <f:convertNumber pattern="#0.000"/>
                         </p:outputLabel>
                     </p:column>
                     <p:column>
-                        <p:outputLabel title="G2" value="#{shedul.getCommons().get(0).getSystem().get(0).getGM2()}">
+                        <p:outputLabel value="#{reg.t2}" rendered="#{reg.toShow}">
                             <f:convertNumber pattern="#0.000"/>
                         </p:outputLabel>
                     </p:column>
                     <p:column>
-                        <p:outputLabel value="#{shedul.getCommons().get(0).getTimeRequest()}">
+                        <p:outputLabel value="#{reg.p2}" rendered="#{reg.toShow}">
                             <f:convertNumber pattern="#0.000"/>
                         </p:outputLabel>
                     </p:column>
                     <p:column>
-                        <p:outputLabel value="#{shedul.getCommons().get(0).getTimeRequest()}">
+                        <p:outputLabel title="раб. ошибки" value=" " rendered="#{reg.toShow}">
+                            <f:convertNumber pattern="#0.00"/>
+                        </p:outputLabel>
+                    </p:column>
+                    <p:column>
+                        <p:outputLabel title="д.раб" value="#{reg.timeOndelta/60}" rendered="#{reg.timeOndelta!=null}">
                             <f:convertNumber pattern="#0.000"/>
                         </p:outputLabel>
                     </p:column>
                     <p:column>
-                        <p:outputLabel title="раб. ошибки" value=" ">
+                        <p:outputLabel title="Tхв" value="0.000" rendered="#{reg.toShow}">
                             <f:convertNumber pattern="#0.000"/>
                         </p:outputLabel>
                     </p:column>
                     <p:column>
-                        <p:outputLabel title="дельта раб" value="  ">
+                        <p:outputLabel title="Сумма Q" value="0.000" rendered="#{reg.toShow}">
                             <f:convertNumber pattern="#0.000"/>
                         </p:outputLabel>
                     </p:column>
                     <p:column>
-                        <p:outputLabel title="Tхв" value="0.000">
+                        <p:outputLabel title="д.Q" value="0.000" rendered="#{reg.toShow}">
                             <f:convertNumber pattern="#0.000"/>
                         </p:outputLabel>
                     </p:column>
                     <p:column>
-                        <p:outputLabel title="Сумма Q" value="0.000">
-                            <f:convertNumber pattern="#0.000"/>
-                        </p:outputLabel>
-                    </p:column>
-                    <p:column>
-                        <p:outputLabel title=" дельт Q" value="0.000">
-                            <f:convertNumber pattern="#0.000"/>
-                        </p:outputLabel>
-                    </p:column>
-                    <p:column>
-                        <p:outputLabel title="дельт V м куб" value="0.000">
+                        <p:outputLabel title="д.V м куб" value="#{reg.vdelta}" rendered="#{reg.vdelta!=null}">
                             <f:convertNumber pattern="#0.000"/>
                         </p:outputLabel>
                     </p:column>

@@ -40,16 +40,16 @@ public class DeviceDAO extends AbstractDao<TblDeviceEntity> {
         return resultList;
     }
 
-    public void test() {
-        EntityManager entityManager = getEntityManager();
-        TypedQuery<TblScheduleEntity> query = entityManager.createQuery(
-                "select shedul from TblScheduleEntity shedul  left join TblBoxCommonEntity box ON box.tblScheduleEntity=shedul where  box.instore1=true and shedul.deviceId :=deviceId",
-                TblScheduleEntity.class)
-                .setParameter("deviceId", 1); // вместо 1 надо будет подставлять реальный номер устройства
-        List<TblScheduleEntity> resultList = query.getResultList();
-        int a=0;
-
-    }
+//    public void test() {
+//        EntityManager entityManager = getEntityManager();
+//        TypedQuery<TblScheduleEntity> query = entityManager.createQuery(
+//                "select shedul from TblScheduleEntity shedul  left join TblBoxCommonEntity box ON box.tblScheduleEntity=shedul where  box.instore1=true and shedul.deviceId :=deviceId",
+//                TblScheduleEntity.class)
+//                .setParameter("deviceId", 1); // вместо 1 надо будет подставлять реальный номер устройства
+//        List<TblScheduleEntity> resultList = query.getResultList();
+//        int a=0;
+//
+//    }
 
 
 

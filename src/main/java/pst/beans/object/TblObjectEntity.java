@@ -25,13 +25,13 @@ public class TblObjectEntity {
     private String home;
 
     @Column(name = "hotWater", nullable = false)
-    private double hotWater;
+    private Double hotWater;
 
     @Column(name = "heating", nullable = false)
-    private double heating;
+    private Double heating;
 
     @Column(name = "ventilation", nullable = false)
-    private double ventilation;
+    private Double ventilation;
 
 
 
@@ -107,27 +107,27 @@ public class TblObjectEntity {
         this.tblDeviceEntitySet = tblDeviceEntitySet;
     }
 
-    public double getHotWater() {
+    public Double getHotWater() {
         return hotWater;
     }
 
-    public void setHotWater(double hotWater) {
+    public void setHotWater(Double hotWater) {
         this.hotWater = hotWater;
     }
 
-    public double getHeating() {
+    public Double getHeating() {
         return heating;
     }
 
-    public void setHeating(double heating) {
+    public void setHeating(Double heating) {
         this.heating = heating;
     }
 
-    public double getVentilation() {
+    public Double getVentilation() {
         return ventilation;
     }
 
-    public void setVentilation(double ventilation) {
+    public void setVentilation(Double ventilation) {
         this.ventilation = ventilation;
     }
 }
