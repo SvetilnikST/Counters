@@ -16,7 +16,7 @@
                     <h:outputText value="Приемки-передачи"/><br/>
                     <h:outputText value="тепловой энергии на объектах, оборудованных приборами учета тепловой энергии"/><br/>
                     <h:outputText value="по договору №___ _______________ "/><br/>
-                    <h:outputLabel value="за #{deviceAdminHistory.startDate}"/>
+                    <h:outputLabel value="за #{}"/>
                 </h4>
                </h:panelGroup>
 
@@ -89,71 +89,60 @@
                         </p:row>
                     </p:columnGroup>
 
-                    <p:column>
-                        <h:outputText value="#{act.date}"></h:outputText>
-                    </p:column>
-                    <p:column>
-                        <p:outputLabel value="#{act.q1}"></p:outputLabel>
-                    </p:column>
 
-                    <p:column>
-                        <h:outputText value="#{act.q2}"></h:outputText>
-                    </p:column>
+                        <p:column>
+                            <h:outputText value="#{act.timeOnEnd}"/>
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="#{act.q1End}"/>
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="#{act.v1End}"/>
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="#{act.timeOnStart}"/>
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="#{act.q1Start}"/>
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="#{act.v1Start}"/>
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="#{act.k}"/>
+                        </p:column>
 
 
-                    <p:column>
-                        <h:outputText value="#{act.v1}"></h:outputText>
-                    </p:column>
-                    <p:column>
-                        <p:outputLabel value="#{act.v2}"></p:outputLabel>
-                    </p:column>
 
-                    <p:column>
-                        <h:outputText value="#{act.t1}"></h:outputText>
-                    </p:column>
-                    <p:column>
-                        <p:outputLabel value="#{act.t1}"></p:outputLabel>
-                    </p:column>
 
-                    <p:column>
-                        <h:outputText value="#{act.t1}"></h:outputText>
-                    </p:column>
-                    <p:column>
-                        <p:outputLabel value="#{act.t1}"></p:outputLabel>
-                    </p:column>
+                        <p:column>
+                            <h:outputText value="#{act.date}"></h:outputText>
+                        </p:column>
+                        <p:column>
+                            <p:outputLabel value="#{act.q1Start}"></p:outputLabel>
+                        </p:column>
 
-                    <p:column>
-                        <h:outputText value="#{act.t1}"></h:outputText>
-                    </p:column>
-                    <p:column>
-                        <p:outputLabel value="#{act.t1}"></p:outputLabel>
-                    </p:column>
+                        <p:column>
+                            <h:outputText value="#{act.q1Start}"></h:outputText>
+                        </p:column>
 
-                    <p:column>
-                        <h:outputText value="#{act.t1}"></h:outputText>
-                    </p:column>
-                    <p:column>
-                        <p:outputLabel value="#{act.t1}"></p:outputLabel>
-                    </p:column>
 
-                    <p:column>
-                        <h:outputText value="#{act.t1}"></h:outputText>
-                    </p:column>
-                    <p:column>
-                        <h:outputText value="#{act.t1}"></h:outputText>
-                    </p:column>
-                    <p:column>
-                        <h:outputText value="#{act.t1}"></h:outputText>
-                    </p:column>
-                    <p:column>
-                        <h:outputText value="#{act.t1}"></h:outputText>
-                    </p:column>
-                    <p:column>
-                        <h:outputText value="#{act.t1}"></h:outputText>
-                    </p:column>
-                    <p:column>
-                        <h:outputText value="#{act.t1}"></h:outputText>
-                    </p:column>
+                        <p:column>
+                            <h:outputText value="#{act.q1Start}"></h:outputText>
+                        </p:column>
+                        <p:column>
+                            <p:outputLabel value="#{act.q1Start}"></p:outputLabel>
+                        </p:column>
+
+                        <p:column>
+                            <h:outputText value="#{act.q1Start}"></h:outputText>
+                        </p:column>
+                        <p:column>
+                            <p:outputLabel value="#{act.q1Start}"></p:outputLabel>
+                        </p:column>
+
+
+
                 </p:dataTable>
 
                 <p:commandButton value="Печать" type="button" icon="ui-icon-print">

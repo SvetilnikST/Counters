@@ -4,18 +4,17 @@ public class RegisterReportAct {
 
     private String date;
 
-    private String TimeOnEnd;
+    private int TimeOnEnd;
     private double Q1End;
     private double V1End;
 
-    private String TimeOnStart;
+    private int TimeOnStart;
     private double Q1Start;
     private double V1Start;
 
+
     private double k;
-
-    private String dTimeOn;
-
+    private int dTimeOn;
     private double Q;
     private double V;
 
@@ -28,11 +27,11 @@ public class RegisterReportAct {
         this.date = date;
     }
 
-    public String getTimeOnEnd() {
+    public int getTimeOnEnd() {
         return TimeOnEnd;
     }
 
-    public void setTimeOnEnd(String timeOnEnd) {
+    public void setTimeOnEnd(int timeOnEnd) {
         TimeOnEnd = timeOnEnd;
     }
 
@@ -52,11 +51,11 @@ public class RegisterReportAct {
         V1End = v1End;
     }
 
-    public String getTimeOnStart() {
+    public int getTimeOnStart() {
         return TimeOnStart;
     }
 
-    public void setTimeOnStart(String timeOnStart) {
+    public void setTimeOnStart(int timeOnStart) {
         TimeOnStart = timeOnStart;
     }
 
@@ -84,11 +83,11 @@ public class RegisterReportAct {
         this.k = k;
     }
 
-    public String getdTimeOn() {
+    public int getdTimeOn() {
         return dTimeOn;
     }
 
-    public void setdTimeOn(String dTimeOn) {
+    public void setdTimeOn(int dTimeOn) {
         this.dTimeOn = dTimeOn;
     }
 
