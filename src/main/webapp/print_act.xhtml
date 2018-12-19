@@ -9,44 +9,41 @@
     <ui:define name="page_body">
         <h:form style="font-size:14px" styleClass="center">
 
-           <p:panel>
-               <h:panelGroup style="text-align: center">
-                <h4>
-                    <h:outputText value="АКТ"/><br/>
-                    <h:outputText value="Приемки-передачи"/><br/>
-                    <h:outputText value="тепловой энергии на объектах, оборудованных приборами учета тепловой энергии"/><br/>
-                    <h:outputText value="по договору №___ _______________ "/><br/>
-                    <h:outputLabel value="за #{}"/>
-                </h4>
-               </h:panelGroup>
+            <p:panel>
+                <h:panelGroup style="text-align: center">
+                    <h4>
+                        <h:outputText value="АКТ"/><br/>
+                        <h:outputText value="Приемки-передачи"/><br/>
+                        <h:outputText
+                                value="тепловой энергии на объектах, оборудованных приборами учета тепловой энергии"/><br/>
+                        <h:outputText value="по договору №___ _______________ "/><br/>
+                        <h:outputLabel value="за "/>
+                    </h4>
+                </h:panelGroup>
 
                 <p:dataTable id="tbl" var="act" value="#{registerAct.registerReports}">
 
                     <p:columnGroup type="header">
                         <p:row>
-                            <p:column rowspan="3" headerText="Адрес объекта"/>
-                            <p:column rowspan="3" headerText="Вид нагрузок, Гкал/ч"/>
+                            <!--<p:column rowspan="3" headerText="Адрес объекта"/>-->
+                            <!--<p:column rowspan="3" headerText="Вид нагрузок, Гкал/ч"/>-->
                             <p:column rowspan="3" headerText="Устройство"/>
                             <p:column colspan="3" headerText="Показания прибора на конец месяца"/>
                             <p:column colspan="3" headerText="Показания прибора на начало месяца"/>
 
                             <p:column rowspan="3" headerText="Коэф пересчета в Гкал"/>
                             <p:column rowspan="3" headerText="Время работы прибора"/>
-                            <p:column colspan="8" headerText="Потребление за отчетный период"/>
-                            <!--<p:column rowspan="3" headerText="Всего"/>-->
+                            <!--<p:column colspan="8" headerText="Потребление за отчетный период"/>-->
+
                         </p:row>
                         <p:row>
-                            <p:column colspan="3" rowspan="1" headerText="#{act.date}"/>
-                            <p:column colspan="3" rowspan="1" headerText="#{act.date}"/>
-                            <p:column colspan="2" headerText="По прибору"/>
-                            <p:column colspan="2" headerText="По среднему значению"/>
-                            <p:column colspan="2" headerText="По нагрузке"/>
-                            <p:column colspan="2" headerText="Всего"/>
-                            <!--<p:column rowspan="2" headerText="Разность"/>-->
-                            <!--<p:column rowspan="2" headerText="по прибору"/>-->
-                            <!--<p:column rowspan="2" headerText="по среднему"/>-->
-                            <!--<p:column colspan="3" headerText="по тепловым нагрузкам"/>-->
-                            <!--<p:column rowspan="2" headerText="тепловые потери"/>-->
+                            <p:column colspan="3" rowspan="1" headerText="gdh"/>
+                            <p:column colspan="3" rowspan="1" headerText="ghfd"/>
+                            <!--<p:column colspan="2" headerText="По прибору"/>-->
+                            <!--<p:column colspan="2" headerText="По среднему значению"/>-->
+                            <!--<p:column colspan="2" headerText="По нагрузке"/>-->
+                            <!--<p:column colspan="2" headerText="Всего"/>-->
+
                         </p:row>
                         <p:row>
                             <p:column rowspan="1" headerText="Таймер,ч"/>
@@ -55,16 +52,14 @@
                             <p:column rowspan="1" headerText="Таймер,ч"/>
                             <p:column rowspan="1" headerText="Энергия, Гкал"/>
                             <p:column rowspan="1" headerText="Объем,м³"/>
-                            <p:column rowspan="1" headerText="Гкал"/>
-                            <p:column rowspan="1" headerText="м³"/>
-                            <p:column rowspan="1" headerText="Гкал"/>
-                            <p:column rowspan="1" headerText="м³"/>
-                            <p:column rowspan="1" headerText="Гкал"/>
-                            <p:column rowspan="1" headerText="м³"/>
-
-                            <p:column rowspan="1" headerText="Гкал"/>
-                            <p:column rowspan="1" headerText="м³"/>
-
+                            <!--<p:column rowspan="1" headerText="Гкал"/>-->
+                            <!--<p:column rowspan="1" headerText="м³"/>-->
+                            <!--<p:column rowspan="1" headerText="Гкал"/>-->
+                            <!--<p:column rowspan="1" headerText="м³"/>-->
+                            <!--<p:column rowspan="1" headerText="Гкал"/>-->
+                            <!--<p:column rowspan="1" headerText="м³"/>-->
+                            <!--<p:column rowspan="1" headerText="Гкал"/>-->
+                            <!--<p:column rowspan="1" headerText="м³"/>-->
                         </p:row>
                         <p:row>
                             <p:column rowspan="1" headerText="1"/>
@@ -76,71 +71,81 @@
                             <p:column colspan="1" headerText="7"/>
                             <p:column colspan="1" headerText="8"/>
                             <p:column colspan="1" headerText="9"/>
-                            <p:column colspan="1" headerText="10"/>
-                            <p:column colspan="1" headerText="11"/>
-                            <p:column colspan="1" headerText="12"/>
-                            <p:column colspan="1" headerText="13"/>
-                            <p:column colspan="1" headerText="14"/>
-                            <p:column colspan="1" headerText="15"/>
-                            <p:column colspan="1" headerText="16"/>
-                            <p:column colspan="1" headerText="17"/>
-                            <p:column colspan="1" headerText="18"/>
-                            <p:column colspan="1" headerText="19"/>
+                            <!--<p:column colspan="1" headerText="10"/>-->
+                            <!--<p:column colspan="1" headerText="11"/>-->
+                            <!--<p:column colspan="1" headerText="12"/>-->
+                            <!--<p:column colspan="1" headerText="13"/>-->
+                            <!--<p:column colspan="1" headerText="14"/>-->
+                            <!--<p:column colspan="1" headerText="15"/>-->
+                            <!--<p:column colspan="1" headerText="16"/>-->
+                            <!---->
                         </p:row>
                     </p:columnGroup>
+                    <p:column>
+                        <h:outputText value="#{act.date}"/>
+                    </p:column>
+
+                    <p:column>
+                        <h:outputText value="#{act.timeOnEnd}"/>
+                    </p:column>
+
+                    <p:column>
+                        <h:outputText value="#{act.q1End}"/>
+                    </p:column>
+
+                    <p:column>
+                        <h:outputText value="#{act.v1End}"/>
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="#{act.timeOnStart}"/>
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="#{act.q1Start}"/>
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="#{act.v1Start}"/>
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="#{act.k}"/>
+                    </p:column>
 
 
-                        <p:column>
-                            <h:outputText value="#{act.timeOnEnd}"/>
-                        </p:column>
-                        <p:column>
-                            <h:outputText value="#{act.q1End}"/>
-                        </p:column>
-                        <p:column>
-                            <h:outputText value="#{act.v1End}"/>
-                        </p:column>
-                        <p:column>
-                            <h:outputText value="#{act.timeOnStart}"/>
-                        </p:column>
-                        <p:column>
-                            <h:outputText value="#{act.q1Start}"/>
-                        </p:column>
-                        <p:column>
-                            <h:outputText value="#{act.v1Start}"/>
-                        </p:column>
-                        <p:column>
-                            <h:outputText value="#{act.k}"/>
-                        </p:column>
 
 
 
-
-                        <p:column>
-                            <h:outputText value="#{act.date}"></h:outputText>
-                        </p:column>
-                        <p:column>
-                            <p:outputLabel value="#{act.q1Start}"></p:outputLabel>
-                        </p:column>
-
-                        <p:column>
-                            <h:outputText value="#{act.q1Start}"></h:outputText>
-                        </p:column>
+                    <!--<p:column>-->
+                        <!--<h:outputText value="#{act.k}"/>-->
+                    <!--</p:column>-->
+                    <!--<p:column>-->
+                    <!--<h:outputText value="#{act.k}"/>-->
+                    <!--</p:column>-->
 
 
-                        <p:column>
-                            <h:outputText value="#{act.q1Start}"></h:outputText>
-                        </p:column>
-                        <p:column>
-                            <p:outputLabel value="#{act.q1Start}"></p:outputLabel>
-                        </p:column>
+                    <!--<p:column>-->
+                    <!--<h:outputText value="#{act.date}"></h:outputText>-->
+                    <!--</p:column>-->
+                    <!--<p:column>-->
+                    <!--<p:outputLabel value="#{act.q1Start}"></p:outputLabel>-->
+                    <!--</p:column>-->
 
-                        <p:column>
-                            <h:outputText value="#{act.q1Start}"></h:outputText>
-                        </p:column>
-                        <p:column>
-                            <p:outputLabel value="#{act.q1Start}"></p:outputLabel>
-                        </p:column>
+                    <!--<p:column>-->
+                    <!--<h:outputText value="#{act.q1Start}"></h:outputText>-->
+                    <!--</p:column>-->
 
+
+                    <!--<p:column>-->
+                    <!--<h:outputText value="#{act.q1Start}"></h:outputText>-->
+                    <!--</p:column>-->
+                    <!--<p:column>-->
+                    <!--<p:outputLabel value="#{act.q1Start}"></p:outputLabel>-->
+                    <!--</p:column>-->
+
+                    <!--<p:column>-->
+                    <!--<h:outputText value="#{act.q1Start}"></h:outputText>-->
+                    <!--</p:column>-->
+                    <!--<p:column>-->
+                    <!--<p:outputLabel value="#{act.q1Start}"></p:outputLabel>-->
+                    <!--</p:column>-->
 
 
                 </p:dataTable>

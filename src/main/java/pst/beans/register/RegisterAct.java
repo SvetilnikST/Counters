@@ -89,26 +89,10 @@ public class RegisterAct extends LazyDataModel<RegisterReportAct> {
         LocalDateTime dayEnd;
         int dayBeginInt;
         int dayEndInt;
-
         LocalDateTime dtCur = new LocalDateTime(selectMonth);
         LocalDateTime dtTemp;
 
-
-//            oneRecord.setQ1(scheduleEntity.getCommons().get(0).getSystem().get(0).getQ1());
-//            oneRecord.setV1(scheduleEntity.getCommons().get(0).getSystem().get(0).getV1());
-//            oneRecord.setGM1(scheduleEntity.getCommons().get(0).getSystem().get(0).getGM1());
-//            oneRecord.setT1(scheduleEntity.getCommons().get(0).getSystem().get(0).getT1());
-//            oneRecord.setP1(scheduleEntity.getCommons().get(0).getSystem().get(0).getP1());
-//            oneRecord.setQ2(scheduleEntity.getCommons().get(0).getSystem().get(0).getQ2());
-//            oneRecord.setV2(scheduleEntity.getCommons().get(0).getSystem().get(0).getV2());
-//            oneRecord.setGM2(scheduleEntity.getCommons().get(0).getSystem().get(0).getGM2());
-//            oneRecord.setT2(scheduleEntity.getCommons().get(0).getSystem().get(0).getT2());
-//            oneRecord.setP2(scheduleEntity.getCommons().get(0).getSystem().get(0).getP2());
-//            oneRecord.setTimeOn(scheduleEntity.getCommons().get(0).getTimeOn());
-//            registerReports.add(oneRecord);
-
-
-        //начало месяца
+        //данные на последний учетный день
         oneRecord = new RegisterReportAct();
         dayBegin = dtCur.withDayOfMonth(1)
                 .plusMonths(0)
@@ -117,31 +101,35 @@ public class RegisterAct extends LazyDataModel<RegisterReportAct> {
         dayEnd = dtCur.minusYears(1);
         dayEndInt = (int) (dayEnd.toDateTime().getMillis() / 1000L);
 
-        TblScheduleEntity scheduleEntity = sheduleDAO.loadrecordAct( dayEndInt,dayBeginInt, device.getId());
+        TblScheduleEntity scheduleEntityEnd = sheduleDAO.loadrecordAct(dayEndInt, dayBeginInt, device.getId());
+        TblScheduleEntity scheduleEntityStart = sheduleDAO.loadrecord(dayBeginInt, dayEndInt, device.getId());
 
-//            oneRecord.setQ1(scheduleEntityStart.getCommons().get(0).getSystem().get(0).getQ1());
-//            oneRecord.setV1(scheduleEntityStart.getCommons().get(0).getSystem().get(0).getV1());
-//            oneRecord.setGM1(scheduleEntityStart.getCommons().get(0).getSystem().get(0).getGM1());
-//            oneRecord.setT1(scheduleEntityStart.getCommons().get(0).getSystem().get(0).getT1());
-//            oneRecord.setP1(scheduleEntityStart.getCommons().get(0).getSystem().get(0).getP1());
-//            oneRecord.setQ2(scheduleEntityStart.getCommons().get(0).getSystem().get(0).getQ2());
-//            oneRecord.setV2(scheduleEntityStart.getCommons().get(0).getSystem().get(0).getV2());
-//            oneRecord.setGM2(scheduleEntityStart.getCommons().get(0).getSystem().get(0).getGM2());
-//            oneRecord.setT2(scheduleEntityStart.getCommons().get(0).getSystem().get(0).getT2());
-//            oneRecord.setP2(scheduleEntityStart.getCommons().get(0).getSystem().get(0).getP2());
-//            oneRecord.setTimeOn(scheduleEntityStart.getCommons().get(0).getTimeOn());
-//            registerReports.add(oneRecord);
+//        dayBegin = new LocalDateTime(scheduleEntity.getCommons().get(0).getTimeRequest() * 1000L);
+//        oneRecord.setDate(dayBegin.toString("dd.MM HH:mm"));
+//        oneRecord.setTimeOnEnd(scheduleEntity.getCommons().get(0).getTimeOn());
+//        oneRecord.setQ1End(scheduleEntity.getCommons().get(0).getSystem().get(0).getQ1());
+//        oneRecord.setV1End(scheduleEntity.getCommons().get(0).getSystem().get(0).getV1());
+//        oneRecord.setTimeOnStart(scheduleEntity.getCommons().get(0).getTimeOn());
+//        oneRecord.setQ1Start(scheduleEntity.getCommons().get(0).getSystem().get(0).getQ1());
+//        oneRecord.setV1Start(scheduleEntity.getCommons().get(0).getSystem().get(0).getV1());
+//        oneRecord.setK(1.0);
 
-//        oneRecord.setQ1(scheduleEntityStart.getCommons());
+        int t1 = scheduleEntityEnd.getCommons().get(0).getTimeOn()-scheduleEntityStart.getCommons().get(0).getTimeOn();
+        double Q = scheduleEntityEnd.getCommons().get(0).getSystem().get(0).getQ1()-scheduleEntityStart.getCommons().get(0).getSystem().get(0).getQ1();
 
-        oneRecord.setDate(dayBegin.toString("dd.MM HH:mm"));
-        oneRecord.setTimeOnStart(scheduleEntity.getCommons().get(0).getTimeOn());
-        oneRecord.setQ1Start(scheduleEntity.getCommons().get(0).getSystem().get(0).getQ1());
-        oneRecord.setV1Start(scheduleEntity.getCommons().get(0).getSystem().get(0).getV1());
-
+        oneRecord.setDate("Подающий трубопровод");
+        oneRecord.setTimeOnEnd(scheduleEntityEnd.getCommons().get(0).getTimeOn());
+        oneRecord.setQ1End(scheduleEntityEnd.getCommons().get(0).getSystem().get(0).getQ1());
+        oneRecord.setV1End(scheduleEntityEnd.getCommons().get(0).getSystem().get(0).getV1());
+        oneRecord.setTimeOnStart(scheduleEntityStart.getCommons().get(0).getTimeOn());
+        oneRecord.setQ1Start(scheduleEntityStart.getCommons().get(0).getSystem().get(0).getQ1());
+        oneRecord.setV1Start(scheduleEntityStart.getCommons().get(0).getSystem().get(0).getV1());
+        oneRecord.setK(1.0);
+        oneRecord.setdTimeOn(t1);
+        oneRecord.setQ(Q);
         registerReports.add(oneRecord);
 
-        //следующий месяц
+        //данные на начало
         oneRecord = new RegisterReportAct();
         dayBegin = dtCur.withDayOfMonth(1)
                 .plusMonths(1)
@@ -150,195 +138,27 @@ public class RegisterAct extends LazyDataModel<RegisterReportAct> {
         dayEnd = dtCur.plusYears(1);
         dayEndInt = (int) (dayEnd.toDateTime().getMillis() / 1000L);
 
-        scheduleEntity = sheduleDAO.loadrecord(dayBeginInt, dayEndInt, device.getId());
-//        if (scheduleEntity == null) {
-//            oneRecord.setDate(dayBegin.toString("dd.MM HH:mm"));
-//
-//            if (device.getObjectEntity().getHotWater() == null) {
-//                oneRecord.setHotWater(false);
-//            } else {
-//                oneRecord.setHotWater(true);
-//            }
-//
-//            if (device.getObjectEntity().getHeating() == null) {
-//                oneRecord.setHeating(false);
-//            } else {
-//                oneRecord.setHeating(true);
-//            }
-//
-//            if (device.getObjectEntity().getVentilation() == null) {
-//                oneRecord.setVentilation(false);
-//            } else {
-//                oneRecord.setVentilation(true);
-//            }
-//
-//            oneRecord.setToShow(false);
-//            registerReports.add(oneRecord);
-//        } else {
-//            oneRecord.setToShow(true);
-//
-//            dtTemp = new LocalDateTime(scheduleEntity.getCommons().get(0).getTimeRequest() * 1000L);
-//            oneRecord.setDate(dtTemp.toString("dd.MM HH:mm"));
-//            if (device.getObjectEntity().getHotWater() == null) {
-//                oneRecord.setHotWater(false);
-//            } else {
-//                oneRecord.setHotWater(true);
-//            }
-//
-//            if (device.getObjectEntity().getHeating() == null) {
-//                oneRecord.setHeating(false);
-//            } else {
-//                oneRecord.setHeating(true);
-//            }
-//
-//            if (device.getObjectEntity().getVentilation() == null) {
-//                oneRecord.setVentilation(false);
-//            } else {
-//                oneRecord.setVentilation(true);
-//            }
-//
-//            oneRecord.setQ1(scheduleEntity.getCommons().get(0).getSystem().get(0).getQ1());
-//            oneRecord.setV1(scheduleEntity.getCommons().get(0).getSystem().get(0).getV1());
-//            oneRecord.setGM1(scheduleEntity.getCommons().get(0).getSystem().get(0).getGM1());
-//            oneRecord.setT1(scheduleEntity.getCommons().get(0).getSystem().get(0).getT1());
-//            oneRecord.setP1(scheduleEntity.getCommons().get(0).getSystem().get(0).getP1());
-//            oneRecord.setQ2(scheduleEntity.getCommons().get(0).getSystem().get(0).getQ2());
-//            oneRecord.setV2(scheduleEntity.getCommons().get(0).getSystem().get(0).getV2());
-//            oneRecord.setGM2(scheduleEntity.getCommons().get(0).getSystem().get(0).getGM2());
-//            oneRecord.setT2(scheduleEntity.getCommons().get(0).getSystem().get(0).getT2());
-//            oneRecord.setP2(scheduleEntity.getCommons().get(0).getSystem().get(0).getP2());
-//            oneRecord.setTimeOn(scheduleEntity.getCommons().get(0).getTimeOn());
-//            registerReports.add(oneRecord);
-//        }
-//        fillDeltaData(registerReports);
-
-        oneRecord.setDate(dayEnd.toString("dd.MM HH:mm"));
-        oneRecord.setTimeOnEnd(scheduleEntity.getCommons().get(0).getTimeOn());
-        oneRecord.setQ1End(scheduleEntity.getCommons().get(0).getSystem().get(0).getQ1());
-        oneRecord.setV1End(scheduleEntity.getCommons().get(0).getSystem().get(0).getV1());
+//        TblScheduleEntity scheduleEntityStart = sheduleDAO.loadrecord(dayBeginInt, dayEndInt, device.getId());
+//        dayEnd = new LocalDateTime(scheduleEntityEnd.getCommons().get(0).getTimeRequest() * 1000L);
+//        oneRecord.setDate(dayEnd.toString("dd.MM HH:mm"));
+//        oneRecord.setTimeOnEnd(scheduleEntity.getCommons().get(0).getTimeOn());
+//        oneRecord.setQ1End(scheduleEntity.getCommons().get(0).getSystem().get(0).getQ1());
+//        oneRecord.setV1End(scheduleEntity.getCommons().get(0).getSystem().get(0).getV1());
 
 
-        oneRecord.setK(1.0);
+//        oneRecord.setDate(dayEnd.toString("dd.MM HH:mm"));
+//        oneRecord.setTimeOnEnd(scheduleEntity.getCommons().get(0).getTimeOn());
+//        oneRecord.setQ1End(scheduleEntity.getCommons().get(0).getSystem().get(0).getQ1());
+//        oneRecord.setV1End(scheduleEntity.getCommons().get(0).getSystem().get(0).getV1());
+//        oneRecord.setTimeOnStart(scheduleEntity.getCommons().get(0).getTimeOn());
+//        oneRecord.setQ1Start(scheduleEntity.getCommons().get(0).getSystem().get(0).getQ1());
+//        oneRecord.setV1Start(scheduleEntity.getCommons().get(0).getSystem().get(0).getV1());
+//        oneRecord.setK(1.0);
+
+
 
         registerReports.add(oneRecord);
     }
-
-//    private void fillDeltaData(List<RegisterReport> registerReports) {
-//
-//        RegisterReport previous = registerReports.get(0);
-//        for (int i=0;i<registerReports.size()-1;i++){
-//            if(registerReports.get(i).isToShow()) {
-//                for (int j = i + 1; j < registerReports.size(); j++) {
-//                    if (registerReports.get(j).isToShow()){
-//                        registerReports.get(i).setQ1delta(registerReports.get(j).getQ1()-registerReports.get(i).getQ1());
-//                        registerReports.get(i).setQ2delta(registerReports.get(j).getQ2()-registerReports.get(i).getQ2());
-//                        registerReports.get(i).setTimeOndelta(registerReports.get(j).getTimeOn()-registerReports.get(i).getTimeOn());
-//                        registerReports.get(i).setVdelta(registerReports.get(j).getV1()-registerReports.get(j).getV2()-registerReports.get(i).getV1()-registerReports.get(i).getV2());
-//                        i=j-1;
-//                        break;
-//                    }
-//                }
-//            }
-//        }
-//
-//    }
-
-
-
-
-
-
-//    @Override
-//    public List<RegisterReport> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
-//        List<RegisterReport> rez = new ArrayList<>();
-//        RegisterReport oneRecord;
-//
-//        int firstDay = 1;
-//        int lastDay = 30;
-//        LocalDateTime dayBegin;
-//        LocalDateTime dayEnd;
-//        int dayBeginInt;
-//        int dayEndInt;
-//
-//        LocalDateTime dtCur = new LocalDateTime(selectMonth);
-//
-//        LocalDateTime dtTemp;
-//
-//        for (int i = firstDay; i <= lastDay; i++) {
-//            oneRecord = new RegisterReport();
-//            dayBegin = dtCur.withDayOfMonth(i)
-//                    .withTime(0, 0, 0, 0);
-//            dayBeginInt = (int) (dayBegin.toDateTime().getMillis() / 1000L);
-//            dayEnd = dtCur.withDayOfMonth(i)
-//                    .withTime(23, 59, 59, 999);
-//            dayEndInt = (int) (dayEnd.toDateTime().getMillis() / 1000L);
-//            TblScheduleEntity scheduleEntity = sheduleDAO.loadrecordAct(dayBeginInt, dayEndInt, device.getId());
-//            if (scheduleEntity == null) {
-//                oneRecord.setDate(dayBegin.toString("dd.MM HH:mm"));
-//                rez.add(oneRecord);
-//                continue;
-//            }
-//
-//            dtTemp = new LocalDateTime(scheduleEntity.getCommons().get(0).getTimeRequest() * 1000L);
-//            oneRecord.setDate(dtTemp.toString("dd.MM HH:mm"));
-//            if (device.getObjectEntity().getHotWater() == null) {
-//                oneRecord.setHotWater(false);
-//            } else {
-//                oneRecord.setHotWater(true);
-//            }
-//
-//            if (device.getObjectEntity().getHeating() == null) {
-//                oneRecord.setHeating(false);
-//            } else {
-//                oneRecord.setHeating(true);
-//            }
-//
-//            if (device.getObjectEntity().getVentilation() == null) {
-//                oneRecord.setVentilation(false);
-//            } else {
-//                oneRecord.setVentilation(true);
-//            }
-//
-//            oneRecord.setQ1(scheduleEntity.getCommons().get(0).getSystem().get(0).getQ1());
-//            oneRecord.setV1(scheduleEntity.getCommons().get(0).getSystem().get(0).getV1());
-//            oneRecord.setGM1(scheduleEntity.getCommons().get(0).getSystem().get(0).getGM1());
-//            oneRecord.setT1(scheduleEntity.getCommons().get(0).getSystem().get(0).getT1());
-//            oneRecord.setP1(scheduleEntity.getCommons().get(0).getSystem().get(0).getP1());
-//            oneRecord.setQ2(scheduleEntity.getCommons().get(0).getSystem().get(0).getQ2());
-//            oneRecord.setV2(scheduleEntity.getCommons().get(0).getSystem().get(0).getV2());
-//            oneRecord.setGM2(scheduleEntity.getCommons().get(0).getSystem().get(0).getGM2());
-//            oneRecord.setT2(scheduleEntity.getCommons().get(0).getSystem().get(0).getT2());
-//            oneRecord.setP2(scheduleEntity.getCommons().get(0).getSystem().get(0).getP2());
-//            oneRecord.setTimeOn(scheduleEntity.getCommons().get(0).getTimeOn());
-//            rez.add(oneRecord);
-//        }
-//        return rez;
-//    }
-
-
-//    public List<TblScheduleEntity> load1(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
-//
-//        filters.put("dateFrom", dateFrom.getTime() / 1000);
-//        filters.put("dateLast", dateLast.getTime() / 1000);
-//        filters.put("statusExecute", 1);
-//        filters.put("inStore1", true);
-//
-//        filters.put("deviceId", 1);//исправить на правильный номер устройства
-//
-//        setRowCount(sheduleDAO.getTotalCount(filters));
-////        TblScheduleEntity scheduleEntity;
-////        scheduleEntity.getCommons().get(0).getTimeRequest();
-//
-//        return sheduleDAO.load(first, pageSize, sortField, sortOrder, filters);
-//    }
-
-//    public List<RegisterReport> getRegisterReports() {
-//        return registerReports;
-//    }
-//
-//    public void setRegisterReports(List<RegisterReport> registerReports) {
-//        this.registerReports = registerReports;
-//    }
 
 
     public List<RegisterReportAct> getRegisterReports() {
