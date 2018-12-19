@@ -303,6 +303,9 @@ public class deviceDataAdminHistory extends LazyDataModel<SheduleReport> {
 
         tblScheduleEntityList =sheduleDAO.load(first, pageSize, sortField, sortOrder, filters);
 /////
+        if(tblScheduleEntityList.size()==0){
+            return null;
+        }
 
         sheduleReports = new ArrayList<>();
         for (TblScheduleEntity oneEntyty : tblScheduleEntityList) {

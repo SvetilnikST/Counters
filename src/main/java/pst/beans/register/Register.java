@@ -179,7 +179,7 @@ public class Register extends LazyDataModel<RegisterReport> {
                 .withTime(0, 0, 0, 0);
         dayBeginInt = (int) (dayBegin.toDateTime().getMillis() / 1000L);
         dayEnd = dtCur.plusYears(1);
-        dayEndInt = (int) (dayBegin.toDateTime().getMillis() / 1000L);
+        dayEndInt = (int) (dayEnd.toDateTime().getMillis() / 1000L);
 
         TblScheduleEntity scheduleEntity = sheduleDAO.loadrecord(dayBeginInt, dayEndInt, device.getId());
         if (scheduleEntity == null) {

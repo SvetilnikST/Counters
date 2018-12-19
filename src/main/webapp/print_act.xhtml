@@ -20,7 +20,7 @@
                 </h4>
                </h:panelGroup>
 
-                <p:dataTable id="tbl" var="type_device" value="#{typeDeviceAdministration.tblTypeDeviceEntitysList}">
+                <p:dataTable id="tbl" var="act" value="#{registerAct.registerReports}">
 
                     <p:columnGroup type="header">
                         <p:row>
@@ -36,8 +36,8 @@
                             <!--<p:column rowspan="3" headerText="Всего"/>-->
                         </p:row>
                         <p:row>
-                            <p:column colspan="3" rowspan="1" headerText="ВЫВЕСТИ ДАТУ !!!!!end"/>
-                            <p:column colspan="3" rowspan="1" headerText="ВЫВЕСТИ ДАТУ!!!! start"/>
+                            <p:column colspan="3" rowspan="1" headerText="#{act.date}"/>
+                            <p:column colspan="3" rowspan="1" headerText="#{act.date}"/>
                             <p:column colspan="2" headerText="По прибору"/>
                             <p:column colspan="2" headerText="По среднему значению"/>
                             <p:column colspan="2" headerText="По нагрузке"/>
@@ -90,69 +90,69 @@
                     </p:columnGroup>
 
                     <p:column>
-                        <h:outputText value="#{type_device.id}"></h:outputText>
+                        <h:outputText value="#{act.date}"></h:outputText>
                     </p:column>
                     <p:column>
-                        <p:outputLabel value="#{type_device.name}"></p:outputLabel>
-                    </p:column>
-
-                    <p:column>
-                        <h:outputText value="#{type_device.id}"></h:outputText>
-                    </p:column>
-
-
-                    <p:column>
-                        <h:outputText value="#{type_device.id}"></h:outputText>
-                    </p:column>
-                    <p:column>
-                        <p:outputLabel value="#{type_device.name}"></p:outputLabel>
+                        <p:outputLabel value="#{act.q1}"></p:outputLabel>
                     </p:column>
 
                     <p:column>
-                        <h:outputText value="#{type_device.id}"></h:outputText>
+                        <h:outputText value="#{act.q2}"></h:outputText>
+                    </p:column>
+
+
+                    <p:column>
+                        <h:outputText value="#{act.v1}"></h:outputText>
                     </p:column>
                     <p:column>
-                        <p:outputLabel value="#{type_device.name}"></p:outputLabel>
+                        <p:outputLabel value="#{act.v2}"></p:outputLabel>
                     </p:column>
 
                     <p:column>
-                        <h:outputText value="#{type_device.id}"></h:outputText>
+                        <h:outputText value="#{act.t1}"></h:outputText>
                     </p:column>
                     <p:column>
-                        <p:outputLabel value="#{type_device.name}"></p:outputLabel>
-                    </p:column>
-
-                    <p:column>
-                        <h:outputText value="#{type_device.id}"></h:outputText>
-                    </p:column>
-                    <p:column>
-                        <p:outputLabel value="#{type_device.name}"></p:outputLabel>
+                        <p:outputLabel value="#{act.t1}"></p:outputLabel>
                     </p:column>
 
                     <p:column>
-                        <h:outputText value="#{type_device.id}"></h:outputText>
+                        <h:outputText value="#{act.t1}"></h:outputText>
                     </p:column>
                     <p:column>
-                        <p:outputLabel value="#{type_device.name}"></p:outputLabel>
+                        <p:outputLabel value="#{act.t1}"></p:outputLabel>
                     </p:column>
 
                     <p:column>
-                        <h:outputText value="#{type_device.id}"></h:outputText>
+                        <h:outputText value="#{act.t1}"></h:outputText>
                     </p:column>
                     <p:column>
-                        <h:outputText value="#{type_device.id}"></h:outputText>
+                        <p:outputLabel value="#{act.t1}"></p:outputLabel>
+                    </p:column>
+
+                    <p:column>
+                        <h:outputText value="#{act.t1}"></h:outputText>
                     </p:column>
                     <p:column>
-                        <h:outputText value="#{type_device.id}"></h:outputText>
+                        <p:outputLabel value="#{act.t1}"></p:outputLabel>
+                    </p:column>
+
+                    <p:column>
+                        <h:outputText value="#{act.t1}"></h:outputText>
                     </p:column>
                     <p:column>
-                        <h:outputText value="#{type_device.id}"></h:outputText>
+                        <h:outputText value="#{act.t1}"></h:outputText>
                     </p:column>
                     <p:column>
-                        <h:outputText value="#{type_device.id}"></h:outputText>
+                        <h:outputText value="#{act.t1}"></h:outputText>
                     </p:column>
                     <p:column>
-                        <h:outputText value="#{type_device.id}"></h:outputText>
+                        <h:outputText value="#{act.t1}"></h:outputText>
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="#{act.t1}"></h:outputText>
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="#{act.t1}"></h:outputText>
                     </p:column>
                 </p:dataTable>
 

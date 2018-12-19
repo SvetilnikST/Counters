@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-
 @ManagedBean(name = "registerAct")
 @ViewScoped
 public class RegisterAct extends LazyDataModel<RegisterReport> {
@@ -56,7 +55,6 @@ public class RegisterAct extends LazyDataModel<RegisterReport> {
     @PostConstruct
     public void start() {
         this.dateFrom = Timestamp.valueOf("2007-09-23 00:00:00.0");
-
         this.dateLast = Timestamp.valueOf("2018-12-23 10:10:10.0");
         this.selectMonth = Timestamp.valueOf("2018-11-13 10:10:10.0");
         FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -65,13 +63,10 @@ public class RegisterAct extends LazyDataModel<RegisterReport> {
         String param = parameterMap.get("id");
         //если не пустой id, делаем чтение записи по id
         if (param != null) {
-
             int id = Integer.parseInt(param);
             //чтение записи по id
 //            this.tblDeviceEntity = deviceDAO.read(id);
             device = deviceDAO.read(id);
-
-
             //проверка если пустая entity, сообщение об ощибке
             if (device == null) {
                 String message = "Bad request. Unknown type device.";
@@ -88,7 +83,6 @@ public class RegisterAct extends LazyDataModel<RegisterReport> {
     private void load2() {
         registerReports = new ArrayList<>();
         RegisterReport oneRecord;
-
         int firstDay = 1;
         int lastDay = 30;
         LocalDateTime dayBegin;
@@ -97,80 +91,152 @@ public class RegisterAct extends LazyDataModel<RegisterReport> {
         int dayEndInt;
 
         LocalDateTime dtCur = new LocalDateTime(selectMonth);
-
         LocalDateTime dtTemp;
 
-        for (int i = firstDay; i <= lastDay; i++) {
-            oneRecord = new RegisterReport();
-            dayBegin = dtCur.withDayOfMonth(i)
-                    .withTime(0, 0, 0, 0);
-            dayBeginInt = (int) (dayBegin.toDateTime().getMillis() / 1000L);
-            dayEnd = dtCur.withDayOfMonth(i)
-                    .withTime(23, 59, 59, 999);
-            dayEndInt = (int) (dayEnd.toDateTime().getMillis() / 1000L);
-            TblScheduleEntity scheduleEntity = sheduleDAO.loadrecord(dayBeginInt, dayEndInt, device.getId());
-            if (scheduleEntity == null) {
-                oneRecord.setDate(dayBegin.toString("dd.MM HH:mm"));
+//        for (int i = firstDay; i <= lastDay; i++) {
+//            oneRecord = new RegisterReport();
+//            dayBegin = dtCur.withDayOfMonth(i)
+//                    .withTime(0, 0, 0, 0);
+//            dayBeginInt = (int) (dayBegin.toDateTime().getMillis() / 1000L);
+//            dayEnd = dtCur.withDayOfMonth(i)
+//                    .withTime(23, 59, 59, 999);
+//            dayEndInt = (int) (dayEnd.toDateTime().getMillis() / 1000L);
+//
+//            TblScheduleEntity scheduleEntity = sheduleDAO.loadrecord(dayBeginInt, dayEndInt, device.getId());
+//            if (scheduleEntity == null) {
+//                oneRecord.setDate(dayBegin.toString("dd.MM HH:mm"));
+//
+//                if (device.getObjectEntity().getHotWater() == null) {
+//                    oneRecord.setHotWater(false);
+//                } else {
+//                    oneRecord.setHotWater(true);
+//                }
+//
+//                if (device.getObjectEntity().getHeating() == null) {
+//                    oneRecord.setHeating(false);
+//                } else {
+//                    oneRecord.setHeating(true);
+//                }
+//
+//                if (device.getObjectEntity().getVentilation() == null) {
+//                    oneRecord.setVentilation(false);
+//                } else {
+//                    oneRecord.setVentilation(true);
+//                }
+//
+//                oneRecord.setToShow(false);
+//                registerReports.add(oneRecord);
+//                continue;
+//            }
+//
+//            oneRecord.setToShow(true);
+//
+//            dtTemp = new LocalDateTime(scheduleEntity.getCommons().get(0).getTimeRequest() * 1000L);
+//            oneRecord.setDate(dtTemp.toString("dd.MM HH:mm"));
+//            if (device.getObjectEntity().getHotWater() == null) {
+//                oneRecord.setHotWater(false);
+//            } else {
+//                oneRecord.setHotWater(true);
+//            }
+//
+//            if (device.getObjectEntity().getHeating() == null) {
+//                oneRecord.setHeating(false);
+//            } else {
+//                oneRecord.setHeating(true);
+//            }
+//
+//            if (device.getObjectEntity().getVentilation() == null) {
+//                oneRecord.setVentilation(false);
+//            } else {
+//                oneRecord.setVentilation(true);
+//            }
+//
+//            oneRecord.setQ1(scheduleEntity.getCommons().get(0).getSystem().get(0).getQ1());
+//            oneRecord.setV1(scheduleEntity.getCommons().get(0).getSystem().get(0).getV1());
+//            oneRecord.setGM1(scheduleEntity.getCommons().get(0).getSystem().get(0).getGM1());
+//            oneRecord.setT1(scheduleEntity.getCommons().get(0).getSystem().get(0).getT1());
+//            oneRecord.setP1(scheduleEntity.getCommons().get(0).getSystem().get(0).getP1());
+//            oneRecord.setQ2(scheduleEntity.getCommons().get(0).getSystem().get(0).getQ2());
+//            oneRecord.setV2(scheduleEntity.getCommons().get(0).getSystem().get(0).getV2());
+//            oneRecord.setGM2(scheduleEntity.getCommons().get(0).getSystem().get(0).getGM2());
+//            oneRecord.setT2(scheduleEntity.getCommons().get(0).getSystem().get(0).getT2());
+//            oneRecord.setP2(scheduleEntity.getCommons().get(0).getSystem().get(0).getP2());
+//            oneRecord.setTimeOn(scheduleEntity.getCommons().get(0).getTimeOn());
+//            registerReports.add(oneRecord);
+//        }
 
-                if (device.getObjectEntity().getHotWater() == null) {
-                    oneRecord.setHotWater(false);
-                } else {
-                    oneRecord.setHotWater(true);
-                }
+        //начало месяца
+        oneRecord = new RegisterReport();
+        dayBegin = dtCur.withDayOfMonth(1)
+                .plusMonths(0)
+                .withTime(0, 0, 0, 0);
+        dayBeginInt = (int) (dayBegin.toDateTime().getMillis() / 1000L);
+        dayEnd = dtCur.minusYears(1);
+        dayEndInt = (int) (dayEnd.toDateTime().getMillis() / 1000L);
 
-                if (device.getObjectEntity().getHeating() == null) {
-                    oneRecord.setHeating(false);
-                } else {
-                    oneRecord.setHeating(true);
-                }
+        TblScheduleEntity scheduleEntityStart = sheduleDAO.loadrecordAct( dayEndInt,dayBeginInt, device.getId());
+//        if (scheduleEntityStart == null) {
+//            oneRecord.setDate(dayBegin.toString("dd.MM HH:mm"));
+//
+//            if (device.getObjectEntity().getHotWater() == null) {
+//                oneRecord.setHotWater(false);
+//            } else {
+//                oneRecord.setHotWater(true);
+//            }
+//
+//            if (device.getObjectEntity().getHeating() == null) {
+//                oneRecord.setHeating(false);
+//            } else {
+//                oneRecord.setHeating(true);
+//            }
+//
+//            if (device.getObjectEntity().getVentilation() == null) {
+//                oneRecord.setVentilation(false);
+//            } else {
+//                oneRecord.setVentilation(true);
+//            }
+//
+//            oneRecord.setToShow(false);
+//            registerReports.add(oneRecord);
+//        } else {
+//            oneRecord.setToShow(true);
+//
+//            dtTemp = new LocalDateTime(scheduleEntityStart.getCommons().get(0).getTimeRequest() * 1000L);
+//            oneRecord.setDate(dtTemp.toString("dd.MM HH:mm"));
+//            if (device.getObjectEntity().getHotWater() == null) {
+//                oneRecord.setHotWater(false);
+//            } else {
+//                oneRecord.setHotWater(true);
+//            }
+//
+//            if (device.getObjectEntity().getHeating() == null) {
+//                oneRecord.setHeating(false);
+//            } else {
+//                oneRecord.setHeating(true);
+//            }
+//
+//            if (device.getObjectEntity().getVentilation() == null) {
+//                oneRecord.setVentilation(false);
+//            } else {
+//                oneRecord.setVentilation(true);
+//            }
+//
+//            oneRecord.setQ1(scheduleEntityStart.getCommons().get(0).getSystem().get(0).getQ1());
+//            oneRecord.setV1(scheduleEntityStart.getCommons().get(0).getSystem().get(0).getV1());
+//            oneRecord.setGM1(scheduleEntityStart.getCommons().get(0).getSystem().get(0).getGM1());
+//            oneRecord.setT1(scheduleEntityStart.getCommons().get(0).getSystem().get(0).getT1());
+//            oneRecord.setP1(scheduleEntityStart.getCommons().get(0).getSystem().get(0).getP1());
+//            oneRecord.setQ2(scheduleEntityStart.getCommons().get(0).getSystem().get(0).getQ2());
+//            oneRecord.setV2(scheduleEntityStart.getCommons().get(0).getSystem().get(0).getV2());
+//            oneRecord.setGM2(scheduleEntityStart.getCommons().get(0).getSystem().get(0).getGM2());
+//            oneRecord.setT2(scheduleEntityStart.getCommons().get(0).getSystem().get(0).getT2());
+//            oneRecord.setP2(scheduleEntityStart.getCommons().get(0).getSystem().get(0).getP2());
+//            oneRecord.setTimeOn(scheduleEntityStart.getCommons().get(0).getTimeOn());
+//            registerReports.add(oneRecord);
+//        }
+//        oneRecord.setQ1(scheduleEntityStart.getCommons());
 
-                if (device.getObjectEntity().getVentilation() == null) {
-                    oneRecord.setVentilation(false);
-                } else {
-                    oneRecord.setVentilation(true);
-                }
 
-                oneRecord.setToShow(false);
-                registerReports.add(oneRecord);
-                continue;
-            }
-
-            oneRecord.setToShow(true);
-
-            dtTemp = new LocalDateTime(scheduleEntity.getCommons().get(0).getTimeRequest() * 1000L);
-            oneRecord.setDate(dtTemp.toString("dd.MM HH:mm"));
-            if (device.getObjectEntity().getHotWater() == null) {
-                oneRecord.setHotWater(false);
-            } else {
-                oneRecord.setHotWater(true);
-            }
-
-            if (device.getObjectEntity().getHeating() == null) {
-                oneRecord.setHeating(false);
-            } else {
-                oneRecord.setHeating(true);
-            }
-
-            if (device.getObjectEntity().getVentilation() == null) {
-                oneRecord.setVentilation(false);
-            } else {
-                oneRecord.setVentilation(true);
-            }
-
-            oneRecord.setQ1(scheduleEntity.getCommons().get(0).getSystem().get(0).getQ1());
-            oneRecord.setV1(scheduleEntity.getCommons().get(0).getSystem().get(0).getV1());
-            oneRecord.setGM1(scheduleEntity.getCommons().get(0).getSystem().get(0).getGM1());
-            oneRecord.setT1(scheduleEntity.getCommons().get(0).getSystem().get(0).getT1());
-            oneRecord.setP1(scheduleEntity.getCommons().get(0).getSystem().get(0).getP1());
-            oneRecord.setQ2(scheduleEntity.getCommons().get(0).getSystem().get(0).getQ2());
-            oneRecord.setV2(scheduleEntity.getCommons().get(0).getSystem().get(0).getV2());
-            oneRecord.setGM2(scheduleEntity.getCommons().get(0).getSystem().get(0).getGM2());
-            oneRecord.setT2(scheduleEntity.getCommons().get(0).getSystem().get(0).getT2());
-            oneRecord.setP2(scheduleEntity.getCommons().get(0).getSystem().get(0).getP2());
-            oneRecord.setTimeOn(scheduleEntity.getCommons().get(0).getTimeOn());
-
-            registerReports.add(oneRecord);
-        }
 
 
         //следующий месяц
@@ -180,69 +246,69 @@ public class RegisterAct extends LazyDataModel<RegisterReport> {
                 .withTime(0, 0, 0, 0);
         dayBeginInt = (int) (dayBegin.toDateTime().getMillis() / 1000L);
         dayEnd = dtCur.plusYears(1);
-        dayEndInt = (int) (dayBegin.toDateTime().getMillis() / 1000L);
+        dayEndInt = (int) (dayEnd.toDateTime().getMillis() / 1000L);
 
         TblScheduleEntity scheduleEntity = sheduleDAO.loadrecord(dayBeginInt, dayEndInt, device.getId());
-        if (scheduleEntity == null) {
-            oneRecord.setDate(dayBegin.toString("dd.MM HH:mm"));
-
-            if (device.getObjectEntity().getHotWater() == null) {
-                oneRecord.setHotWater(false);
-            } else {
-                oneRecord.setHotWater(true);
-            }
-
-            if (device.getObjectEntity().getHeating() == null) {
-                oneRecord.setHeating(false);
-            } else {
-                oneRecord.setHeating(true);
-            }
-
-            if (device.getObjectEntity().getVentilation() == null) {
-                oneRecord.setVentilation(false);
-            } else {
-                oneRecord.setVentilation(true);
-            }
-
-            oneRecord.setToShow(false);
-            registerReports.add(oneRecord);
-        } else {
-            oneRecord.setToShow(true);
-
-            dtTemp = new LocalDateTime(scheduleEntity.getCommons().get(0).getTimeRequest() * 1000L);
-            oneRecord.setDate(dtTemp.toString("dd.MM HH:mm"));
-            if (device.getObjectEntity().getHotWater() == null) {
-                oneRecord.setHotWater(false);
-            } else {
-                oneRecord.setHotWater(true);
-            }
-
-            if (device.getObjectEntity().getHeating() == null) {
-                oneRecord.setHeating(false);
-            } else {
-                oneRecord.setHeating(true);
-            }
-
-            if (device.getObjectEntity().getVentilation() == null) {
-                oneRecord.setVentilation(false);
-            } else {
-                oneRecord.setVentilation(true);
-            }
-
-            oneRecord.setQ1(scheduleEntity.getCommons().get(0).getSystem().get(0).getQ1());
-            oneRecord.setV1(scheduleEntity.getCommons().get(0).getSystem().get(0).getV1());
-            oneRecord.setGM1(scheduleEntity.getCommons().get(0).getSystem().get(0).getGM1());
-            oneRecord.setT1(scheduleEntity.getCommons().get(0).getSystem().get(0).getT1());
-            oneRecord.setP1(scheduleEntity.getCommons().get(0).getSystem().get(0).getP1());
-            oneRecord.setQ2(scheduleEntity.getCommons().get(0).getSystem().get(0).getQ2());
-            oneRecord.setV2(scheduleEntity.getCommons().get(0).getSystem().get(0).getV2());
-            oneRecord.setGM2(scheduleEntity.getCommons().get(0).getSystem().get(0).getGM2());
-            oneRecord.setT2(scheduleEntity.getCommons().get(0).getSystem().get(0).getT2());
-            oneRecord.setP2(scheduleEntity.getCommons().get(0).getSystem().get(0).getP2());
-            oneRecord.setTimeOn(scheduleEntity.getCommons().get(0).getTimeOn());
-            registerReports.add(oneRecord);
-        }
-        fillDeltaData(registerReports);
+//        if (scheduleEntity == null) {
+//            oneRecord.setDate(dayBegin.toString("dd.MM HH:mm"));
+//
+//            if (device.getObjectEntity().getHotWater() == null) {
+//                oneRecord.setHotWater(false);
+//            } else {
+//                oneRecord.setHotWater(true);
+//            }
+//
+//            if (device.getObjectEntity().getHeating() == null) {
+//                oneRecord.setHeating(false);
+//            } else {
+//                oneRecord.setHeating(true);
+//            }
+//
+//            if (device.getObjectEntity().getVentilation() == null) {
+//                oneRecord.setVentilation(false);
+//            } else {
+//                oneRecord.setVentilation(true);
+//            }
+//
+//            oneRecord.setToShow(false);
+//            registerReports.add(oneRecord);
+//        } else {
+//            oneRecord.setToShow(true);
+//
+//            dtTemp = new LocalDateTime(scheduleEntity.getCommons().get(0).getTimeRequest() * 1000L);
+//            oneRecord.setDate(dtTemp.toString("dd.MM HH:mm"));
+//            if (device.getObjectEntity().getHotWater() == null) {
+//                oneRecord.setHotWater(false);
+//            } else {
+//                oneRecord.setHotWater(true);
+//            }
+//
+//            if (device.getObjectEntity().getHeating() == null) {
+//                oneRecord.setHeating(false);
+//            } else {
+//                oneRecord.setHeating(true);
+//            }
+//
+//            if (device.getObjectEntity().getVentilation() == null) {
+//                oneRecord.setVentilation(false);
+//            } else {
+//                oneRecord.setVentilation(true);
+//            }
+//
+//            oneRecord.setQ1(scheduleEntity.getCommons().get(0).getSystem().get(0).getQ1());
+//            oneRecord.setV1(scheduleEntity.getCommons().get(0).getSystem().get(0).getV1());
+//            oneRecord.setGM1(scheduleEntity.getCommons().get(0).getSystem().get(0).getGM1());
+//            oneRecord.setT1(scheduleEntity.getCommons().get(0).getSystem().get(0).getT1());
+//            oneRecord.setP1(scheduleEntity.getCommons().get(0).getSystem().get(0).getP1());
+//            oneRecord.setQ2(scheduleEntity.getCommons().get(0).getSystem().get(0).getQ2());
+//            oneRecord.setV2(scheduleEntity.getCommons().get(0).getSystem().get(0).getV2());
+//            oneRecord.setGM2(scheduleEntity.getCommons().get(0).getSystem().get(0).getGM2());
+//            oneRecord.setT2(scheduleEntity.getCommons().get(0).getSystem().get(0).getT2());
+//            oneRecord.setP2(scheduleEntity.getCommons().get(0).getSystem().get(0).getP2());
+//            oneRecord.setTimeOn(scheduleEntity.getCommons().get(0).getTimeOn());
+//            registerReports.add(oneRecord);
+//        }
+//        fillDeltaData(registerReports);
     }
 
     private void fillDeltaData(List<RegisterReport> registerReports) {
@@ -264,6 +330,11 @@ public class RegisterAct extends LazyDataModel<RegisterReport> {
         }
 
     }
+
+
+
+
+
 
     @Override
     public List<RegisterReport> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
@@ -289,7 +360,7 @@ public class RegisterAct extends LazyDataModel<RegisterReport> {
             dayEnd = dtCur.withDayOfMonth(i)
                     .withTime(23, 59, 59, 999);
             dayEndInt = (int) (dayEnd.toDateTime().getMillis() / 1000L);
-            TblScheduleEntity scheduleEntity = sheduleDAO.loadrecord(dayBeginInt, dayEndInt, device.getId());
+            TblScheduleEntity scheduleEntity = sheduleDAO.loadrecordAct(dayBeginInt, dayEndInt, device.getId());
             if (scheduleEntity == null) {
                 oneRecord.setDate(dayBegin.toString("dd.MM HH:mm"));
                 rez.add(oneRecord);
@@ -327,7 +398,6 @@ public class RegisterAct extends LazyDataModel<RegisterReport> {
             oneRecord.setT2(scheduleEntity.getCommons().get(0).getSystem().get(0).getT2());
             oneRecord.setP2(scheduleEntity.getCommons().get(0).getSystem().get(0).getP2());
             oneRecord.setTimeOn(scheduleEntity.getCommons().get(0).getTimeOn());
-
             rez.add(oneRecord);
         }
         return rez;

@@ -160,4 +160,27 @@ public class SheduleDAO extends AbstractDao<TblScheduleEntity> {
             }
 //        return rez.get(0);
     }
+
+
+
+    public TblScheduleEntity loadrecordAct(int dayBeginInt, int dayEndInt, int id) {
+        EntityManager entityManager = getEntityManager();
+
+        List<TblScheduleEntity> rez;
+
+        rez = (entityManager.createQuery("select shedul from TblScheduleEntity shedul left join TblBoxCommonEntity box ON box.tblScheduleEntity=shedul where box.instore1=true and shedul.deviceId =:deviceId and box.timeRequest between :dateFirst AND :dateLast order by box.timeRequest desc",TblScheduleEntity.class)
+                .setParameter("dateFirst", dayBeginInt)
+                .setParameter("dateLast", dayEndInt)
+                .setParameter("deviceId", id)
+                .setMaxResults(1)
+                .getResultList());
+
+        if(rez.size()==0){
+            return null;
+        }else {
+            return rez.get(0);
+        }
+//        return rez.get(0);
+    }
+
 }
