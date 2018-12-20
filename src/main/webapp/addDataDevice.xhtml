@@ -17,148 +17,151 @@
                 </h2>
 
                 <p:panelGrid styleClass="ui-panelgrid-blank">
-                <p:row>
-                    <p:column colspan="4">
-                        <h:outputText value="Дата снятия показаний"/>
-                    </p:column>
-                    <p:column colspan="4">
-                        <h:outputText value="Время снятия показаний"/>
-                    </p:column>
-                </p:row>
+                    <p:row>
+                        <p:column colspan="4">
+                            <h:outputText value="Дата снятия показаний"/>
+                        </p:column>
+                        <p:column colspan="4">
+                            <h:outputText value="Время снятия показаний"/>
+                        </p:column>
+                    </p:row>
 
-                <p:row>
-                    <p:column colspan="4">
-                        <p:calendar id="date" value="#{contractAdministration.date}"
-                                    pattern="dd.MM.yyyy" lang="ru" locale="ru"
-                                    title=""/>
-                    </p:column>
-                    <p:column colspan="4">
-                        <p:inputText value="#{organizationAdministration.dataWorker}"/>
-                    </p:column>
-                </p:row>
-                <p:row>
-                    <p:column>
-                        <h:outputText value="Примечание"/>
-                    </p:column>
-                </p:row>
-                <p:row>
-                    <p:column>
-                        <p:inputTextarea rows="3" cols="30" value="#{organizationAdministration.dataBoss}"/>
-                    </p:column>
-                </p:row>
+                    <p:row>
+                        <p:column colspan="4">
+                            <p:calendar id="date" value="#{contractAdministration.date}"
+                                        pattern="dd.MM.yyyy" lang="ru" locale="ru"
+                                        title=""/>
+                        </p:column>
+                        <p:column colspan="4">
+                            <p:inputText value="#{organizationAdministration.dataWorker}"/>
+                        </p:column>
+                    </p:row>
 
+                    <p:row>
+                        <p:column>
+                            <h:outputText value="Примечание"/>
+                        </p:column>
+                    </p:row>
 
-                <p:row>
-                    <p:column colspan="4">
-                        <h:outputText value="Подающий трубопровод"/>
-                    </p:column>
-                    <p:column colspan="4">
-                        <h:outputText value="Обратный трубопровод"/>
-                    </p:column>
-                </p:row>
+                    <p:row>
+                        <p:column>
+                            <p:inputTextarea rows="3" cols="30" value="#{organizationAdministration.dataBoss}"/>
+                        </p:column>
+                    </p:row>
 
-                <p:row>
-                    <p:column colspan="4">
-                        <h:outputText value="Показания прибора учёта тепла (Q), ГДж."/>
-                    </p:column>
-                    <p:column colspan="4">
-                        <h:outputText value="Показания прибора учёта тепла (Q), ГДж."/>
-                    </p:column>
-                </p:row>
+                    <p:row>
+                        <p:column colspan="4">
+                            <h:outputText value="Подающий трубопровод"/>
+                        </p:column>
 
-                <p:row>
-                    <p:column colspan="4">
-                        <p:inputTextarea rows="1" cols="35" value="#{organizationAdministration.dataBoss}"/>
-                    </p:column>
-                    <p:column colspan="4">
-                        <p:inputTextarea rows="1" cols="35" value="#{organizationAdministration.dataWorker}"/>
-                    </p:column>
-                </p:row>
+                        <p:column colspan="4">
+                            <h:outputText value="Обратный трубопровод"/>
+                        </p:column>
+                    </p:row>
 
+                    <p:row>
+                        <p:column colspan="4">
+                            <h:outputText value="Показания прибора учёта тепла (Q), ГДж."/>
+                        </p:column>
 
-                <p:row>
-                    <p:column colspan="4">
-                        <h:outputText value="Объём, м3"/>
-                    </p:column>
-                    <p:column colspan="4">
-                        <h:outputText value="Объём, м3"/>
-                    </p:column>
-                </p:row>
+                        <p:column colspan="4">
+                            <h:outputText value="Показания прибора учёта тепла (Q), ГДж."/>
+                        </p:column>
+                    </p:row>
 
-                <p:row>
-                    <p:column colspan="4">
-                        <p:inputTextarea rows="1" cols="35" value="#{organizationAdministration.dataBoss}"/>
-                    </p:column>
-                    <p:column colspan="4">
-                        <p:inputTextarea rows="1" cols="35" value="#{organizationAdministration.dataWorker}"/>
-                    </p:column>
-                </p:row>
+                    <p:row>
+                        <p:column colspan="4">
+                            <p:inputTextarea rows="1" cols="35" value="#{organizationAdministration.dataBoss}"/>
+                        </p:column>
 
-                <p:row>
-                    <p:column colspan="4">
-                        <h:outputText value="Мгновенный расход, G т/ч"/>
-                    </p:column>
-                    <p:column colspan="4">
-                        <h:outputText value="Мгновенный расход, G т/ч"/>
-                    </p:column>
-                </p:row>
+                        <p:column colspan="4">
+                            <p:inputTextarea rows="1" cols="35" value="#{organizationAdministration.dataWorker}"/>
+                        </p:column>
+                    </p:row>
 
-                <p:row>
-                    <p:column colspan="4">
-                        <p:inputTextarea rows="1" cols="35" value="#{organizationAdministration.dataBoss}"/>
-                    </p:column>
-                    <p:column colspan="4">
-                        <p:inputTextarea rows="1" cols="35" value="#{organizationAdministration.dataWorker}"/>
-                    </p:column>
-                </p:row>
+                    <p:row>
+                        <p:column colspan="4">
+                            <h:outputText value="Объём, м3"/>
+                        </p:column>
+                        <p:column colspan="4">
+                            <h:outputText value="Объём, м3"/>
+                        </p:column>
+                    </p:row>
 
+                    <p:row>
+                        <p:column colspan="4">
+                            <p:inputTextarea rows="1" cols="35" value="#{organizationAdministration.dataBoss}"/>
+                        </p:column>
+                        <p:column colspan="4">
+                            <p:inputTextarea rows="1" cols="35" value="#{organizationAdministration.dataWorker}"/>
+                        </p:column>
+                    </p:row>
 
-                <p:row>
-                    <p:column colspan="4">
-                        <h:outputText value="Температура"/>
-                    </p:column>
-                    <p:column colspan="4">
-                        <h:outputText value="Температура"/>
-                    </p:column>
-                </p:row>
+                    <p:row>
+                        <p:column colspan="4">
+                            <h:outputText value="Мгновенный расход, G т/ч"/>
+                        </p:column>
+                        <p:column colspan="4">
+                            <h:outputText value="Мгновенный расход, G т/ч"/>
+                        </p:column>
+                    </p:row>
 
-                <p:row>
-                    <p:column colspan="4">
-                        <p:inputTextarea rows="1" cols="35" value="#{organizationAdministration.dataBoss}"/>
-                    </p:column>
-                    <p:column colspan="4">
-                        <p:inputTextarea rows="1" cols="35" value="#{organizationAdministration.dataWorker}"/>
-                    </p:column>
-                </p:row>
+                    <p:row>
+                        <p:column colspan="4">
+                            <p:inputTextarea rows="1" cols="35" value="#{organizationAdministration.dataBoss}"/>
+                        </p:column>
+                        <p:column colspan="4">
+                            <p:inputTextarea rows="1" cols="35" value="#{organizationAdministration.dataWorker}"/>
+                        </p:column>
+                    </p:row>
 
 
-                <p:row>
-                    <p:column colspan="8">
-                        <h:outputText value="Время работы прибора в ч., два знака после запятой"/>
-                    </p:column>
+                    <p:row>
+                        <p:column colspan="4">
+                            <h:outputText value="Температура"/>
+                        </p:column>
+                        <p:column colspan="4">
+                            <h:outputText value="Температура"/>
+                        </p:column>
+                    </p:row>
 
-                </p:row>
+                    <p:row>
+                        <p:column colspan="4">
+                            <p:inputTextarea rows="1" cols="35" value="#{organizationAdministration.dataBoss}"/>
+                        </p:column>
+                        <p:column colspan="4">
+                            <p:inputTextarea rows="1" cols="35" value="#{organizationAdministration.dataWorker}"/>
+                        </p:column>
+                    </p:row>
 
-                <p:row>
-                    <p:column colspan="8">
-                        <p:inputTextarea rows="1" cols="70" value="#{organizationAdministration.dataBoss}"/>
-                    </p:column>
 
-                </p:row>
+                    <p:row>
+                        <p:column colspan="8">
+                            <h:outputText value="Время работы прибора в ч., два знака после запятой"/>
+                        </p:column>
 
-                <p:row>
-                    <p:column colspan="8">
-                        <h:outputText value="Время работы прибора с ошибкой в ч., два знака после запятой"/>
-                    </p:column>
+                    </p:row>
 
-                </p:row>
+                    <p:row>
+                        <p:column colspan="8">
+                            <p:inputTextarea rows="1" cols="70" value="#{organizationAdministration.dataBoss}"/>
+                        </p:column>
 
-                <p:row>
-                    <p:column colspan="8">
-                        <p:inputTextarea rows="1" cols="70" value="#{organizationAdministration.dataBoss}"/>
-                    </p:column>
+                    </p:row>
 
-                </p:row>
+                    <p:row>
+                        <p:column colspan="8">
+                            <h:outputText value="Время работы прибора с ошибкой в ч., два знака после запятой"/>
+                        </p:column>
+
+                    </p:row>
+
+                    <p:row>
+                        <p:column colspan="8">
+                            <p:inputTextarea rows="1" cols="70" value="#{organizationAdministration.dataBoss}"/>
+                        </p:column>
+
+                    </p:row>
                 </p:panelGrid>
 
                 <p:panelGrid>

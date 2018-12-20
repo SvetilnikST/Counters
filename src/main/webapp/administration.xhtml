@@ -12,7 +12,8 @@
         <p:toolbar>
             <f:facet name="left">
                 <p:button type="button" value="Добавить пользователя" icon="ui-icon-plus" href="/editUser.xhtml"/>
-                <p:button type="button" title="Все пользователи" value="Список пользователей" icon="ui-icon-person" href="/administration.xhtml"/>
+                <p:button type="button" title="Все пользователи" value="Список пользователей" icon="ui-icon-person"
+                          href="/administration.xhtml"/>
             </f:facet>
         </p:toolbar>
 
@@ -23,7 +24,7 @@
                     widgetVar="userTable"
                     var="user"
                     value="#{userAdministration.userEntitiesList}">
-                <p:column headerText="Логин" >
+                <p:column headerText="Логин">
                     <h:link value="#{user.username}" outcome="viewUser">
                         <f:param name="idUser" value="#{user.id}"/>
                     </h:link>

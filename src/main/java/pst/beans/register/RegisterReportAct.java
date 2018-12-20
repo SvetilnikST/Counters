@@ -3,26 +3,20 @@ package pst.beans.register;
 public class RegisterReportAct {
 
     private String date;
-
     private int TimeOnEnd;
     private double Q1End;
     private double Q2End;
     private double V1End;
     private double V2End;
-
     private int TimeOnStart;
     private double Q1Start;
     private double V1Start;
     private double Q2Start;
     private double V2Start;
-
     private double k;
     private int dTimeOn;
     private double Q;
     private double V;
-
-
-
 
     public String getDate() {
         return date;
