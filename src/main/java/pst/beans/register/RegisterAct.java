@@ -82,7 +82,8 @@ public class RegisterAct extends LazyDataModel<RegisterReportAct> {
 
     private void load2() {
         registerReports = new ArrayList<>();
-        RegisterReportAct oneRecord;
+        RegisterReportAct oneRecord1;
+        RegisterReportAct oneRecord2;
         int firstDay = 1;
         int lastDay = 30;
         LocalDateTime dayBegin;
@@ -92,8 +93,8 @@ public class RegisterAct extends LazyDataModel<RegisterReportAct> {
         LocalDateTime dtCur = new LocalDateTime(selectMonth);
         LocalDateTime dtTemp;
 
-        //данные на последний учетный день
-        oneRecord = new RegisterReportAct();
+        //данные на конец
+        oneRecord1 = new RegisterReportAct();
         dayBegin = dtCur.withDayOfMonth(1)
                 .plusMonths(0)
                 .withTime(0, 0, 0, 0);
@@ -102,35 +103,9 @@ public class RegisterAct extends LazyDataModel<RegisterReportAct> {
         dayEndInt = (int) (dayEnd.toDateTime().getMillis() / 1000L);
 
         TblScheduleEntity scheduleEntityEnd = sheduleDAO.loadrecordAct(dayEndInt, dayBeginInt, device.getId());
-        TblScheduleEntity scheduleEntityStart = sheduleDAO.loadrecord(dayBeginInt, dayEndInt, device.getId());
-
-//        dayBegin = new LocalDateTime(scheduleEntity.getCommons().get(0).getTimeRequest() * 1000L);
-//        oneRecord.setDate(dayBegin.toString("dd.MM HH:mm"));
-//        oneRecord.setTimeOnEnd(scheduleEntity.getCommons().get(0).getTimeOn());
-//        oneRecord.setQ1End(scheduleEntity.getCommons().get(0).getSystem().get(0).getQ1());
-//        oneRecord.setV1End(scheduleEntity.getCommons().get(0).getSystem().get(0).getV1());
-//        oneRecord.setTimeOnStart(scheduleEntity.getCommons().get(0).getTimeOn());
-//        oneRecord.setQ1Start(scheduleEntity.getCommons().get(0).getSystem().get(0).getQ1());
-//        oneRecord.setV1Start(scheduleEntity.getCommons().get(0).getSystem().get(0).getV1());
-//        oneRecord.setK(1.0);
-
-        int t1 = scheduleEntityEnd.getCommons().get(0).getTimeOn()-scheduleEntityStart.getCommons().get(0).getTimeOn();
-        double Q = scheduleEntityEnd.getCommons().get(0).getSystem().get(0).getQ1()-scheduleEntityStart.getCommons().get(0).getSystem().get(0).getQ1();
-
-        oneRecord.setDate("Подающий трубопровод");
-        oneRecord.setTimeOnEnd(scheduleEntityEnd.getCommons().get(0).getTimeOn());
-        oneRecord.setQ1End(scheduleEntityEnd.getCommons().get(0).getSystem().get(0).getQ1());
-        oneRecord.setV1End(scheduleEntityEnd.getCommons().get(0).getSystem().get(0).getV1());
-        oneRecord.setTimeOnStart(scheduleEntityStart.getCommons().get(0).getTimeOn());
-        oneRecord.setQ1Start(scheduleEntityStart.getCommons().get(0).getSystem().get(0).getQ1());
-        oneRecord.setV1Start(scheduleEntityStart.getCommons().get(0).getSystem().get(0).getV1());
-        oneRecord.setK(1.0);
-        oneRecord.setdTimeOn(t1);
-        oneRecord.setQ(Q);
-        registerReports.add(oneRecord);
 
         //данные на начало
-        oneRecord = new RegisterReportAct();
+        oneRecord2 = new RegisterReportAct();
         dayBegin = dtCur.withDayOfMonth(1)
                 .plusMonths(1)
                 .withTime(0, 0, 0, 0);
@@ -138,26 +113,40 @@ public class RegisterAct extends LazyDataModel<RegisterReportAct> {
         dayEnd = dtCur.plusYears(1);
         dayEndInt = (int) (dayEnd.toDateTime().getMillis() / 1000L);
 
-//        TblScheduleEntity scheduleEntityStart = sheduleDAO.loadrecord(dayBeginInt, dayEndInt, device.getId());
-//        dayEnd = new LocalDateTime(scheduleEntityEnd.getCommons().get(0).getTimeRequest() * 1000L);
-//        oneRecord.setDate(dayEnd.toString("dd.MM HH:mm"));
-//        oneRecord.setTimeOnEnd(scheduleEntity.getCommons().get(0).getTimeOn());
-//        oneRecord.setQ1End(scheduleEntity.getCommons().get(0).getSystem().get(0).getQ1());
-//        oneRecord.setV1End(scheduleEntity.getCommons().get(0).getSystem().get(0).getV1());
-
-
-//        oneRecord.setDate(dayEnd.toString("dd.MM HH:mm"));
-//        oneRecord.setTimeOnEnd(scheduleEntity.getCommons().get(0).getTimeOn());
-//        oneRecord.setQ1End(scheduleEntity.getCommons().get(0).getSystem().get(0).getQ1());
-//        oneRecord.setV1End(scheduleEntity.getCommons().get(0).getSystem().get(0).getV1());
-//        oneRecord.setTimeOnStart(scheduleEntity.getCommons().get(0).getTimeOn());
-//        oneRecord.setQ1Start(scheduleEntity.getCommons().get(0).getSystem().get(0).getQ1());
-//        oneRecord.setV1Start(scheduleEntity.getCommons().get(0).getSystem().get(0).getV1());
-//        oneRecord.setK(1.0);
+        TblScheduleEntity scheduleEntityStart = sheduleDAO.loadrecord(dayBeginInt, dayEndInt, device.getId());
+        double Q1 = scheduleEntityEnd.getCommons().get(0).getSystem().get(0).getQ1()-scheduleEntityStart.getCommons().get(0).getSystem().get(0).getQ1();
+        double V1 = scheduleEntityEnd.getCommons().get(0).getSystem().get(0).getV1()-scheduleEntityStart.getCommons().get(0).getSystem().get(0).getV1();
+        double Q2 = scheduleEntityEnd.getCommons().get(0).getSystem().get(0).getQ2()-scheduleEntityStart.getCommons().get(0).getSystem().get(0).getQ2();
+        double V2 = scheduleEntityEnd.getCommons().get(0).getSystem().get(0).getV2()-scheduleEntityStart.getCommons().get(0).getSystem().get(0).getV2();
 
 
 
-        registerReports.add(oneRecord);
+        oneRecord1.setDate("Подающий трубопровод");
+        oneRecord1.setTimeOnEnd(scheduleEntityEnd.getCommons().get(0).getTimeOn());
+        oneRecord1.setQ1End(scheduleEntityEnd.getCommons().get(0).getSystem().get(0).getQ1());
+        oneRecord1.setV1End(scheduleEntityEnd.getCommons().get(0).getSystem().get(0).getV1());
+        oneRecord1.setTimeOnStart(scheduleEntityStart.getCommons().get(0).getTimeOn());
+        oneRecord1.setQ1Start(scheduleEntityStart.getCommons().get(0).getSystem().get(0).getQ1());
+        oneRecord1.setV1Start(scheduleEntityStart.getCommons().get(0).getSystem().get(0).getV1());
+        oneRecord1.setK(1.0);
+        oneRecord1.setdTimeOn(scheduleEntityEnd.getCommons().get(0).getTimeOn()-scheduleEntityStart.getCommons().get(0).getTimeOn());
+        oneRecord1.setQ(Q1);
+        oneRecord1.setV(V1);
+        registerReports.add(oneRecord1);
+
+        oneRecord2.setDate("Обратный трубопровод");
+        oneRecord2.setTimeOnEnd(scheduleEntityEnd.getCommons().get(0).getTimeOn());
+        oneRecord2.setQ1End(scheduleEntityEnd.getCommons().get(0).getSystem().get(0).getQ2());
+        oneRecord2.setV1End(scheduleEntityEnd.getCommons().get(0).getSystem().get(0).getV2());
+        oneRecord2.setTimeOnStart(scheduleEntityStart.getCommons().get(0).getTimeOn());
+        oneRecord2.setQ1Start(scheduleEntityStart.getCommons().get(0).getSystem().get(0).getQ2());
+        oneRecord2.setV1Start(scheduleEntityStart.getCommons().get(0).getSystem().get(0).getV2());
+        oneRecord2.setK(1.0);
+        oneRecord2.setdTimeOn(scheduleEntityEnd.getCommons().get(0).getTimeOn()-scheduleEntityStart.getCommons().get(0).getTimeOn());
+        oneRecord2.setQ(Q2);
+        oneRecord2.setV(V2);
+        registerReports.add(oneRecord2);
+
     }
 
 

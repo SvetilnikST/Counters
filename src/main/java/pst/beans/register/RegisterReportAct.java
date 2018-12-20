@@ -6,17 +6,22 @@ public class RegisterReportAct {
 
     private int TimeOnEnd;
     private double Q1End;
+    private double Q2End;
     private double V1End;
+    private double V2End;
 
     private int TimeOnStart;
     private double Q1Start;
     private double V1Start;
-
+    private double Q2Start;
+    private double V2Start;
 
     private double k;
     private int dTimeOn;
     private double Q;
     private double V;
+
+
 
 
     public String getDate() {
@@ -105,5 +110,37 @@ public class RegisterReportAct {
 
     public void setV(double v) {
         V = v;
+    }
+
+    public double getQ2End() {
+        return Q2End;
+    }
+
+    public void setQ2End(double q2End) {
+        Q2End = q2End;
+    }
+
+    public double getV2End() {
+        return V2End;
+    }
+
+    public void setV2End(double v2End) {
+        V2End = v2End;
+    }
+
+    public double getQ2Start() {
+        return Q2Start;
+    }
+
+    public void setQ2Start(double q2Start) {
+        Q2Start = q2Start;
+    }
+
+    public double getV2Start() {
+        return V2Start;
+    }
+
+    public void setV2Start(double v2Start) {
+        V2Start = v2Start;
     }
 }

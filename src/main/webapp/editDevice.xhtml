@@ -16,6 +16,7 @@
                     <p:outputLabel rendered="#{deviceAdministration.id!=0 and deviceAdministration.id!=null}"
                                    value="Изменение данных #{deviceAdministration.name} "/>
                 </h2>
+                <p:panel>
                 <p:panelGrid styleClass="ui-panelgrid-blank">
                     <p:row>
                         <p:column colspan="1">
@@ -107,8 +108,18 @@
                                          title="num_port"/>
                         </p:column>
                         <p:column colspan="1">
-                            <p:inputText id="requestInterval" value="#{deviceAdministration.requestInterval}"
-                                         title="интервал"/>
+                            <p:selectOneMenu id="console" value="#{deviceAdministration.requestInterval}"
+                                             style="width:125px">
+                                <f:selectItem itemLabel="1" itemValue="1"/>
+                                <f:selectItem itemLabel="2" itemValue="2"/>
+                                <f:selectItem itemLabel="4" itemValue="4"/>
+                                <f:selectItem itemLabel="6" itemValue="6"/>
+                                <f:selectItem itemLabel="8" itemValue="8"/>
+                                <f:selectItem itemLabel="12" itemValue="12"/>
+                                <f:selectItem itemLabel="24" itemValue="24"/>
+                            </p:selectOneMenu>
+
+
                         </p:column>
                         <p:column colspan="3">
                             <p:selectOneMenu id="object" value="#{deviceAdministration.objectEntity}"
@@ -177,6 +188,7 @@
                 </p:panelGrid>
                 <p:commandButton value="Сохранить" action="#{deviceAdministration.save()}"
                                  rendered="#{userBean.doRightVerify('createUser')}"/>
+            </p:panel>
             </p:panel>
 
         </h:form>
