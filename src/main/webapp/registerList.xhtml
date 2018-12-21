@@ -11,6 +11,12 @@
 
         <h:form style="font-size:14px" styleClass="center">
             <p:panel>
+                <p:button type="button" icon="ui-icon-info" value="Акт сверки" outcome="print_act">
+
+                    <f:param name="id" value="#{deviceAdminHistory.id}"/>
+                </p:button>
+
+
                 <p:dataTable
                         id="orderTable"
                         widgetVar="OrderTable"
