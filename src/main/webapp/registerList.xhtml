@@ -16,6 +16,16 @@
                     <f:param name="id" value="#{deviceAdminHistory.id}"/>
                 </p:button>
 
+                <p:selectOneMenu id="idMonthYear" value="#{register.selectedMonthYear}"
+                                 converter="omnifaces.SelectItemsConverter"
+                                 var="month"
+                                 valueChangeListener="#{register.load2()}"
+                >
+                    <f:selectItems value="#{register.localDateTimeList}" var="month"
+                                   itemLabel="#{month}" itemValue="#{month}"/>
+                    <p:ajax update="orderTable" event="change"/>
+
+                </p:selectOneMenu>
 
                 <p:dataTable
                         id="orderTable"

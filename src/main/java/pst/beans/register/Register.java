@@ -45,6 +45,8 @@ public class Register extends LazyDataModel<RegisterReport> {
     private TblDeviceEntity device;
 
     private List<RegisterReport> registerReports;
+    private List<LocalDateTime> localDateTimeList;
+    private LocalDateTime selectedMonthYear;
 
     private String button1Style = "background-color:#449d44; color: #fff; border-color: #398439; text-shadow: none;";
     private String button2Style = "background-color:#c9302c; color: #fff; border-color: #ac2925; text-shadow: none;";
@@ -54,10 +56,29 @@ public class Register extends LazyDataModel<RegisterReport> {
 
     @PostConstruct
     public void start() {
-        this.dateFrom = java.sql.Timestamp.valueOf("2007-09-23 00:00:00.0");
 
-        this.dateLast = java.sql.Timestamp.valueOf("2018-12-23 10:10:10.0");
-        this.selectMonth = java.sql.Timestamp.valueOf("2018-11-13 10:10:10.0");
+        LocalDateTime dtCur;
+        LocalDateTime dtCurTemp;
+        localDateTimeList=new ArrayList<>();
+
+        dtCur = new LocalDateTime()
+                .withDayOfMonth(1)
+                .withTime(0,0,0,0);
+        dtCurTemp = new LocalDateTime(dtCur)
+                .minusMonths(13);
+
+        for(int i=0;i<13;i++){
+            dtCurTemp=dtCur.minusMonths(13-i);
+            localDateTimeList.add(dtCurTemp);
+        }
+
+        this.selectMonth = new Timestamp(dtCur.toDateTime().getMillis());
+
+        //this.dateFrom = new Timestamp(localDateTimeList.get(0).toDateTime().getMillis());         //java.sql.Timestamp.valueOf("2007-09-23 00:00:00.0");
+//        this.dateFrom = java.sql.Timestamp.valueOf("2007-09-23 00:00:00.0");
+//        this.dateLast = java.sql.Timestamp.valueOf("2018-12-23 10:10:10.0");
+//        this.selectMonth = java.sql.Timestamp.valueOf("2018-11-13 10:10:10.0");
+
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
         Map<String, String> parameterMap = (Map<String, String>) externalContext.getRequestParameterMap();
@@ -84,7 +105,7 @@ public class Register extends LazyDataModel<RegisterReport> {
         int a = 0;
     }
 
-    private void load2() {
+    public void load2() {
         registerReports = new ArrayList<>();
         RegisterReport oneRecord;
 
@@ -94,6 +115,7 @@ public class Register extends LazyDataModel<RegisterReport> {
         LocalDateTime dayEnd;
         int dayBeginInt;
         int dayEndInt;
+
 
         LocalDateTime dtCur = new LocalDateTime(selectMonth);
 
@@ -333,6 +355,7 @@ public class Register extends LazyDataModel<RegisterReport> {
     }
 
 
+
     public List<TblScheduleEntity> load1(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
 
         filters.put("dateFrom", dateFrom.getTime() / 1000);
@@ -357,4 +380,19 @@ public class Register extends LazyDataModel<RegisterReport> {
         this.registerReports = registerReports;
     }
 
+    public List<LocalDateTime> getLocalDateTimeList() {
+        return localDateTimeList;
+    }
+
+    public void setLocalDateTimeList(List<LocalDateTime> localDateTimeList) {
+        this.localDateTimeList = localDateTimeList;
+    }
+
+    public LocalDateTime getSelectedMonthYear() {
+        return selectedMonthYear;
+    }
+
+    public void setSelectedMonthYear(LocalDateTime selectedMonthYear) {
+        this.selectedMonthYear = selectedMonthYear;
+    }
 }
