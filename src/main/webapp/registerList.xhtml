@@ -16,32 +16,20 @@
                     <f:param name="id" value="#{deviceAdminHistory.id}"/>
                 </p:button>
 
-                <p:outputLabel for="idMonthYear" value="Выбранный отчетный период:" />
-                <p:selectOneMenu id="idMonthYear" value="#{register.selectMonth}"
-                                 converter="omnifaces.SelectItemsConverter"
-                                 var="month"
-                                 panelStyle="width:500px"
-                                 style="width:500px"
-                >
-                    <p:ajax update="orderTable" listener="#{register.load2}"/>
-                    <f:selectItems value="#{register.timestampsReportPeriodList}"
-                                   var="monthYear" itemLabel="#{register.MyConvert(monthYear)}"
-                                   itemValue="#{monthYear}"
-                    />
-                </p:selectOneMenu>
 
-                <p:outputLabel for="idMonthYear1" value="Выбранный отчетный период:" />
-                <p:selectOneMenu id="idMonthYear1" value="#{register.selectMonth}"
-                                 converter="omnifaces.SelectItemsConverter"
-                                 var="month"
-                                 panelStyle="width:500px"
-                                 style="width:500px"
-                >
-                    <p:ajax update="orderTable" listener="#{register.load2}"/>
-                    <f:selectItems value="#{register.timestampsReportPeriodList1}"
-                                   var="monthYear" itemLabel="#{monthYear}"
-                                   itemValue="#{monthYear}" />
-                </p:selectOneMenu>
+
+                <h:outputLabel for="selectitems" value="Выберите месяц для отображения: " />
+                <h:selectOneMenu id="selectitems" value="#{register.selectedDateTime}"
+                                 converter="omnifaces.SelectItemsConverter">
+                    <f:selectItems value="#{register.dateTimeList}"
+                                   var="dt"
+                                   itemValue="#{dt}"
+                                   itemLabel="#{register.Convert(dt)}"
+                    />
+
+                    <f:ajax update="orderTable" listener="#{register.Stop}"/>
+                </h:selectOneMenu>
+
 
 
                 <p:dataTable

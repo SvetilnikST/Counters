@@ -17,6 +17,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -57,43 +58,66 @@ public class Register extends LazyDataModel<RegisterReport> {
     private String button3Style = "background-color:#31b0d5; color: #fff; border-color: #269abc; text-shadow: none;";
     private String styleYellow = "background-color:#f0ad4e; color: #fff; border-color: #269abc; text-shadow: none;";
 
-    private String option;
-    private List<String> options;
+//    private String option;
+//    private List<String> options;
+
+
+    private List<LocalDateTime> dateTimeList;
+    private LocalDateTime selectedDateTime;
+    String [] stMonth = {"","январь","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь"};
+
+
 
 
     @PostConstruct
     public void start() {
 
 
-        options = new ArrayList<String>();
-        for(int i = 0; i < 20; i++) {
-            options.add("Option " + i);
-        }
+//        options = new ArrayList<String>();
+//        for(int i = 0; i < 20; i++) {
+//            options.add("Option " + i);
+//        }
 
-        LocalDateTime dtCur;
-        LocalDateTime dtCurTemp;
-        timestampsReportPeriodList =new ArrayList<>();
-        timestampsReportPeriodList1 =new ArrayList<>();
-
-        dtCur = new LocalDateTime()
-                .withDayOfMonth(1)
-                .withTime(0,0,0,0);
-        dtCurTemp = new LocalDateTime(dtCur)
-                .minusMonths(13);
-
-        Date tmpDate;
-        for(int i=0;i<13;i++){
-            dtCurTemp=dtCur.minusMonths(13-i);
-            timestampsReportPeriodList.add(new Timestamp(dtCurTemp.toDateTime().getMillis()));
-            timestampsReportPeriodList1.add(dtCurTemp);
-        }
-
-        this.selectMonth = new Timestamp(dtCur.toDateTime().getMillis());
+//        LocalDateTime dtCur;
+//        LocalDateTime dtCurTemp;
+//        timestampsReportPeriodList =new ArrayList<>();
+//        timestampsReportPeriodList1 =new ArrayList<>();
+//
+//        dtCur = new LocalDateTime()
+//                .withDayOfMonth(1)
+//                .withTime(0,0,0,0);
+//        dtCurTemp = new LocalDateTime(dtCur)
+//                .minusMonths(13);
+//
+//        Date tmpDate;
+//        for(int i=0;i<13;i++){
+//            dtCurTemp=dtCur.minusMonths(13-i);
+//            timestampsReportPeriodList.add(new Timestamp(dtCurTemp.toDateTime().getMillis()));
+//            timestampsReportPeriodList1.add(dtCurTemp);
+//        }
+//
+//        this.selectMonth = new Timestamp(dtCur.toDateTime().getMillis());
 
         //this.dateFrom = new Timestamp(timestampsReportPeriodList.get(0).toDateTime().getMillis());         //java.sql.Timestamp.valueOf("2007-09-23 00:00:00.0");
 //        this.dateFrom = java.sql.Timestamp.valueOf("2007-09-23 00:00:00.0");
 //        this.dateLast = java.sql.Timestamp.valueOf("2018-12-23 10:10:10.0");
 //        this.selectMonth = java.sql.Timestamp.valueOf("2018-11-13 10:10:10.0");
+
+
+        LocalDateTime dtCur;
+        dateTimeList = new ArrayList<>();
+
+        dtCur = new LocalDateTime()
+                .withDayOfMonth(1)
+                .withTime(0,0,0,0);
+
+        for (int i=0;i<14;i++){
+            dateTimeList.add(dtCur.minusMonths(13-i));
+        }
+
+
+
+
 
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
@@ -414,21 +438,21 @@ public class Register extends LazyDataModel<RegisterReport> {
         this.selectMonth = selectMonth;
     }
 
-    public String getOption() {
-        return option;
-    }
-
-    public void setOption(String option) {
-        this.option = option;
-    }
-
-    public List<String> getOptions() {
-        return options;
-    }
-
-    public void setOptions(List<String> options) {
-        this.options = options;
-    }
+//    public String getOption() {
+//        return option;
+//    }
+//
+//    public void setOption(String option) {
+//        this.option = option;
+//    }
+//
+//    public List<String> getOptions() {
+//        return options;
+//    }
+//
+//    public void setOptions(List<String> options) {
+//        this.options = options;
+//    }
 
     public List<LocalDateTime> getTimestampsReportPeriodList1() {
         return timestampsReportPeriodList1;
@@ -449,6 +473,49 @@ public class Register extends LazyDataModel<RegisterReport> {
     public String MyConvert(Timestamp date){
         return new SimpleDateFormat("MMMM yyyy").format(date);
     }
+
+
+
+
+
+
+
+
+
+    public String Convert(String str) {
+        String tmp = str.substring(0, 14) + String.valueOf(Integer.parseInt(str.substring(14)) + 20);
+        return tmp;
+    }
+    public String Convert(LocalDateTime dt) {
+        String tmp = stMonth[dt.getMonthOfYear()] + dt.toString(" YYYY");
+        return tmp;
+    }
+
+    public List<LocalDateTime> getDateTimeList() {
+        return dateTimeList;
+    }
+
+    public void setDateTimeList(List<LocalDateTime> dateTimeList) {
+        this.dateTimeList = dateTimeList;
+    }
+
+    public LocalDateTime getSelectedDateTime() {
+        return selectedDateTime;
+    }
+
+    public void setSelectedDateTime(LocalDateTime selectedDateTime) {
+        this.selectedDateTime = selectedDateTime;
+    }
+
+    public void Stop(){
+        int a=0;
+
+    }
+
+
+
+
+
 }
 
 
