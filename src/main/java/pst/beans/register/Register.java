@@ -18,6 +18,7 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 
@@ -42,24 +43,37 @@ public class Register extends LazyDataModel<RegisterReport> {
     private Timestamp dateFrom;
     private Timestamp dateLast;
     private Timestamp selectMonth;
+    private LocalDateTime selectMonth1;
     private TblDeviceEntity device;
 
     private List<RegisterReport> registerReports;
-    private List<LocalDateTime> localDateTimeList;
-    private LocalDateTime selectedMonthYear;
+    private List<Timestamp> timestampsReportPeriodList;
+    private List<LocalDateTime> timestampsReportPeriodList1;
+
+//    private LocalDateTime selectedMonthYear;
 
     private String button1Style = "background-color:#449d44; color: #fff; border-color: #398439; text-shadow: none;";
     private String button2Style = "background-color:#c9302c; color: #fff; border-color: #ac2925; text-shadow: none;";
     private String button3Style = "background-color:#31b0d5; color: #fff; border-color: #269abc; text-shadow: none;";
     private String styleYellow = "background-color:#f0ad4e; color: #fff; border-color: #269abc; text-shadow: none;";
 
+    private String option;
+    private List<String> options;
+
 
     @PostConstruct
     public void start() {
 
+
+        options = new ArrayList<String>();
+        for(int i = 0; i < 20; i++) {
+            options.add("Option " + i);
+        }
+
         LocalDateTime dtCur;
         LocalDateTime dtCurTemp;
-        localDateTimeList=new ArrayList<>();
+        timestampsReportPeriodList =new ArrayList<>();
+        timestampsReportPeriodList1 =new ArrayList<>();
 
         dtCur = new LocalDateTime()
                 .withDayOfMonth(1)
@@ -67,14 +81,16 @@ public class Register extends LazyDataModel<RegisterReport> {
         dtCurTemp = new LocalDateTime(dtCur)
                 .minusMonths(13);
 
+        Date tmpDate;
         for(int i=0;i<13;i++){
             dtCurTemp=dtCur.minusMonths(13-i);
-            localDateTimeList.add(dtCurTemp);
+            timestampsReportPeriodList.add(new Timestamp(dtCurTemp.toDateTime().getMillis()));
+            timestampsReportPeriodList1.add(dtCurTemp);
         }
 
         this.selectMonth = new Timestamp(dtCur.toDateTime().getMillis());
 
-        //this.dateFrom = new Timestamp(localDateTimeList.get(0).toDateTime().getMillis());         //java.sql.Timestamp.valueOf("2007-09-23 00:00:00.0");
+        //this.dateFrom = new Timestamp(timestampsReportPeriodList.get(0).toDateTime().getMillis());         //java.sql.Timestamp.valueOf("2007-09-23 00:00:00.0");
 //        this.dateFrom = java.sql.Timestamp.valueOf("2007-09-23 00:00:00.0");
 //        this.dateLast = java.sql.Timestamp.valueOf("2018-12-23 10:10:10.0");
 //        this.selectMonth = java.sql.Timestamp.valueOf("2018-11-13 10:10:10.0");
@@ -110,11 +126,13 @@ public class Register extends LazyDataModel<RegisterReport> {
         RegisterReport oneRecord;
 
         int firstDay = 1;
-        int lastDay = 30;
+//        int lastDay = 30;
+        int lastDay = (new LocalDateTime(selectMonth)).dayOfMonth().getMaximumValue();
         LocalDateTime dayBegin;
         LocalDateTime dayEnd;
         int dayBeginInt;
         int dayEndInt;
+
 
 
         LocalDateTime dtCur = new LocalDateTime(selectMonth);
@@ -380,19 +398,188 @@ public class Register extends LazyDataModel<RegisterReport> {
         this.registerReports = registerReports;
     }
 
-    public List<LocalDateTime> getLocalDateTimeList() {
-        return localDateTimeList;
+    public List<Timestamp> getTimestampsReportPeriodList() {
+        return timestampsReportPeriodList;
     }
 
-    public void setLocalDateTimeList(List<LocalDateTime> localDateTimeList) {
-        this.localDateTimeList = localDateTimeList;
+    public void setTimestampsReportPeriodList(List<Timestamp> timestampsReportPeriodList) {
+        this.timestampsReportPeriodList = timestampsReportPeriodList;
     }
 
-    public LocalDateTime getSelectedMonthYear() {
-        return selectedMonthYear;
+    public Timestamp getSelectMonth() {
+        return selectMonth;
     }
 
-    public void setSelectedMonthYear(LocalDateTime selectedMonthYear) {
-        this.selectedMonthYear = selectedMonthYear;
+    public void setSelectMonth(Timestamp selectMonth) {
+        this.selectMonth = selectMonth;
+    }
+
+    public String getOption() {
+        return option;
+    }
+
+    public void setOption(String option) {
+        this.option = option;
+    }
+
+    public List<String> getOptions() {
+        return options;
+    }
+
+    public void setOptions(List<String> options) {
+        this.options = options;
+    }
+
+    public List<LocalDateTime> getTimestampsReportPeriodList1() {
+        return timestampsReportPeriodList1;
+    }
+
+    public void setTimestampsReportPeriodList1(List<LocalDateTime> timestampsReportPeriodList1) {
+        this.timestampsReportPeriodList1 = timestampsReportPeriodList1;
+    }
+
+    public LocalDateTime getSelectMonth1() {
+        return selectMonth1;
+    }
+
+    public void setSelectMonth1(LocalDateTime selectMonth1) {
+        this.selectMonth1 = selectMonth1;
+    }
+
+    public String MyConvert(Timestamp date){
+        return new SimpleDateFormat("MMMM yyyy").format(date);
     }
 }
+
+
+/*
+
+                <p:selectOneMenu id="idMonthYear" value="#{register.selectedMonthYear}"
+                                 converter="omnifaces.SelectItemsConverter"
+                                 var="month"
+                                 valueChangeListener="#{register.load2()}">
+                    <f:selectItems value="#{register.timestampsReportPeriodList}" var="month"
+                                   itemLabel="#{month}" itemValue="#{month}"/>
+                    <p:ajax update="orderTable" event="change"/>
+                </p:selectOneMenu>
+
+                <p:outputLabel for="lazy" value="Lazy:" />
+                <p:selectOneMenu id="lazy"  value="#{register.option}" >
+                    <p:ajax listener="#{register.load2}" update="orderTable" />
+                    <f:selectItems value="#{register.options}"  />
+                </p:selectOneMenu>
+
+
+                <p:outputLabel for="idMonthYear" value="Выбранный отчетный период:" />
+                <p:selectOneMenu id="idMonthYear" value="#{register.selectedMonthYear}"
+                                 converter="omnifaces.SelectItemsConverter"
+                                 var="month" >
+                    <f:selectItems value="#{register.timestampsReportPeriodList}" var="month"
+                                   itemLabel="#{month}" itemValue="#{month}"/>
+                    <p:ajax update="orderTable" listener="#{register.load2}"/>
+                </p:selectOneMenu>
+
+
+
+
+            <p:panel style="height: 100px">
+                <p:outputLabel for="idMonthYear" value="Выбранный отчетный период:" />
+                <p:selectOneMenu id="idMonthYear" value="#{register.selectMonth}"
+                                 converter="omnifaces.SelectItemsConverter"
+                                 var="month" dynamic="true"
+                                 panelStyle="width:500px"
+                                 style="width:500px"
+                                 appendTo="@this"
+                >
+                    <p:ajax update="orderTable" listener="#{register.load2}"/>
+                    <f:selectItem itemLabel=" - - - - " itemValue="" />
+                    <f:selectItems value="#{register.timestampsReportPeriodList}"
+                                   var="monthYear" itemLabel="#{omnifaces:formatDate(monthYear, 'MMMM yyyy')}"
+                                   itemValue="#{monthYear}" />
+                </p:selectOneMenu>
+            </p:panel>
+                <p:spacer/>
+
+                    <f:selectItems value="#{register.timestampsReportPeriodList1}"
+                                   var="monthYear" itemLabel="#{omnifaces:formatDate(monthYear, 'MMMM yyyy')}"
+                                   itemValue="#{monthYear}" />
+
+
+//////////////////////////////////////////
+///рабочий вариант, проверено :)
+///отсюда и до самого низа.....
+
+        <h:outputLabel for="selectitems" value="Items with SelectItem list: " />
+        <h:selectOneMenu id="selectitems" value="#{myDate.selectedDateTime}"
+                         converter="omnifaces.SelectItemsConverter">
+            <f:selectItems value="#{myDate.dateTimeList}"
+                    var="dt"
+                     itemValue="#{dt}"
+                           itemLabel="#{myDate.Convert(dt)}"
+                        />
+
+            <f:ajax update="ddd" listener="#{myDate.Stop}"/>
+        </h:selectOneMenu>
+
+просто лень уже вставлять все на место. :)
+@ManagedBean(name = "myDate")
+@ViewScoped
+public class MyDate implements Serializable {
+
+    private List<LocalDateTime> dateTimeList;
+    private LocalDateTime selectedDateTime;
+    String [] stMonth = {"","??????","???????","????","??????","???","????","????","??????","????????","???????","??????","???????"};
+
+    @PostConstruct
+    public void init() {
+        LocalDateTime dtCur;
+        dateTimeList = new ArrayList<>();
+
+        dtCur = new LocalDateTime()
+                .withDayOfMonth(1)
+                .withTime(0,0,0,0);
+
+        for (int i=0;i<14;i++){
+            dateTimeList.add(dtCur.minusMonths(13-i));
+        }
+
+    }
+
+    public String Convert(String str) {
+        String tmp = str.substring(0, 14) + String.valueOf(Integer.parseInt(str.substring(14)) + 20);
+        return tmp;
+    }
+    public String Convert(LocalDateTime dt) {
+        String tmp = stMonth[dt.getMonthOfYear()] + dt.toString(" YYYY");
+        return tmp;
+    }
+
+    public List<LocalDateTime> getDateTimeList() {
+        return dateTimeList;
+    }
+
+    public void setDateTimeList(List<LocalDateTime> dateTimeList) {
+        this.dateTimeList = dateTimeList;
+    }
+
+    public LocalDateTime getSelectedDateTime() {
+        return selectedDateTime;
+    }
+
+    public void setSelectedDateTime(LocalDateTime selectedDateTime) {
+        this.selectedDateTime = selectedDateTime;
+    }
+
+    public void Stop(){
+        int a=0;
+
+    }
+
+}
+
+
+
+
+
+
+ */

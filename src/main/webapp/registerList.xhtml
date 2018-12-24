@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
                 xmlns:h="http://java.sun.com/jsf/html" xmlns:c="http://java.sun.com/jsp/jstl/core"
-                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:f="http://java.sun.com/jsf/core" xmlns:omnifaces="http://omnifaces.org/functions"
                 template="WEB-INF/template/template.xhtml">
     <ui:define name="page_title">
         Показания на период
@@ -16,16 +16,33 @@
                     <f:param name="id" value="#{deviceAdminHistory.id}"/>
                 </p:button>
 
-                <p:selectOneMenu id="idMonthYear" value="#{register.selectedMonthYear}"
+                <p:outputLabel for="idMonthYear" value="Выбранный отчетный период:" />
+                <p:selectOneMenu id="idMonthYear" value="#{register.selectMonth}"
                                  converter="omnifaces.SelectItemsConverter"
                                  var="month"
-                                 valueChangeListener="#{register.load2()}"
+                                 panelStyle="width:500px"
+                                 style="width:500px"
                 >
-                    <f:selectItems value="#{register.localDateTimeList}" var="month"
-                                   itemLabel="#{month}" itemValue="#{month}"/>
-                    <p:ajax update="orderTable" event="change"/>
-
+                    <p:ajax update="orderTable" listener="#{register.load2}"/>
+                    <f:selectItems value="#{register.timestampsReportPeriodList}"
+                                   var="monthYear" itemLabel="#{register.MyConvert(monthYear)}"
+                                   itemValue="#{monthYear}"
+                    />
                 </p:selectOneMenu>
+
+                <p:outputLabel for="idMonthYear1" value="Выбранный отчетный период:" />
+                <p:selectOneMenu id="idMonthYear1" value="#{register.selectMonth}"
+                                 converter="omnifaces.SelectItemsConverter"
+                                 var="month"
+                                 panelStyle="width:500px"
+                                 style="width:500px"
+                >
+                    <p:ajax update="orderTable" listener="#{register.load2}"/>
+                    <f:selectItems value="#{register.timestampsReportPeriodList1}"
+                                   var="monthYear" itemLabel="#{monthYear}"
+                                   itemValue="#{monthYear}" />
+                </p:selectOneMenu>
+
 
                 <p:dataTable
                         id="orderTable"
@@ -38,6 +55,7 @@
                         emptyMessage="Нет записей">
                     <f:facet name="header">
                         Журнал показаний за месяц
+
                     </f:facet>
                     <p:columnGroup type="header">
                         <p:row>
