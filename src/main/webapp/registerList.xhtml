@@ -25,9 +25,13 @@
                                    var="dt"
                                    itemValue="#{dt}"
                                    itemLabel="#{register.Convert(dt)}"
+
+                                   action="#{register.load2}"
+                                   update="orderTable"
+
                     />
 
-                    <f:ajax update="orderTable" listener="#{register.Stop}"/>
+                    <f:ajax listener="#{register.Stop}"/>
                 </h:selectOneMenu>
 
 
