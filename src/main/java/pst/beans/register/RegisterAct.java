@@ -2,7 +2,6 @@ package pst.beans.register;
 
 import org.joda.time.LocalDateTime;
 import org.primefaces.model.LazyDataModel;
-import org.primefaces.model.SortOrder;
 import pst.beans.device.DeviceDAO;
 import pst.beans.device.TblDeviceEntity;
 import pst.beans.qBox.Common.BoxCommonDAO;
@@ -17,6 +16,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -34,11 +34,6 @@ public class RegisterAct extends LazyDataModel<RegisterReportAct> {
     @EJB
     private BoxCommonDAO boxCommonDAO;
 
-
-    private Boolean button1 = true;
-    private Boolean button2 = true;
-    private Boolean button3 = true;
-
     private Timestamp dateFrom;
     private Timestamp dateLast;
     private Timestamp selectMonth;
@@ -46,14 +41,33 @@ public class RegisterAct extends LazyDataModel<RegisterReportAct> {
 
     private List<RegisterReportAct> registerReports;
 
-    private String button1Style = "background-color:#449d44; color: #fff; border-color: #398439; text-shadow: none;";
-    private String button2Style = "background-color:#c9302c; color: #fff; border-color: #ac2925; text-shadow: none;";
-    private String button3Style = "background-color:#31b0d5; color: #fff; border-color: #269abc; text-shadow: none;";
-    private String styleYellow = "background-color:#f0ad4e; color: #fff; border-color: #269abc; text-shadow: none;";
-
+    private List<Timestamp> dateTimeList;
+    private String[] stMonth = {"", "январь", "февраль", "март", "апрель", "май", "июнь", "июль", "август", "сентябрь", "октябрь", "ноябрь", "декабрь"};
 
     @PostConstruct
     public void start() {
+//        LocalDateTime dtCur;
+//        dtCur = new LocalDateTime()
+//                .withDayOfMonth(1)
+//                .withTime(0, 0, 0, 0);
+//        this.selectMonth = new Timestamp(dtCur.toDateTime().getMillis());
+//        LocalDateTime dtCurTmp;
+//        dateTimeList = new ArrayList<>();
+//        Timestamp tsCur;
+//
+//        dtCur = new LocalDateTime()
+//                .withDayOfMonth(1)
+//                .withTime(0, 0, 0, 0);
+//
+//        for (int i = 0; i < 14; i++) {
+//            dtCurTmp = dtCur.minusMonths(13 - i);
+//            tsCur = new Timestamp(dtCurTmp.toDateTime().getMillis());
+//            dateTimeList.add(tsCur);
+//        }
+//
+
+
+
         this.dateFrom = Timestamp.valueOf("2007-09-23 00:00:00.0");
         this.dateLast = Timestamp.valueOf("2018-12-23 10:10:10.0");
         this.selectMonth = Timestamp.valueOf("2018-11-13 10:10:10.0");
@@ -157,4 +171,43 @@ public class RegisterAct extends LazyDataModel<RegisterReportAct> {
     public void setRegisterReports(List<RegisterReportAct> registerReports) {
         this.registerReports = registerReports;
     }
+
+
+
+    public void setSelectMonth(Timestamp selectMonth) {
+        this.selectMonth = selectMonth;
+    }
+
+    public String MyConvert(Timestamp date) {
+        return new SimpleDateFormat("MMMM yyyy").format(date);
+    }
+
+    public String Convert(String str) {
+        String tmp = str.substring(0, 14) + String.valueOf(Integer.parseInt(str.substring(14)) + 20);
+        return tmp;
+    }
+
+    public String Convert(Timestamp dt) {
+        LocalDateTime lDt = new LocalDateTime(dt);
+
+        String tmp = stMonth[lDt.getMonthOfYear()] + lDt.toString(" YYYY");
+        return tmp;
+    }
+
+    public List<Timestamp> getDateTimeList() {
+        return dateTimeList;
+    }
+
+    public void setDateTimeList(List<Timestamp> dateTimeList) {
+        this.dateTimeList = dateTimeList;
+    }
+
+    public String Convert(LocalDateTime dt) {
+        String tmp = stMonth[dt.getMonthOfYear()] + dt.toString(" YYYY");
+        return tmp;
+    }
+
+
+
+
 }

@@ -59,6 +59,9 @@ public class UserAdministration implements Serializable {
     private String name;
     private String nameSur;
 
+    private String button3Style = "background-color:#31b0d5; color: #fff; border-color: #269abc; text-shadow: none;";
+
+
     @PostConstruct
     void start(){
         FacesContext facesContext = FacesContext.getCurrentInstance();

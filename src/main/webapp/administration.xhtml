@@ -48,9 +48,9 @@
                 </p:column>
                 <p:column headerText="Статус">
                     <p:commandButton value="Активен" id="ajax" rendered="#{user.status!=null}"
-                                     style="#{dtLazyOrderDataModel.button3Style}"/>
+                                     style="#{register.button3Style}"/>
                     <p:commandButton value="Не активен" id="ajax1" rendered="#{user.status==null}"
-                                     style="#{dtLazyOrderDataModel.button1Style}"/>
+                                     style="#{register.button1Style}"/>
                 </p:column>
                 <p:column headerText="Создано">
                     <h:outputText value="#{userAdministration.timstampFromInt(user.created_at)}">

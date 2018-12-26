@@ -19,7 +19,6 @@ public class RegisterReport {
     private float T2;
     private float P2;
     private Integer timeOn;
-//    private String timeError;
     private Integer timeOndelta;
     private float Txv;
     private Double Qsumm;

@@ -69,6 +69,7 @@ public class SheduleDAO extends AbstractDao<TblScheduleEntity> {
         Integer statusExecute = (Integer) filters.get("statusExecute");
         Boolean inStore1 = (Boolean) filters.get("inStore1");
         Integer deviceId = (Integer) filters.get("deviceId");
+
         int rez;
 
         if(inStore1  ==null) {
@@ -112,6 +113,7 @@ public class SheduleDAO extends AbstractDao<TblScheduleEntity> {
         Integer statusExecute = (Integer) filters.get("statusExecute");
         Boolean inStore1 = (Boolean) filters.get("inStore1");
         Integer deviceId = (Integer) filters.get("deviceId");
+
         List<TblScheduleEntity> rez;
 
         if(inStore1  ==null){
@@ -120,6 +122,8 @@ public class SheduleDAO extends AbstractDao<TblScheduleEntity> {
                     .setParameter("dateLast",dateLastFilter)
                     .setParameter("deviceId",deviceId)
                     .setParameter("statusExecute",statusExecute)
+                    .setFirstResult(first)
+                    .setMaxResults(pageSize)
                     .getResultList());
         }else {
             rez = (entityManager.createQuery("select shedul from TblScheduleEntity shedul left join TblBoxCommonEntity box ON box.tblScheduleEntity=shedul where shedul.statusexecute =:statusExecute and box.instore1=:inStore1 and shedul.deviceId =:deviceId and box.timeRequest between :dateFirst AND :dateLast")
@@ -128,6 +132,8 @@ public class SheduleDAO extends AbstractDao<TblScheduleEntity> {
                     .setParameter("deviceId", deviceId)
                     .setParameter("statusExecute", statusExecute)
                     .setParameter("inStore1", inStore1)
+                    .setFirstResult(first)
+                    .setMaxResults(pageSize)
                     .getResultList());
         }
 
