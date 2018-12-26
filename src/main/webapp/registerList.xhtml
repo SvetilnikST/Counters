@@ -16,26 +16,6 @@
                     <f:param name="id" value="#{deviceAdminHistory.id}"/>
                 </p:button>
 
-
-
-                <h:outputLabel for="selectitems" value="Выберите месяц для отображения: " />
-                <h:selectOneMenu id="selectitems" value="#{register.selectedDateTime}"
-                                 converter="omnifaces.SelectItemsConverter">
-                    <f:selectItems value="#{register.dateTimeList}"
-                                   var="dt"
-                                   itemValue="#{dt}"
-                                   itemLabel="#{register.Convert(dt)}"
-
-                                   action="#{register.load2}"
-                                   update="orderTable"
-
-                    />
-
-                    <f:ajax listener="#{register.Stop}"/>
-                </h:selectOneMenu>
-
-
-
                 <p:dataTable
                         id="orderTable"
                         widgetVar="OrderTable"
@@ -47,6 +27,18 @@
                         emptyMessage="Нет записей">
                     <f:facet name="header">
                         Журнал показаний за месяц
+                        <h:outputLabel for="selectitems" value="Выберите месяц для отображения: " />
+                        <h:selectOneMenu id="selectitems" value="#{register.selectMonth}"
+                                         converter="omnifaces.SelectItemsConverter">
+                            <f:selectItems value="#{register.dateTimeList}"
+                                           var="dt"
+                                           itemValue="#{dt}"
+                                           itemLabel="#{register.Convert(dt)}"
+                            />
+                            <f:ajax update="orderTable" listener="#{register.load2}"/>
+                        </h:selectOneMenu>
+                        <h:outputText id="haha" value="#{register.selectMonth}"/>
+                        <p:commandButton value="start" update="orderTable"/>
 
                     </f:facet>
                     <p:columnGroup type="header">
