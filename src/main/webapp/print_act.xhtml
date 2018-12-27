@@ -18,11 +18,20 @@
                                 value="тепловой энергии на объектах, оборудованных приборами учета тепловой энергии"/><br/>
                         <h:outputText value="по договору №___ _______________ "/><br/>
                         <h:outputLabel value="за "/>
+                        <h:selectOneMenu id="selectitems" value="#{registerAct.selectMonth}"
+                                         converter="omnifaces.SelectItemsConverter">
+                            <f:selectItems value="#{registerAct.dateTimeList}"
+                                           var="dt"
+                                           itemValue="#{dt}"
+                                           itemLabel="#{registerAct.Convert(dt)}"
+                            />
+                            <f:ajax render="tbl" listener="#{registerAct.load2}"/>
+                            <p:commandButton value="применить" update="tbl"/>
+                        </h:selectOneMenu>
                     </h4>
                 </h:panelGroup>
 
                 <p:dataTable id="tbl" var="act" value="#{registerAct.registerReports}">
-
                     <p:columnGroup type="header">
                         <p:row>
                             <p:column rowspan="3" headerText="Устройство"/>

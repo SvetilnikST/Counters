@@ -2,7 +2,6 @@ package pst.beans.register;
 
 import org.joda.time.LocalDateTime;
 import org.primefaces.model.LazyDataModel;
-import org.primefaces.model.SortOrder;
 import pst.beans.device.DeviceDAO;
 import pst.beans.device.TblDeviceEntity;
 import pst.beans.qBox.Common.BoxCommonDAO;
@@ -17,7 +16,6 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
-import java.io.Serializable;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.*;

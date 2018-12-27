@@ -35,9 +35,8 @@
                                            itemValue="#{dt}"
                                            itemLabel="#{register.Convert(dt)}"
                             />
-                            <f:ajax update="orderTable" listener="#{register.load2}"/>
+                            <f:ajax render="orderTable" listener="#{register.load2}"/>
                         </h:selectOneMenu>
-                        <p:commandButton value="Применить" update="orderTable"/>
                     </f:facet>
                     <p:columnGroup type="header">
                         <p:row>

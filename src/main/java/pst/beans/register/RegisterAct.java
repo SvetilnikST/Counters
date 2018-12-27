@@ -34,8 +34,8 @@ public class RegisterAct extends LazyDataModel<RegisterReportAct> {
     @EJB
     private BoxCommonDAO boxCommonDAO;
 
-    private Timestamp dateFrom;
-    private Timestamp dateLast;
+//    private Timestamp dateFrom;
+//    private Timestamp dateLast;
     private Timestamp selectMonth;
     private TblDeviceEntity device;
 
@@ -46,31 +46,30 @@ public class RegisterAct extends LazyDataModel<RegisterReportAct> {
 
     @PostConstruct
     public void start() {
-//        LocalDateTime dtCur;
-//        dtCur = new LocalDateTime()
-//                .withDayOfMonth(1)
-//                .withTime(0, 0, 0, 0);
-//        this.selectMonth = new Timestamp(dtCur.toDateTime().getMillis());
-//        LocalDateTime dtCurTmp;
-//        dateTimeList = new ArrayList<>();
-//        Timestamp tsCur;
-//
-//        dtCur = new LocalDateTime()
-//                .withDayOfMonth(1)
-//                .withTime(0, 0, 0, 0);
-//
-//        for (int i = 0; i < 14; i++) {
-//            dtCurTmp = dtCur.minusMonths(13 - i);
-//            tsCur = new Timestamp(dtCurTmp.toDateTime().getMillis());
-//            dateTimeList.add(tsCur);
-//        }
-//
+        LocalDateTime dtCur;
+        dtCur = new LocalDateTime()
+                .withDayOfMonth(1)
+                .withTime(0, 0, 0, 0);
+        this.selectMonth = new Timestamp(dtCur.toDateTime().getMillis());
 
+        LocalDateTime dtCurTmp;
+        dateTimeList = new ArrayList<>();
+        Timestamp tsCur;
 
+        dtCur = new LocalDateTime()
+                .withDayOfMonth(1)
+                .withTime(0, 0, 0, 0);
 
-        this.dateFrom = Timestamp.valueOf("2007-09-23 00:00:00.0");
-        this.dateLast = Timestamp.valueOf("2018-12-23 10:10:10.0");
-        this.selectMonth = Timestamp.valueOf("2018-11-13 10:10:10.0");
+        for (int i = 0; i < 14; i++) {
+            dtCurTmp = dtCur.minusMonths(13 - i);
+            tsCur = new Timestamp(dtCurTmp.toDateTime().getMillis());
+            dateTimeList.add(tsCur);
+        }
+
+//        this.dateFrom = Timestamp.valueOf("2007-09-23 00:00:00.0");
+//        this.dateLast = Timestamp.valueOf("2018-12-23 10:10:10.0");
+//        this.selectMonth = Timestamp.valueOf("2018-11-13 10:10:10.0");
+
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
         Map<String, String> parameterMap = (Map<String, String>) externalContext.getRequestParameterMap();
@@ -79,22 +78,19 @@ public class RegisterAct extends LazyDataModel<RegisterReportAct> {
         if (param != null) {
             int id = Integer.parseInt(param);
             //чтение записи по id
-//            this.tblDeviceEntity = deviceDAO.read(id);
             device = deviceDAO.read(id);
             //проверка если пустая entity, сообщение об ощибке
             if (device == null) {
                 String message = "Bad request. Unknown type device.";
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, message, null));
             }
-            //вызываем метод загрузки данный в сущность
             load2();
         } else {
 
         }
-        int a = 0;
     }
 
-    private void load2() {
+    public void load2() {
         registerReports = new ArrayList<>();
         RegisterReportAct oneRecord1;
         RegisterReportAct oneRecord2;
@@ -104,7 +100,16 @@ public class RegisterAct extends LazyDataModel<RegisterReportAct> {
         LocalDateTime dayEnd;
         int dayBeginInt;
         int dayEndInt;
+
         LocalDateTime dtCur = new LocalDateTime(selectMonth);
+
+//        dtCur = dtCur
+//                .withDayOfMonth(1)
+//                .withMonthOfYear(11)
+//                .withYear(2018)
+//                .withTime(0,0,0,0);
+
+
         LocalDateTime dtTemp;
 
         //данные на конец
@@ -116,7 +121,7 @@ public class RegisterAct extends LazyDataModel<RegisterReportAct> {
         dayEnd = dtCur.minusYears(1);
         dayEndInt = (int) (dayEnd.toDateTime().getMillis() / 1000L);
 
-        TblScheduleEntity scheduleEntityEnd = sheduleDAO.loadrecordAct(dayEndInt, dayBeginInt, device.getId());
+        TblScheduleEntity scheduleEntityEnd = sheduleDAO.loadrecordAct(dayBeginInt, dayEndInt, device.getId());
 
         //данные на начало
         oneRecord2 = new RegisterReportAct();
@@ -128,6 +133,9 @@ public class RegisterAct extends LazyDataModel<RegisterReportAct> {
         dayEndInt = (int) (dayEnd.toDateTime().getMillis() / 1000L);
 
         TblScheduleEntity scheduleEntityStart = sheduleDAO.loadrecord(dayBeginInt, dayEndInt, device.getId());
+        if (scheduleEntityStart == null || scheduleEntityEnd == null){
+            return;
+        }
         double Q1 = scheduleEntityEnd.getCommons().get(0).getSystem().get(0).getQ1()-scheduleEntityStart.getCommons().get(0).getSystem().get(0).getQ1();
         double V1 = scheduleEntityEnd.getCommons().get(0).getSystem().get(0).getV1()-scheduleEntityStart.getCommons().get(0).getSystem().get(0).getV1();
         double Q2 = scheduleEntityEnd.getCommons().get(0).getSystem().get(0).getQ2()-scheduleEntityStart.getCommons().get(0).getSystem().get(0).getQ2();
@@ -160,6 +168,7 @@ public class RegisterAct extends LazyDataModel<RegisterReportAct> {
         oneRecord2.setQ(Q2);
         oneRecord2.setV(V2);
         registerReports.add(oneRecord2);
+        int a=0;
 
     }
 
@@ -171,8 +180,6 @@ public class RegisterAct extends LazyDataModel<RegisterReportAct> {
     public void setRegisterReports(List<RegisterReportAct> registerReports) {
         this.registerReports = registerReports;
     }
-
-
 
     public void setSelectMonth(Timestamp selectMonth) {
         this.selectMonth = selectMonth;
@@ -208,6 +215,23 @@ public class RegisterAct extends LazyDataModel<RegisterReportAct> {
     }
 
 
+    public Timestamp getSelectMonth() {
+        return selectMonth;
+    }
 
+    public String[] getStMonth() {
+        return stMonth;
+    }
 
+    public void setStMonth(String[] stMonth) {
+        this.stMonth = stMonth;
+    }
+
+    public TblDeviceEntity getDevice() {
+        return device;
+    }
+
+    public void setDevice(TblDeviceEntity device) {
+        this.device = device;
+    }
 }

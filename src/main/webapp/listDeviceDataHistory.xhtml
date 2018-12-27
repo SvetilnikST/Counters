@@ -10,24 +10,17 @@
     </ui:define>
 
     <ui:define name="page_body">
-
         <p:toolbar>
             <f:facet name="left">
-
                 <p:outputPanel id="mainPanel">
-
                     <p:outputLabel for="dateSelectBtn"
                                    value="Текущие дистанционные данные за период #{deviceAdminHistory.dateRangeString}  "/>
-
-
                     <p:commandButton id="dateSelectBtn" value="Изменить период" type="button"
                                      onclick="PF('dateRangeDlg').show();">
                     </p:commandButton>
                 </p:outputPanel>
-
             </f:facet>
         </p:toolbar>
-
 
         <h:form style="font-size:14px" styleClass="center">
             <p:panelGrid>

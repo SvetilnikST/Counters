@@ -1,5 +1,7 @@
 package pst.beans.contract;
 
+import org.primefaces.model.LazyDataModel;
+import org.primefaces.model.SortOrder;
 import pst.beans.device.DeviceDAO;
 import pst.beans.device.TblDeviceEntity;
 
@@ -20,11 +22,10 @@ import java.util.Map;
 
 @ManagedBean (name="contractAdministration")
 @ViewScoped
-public class contractAdministration implements Serializable {
+public class contractAdministration extends LazyDataModel<TblContractEntity> {
 
     private TblContractEntity tblContractEntity;
     private List<contractAdministration> contractAdministrations;
-    private List<TblContractEntity> tblContractEntitysList;
     TblDeviceEntity deviceEntity;
 
     @EJB
@@ -41,31 +42,32 @@ public class contractAdministration implements Serializable {
     private String number;
     private List<TblDeviceEntity> deviceEntityList;
 
+    public TblContractEntity selectedContract;
 
 
     @PostConstruct
     void start(){
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        ExternalContext externalContext = facesContext.getExternalContext();
-        Map<String, String> parameterMap = (Map<String, String>) externalContext.getRequestParameterMap();
-        String param = parameterMap.get("idContract");
-        if (param != null) {
-            idContract = Integer.parseInt(param);
-            this.tblContractEntity = contractDAO.read(idContract);
-            if (tblContractEntity == null) {
-                String message = "Bad request. Unknown task.";
-                FacesContext.getCurrentInstance().addMessage(null,
-                        new FacesMessage(FacesMessage.SEVERITY_ERROR, message, null));
-            }
-            load(tblContractEntity);
-        } else {
-            this.contract= "";
-            this.date=null;
-            this.description="";
-            this.number="";
-        }
-        tblContractEntitysList = contractDAO.findAll();
-        deviceEntityList = deviceDAO.findAll();
+//        FacesContext facesContext = FacesContext.getCurrentInstance();
+//        ExternalContext externalContext = facesContext.getExternalContext();
+//        Map<String, String> parameterMap = (Map<String, String>) externalContext.getRequestParameterMap();
+//        String param = parameterMap.get("idContract");
+//        if (param != null) {
+//            idContract = Integer.parseInt(param);
+//            this.tblContractEntity = contractDAO.read(idContract);
+//            if (tblContractEntity == null) {
+//                String message = "Bad request. Unknown task.";
+//                FacesContext.getCurrentInstance().addMessage(null,
+//                        new FacesMessage(FacesMessage.SEVERITY_ERROR, message, null));
+//            }
+//            load(tblContractEntity);
+//        } else {
+//            this.contract= "";
+//            this.date=null;
+//            this.description="";
+//            this.number="";
+//        }
+//        tblContractEntitysList = contractDAO.findAll();
+//        deviceEntityList = deviceDAO.findAll();
     }
 
 
@@ -96,6 +98,9 @@ public class contractAdministration implements Serializable {
         return "listContract.xhtml?faces-redirect=true&id=" + String.valueOf(tblContractEntity.getIdContract());
     }
 
+
+
+
     public Timestamp timestampFromDate(Date fromDate) {
         return new Timestamp(fromDate.getTime());
     }
@@ -113,14 +118,6 @@ public class contractAdministration implements Serializable {
 
     public void setContractAdministrations(List<contractAdministration> contractAdministrations) {
         this.contractAdministrations = contractAdministrations;
-    }
-
-    public List<TblContractEntity> getTblContractEntitysList() {
-        return tblContractEntitysList;
-    }
-
-    public void setTblContractEntitysList(List<TblContractEntity> tblContractEntitysList) {
-        this.tblContractEntitysList = tblContractEntitysList;
     }
 
     public ContractDAO getContractDAO() {
@@ -194,4 +191,35 @@ public class contractAdministration implements Serializable {
     public void setNumber(String number) {
         this.number = number;
     }
+
+
+
+    @Override
+    public List<TblContractEntity> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
+        List<TblContractEntity> tblContractEntitysList;
+
+//        filters.put("first", first);
+//        filters.put("pageSize", pageSize);
+
+
+        //
+
+
+//        filters.put("statusExecute", 1);
+//        filters.put("deviceId", device.getId());
+
+//        tblContractEntitysList = contractDAO.findAll();
+
+        setRowCount(contractDAO.getTotalCount(filters));
+        tblContractEntitysList = contractDAO.load(first, pageSize, sortField, sortOrder, filters);
+        if (tblContractEntitysList.size() == 0) {
+            return null;
+        }
+
+        return tblContractEntitysList;
+    }
+
+
+
+
 }
