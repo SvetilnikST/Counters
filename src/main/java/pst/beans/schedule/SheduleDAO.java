@@ -23,11 +23,9 @@ public class SheduleDAO extends AbstractDao<TblScheduleEntity> {
     //Обрабатываем список устройств по одиночке
     public void makeInserts(List<TblScheduleEntity> tblScheduleList) {
         EntityManager entityManager = getEntityManager();
-//        entityManager.getTransaction().begin();
         for (TblScheduleEntity tblSchedule : tblScheduleList) {
             entityManager.persist(tblSchedule);
         }
-//        entityManager.getTransaction().commit();
     }
 
     //просто получаем список всех Устройств, которые нужно опросить в следующем часу
@@ -74,8 +72,6 @@ public class SheduleDAO extends AbstractDao<TblScheduleEntity> {
 
         if (inStore1 == null) {
             rez = ((Long) entityManager.createQuery("select count(shedul.id) from TblScheduleEntity shedul  left join TblBoxCommonEntity box ON box.tblScheduleEntity=shedul where shedul.statusexecute =:statusExecute and shedul.deviceId =:deviceId and box.timeRequest between :dateFirst AND :dateLast")
-//                .setParameter("dateFirst",dateFirstFilter)
-//                .setParameter("dateLast",dateLastFilter)
                     .setParameter("statusExecute", statusExecute)
                     .setParameter("dateFirst", dateFirstFilter)
                     .setParameter("dateLast", dateLastFilter)
@@ -83,8 +79,6 @@ public class SheduleDAO extends AbstractDao<TblScheduleEntity> {
                     .getSingleResult()).intValue();
         } else {
             rez = ((Long) entityManager.createQuery("select count(shedul.id) from TblScheduleEntity shedul  left join TblBoxCommonEntity box ON box.tblScheduleEntity=shedul where shedul.statusexecute =:statusExecute and box.instore1=:inStore1 and shedul.deviceId =:deviceId and box.timeRequest between :dateFirst AND :dateLast")
-//                .setParameter("dateFirst",dateFirstFilter)
-//                .setParameter("dateLast",dateLastFilter)
                     .setParameter("statusExecute", statusExecute)
                     .setParameter("dateFirst", dateFirstFilter)
                     .setParameter("dateLast", dateLastFilter)
@@ -92,13 +86,6 @@ public class SheduleDAO extends AbstractDao<TblScheduleEntity> {
                     .setParameter("deviceId", deviceId)
                     .getSingleResult()).intValue();
         }
-
-//        TypedQuery<TblScheduleEntity> query = entityManager.createQuery(
-//                "select shedul from TblScheduleEntity shedul  left join TblBoxCommonEntity box ON box.tblScheduleEntity=shedul where  box.instore1=true and shedul.deviceId :=deviceId",
-//                TblScheduleEntity.class)
-//                .setParameter("deviceId", 1); // вместо 1 надо будет подставлять реальный номер устройства
-//        List<TblScheduleEntity> resultList = query.getResultList();
-//        int a=0;
         return rez;
 
     }
@@ -145,11 +132,6 @@ public class SheduleDAO extends AbstractDao<TblScheduleEntity> {
     public TblScheduleEntity loadrecord(int dayBeginInt, int dayEndInt, int id) {
         EntityManager entityManager = getEntityManager();
 
-//        Integer dateFirstFilter = ((Long) filters.get("dateFrom")).intValue();
-//        Integer dateLastFilter =  ((Long) filters.get("dateLast")).intValue();
-//        Integer statusExecute = (Integer) filters.get("statusExecute");
-//        Boolean inStore1 = (Boolean) filters.get("inStore1");
-//        Integer deviceId = (Integer) filters.get("deviceId");
         List<TblScheduleEntity> rez;
 
         rez = (entityManager.createQuery("select shedul from TblScheduleEntity shedul left join TblBoxCommonEntity box ON box.tblScheduleEntity=shedul where box.instore1=true and shedul.deviceId =:deviceId and box.timeRequest between :dateFirst AND :dateLast order by box.timeRequest", TblScheduleEntity.class)
@@ -164,7 +146,6 @@ public class SheduleDAO extends AbstractDao<TblScheduleEntity> {
         } else {
             return rez.get(0);
         }
-//        return rez.get(0);
     }
 
 
@@ -172,12 +153,6 @@ public class SheduleDAO extends AbstractDao<TblScheduleEntity> {
         EntityManager entityManager = getEntityManager();
 
         List<TblScheduleEntity> rez;
-
-//        rez = (entityManager.createQuery("select shedul from TblScheduleEntity shedul left join TblBoxCommonEntity box ON box.tblScheduleEntity=shedul where box.instore1=true and shedul.deviceId =:deviceId and box.timeRequest between :dateFirst AND :dateLast order by box.timeRequest desc",TblScheduleEntity.class)
-//                .setParameter("dateFirst", dayBeginInt)
-//                .setParameter("dateLast", dayEndInt)
-//                .setParameter("deviceId", id)
-//                .getResultList());
 
         rez = (entityManager.createQuery("select shedul from TblScheduleEntity shedul left join TblBoxCommonEntity box ON box.tblScheduleEntity=shedul where box.instore1=true " +
                 "and shedul.deviceId =:deviceId " +
@@ -189,35 +164,11 @@ public class SheduleDAO extends AbstractDao<TblScheduleEntity> {
                 .setParameter("dateLast", dayEndInt)
                 .getResultList());
 
-        //1509483600 AND 1541019600
-
-//        rez = (entityManager.createQuery("select shedul from TblScheduleEntity shedul left join TblBoxCommonEntity box ON box.tblScheduleEntity=shedul where box.instore1=true " +
-//                "and shedul.deviceId =:deviceId " +
-//                "and box.timeRequest between :dateFirst AND :dateLast " +
-//                "order by box.timeRequest desc",TblScheduleEntity.class)
-//                .setParameter("dateFirst", dayBeginInt)
-//                .setParameter("dateLast", dayEndInt)
-//                .setParameter("deviceId", id)
-//                .getResultList());
-
-
-//        rez = (entityManager.createQuery("select shedul from TblScheduleEntity shedul, TblBoxCommonEntity box  " +
-//                "where box.instore1=true " +
-//                "and shedul.deviceId =:deviceId " +
-//                "and box.timeRequest between  :dateLast AND :dateFirst " +
-//                "order by box.timeRequest desc", TblScheduleEntity.class)
-//                .setParameter("dateFirst", dayBeginInt)
-//                .setParameter("dateLast", dayEndInt)
-//                .setParameter("deviceId", id)
-//                .getResultList());
-
-
         if (rez.size() == 0) {
             return null;
         } else {
             return rez.get(0);
         }
-//        return rez.get(0);
     }
 
 }

@@ -105,6 +105,8 @@ public class OrganizAdministration implements Serializable {
         tblOrganizationEntity.setHome(this.home);
         tblOrganizationEntity.setDataBoss(this.dataBoss);
         tblOrganizationEntity.setDataWoker(this.dataWorker);
+        tblOrganizationEntity.setCityEntity(cityEntity);
+        tblOrganizationEntity.setStreetEntity(streetEntity);
 
         if (tblOrganizationEntity.getIdOrganization() == 0) {
 

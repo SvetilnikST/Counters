@@ -8,7 +8,6 @@
     </ui:define>
     <ui:define name="page_body">
         <h:form style="font-size:14px" styleClass="center">
-
             <p:panel>
                 <h:panelGroup style="text-align: center">
                     <h4>
@@ -26,7 +25,6 @@
                                            itemLabel="#{registerAct.Convert(dt)}"
                             />
                             <f:ajax render="tbl" listener="#{registerAct.load2}"/>
-                            <p:commandButton value="применить" update="tbl"/>
                         </h:selectOneMenu>
                     </h4>
                 </h:panelGroup>

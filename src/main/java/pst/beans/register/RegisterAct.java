@@ -33,12 +33,8 @@ public class RegisterAct extends LazyDataModel<RegisterReportAct> {
 
     @EJB
     private BoxCommonDAO boxCommonDAO;
-
-//    private Timestamp dateFrom;
-//    private Timestamp dateLast;
     private Timestamp selectMonth;
     private TblDeviceEntity device;
-
     private List<RegisterReportAct> registerReports;
 
     private List<Timestamp> dateTimeList;
@@ -65,10 +61,6 @@ public class RegisterAct extends LazyDataModel<RegisterReportAct> {
             tsCur = new Timestamp(dtCurTmp.toDateTime().getMillis());
             dateTimeList.add(tsCur);
         }
-
-//        this.dateFrom = Timestamp.valueOf("2007-09-23 00:00:00.0");
-//        this.dateLast = Timestamp.valueOf("2018-12-23 10:10:10.0");
-//        this.selectMonth = Timestamp.valueOf("2018-11-13 10:10:10.0");
 
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
@@ -102,14 +94,6 @@ public class RegisterAct extends LazyDataModel<RegisterReportAct> {
         int dayEndInt;
 
         LocalDateTime dtCur = new LocalDateTime(selectMonth);
-
-//        dtCur = dtCur
-//                .withDayOfMonth(1)
-//                .withMonthOfYear(11)
-//                .withYear(2018)
-//                .withTime(0,0,0,0);
-
-
         LocalDateTime dtTemp;
 
         //данные на конец
@@ -133,14 +117,13 @@ public class RegisterAct extends LazyDataModel<RegisterReportAct> {
         dayEndInt = (int) (dayEnd.toDateTime().getMillis() / 1000L);
 
         TblScheduleEntity scheduleEntityStart = sheduleDAO.loadrecord(dayBeginInt, dayEndInt, device.getId());
-        if (scheduleEntityStart == null || scheduleEntityEnd == null){
+        if (scheduleEntityStart == null || scheduleEntityEnd == null) {
             return;
         }
-        double Q1 = scheduleEntityEnd.getCommons().get(0).getSystem().get(0).getQ1()-scheduleEntityStart.getCommons().get(0).getSystem().get(0).getQ1();
-        double V1 = scheduleEntityEnd.getCommons().get(0).getSystem().get(0).getV1()-scheduleEntityStart.getCommons().get(0).getSystem().get(0).getV1();
-        double Q2 = scheduleEntityEnd.getCommons().get(0).getSystem().get(0).getQ2()-scheduleEntityStart.getCommons().get(0).getSystem().get(0).getQ2();
-        double V2 = scheduleEntityEnd.getCommons().get(0).getSystem().get(0).getV2()-scheduleEntityStart.getCommons().get(0).getSystem().get(0).getV2();
-
+        double Q1 = scheduleEntityEnd.getCommons().get(0).getSystem().get(0).getQ1() - scheduleEntityStart.getCommons().get(0).getSystem().get(0).getQ1();
+        double V1 = scheduleEntityEnd.getCommons().get(0).getSystem().get(0).getV1() - scheduleEntityStart.getCommons().get(0).getSystem().get(0).getV1();
+        double Q2 = scheduleEntityEnd.getCommons().get(0).getSystem().get(0).getQ2() - scheduleEntityStart.getCommons().get(0).getSystem().get(0).getQ2();
+        double V2 = scheduleEntityEnd.getCommons().get(0).getSystem().get(0).getV2() - scheduleEntityStart.getCommons().get(0).getSystem().get(0).getV2();
 
 
         oneRecord1.setDate("Подающий трубопровод");
@@ -151,7 +134,7 @@ public class RegisterAct extends LazyDataModel<RegisterReportAct> {
         oneRecord1.setQ1Start(scheduleEntityStart.getCommons().get(0).getSystem().get(0).getQ1());
         oneRecord1.setV1Start(scheduleEntityStart.getCommons().get(0).getSystem().get(0).getV1());
         oneRecord1.setK(1.0);
-        oneRecord1.setdTimeOn(scheduleEntityEnd.getCommons().get(0).getTimeOn()-scheduleEntityStart.getCommons().get(0).getTimeOn());
+        oneRecord1.setdTimeOn(scheduleEntityEnd.getCommons().get(0).getTimeOn() - scheduleEntityStart.getCommons().get(0).getTimeOn());
         oneRecord1.setQ(Q1);
         oneRecord1.setV(V1);
         registerReports.add(oneRecord1);
@@ -164,11 +147,11 @@ public class RegisterAct extends LazyDataModel<RegisterReportAct> {
         oneRecord2.setQ1Start(scheduleEntityStart.getCommons().get(0).getSystem().get(0).getQ2());
         oneRecord2.setV1Start(scheduleEntityStart.getCommons().get(0).getSystem().get(0).getV2());
         oneRecord2.setK(1.0);
-        oneRecord2.setdTimeOn(scheduleEntityEnd.getCommons().get(0).getTimeOn()-scheduleEntityStart.getCommons().get(0).getTimeOn());
+        oneRecord2.setdTimeOn(scheduleEntityEnd.getCommons().get(0).getTimeOn() - scheduleEntityStart.getCommons().get(0).getTimeOn());
         oneRecord2.setQ(Q2);
         oneRecord2.setV(V2);
         registerReports.add(oneRecord2);
-        int a=0;
+        int a = 0;
 
     }
 
