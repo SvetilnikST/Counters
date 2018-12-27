@@ -1,5 +1,7 @@
 package pst.beans.object;
 
+import org.primefaces.model.LazyDataModel;
+import org.primefaces.model.SortOrder;
 import pst.beans.city.CityDAO;
 import pst.beans.city.TblCityEntity;
 import pst.beans.organization.OrganizationDAO;
@@ -23,7 +25,7 @@ import java.util.Map;
 
 @ManagedBean(name = "objectAdministration")
 @ViewScoped
-public class ObjectAdministration implements Serializable {
+public class ObjectAdministration extends LazyDataModel<TblObjectEntity> {
 
     private TblObjectEntity tblObjectEntity;
     private List<ObjectAdministration> objectAdministrations;
@@ -42,8 +44,6 @@ public class ObjectAdministration implements Serializable {
 
     @EJB
     private OrganizationDAO organizationDAO;
-
-
 
     @Default
     private int idObject;
@@ -81,7 +81,7 @@ public class ObjectAdministration implements Serializable {
             this.heating=0.0;
             this.ventilation=0.0;
         }
-        tblObjectEntitysList = objectDAO.findAll();
+//        tblObjectEntitysList = objectDAO.findAll();
         cityEntityList = cityDAO.findAll();
         streetEntityList = streetDAO.findAll();
         organizationEntityList = organizationDAO.findAll();
@@ -121,6 +121,18 @@ public class ObjectAdministration implements Serializable {
         }
         return "listObject.xhtml?faces-redirect=true&id=" + String.valueOf(tblObjectEntity.getIdObject());
     }
+
+    @Override
+    public List<TblObjectEntity> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
+        List<TblObjectEntity> tblContractEntitysList;
+        setRowCount(objectDAO.getTotalCount(filters));
+        tblContractEntitysList = objectDAO.load(first, pageSize, sortField, sortOrder, filters);
+        if (tblContractEntitysList.size() == 0) {
+            return null;
+        }
+        return tblContractEntitysList;
+    }
+
 
     public TblObjectEntity getTblObjectEntity() {
         return tblObjectEntity;

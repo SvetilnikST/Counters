@@ -15,30 +15,27 @@
                 <p:button type="button" value="Добавить запись" icon="ui-icon-plus" href="/editObject.xhtml"/>
             </f:facet>
         </p:toolbar>
-
-
         <h:form>
             <p:spacer/>
             <p:dataTable
                     id="objectTable"
                     widgetVar="objectTable"
                     var="object"
-                    value="#{objectAdministration.tblObjectEntitysList}">
-                <!--<p:column headerText="ID">-->
-                    <!--<h:link value="#{object.idObject}" outcome="editObject">-->
-                        <!--<f:param name="idObject" value="#{object.idObject}"/>-->
-                    <!--</h:link>-->
-                <!--</p:column>-->
-                <p:column headerText="Название объекта">
+                    value="#{objectAdministration}"
+                    paginator="true"
+                    paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                    rows="10"
+                    rowsPerPageTemplate="5,10,15"
+
+                    lazy="true"
+                    tableStyle="width: auto"
+                    emptyMessage="Нет записей"
+            >
+
+                <p:column headerText="Название объекта" sortBy="#{object.nameObject}" filterBy="#{object.nameObject}">
                     <h:link value="#{object.nameObject}" outcome="editObject">
                         <f:param name="idObject" value="#{object.idObject}"/>
                     </h:link>
-
-                    <!--<h:outputText value="#{object.nameObject}">-->
-                    <!--</h:outputText>-->
-                    <!---->
-
-
                 </p:column>
                 <p:column headerText="Город">
                     <h:outputText value="#{object.cityEntity.nameCity}">
@@ -53,7 +50,6 @@
                     <h:outputText value="#{object.home}">
                     </h:outputText>
                 </p:column>
-
 
 
                 <p:column headerText="Организация">
