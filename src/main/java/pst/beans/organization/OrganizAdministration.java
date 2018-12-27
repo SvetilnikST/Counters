@@ -1,5 +1,7 @@
 package pst.beans.organization;
 
+import org.primefaces.model.LazyDataModel;
+import org.primefaces.model.SortOrder;
 import pst.beans.city.CityDAO;
 import pst.beans.city.TblCityEntity;
 import pst.beans.object.TblObjectEntity;
@@ -20,7 +22,7 @@ import java.util.Map;
 
 @ManagedBean (name="organizationAdministration")
 @ViewScoped
-public class OrganizAdministration implements Serializable {
+public class OrganizAdministration extends LazyDataModel<TblOrganizationEntity>{
 
     private TblOrganizationEntity tblOrganizationEntity;
     private List<OrganizAdministration> organizationAdministrations;
@@ -75,6 +77,7 @@ public class OrganizAdministration implements Serializable {
             this.dataBoss="";
             this.dataWorker="";
         }
+
         tblOrganizationEntitysList = organizationDAO.findAll();
         cityEntityList = cityDAO.findAll();
         streetEntityList = streetDAO.findAll();
@@ -116,6 +119,20 @@ public class OrganizAdministration implements Serializable {
         }
         return "listOrganization.xhtml?faces-redirect=true&id=" + String.valueOf(tblOrganizationEntity.getIdOrganization());
     }
+
+
+    @Override
+    public List<TblOrganizationEntity> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
+        List<TblOrganizationEntity> tblOrganizationEntitysList;
+        setRowCount(organizationDAO.getTotalCount(filters));
+        tblOrganizationEntitysList = organizationDAO.load(first, pageSize, sortField, sortOrder, filters);
+        if (tblOrganizationEntitysList.size() == 0) {
+            return null;
+        }
+        return tblOrganizationEntitysList;
+    }
+
+
 
     public TblOrganizationEntity getTblOrganizationEntity() {
         return tblOrganizationEntity;

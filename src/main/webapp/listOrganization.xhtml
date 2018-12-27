@@ -21,7 +21,19 @@
                     id="organizationTable"
                     widgetVar="organizationTable"
                     var="organization"
-                    value="#{organizationAdministration.tblOrganizationEntitysList}">
+                    value="#{organizationAdministration.tblOrganizationEntitysList}"
+
+                    paginator="true"
+                    paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                    rows="10"
+                    rowsPerPageTemplate="5,10,15"
+
+                    lazy="true"
+                    tableStyle="width: auto"
+                    emptyMessage="Нет записей"
+
+
+            >
                 <!--<p:column headerText="ID">-->
                     <!--<h:link value="#{organization.idOrganization}" outcome="editOrganization">-->
                         <!--<f:param name="idOrganization" value="#{organization.idOrganization}"/>-->
@@ -36,7 +48,7 @@
 
 
                 </p:column>
-                <p:column headerText="УНП">
+                <p:column headerText="УНП" sortBy="#{organization.UNP}" filterBy="#{organization.UNP}">
                     <h:outputText value="#{organization.UNP}">
                     </h:outputText>
                 </p:column>
