@@ -1,5 +1,6 @@
 package pst.beans.device;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import pst.beans.object.ObjectDAO;
 import pst.beans.object.TblObjectEntity;
 import pst.beans.typeDevice.TblTypeDeviceEntity;
@@ -46,7 +47,9 @@ public class DeviceAdministration implements Serializable {
 
     @Default
     private int id;
+    @NotEmpty
     private String name;
+    @NotEmpty
     private String serial;
     private int lastRequestDate;
     private int requestsCount;

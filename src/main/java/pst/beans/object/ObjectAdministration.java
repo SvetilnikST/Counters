@@ -1,5 +1,6 @@
 package pst.beans.object;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 import pst.beans.city.CityDAO;
@@ -17,6 +18,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
@@ -33,6 +35,7 @@ public class ObjectAdministration extends LazyDataModel<TblObjectEntity> {
     TblStreetEntity streetEntity;
     TblOrganizationEntity organizationEntity;
 
+
     @EJB
     private ObjectDAO objectDAO;
 
@@ -47,8 +50,11 @@ public class ObjectAdministration extends LazyDataModel<TblObjectEntity> {
 
     @Default
     private int idObject;
+    @NotEmpty
     private String home;
+    @NotEmpty
     private String nameObject;
+
     private double hotWater;
     private double heating;
     private double ventilation;
@@ -75,8 +81,6 @@ public class ObjectAdministration extends LazyDataModel<TblObjectEntity> {
             load(tblObjectEntity);
 
         } else {
-            this.home = "";
-            this.nameObject="";
             this.hotWater=0.0;
             this.heating=0.0;
             this.ventilation=0.0;
@@ -114,7 +118,6 @@ public class ObjectAdministration extends LazyDataModel<TblObjectEntity> {
         tblObjectEntity.setHeating(this.heating);
         tblObjectEntity.setVentilation(this.ventilation);
         if (tblObjectEntity.getIdObject() == 0) {
-
             objectDAO.create(tblObjectEntity);
         } else {
             objectDAO.update(tblObjectEntity);

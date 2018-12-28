@@ -9,15 +9,13 @@
     <ui:define name="page_body">
         <h:form>
             <p:panel>
-
-
-                <h2>
-                    <p:outputLabel rendered="#{cityAdministration.idCity==0 or cityAdministration.idCity==null}">
-                        Создание города
-                    </p:outputLabel>
-                    <p:outputLabel rendered="#{cityAdministration.idCity!=0 and cityAdministration.idCity!=null}"
-                                   value="Редактирование #{cityAdministration.nameCity} "/>
-                </h2>
+                <p:outputLabel rendered="#{cityAdministration.idCity==0 or cityAdministration.idCity==null}"
+                               style="font-size:24px; color: darkblue">
+                    Новый город
+                </p:outputLabel>
+                <p:outputLabel style="font-size:24px; color: darkblue"
+                               rendered="#{cityAdministration.idCity!=0 and cityAdministration.idCity!=null}"
+                               value="Редактирование #{cityAdministration.nameCity} "/>
                 <p:panelGrid styleClass="ui-panelgrid-blank">
                     <p:row>
                         <p:column colspan="1">
@@ -26,10 +24,17 @@
                     </p:row>
                     <p:row>
                         <p:column colspan="1">
-                            <p:inputText id="name" value="#{cityAdministration.nameCity}"
-                                         title="name"/>
+                            <p:inputText id="name" value="#{cityAdministration.nameCity}" title="Введите наименование"
+                                         validator="#{cityAdministration.validateName}"/>
                         </p:column>
                     </p:row>
+
+                    <p:panel>
+                        <p:messages id="messages" showDetail="true" closable="true">
+                            <p:autoUpdate/>
+                        </p:messages>
+                    </p:panel>
+
                 </p:panelGrid>
                 <p:commandButton value="Сохранить" action="#{cityAdministration.save()}"
                                  rendered="#{userBean.doRightVerify('createUser')}"/>

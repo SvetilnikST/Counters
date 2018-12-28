@@ -20,8 +20,6 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-
-
 @ManagedBean(name = "register")
 @ViewScoped
 public class Register extends LazyDataModel<RegisterReport> {
@@ -38,6 +36,8 @@ public class Register extends LazyDataModel<RegisterReport> {
     private Boolean button1 = true;
     private Boolean button2 = true;
     private Boolean button3 = true;
+    private Boolean button4 = true;
+    private Boolean yellow = true;
     private Timestamp selectMonth;
     private TblDeviceEntity device;
 
@@ -46,7 +46,8 @@ public class Register extends LazyDataModel<RegisterReport> {
     private String button1Style = "background-color:#449d44; color: #fff; border-color: #398439; text-shadow: none;";
     private String button2Style = "background-color:#c9302c; color: #fff; border-color: #ac2925; text-shadow: none;";
     private String button3Style = "background-color:#31b0d5; color: #fff; border-color: #269abc; text-shadow: none;";
-    private String styleYellow = "background-color:#f0ad4e; color: #fff; border-color: #269abc; text-shadow: none;";
+    private String button4Style = "background-color:#8B0000; color: #fff; border-color: #269abc; text-shadow: none;";
+    private String styleYellow = "background-color:#4682B4; color: #fff; border-color: #269abc; text-shadow: none;";
     private List<Timestamp> dateTimeList;
     private String[] stMonth = {"", "январь", "февраль", "март", "апрель", "май", "июнь", "июль", "август", "сентябрь", "октябрь", "ноябрь", "декабрь"};
 
@@ -78,7 +79,6 @@ public class Register extends LazyDataModel<RegisterReport> {
         String param = parameterMap.get("id");
         //если не пустой id, делаем чтение записи по id
         if (param != null) {
-
             int id = Integer.parseInt(param);
             //чтение записи по id
             device = deviceDAO.read(id);
@@ -300,8 +300,6 @@ public class Register extends LazyDataModel<RegisterReport> {
     }
 
 
-
-
     public String getButton3Style() {
         String ret = "";
         if (button3) {
@@ -319,4 +317,29 @@ public class Register extends LazyDataModel<RegisterReport> {
         return ret;
     }
 
+
+    public String getButton2Style() {
+        String ret = "";
+        if (button2) {
+            ret = button2Style;
+        }
+        return ret;
+    }
+
+
+    public String getButton4Style() {
+        String ret = "";
+        if (button4) {
+            ret = button4Style;
+        }
+        return ret;
+    }
+
+    public String getStyleYellow() {
+        String ret = "";
+        if (yellow) {
+            ret = styleYellow;
+        }
+        return ret;
+    }
 }

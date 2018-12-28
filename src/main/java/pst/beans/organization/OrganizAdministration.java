@@ -277,4 +277,6 @@ public class OrganizAdministration extends LazyDataModel<TblOrganizationEntity>{
     public void setDataWorker(String dataWorker) {
         this.dataWorker = dataWorker;
     }
+
+
 }

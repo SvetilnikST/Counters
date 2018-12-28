@@ -1,5 +1,7 @@
 package pst.beans.contract;
 
+import org.hibernate.validator.constraints.NotEmpty;
+import org.joda.time.DateTime;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 import pst.beans.device.DeviceDAO;
@@ -11,15 +13,18 @@ import javax.enterprise.inject.Default;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIInput;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-@ManagedBean (name="contractAdministration")
+@ManagedBean(name = "contractAdministration")
 @ViewScoped
 public class contractAdministration extends LazyDataModel<TblContractEntity> {
 
@@ -29,21 +34,20 @@ public class contractAdministration extends LazyDataModel<TblContractEntity> {
 
     @EJB
     private ContractDAO contractDAO;
-
     @EJB
     private DeviceDAO deviceDAO;
-
     @Default
     private int idContract;
+    @NotNull
     private String contract;
     private Date date;
     private String description;
+    @NotNull
     private String number;
     private List<TblDeviceEntity> deviceEntityList;
-    //    public TblContractEntity selectedContract;
 
     @PostConstruct
-    void start(){
+    void start() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
         Map<String, String> parameterMap = (Map<String, String>) externalContext.getRequestParameterMap();
@@ -58,15 +62,11 @@ public class contractAdministration extends LazyDataModel<TblContractEntity> {
             }
             load(tblContractEntity);
         } else {
-            this.contract= "";
-            this.date=null;
-            this.description="";
-            this.number="";
+            this.description = "";
         }
 //        tblContractEntitysList = contractDAO.findAll();
         deviceEntityList = deviceDAO.findAll();
     }
-
 
     public void load(TblContractEntity contractEntity) {
         this.setIdContract(contractEntity.getIdContract());
@@ -95,7 +95,6 @@ public class contractAdministration extends LazyDataModel<TblContractEntity> {
         return "listContract.xhtml";
     }
 
-
     @Override
     public List<TblContractEntity> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
         List<TblContractEntity> tblContractEntitysList;
@@ -108,10 +107,10 @@ public class contractAdministration extends LazyDataModel<TblContractEntity> {
     }
 
 
-
     public Timestamp timestampFromDate(Date fromDate) {
         return new Timestamp(fromDate.getTime());
     }
+
     public TblContractEntity getTblContractEntity() {
         return tblContractEntity;
     }
@@ -200,6 +199,25 @@ public class contractAdministration extends LazyDataModel<TblContractEntity> {
         this.number = number;
     }
 
+    public void validateName(FacesContext context, UIComponent comp, Object value) {
+        if (value != null) {
+            String field = (String) value;
+            if (field.isEmpty()) {
+                ((UIInput) comp).setValid(false);
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Внимание!", "Не заполнено поле Наименование"));
+            }
+        }
+    }
+
+    public void validateNumber(FacesContext context, UIComponent comp, Object value) {
+        if (value != null) {
+            String field = (String) value;
+            if (field.isEmpty()) {
+                ((UIInput) comp).setValid(false);
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Внимание!", "Не заполнено поле Номер"));
+            }
+        }
+    }
 
 
 }

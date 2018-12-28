@@ -1,6 +1,6 @@
 package pst.beans.city;
 
-
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -8,8 +8,11 @@ import javax.enterprise.inject.Default;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIInput;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
@@ -17,19 +20,15 @@ import java.util.Map;
 @ManagedBean (name="cityAdministration")
 @ViewScoped
 public class cityAdministration implements Serializable {
-
     private TblCityEntity tblCityEntity;
     private List<cityAdministration> cityAdministrations;
     private List<TblCityEntity> tblCityEntitysList;
-
     @EJB
     private CityDAO cityDAO;
-
     @Default
     private int idCity;
+    @NotNull
     private String nameCity;
-
-
 
     @PostConstruct
     void start(){
@@ -52,8 +51,6 @@ public class cityAdministration implements Serializable {
         }
         tblCityEntitysList = cityDAO.findAll();
     }
-
-
     public void load(TblCityEntity cityEntity) {
         this.setIdCity(cityEntity.getIdCity());
         this.setNameCity(cityEntity.getNameCity());
@@ -71,7 +68,6 @@ public class cityAdministration implements Serializable {
         } else {
             cityDAO.update(tblCityEntity);
         }
-//        return "listCity.xhtml?faces-redirect=true&id=" + String.valueOf(tblCityEntity.getIdCity());
         return "list.xhtml";
     }
 
@@ -121,5 +117,15 @@ public class cityAdministration implements Serializable {
 
     public void setTblCityEntitysList(List<TblCityEntity> tblCityEntitysList) {
         this.tblCityEntitysList = tblCityEntitysList;
+    }
+
+    public void validateName(FacesContext context, UIComponent comp, Object value) {
+        if (value != null) {
+            String field = (String) value;
+            if (field.isEmpty()) {
+                ((UIInput) comp).setValid(false);
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Внимание!", "Не заполнено поле Наименование"));
+            }
+        }
     }
 }

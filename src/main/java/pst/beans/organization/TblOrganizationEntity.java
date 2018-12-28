@@ -5,6 +5,7 @@ import pst.beans.object.TblObjectEntity;
 import pst.beans.street.TblStreetEntity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,6 +17,7 @@ public class TblOrganizationEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idOrganization", nullable = false)
     private int idOrganization;
+
 
     @Column(name = "nameOrganization", nullable = false, length = 255)
     private String nameOrganization;
