@@ -14,8 +14,11 @@ import javax.enterprise.inject.Default;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIInput;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
@@ -44,12 +47,11 @@ public class DeviceAdministration implements Serializable {
     @EJB
     private ObjectDAO objectDAO;
 
-
     @Default
     private int id;
-    @NotEmpty
+    @NotNull
     private String name;
-    @NotEmpty
+    @NotNull
     private String serial;
     private int lastRequestDate;
     private int requestsCount;
@@ -61,11 +63,9 @@ public class DeviceAdministration implements Serializable {
     private Date TCP;
     private Date additionalDevice;
 
-
     TblTypeDeviceEntity typeDeviceEntity;
     TblUnitQEntity unitQEntity;
     TblObjectEntity objectEntity;
-
     private List<TblDeviceEntity> tblDeviceEntitysList;
 
     @PostConstruct
@@ -88,8 +88,8 @@ public class DeviceAdministration implements Serializable {
             //вызываем метод загрузки данный в сущность
             load(tblDeviceEntity);
         } else {
-            name = "";
-            serial = "";
+            name="";
+            serial="";
             lastRequestDate = 0;
             requestsCount = 0;
             ip = "";
@@ -119,7 +119,6 @@ public class DeviceAdministration implements Serializable {
         this.setNum_port(deviceEntity.getNum_port());
         this.setRequestInterval(deviceEntity.getRequestInterval());
         this.setObjectEntity(deviceEntity.getObjectEntity());
-
         this.setPPR(timestampFromDate(deviceEntity.getPPR()));
         this.setIVB(timestampFromDate(deviceEntity.getIVB()));
         this.setTCP(timestampFromDate(deviceEntity.getTCP()));
@@ -131,7 +130,6 @@ public class DeviceAdministration implements Serializable {
         if (tblDeviceEntity == null) {
             tblDeviceEntity = new TblDeviceEntity();
         }
-
         tblDeviceEntity.setName(this.name);
         tblDeviceEntity.setTypeDeviceEntity(typeDeviceEntity);
         tblDeviceEntity.setUnitQEntity(unitQEntity);
@@ -146,7 +144,6 @@ public class DeviceAdministration implements Serializable {
         tblDeviceEntity.setIVB(timestampFromDate(this.IVB));
         tblDeviceEntity.setTCP(timestampFromDate(this.TCP));
         tblDeviceEntity.setAdditionalDevice(timestampFromDate(this.additionalDevice));
-
 
         if (tblDeviceEntity.getId() == 0) {
             deviceDAO.create(tblDeviceEntity);
@@ -360,4 +357,24 @@ public class DeviceAdministration implements Serializable {
     public void setAdditionalDevice(Date additionalDevice) {
         this.additionalDevice = additionalDevice;
     }
-}
+
+    public void validateName(FacesContext context, UIComponent comp, Object value) {
+        if (value != null) {
+            String field = (String) value;
+            if (field.isEmpty()) {
+                ((UIInput) comp).setValid(false);
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Внимание!", "Не заполнено поле Наименование"));
+            }
+        }
+    }
+
+    public void validateNumber(FacesContext context, UIComponent comp, Object value) {
+        if (value != null) {
+            String field = (String) value;
+            if (field.isEmpty()) {
+                ((UIInput) comp).setValid(false);
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Внимание!", "Не заполнено поле Серийный номер"));
+            }
+        }
+    }
+    }

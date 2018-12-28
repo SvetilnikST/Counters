@@ -9,17 +9,22 @@
     <ui:define name="page_body">
         <h:form>
             <p:panel>
-                <h2>
-                    <p:outputLabel
+
+                    <p:outputLabel style="font-size:24px"
                             rendered="#{organizationAdministration.idOrganization==0 or organizationAdministration.idOrganization==null}">
                         Новая организация
                     </p:outputLabel>
-                    <p:outputLabel
+                    <p:outputLabel style="font-size:24px"
                             rendered="#{organizationAdministration.idOrganization!=0 and organizationAdministration.idOrganization!=null}"
                             value="Изменение данных организации #{organizationAdministration.nameOrganization} "/>
-                </h2>
+
 
                 <p:panelGrid styleClass="ui-panelgrid-blank">
+                    <p:panel>
+                        <p:messages id="messages" showDetail="true" closable="true">
+                            <p:autoUpdate/>
+                        </p:messages>
+                    </p:panel>
                     <p:row>
                         <p:column colspan="1">
                             <h:outputText value="Наименование"/>
@@ -33,6 +38,7 @@
                         <p:column colspan="1">
                             <p:inputTextarea rows="1" cols="70" id="name"
                                              value="#{organizationAdministration.nameOrganization}"
+                                             validator="#{organizationAdministration.validateName}"
                                              title="name"/>
                         </p:column>
                         <p:column colspan="1">
@@ -40,7 +46,7 @@
                         </p:column>
                     </p:row>
                 </p:panelGrid>
-                <br/>
+                <p:panelGrid styleClass="ui-panelgrid-blank"/>
 
                 <p:panelGrid styleClass="ui-panelgrid-blank">
                     <p:row>
@@ -95,7 +101,7 @@
                         </p:column>
                     </p:row>
                 </p:panelGrid>
-                <br/>
+                <p:panelGrid styleClass="ui-panelgrid-blank"/>
                 <p:panelGrid styleClass="ui-panelgrid-blank">
                     <p:row>
                         <p:column colspan="4">

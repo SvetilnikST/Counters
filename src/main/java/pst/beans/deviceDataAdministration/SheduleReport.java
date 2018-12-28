@@ -1,7 +1,5 @@
 package pst.beans.deviceDataAdministration;
 
-import java.sql.Timestamp;
-
 public class SheduleReport {
     private String dateRequest;
     private String timeRequest;
@@ -9,9 +7,7 @@ public class SheduleReport {
     private String timeOn;
     private String timeError;
     private int idShedule;
-
     private String timeRunSys;
-//    private int number;
     private double SIGMA_Q;
     private double Q1;
     private double Q2;
@@ -30,7 +26,6 @@ public class SheduleReport {
     private float P1;
     private float P2;
     private float P3;
-
     private boolean inStore1;
 
     public boolean isInStore1() {

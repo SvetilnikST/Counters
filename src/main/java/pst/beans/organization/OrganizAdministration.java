@@ -14,8 +14,11 @@ import javax.enterprise.inject.Default;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIInput;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
@@ -40,6 +43,7 @@ public class OrganizAdministration extends LazyDataModel<TblOrganizationEntity>{
 
     @Default
     private int idOrganization;
+    @NotNull
     private String nameOrganization;
     private int UNP;
     private String phone;
@@ -132,7 +136,15 @@ public class OrganizAdministration extends LazyDataModel<TblOrganizationEntity>{
         return tblOrganizationEntitysList;
     }
 
-
+    public void validateName(FacesContext context, UIComponent comp, Object value) {
+        if (value != null) {
+            String field = (String) value;
+            if (field.isEmpty()) {
+                ((UIInput) comp).setValid(false);
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Внимание!", "Не заполнено поле Наименование"));
+            }
+        }
+    }
 
     public TblOrganizationEntity getTblOrganizationEntity() {
         return tblOrganizationEntity;

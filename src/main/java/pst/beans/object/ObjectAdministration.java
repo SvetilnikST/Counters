@@ -1,6 +1,5 @@
 package pst.beans.object;
 
-import org.hibernate.validator.constraints.NotEmpty;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 import pst.beans.city.CityDAO;
@@ -16,14 +15,13 @@ import javax.enterprise.inject.Default;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIInput;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
-
-
 
 @ManagedBean(name = "objectAdministration")
 @ViewScoped
@@ -34,7 +32,6 @@ public class ObjectAdministration extends LazyDataModel<TblObjectEntity> {
     TblCityEntity cityEntity;
     TblStreetEntity streetEntity;
     TblOrganizationEntity organizationEntity;
-
 
     @EJB
     private ObjectDAO objectDAO;
@@ -50,9 +47,9 @@ public class ObjectAdministration extends LazyDataModel<TblObjectEntity> {
 
     @Default
     private int idObject;
-    @NotEmpty
+    @NotNull
     private String home;
-    @NotEmpty
+    @NotNull
     private String nameObject;
 
     private double hotWater;
@@ -134,6 +131,26 @@ public class ObjectAdministration extends LazyDataModel<TblObjectEntity> {
             return null;
         }
         return tblContractEntitysList;
+    }
+
+    public void validateName(FacesContext context, UIComponent comp, Object value) {
+        if (value != null) {
+            String field = (String) value;
+            if (field.isEmpty()) {
+                ((UIInput) comp).setValid(false);
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Внимание!", "Не заполнено поле Наименование"));
+            }
+        }
+    }
+
+    public void validateHome(FacesContext context, UIComponent comp, Object value) {
+        if (value != null) {
+            String field = (String) value;
+            if (field.isEmpty()) {
+                ((UIInput) comp).setValid(false);
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Внимание!", "Не заполнено поле № дома"));
+            }
+        }
     }
 
 

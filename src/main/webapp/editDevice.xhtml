@@ -9,188 +9,177 @@
     <ui:define name="page_body">
         <h:form>
             <p:panel>
-                <h2>
-                    <p:outputLabel rendered="#{deviceAdministration.id==0 or deviceAdministration.id==null}">
-                        Устройство
-                    </p:outputLabel>
-                    <p:outputLabel rendered="#{deviceAdministration.id!=0 and deviceAdministration.id!=null}"
-                                   value="Изменение данных #{deviceAdministration.name} "/>
-                </h2>
+                <p:outputLabel style="font-size:24px"
+                               rendered="#{deviceAdministration.id==0 or deviceAdministration.id==null}">
+                    Добавление устройства
+                </p:outputLabel>
+                <p:outputLabel style="font-size:24px"
+                               rendered="#{deviceAdministration.id!=0 and deviceAdministration.id!=null}"
+                               value="Изменение данных #{deviceAdministration.name} "/>
                 <p:panel>
-                <p:panelGrid styleClass="ui-panelgrid-blank">
-                    <p:row>
-                        <p:column colspan="1">
-                            <h:outputText value="Наименование"/>
-                        </p:column>
-                        <p:column colspan="6">
-                            <h:outputText value="Тип устройства"/>
-                        </p:column>
-                        <p:column colspan="1">
-                            <h:outputText value="Величина"/>
-                        </p:column>
-                        <p:column colspan="3">
-                            <h:outputText value="Серия"/>
-                        </p:column>
-                        <p:column colspan="1">
-                            <h:outputText value="Последняя дата изменений"/>
-                        </p:column>
-                        <p:column colspan="1">
-                            <h:outputText value="Количетство опросов"/>
-                        </p:column>
-                        <p:column colspan="1">
-                            <h:outputText value="IP-адрес"/>
-                        </p:column>
+                    <p:panelGrid styleClass="ui-panelgrid-blank">
+                        <p:panel>
+                            <p:messages id="messages" showDetail="true" closable="true">
+                                <p:autoUpdate/>
+                            </p:messages>
+                        </p:panel>
+                        <p:row>
+                            <p:column colspan="1">
+                                <h:outputText value="Наименование"/>
+                            </p:column>
+                            <p:column colspan="6">
+                                <h:outputText value="Тип устройства"/>
+                            </p:column>
+                            <p:column colspan="1">
+                                <h:outputText value="Величина"/>
+                            </p:column>
+                            <p:column colspan="3">
+                                <h:outputText value="Серия"/>
+                            </p:column>
+                            <p:column colspan="1">
+                                <h:outputText value="Последняя дата изменений"/>
+                            </p:column>
+                            <p:column colspan="1">
+                                <h:outputText value="Количетство опросов"/>
+                            </p:column>
+                            <p:column colspan="1">
+                                <h:outputText value="IP-адрес"/>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column colspan="1">
+                                <p:inputText id="name" value="#{deviceAdministration.name}"
+                                             validator="#{deviceAdministration.validateName}"
+                                             title="Введите наименование"/>
+                            </p:column>
+                            <p:column colspan="6">
+                                <p:selectOneMenu id="type_id" value="#{deviceAdministration.typeDeviceEntity}"
+                                                 converter="omnifaces.SelectItemsConverter"
+                                                 var="type_device">
+                                    <f:selectItems value="#{deviceAdministration.typeDeviceList}" var="type_device"
+                                                   itemLabel="#{type_device.name}" itemValue="#{type_device}"/>
+                                    <p:column>
+                                        <h:outputText value="#{type_device.name}"/>
+                                    </p:column>
+                                </p:selectOneMenu>
+                            </p:column>
+                            <p:column colspan="3">
+                                <p:selectOneMenu id="unit_Q" value="#{deviceAdministration.unitQEntity}"
+                                                 converter="omnifaces.SelectItemsConverter"
+                                                 var="unitQ">
+                                    <f:selectItems value="#{deviceAdministration.unitQList}" var="unitQ"
+                                                   itemLabel="#{unitQ.name}" itemValue="#{unitQ}"/>
+                                    <p:column>
+                                        <h:outputText value="#{unitQ.name}"/>
+                                    </p:column>
+                                </p:selectOneMenu>
+                            </p:column>
+                            <p:column colspan="1">
+                                <p:inputText id="serial" value="#{deviceAdministration.serial}"
+                                             validator="#{deviceAdministration.validateNumber}"
+                                             title="Введите серийный номер"/>
+                            </p:column>
+                            <p:column colspan="1">
+                                <p:inputText id="lastRequestDate" value="#{deviceAdministration.lastRequestDate}"
+                                             title="Последняя дата опроса"/>
+                            </p:column>
+                            <p:column colspan="1">
+                                <p:inputText id="requestsCount" value="#{deviceAdministration.requestsCount}"
+                                             title="Количество опросов"/>
+                            </p:column>
+                            <p:column colspan="1">
+                                <p:inputMask mask="99.999.99.99" value="#{deviceAdministration.ip}"
+                                             title="IP:адрес"/>
+                            </p:column>
+                        </p:row>
+                    </p:panelGrid>
 
-                    </p:row>
-                    <p:row>
-                        <p:column colspan="1">
-                            <p:inputText id="name" value="#{deviceAdministration.name}"
-                                         title="name"/>
-                        </p:column>
-                        <p:column colspan="6">
-                            <p:selectOneMenu id="type_id" value="#{deviceAdministration.typeDeviceEntity}"
-                                             converter="omnifaces.SelectItemsConverter"
-                                             var="type_device">
-                                <f:selectItems value="#{deviceAdministration.typeDeviceList}" var="type_device"
-                                               itemLabel="#{type_device.name}" itemValue="#{type_device}"/>
-                                <p:column>
-                                    <h:outputText value="#{type_device.name}"/>
-                                </p:column>
-                            </p:selectOneMenu>
-                        </p:column>
-                        <p:column colspan="3">
-                            <p:selectOneMenu id="unit_Q" value="#{deviceAdministration.unitQEntity}"
-                                             converter="omnifaces.SelectItemsConverter"
-                                             var="unitQ">
-                                <f:selectItems value="#{deviceAdministration.unitQList}" var="unitQ"
-                                               itemLabel="#{unitQ.name}" itemValue="#{unitQ}"/>
-                                <p:column>
-                                    <h:outputText value="#{unitQ.name}"/>
-                                </p:column>
-                            </p:selectOneMenu>
-                        </p:column>
-                        <p:column colspan="1">
-                            <p:inputText id="serial" value="#{deviceAdministration.serial}"
-                                         title="serial"/>
-                        </p:column>
-                        <p:column colspan="1">
-                            <p:inputText id="lastRequestDate" value="#{deviceAdministration.lastRequestDate}"
-                                         title="lastRequestDate"/>
-                        </p:column>
-                        <p:column colspan="1">
-                            <p:inputText id="requestsCount" value="#{deviceAdministration.requestsCount}"
-                                         title="requestsCount"/>
-                        </p:column>
-                        <p:column colspan="1">
-                            <p:inputMask mask="99.999.99.99" value="#{deviceAdministration.ip}"
-                                         title="IP"/>
-                        </p:column>
-                    </p:row>
-                </p:panelGrid>
+                    <p:panelGrid styleClass="ui-panelgrid-blank">
+                        <p:row>
+                            <p:column colspan="1">
+                                <h:outputText value="№ порта"/>
+                            </p:column>
+                            <p:column colspan="1">
+                                <h:outputText value="Расписание опроса"/>
+                            </p:column>
+                            <p:column colspan="3">
+                                <h:outputText value="Объект учета"/>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column colspan="1">
+                                <p:inputText id="num_port" value="#{deviceAdministration.num_port}"
+                                             title="Введите номер порта"/>
+                            </p:column>
+                            <p:column colspan="1">
+                                <p:selectOneMenu id="console" value="#{deviceAdministration.requestInterval}"
+                                                 style="width:125px">
+                                    <f:selectItem itemLabel="1" itemValue="1"/>
+                                    <f:selectItem itemLabel="2" itemValue="2"/>
+                                    <f:selectItem itemLabel="4" itemValue="4"/>
+                                    <f:selectItem itemLabel="6" itemValue="6"/>
+                                    <f:selectItem itemLabel="8" itemValue="8"/>
+                                    <f:selectItem itemLabel="12" itemValue="12"/>
+                                    <f:selectItem itemLabel="24" itemValue="24"/>
+                                </p:selectOneMenu>
+                            </p:column>
+                            <p:column colspan="3">
+                                <p:selectOneMenu id="object" value="#{deviceAdministration.objectEntity}"
+                                                 converter="omnifaces.SelectItemsConverter"
+                                                 var="object">
+                                    <f:selectItems value="#{deviceAdministration.objectList}" var="object"
+                                                   itemLabel="#{object.nameObject}" itemValue="#{object}"/>
+                                    <p:column>
+                                        <h:outputText value="#{object.nameObject}"/>
+                                    </p:column>
+                                </p:selectOneMenu>
+                            </p:column>
+                        </p:row>
+                    </p:panelGrid>
 
-                <p:panelGrid styleClass="ui-panelgrid-blank">
-                    <p:row>
-                        <p:column colspan="1">
-                            <h:outputText value="№ порта"/>
-                        </p:column>
-                        <p:column colspan="1">
-                            <h:outputText value="Расписание опроса"/>
-                        </p:column>
-                        <p:column colspan="3">
-                            <h:outputText value="Объект учета"/>
-                        </p:column>
-
-
-                    </p:row>
-                    <p:row>
-                        <p:column colspan="1">
-                            <p:inputText id="num_port" value="#{deviceAdministration.num_port}"
-                                         title="num_port"/>
-                        </p:column>
-                        <p:column colspan="1">
-                            <p:selectOneMenu id="console" value="#{deviceAdministration.requestInterval}"
-                                             style="width:125px">
-                                <f:selectItem itemLabel="1" itemValue="1"/>
-                                <f:selectItem itemLabel="2" itemValue="2"/>
-                                <f:selectItem itemLabel="4" itemValue="4"/>
-                                <f:selectItem itemLabel="6" itemValue="6"/>
-                                <f:selectItem itemLabel="8" itemValue="8"/>
-                                <f:selectItem itemLabel="12" itemValue="12"/>
-                                <f:selectItem itemLabel="24" itemValue="24"/>
-                            </p:selectOneMenu>
-
-
-                        </p:column>
-                        <p:column colspan="3">
-                            <p:selectOneMenu id="object" value="#{deviceAdministration.objectEntity}"
-                                             converter="omnifaces.SelectItemsConverter"
-                                             var="object">
-                                <f:selectItems value="#{deviceAdministration.objectList}" var="object"
-                                               itemLabel="#{object.nameObject}" itemValue="#{object}"/>
-                                <p:column>
-                                    <h:outputText value="#{object.nameObject}"/>
-                                </p:column>
-                            </p:selectOneMenu>
-                        </p:column>
-
-
-                    </p:row>
-                </p:panelGrid>
-                <br/>
-                <p:panelGrid styleClass="ui-panelgrid-blank">
-
-
-                    <p:row>
-                        <p:column colspan="2">
-                            <p:outputLabel style="color: darkblue">Сроки поверки оборудования</p:outputLabel>
-                        </p:column>
-                    </p:row>
-
-                    <p:row>
-                        <p:column colspan="1">Измерительно-вычислительный блок:</p:column>
-                        <p:column colspan="1">
-                            <p:calendar id="IVB" value="#{deviceAdministration.IVB}"
-                                        pattern="dd.MM.yyyy" lang="ru" locale="ru"
-                                        title=""
-                            />
-                        </p:column>
-                    </p:row>
-
-                    <p:row>
-                        <p:column colspan="1">Первичный преобразователь расхода:</p:column>
-                        <p:column colspan="1">
-                            <p:calendar id="PPR" value="#{deviceAdministration.PPR}"
-                                        pattern="dd.MM.yyyy" lang="ru" locale="ru"
-                                        title=""
-                            />
-                        </p:column>
-                    </p:row>
-
-                    <p:row>
-                        <p:column colspan="1">Термометр сопративления:</p:column>
-                        <p:column colspan="1">
-                            <p:calendar id="TCP" value="#{deviceAdministration.TCP}"
-                                        pattern="dd.MM.yyyy" lang="ru" locale="ru"
-                                        title=""
-                            />
-                        </p:column>
-                    </p:row>
-
-                    <p:row>
-                        <p:column colspan="1">Дополнительное оборудование:</p:column>
-                        <p:column colspan="1">
-                            <p:calendar id="additionalDevice" value="#{deviceAdministration.additionalDevice}"
-                                        pattern="dd.MM.yyyy" lang="ru" locale="ru"
-                                        title=""
-                            />
-                        </p:column>
-                    </p:row>
-                </p:panelGrid>
-                <p:commandButton value="Сохранить" action="#{deviceAdministration.save()}"
-                                 rendered="#{userBean.doRightVerify('createUser')}"/>
+                    <p:panelGrid styleClass="ui-panelgrid-blank">
+                        <p:row>
+                            <p:column colspan="2">
+                                <p:outputLabel style="color: darkblue">Сроки поверки оборудования</p:outputLabel>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column colspan="1">Измерительно-вычислительный блок:</p:column>
+                            <p:column colspan="1">
+                                <p:calendar id="IVB" value="#{deviceAdministration.IVB}"
+                                            pattern="dd.MM.yyyy" lang="ru" locale="ru"
+                                            title=""/>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column colspan="1">Первичный преобразователь расхода:</p:column>
+                            <p:column colspan="1">
+                                <p:calendar id="PPR" value="#{deviceAdministration.PPR}"
+                                            pattern="dd.MM.yyyy" lang="ru" locale="ru"
+                                            title=""/>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column colspan="1">Термометр сопративления:</p:column>
+                            <p:column colspan="1">
+                                <p:calendar id="TCP" value="#{deviceAdministration.TCP}"
+                                            pattern="dd.MM.yyyy" lang="ru" locale="ru"
+                                            title=""/>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column colspan="1">Дополнительное оборудование:</p:column>
+                            <p:column colspan="1">
+                                <p:calendar id="additionalDevice" value="#{deviceAdministration.additionalDevice}"
+                                            pattern="dd.MM.yyyy" lang="ru" locale="ru"
+                                            title=""/>
+                            </p:column>
+                        </p:row>
+                    </p:panelGrid>
+                    <p:commandButton value="Сохранить" action="#{deviceAdministration.save()}"
+                                     rendered="#{userBean.doRightVerify('createUser')}"/>
+                </p:panel>
             </p:panel>
-            </p:panel>
-
         </h:form>
     </ui:define>
 </ui:composition>

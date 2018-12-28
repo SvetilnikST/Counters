@@ -9,17 +9,20 @@
     <ui:define name="page_body">
         <h:form>
             <p:panel>
-                <h2>
-                    <p:outputLabel
+                    <p:outputLabel style="font-size:24px"
                             rendered="#{objectAdministration.idObject==0 or objectAdministration.idObject==null}">
                         Новый объект учета
                     </p:outputLabel>
-                    <p:outputLabel
+                    <p:outputLabel style="font-size:24px"
                             rendered="#{objectAdministration.idObject!=0 and objectAdministration.idObject!=null}"
                             value="Изменение объекта #{objectAdministration.nameObject} "/>
-                </h2>
 
                 <p:panelGrid styleClass="ui-panelgrid-blank">
+                    <p:panel>
+                        <p:messages id="messages" showDetail="true" closable="true">
+                            <p:autoUpdate/>
+                        </p:messages>
+                    </p:panel>
                     <p:row>
                         <p:column colspan="1">
                             <h:outputText value="Наименование объекта учета"/>
@@ -32,7 +35,7 @@
                     <p:row>
                         <p:column colspan="1">
                             <p:inputTextarea rows="1" cols="70" id="nameObject"
-                                             value="#{objectAdministration.nameObject}"
+                                             value="#{objectAdministration.nameObject}" validator="#{objectAdministration.validateName}"
                                              title="name"/>
                         </p:column>
                         <p:column colspan="3">
@@ -49,7 +52,7 @@
                         </p:column>
                     </p:row>
                 </p:panelGrid>
-                <br/>
+                <p:panelGrid styleClass="ui-panelgrid-blank"/>
                 <p:panelGrid styleClass="ui-panelgrid-blank">
                     <p:row>
                         <p:column colspan="2">
@@ -88,12 +91,12 @@
                             </p:selectOneMenu>
                         </p:column>
                         <p:column colspan="1">
-                            <p:inputText id="name" value="#{objectAdministration.home}"
+                            <p:inputText id="name" value="#{objectAdministration.home}" validator="#{objectAdministration.validateHome}"
                                          title="Номер дома"/>
                         </p:column>
                     </p:row>
                 </p:panelGrid>
-                <br/>
+                <p:panelGrid styleClass="ui-panelgrid-blank"/>
                 <p:panelGrid styleClass="ui-panelgrid-blank">
                     <p:row>
                         <p:column colspan="1">

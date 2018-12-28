@@ -13,14 +13,19 @@
             <p:panel>
                 <p:outputLabel
                         rendered="#{contractAdministration.idContract==0 or contractAdministration.idContract==null}"
-                        style="font-size:24px; color: darkblue">
+                        style="font-size:24px">
                     Новый документ
                 </p:outputLabel>
-                <p:outputLabel style="font-size:24px; color: darkblue"
+                <p:outputLabel style="font-size:24px"
                                rendered="#{contractAdministration.idContract!=0 and contractAdministration.idContract!=null}"
                                value="Изменение данных о документе #{contractAdministration.number} "/>
 
                 <p:panelGrid styleClass="ui-panelgrid-blank">
+                    <p:panel>
+                        <p:messages id="messages" showDetail="true" closable="true">
+                            <p:autoUpdate/>
+                        </p:messages>
+                    </p:panel>
                     <p:row>
                         <p:column colspan="1">
                             <h:outputText value="Дата"/>
@@ -75,11 +80,7 @@
                     </p:row>
 
 
-                    <p:panel>
-                        <p:messages id="messages" showDetail="true" closable="true">
-                            <p:autoUpdate/>
-                        </p:messages>
-                    </p:panel>
+
 
 
                 </p:panelGrid>
