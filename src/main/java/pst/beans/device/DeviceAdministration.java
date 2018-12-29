@@ -1,6 +1,8 @@
 package pst.beans.device;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.primefaces.model.LazyDataModel;
+import org.primefaces.model.SortOrder;
 import pst.beans.object.ObjectDAO;
 import pst.beans.object.TblObjectEntity;
 import pst.beans.typeDevice.TblTypeDeviceEntity;
@@ -27,7 +29,7 @@ import java.util.Map;
 
 @ManagedBean(name = "deviceAdministration")
 @ViewScoped
-public class DeviceAdministration implements Serializable {
+public class DeviceAdministration extends LazyDataModel<TblDeviceEntity> {
     private TblDeviceEntity tblDeviceEntity;
     private List<DeviceAdministration> deviceAdministrations;
 
@@ -151,6 +153,19 @@ public class DeviceAdministration implements Serializable {
             deviceDAO.update(tblDeviceEntity);
         }
         return "listDevice.xhtml?faces-redirect=true&id" + String.valueOf(tblDeviceEntity.getId());
+    }
+
+
+
+    @Override
+    public List<TblDeviceEntity> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
+        List<TblDeviceEntity> tblDeviceEntitysList;
+        setRowCount(deviceDAO.getTotalCount(filters));
+        tblDeviceEntitysList = deviceDAO.load(first, pageSize, sortField, sortOrder, filters);
+        if (tblDeviceEntitysList.size() == 0) {
+            return null;
+        }
+        return tblDeviceEntitysList;
     }
 
     private Timestamp timestampFromDate(Date fromDate) {

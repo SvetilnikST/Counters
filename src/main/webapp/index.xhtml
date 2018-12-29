@@ -20,7 +20,19 @@
                     id="deviceTable"
                     widgetVar="deviceTable"
                     var="device"
-                    value="#{deviceAdministration.tblDeviceEntitysList}">
+                    value="#{deviceAdministration.tblDeviceEntitysList}"
+                    paginator="true"
+                    paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                    rows="3"
+                    rowsPerPageTemplate="3,6,15"
+
+                    lazy="true"
+                    tableStyle="width: auto"
+                    emptyMessage="Нет записей"
+
+
+
+            >
 
                 <p:column headerText="Устройство">
                     <h:link value="#{device.name}" outcome="editDevice">

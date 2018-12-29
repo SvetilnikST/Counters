@@ -37,7 +37,7 @@ public class ContractDAO extends AbstractDao<TblContractEntity> {
         }
 
         if (contract != null) {
-            sql += " and contract = " + contract + " ";
+            sql += " and contract like '%" + contract + "%' ";
         }
 
         if (sortField != null) {
