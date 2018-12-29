@@ -7,29 +7,23 @@
         Сводный акт приёмки-передачи
     </ui:define>
     <ui:define name="page_body">
-        <h:form id="form">
-            <p:panel>
+        <h:form style="font-size:14px" styleClass="center" id="form">
+
+            <p:panel id="panel">
                 <h:panelGroup style="text-align: center">
                     <h4>
-                        <h:outputText value="АКТ" /><br/>
+                        <h:outputText value="АКТ"/><br/>
                         <h:outputText value="Приемки-передачи"/><br/>
                         <h:outputText
                                 value="тепловой энергии на объектах, оборудованных приборами учета тепловой энергии"/><br/>
                         <h:outputText value="по договору №___ _______________ "/><br/>
                         <h:outputLabel value="за "/>
-                        <h:selectOneMenu id="selectitems" value="#{registerAct.selectMonth}"
-                                         converter="omnifaces.SelectItemsConverter">
-                            <f:selectItems value="#{registerAct.dateTimeList}"
-                                           var="dt"
-                                           itemValue="#{dt}"
-                                           itemLabel="#{registerAct.Convert(dt)}"
-                            />
-                            <f:ajax render="tbl" listener="#{registerAct.load2}"/>
-                        </h:selectOneMenu>
                     </h4>
+
                 </h:panelGroup>
 
-                <p:dataTable id="tbl" var="act" value="#{registerAct.registerReports}" tableStyle="font-size: 14px">
+                <p:dataTable id="tbl" var="act" value="#{registerAct.registerReports}" tableStyle="font-size: 12px ">
+
                     <p:columnGroup type="header">
                         <p:row>
                             <p:column rowspan="3" headerText="Трубопровод"/>
@@ -38,6 +32,11 @@
                             <p:column rowspan="1" headerText="Коэф пересчета в Гкал"/>
                             <p:column rowspan="1" headerText="Время работы прибора"/>
                             <p:column colspan="2" headerText="Потребление за отчетный период"/>
+                        </p:row>
+                        <p:row>
+                            <!--<p:column colspan="3" rowspan="1" headerText=""/>-->
+                            <!--<p:column colspan="3" rowspan="1" headerText="ghfd"/>-->
+                            <!--<p:column colspan="2" headerText="По прибору"/>-->
                         </p:row>
                         <p:row>
                             <p:column rowspan="1" headerText="Таймер,ч"/>
@@ -61,7 +60,7 @@
                             <p:column colspan="1" headerText="8"/>
                             <p:column colspan="1" headerText="9"/>
                             <p:column colspan="1" headerText="10"/>
-
+                            <p:column colspan="1" headerText="11"/>
                         </p:row>
                     </p:columnGroup>
 
@@ -125,10 +124,14 @@
 
                 </p:dataTable>
 
-                <p:commandButton value="Печать" type="button" icon="ui-icon-print" style="font-size: 14px">
-                    <p:printer target="form"/>
-                </p:commandButton>
+
             </p:panel>
         </h:form>
+        <p:commandButton value="Печать" type="button" icon="ui-icon-print">
+            <p:printer target="form" />
+        </p:commandButton>
+
+
+
     </ui:define>
 </ui:composition>
