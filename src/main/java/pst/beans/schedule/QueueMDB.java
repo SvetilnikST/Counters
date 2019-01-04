@@ -1,6 +1,5 @@
 package pst.beans.schedule;
 
-
 import com.google.gson.Gson;
 import pst.beans.qBox.Common.BoxCommonDAO;
 import pst.beans.qBox.Common.TblBoxCommonEntity;
@@ -15,12 +14,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
-
-
-//@MessageDriven(name = "CountersToAskMDB", activationConfig = {
-//        @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "queue/CountersToAskMDBQueue"),
-//        @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue"),
-//        @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge")})
+@MessageDriven(name = "CountersToAskMDB", activationConfig = {
+        @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "queue/CountersToAskMDBQueue"),
+        @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue"),
+        @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge")})
 
 public class QueueMDB implements MessageListener {
 
@@ -59,7 +56,7 @@ public class QueueMDB implements MessageListener {
                     ex.toString();
                 }
                 finally {
-//                    System.out.println(" [x] Done"+msg.getText());
+
                 }
 
 
@@ -76,7 +73,7 @@ public class QueueMDB implements MessageListener {
         String stringToSend = (String) rcvMsg.get("send");
 
         ProcessBuilder procBuilder;
-//        procBuilder = new ProcessBuilder("java","-jar","D:\\1_SVETILNIK_NEED\\Java\\Counters\\qBoxSimulator-0.0.1.jar",stringToSend);
+        procBuilder = new ProcessBuilder("java","-jar","D:\\1_SVETILNIK_NEED\\Java\\Counters\\qBoxSimulator-0.0.1.jar",stringToSend);
         String[] toExec = stringToSend.split(" ");
         procBuilder = new ProcessBuilder(toExec);
 
@@ -105,8 +102,6 @@ public class QueueMDB implements MessageListener {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
 //        System.out.println(" [x] begin "+rcvMsg);
 //        for (char ch: rcvMsg.toCharArray()) {
 //            if (ch == '.') Thread.sleep(1000);

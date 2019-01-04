@@ -1,7 +1,5 @@
 package pst.beans.city;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.inject.Default;

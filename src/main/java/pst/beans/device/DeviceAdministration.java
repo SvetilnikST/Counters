@@ -1,6 +1,5 @@
 package pst.beans.device;
 
-import org.hibernate.validator.constraints.NotEmpty;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 import pst.beans.object.ObjectDAO;
@@ -21,7 +20,6 @@ import javax.faces.component.UIInput;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
